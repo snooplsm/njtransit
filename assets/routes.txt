@@ -1,0 +1,18 @@
+route_id,agency_id,route_short_name,route_long_name,route_type
+1,2,"","River LINE",0
+2,2,"","Princeton Shuttle",0
+3,2,"","Atlantic City Rail Line",2
+4,2,"","Montclair-Boonton Line",2
+5,2,"","Montclair-Boonton Line",2
+6,2,"","Hudson-Bergen Light Rail",0
+7,2,"","Main/Bergen County Line",2
+8,2,"","Port Jervis Line",2
+9,2,"","Morris & Essex Line",2
+10,2,"","Gladstone Branch",2
+11,2,"","Northeast Corridor",2
+12,2,"","North Jersey Coast Line",2
+13,2,"","North Jersey Coast Line",2
+14,2,"","Newark Light Rail",0
+15,2,"","Pascack Valley Line",2
+16,2,"","Princeton Shuttle",2
+17,2,"","Raritan Valley Line",2
