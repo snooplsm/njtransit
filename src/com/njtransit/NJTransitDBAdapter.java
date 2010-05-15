@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
+import com.njtransit.domain.Route;
 import com.njtransit.domain.Station;
+import com.njtransit.domain.StopTime;
+import com.njtransit.domain.Trip;
 
 public class NJTransitDBAdapter {
 
@@ -23,6 +27,9 @@ public class NJTransitDBAdapter {
 	private SQLiteDatabase db;
 	
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
+	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
+	private static String[] TRIP_COLUMNS = new String[] {"id", "service_id", "route_id", "headsign", "direction", "block_id"};
+	private static String[] STOPTIME_COLUMNS = new String[] {"id", "trip_id","arrival","departure","sequence","pickup_type","drop_off_type"};
 	
 	public NJTransitDBAdapter open() {
 		helper = new NJTransitDBHelper(context, "njtransit", null, VERSION);
@@ -31,6 +38,11 @@ public class NJTransitDBAdapter {
 		return this;
 	}
 	
+	/**
+	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't suppor trig functions so its easier to do it this way.
+	 * prob takes 8-32K of mem to represent all this data.
+	 * @return all stations
+	 */
 	public ArrayList<Station> getAllStations() {
 		db.beginTransaction();
 		Cursor cursor = db.query("stops", STATION_COLUMNS, null, null, null, null, "name");
@@ -49,6 +61,66 @@ public class NJTransitDBAdapter {
 		}
 		db.endTransaction();
 		return stations;
+	}
+	
+	/**
+	 * This will load ~12 routes.
+	 * 
+	 * @return routes
+	 */
+	public ArrayList<Route> getAllRoutes() {
+		db.beginTransaction();
+		Cursor cursor = db.query("routes", ROUTE_COLUMNS, null, null, null, null, null);
+		int count = cursor.getCount();
+		ArrayList<Route> routes = new ArrayList<Route>(count);
+		cursor.moveToFirst();
+		while(count>0) {
+			count--;
+			Route route = new Route();
+			route.setId(cursor.getInt(0));
+			route.setAgencyId(cursor.getInt(1));
+			route.setShortName(cursor.getString(2));
+			route.setLongName(cursor.getString(3));
+			route.setRouteType(cursor.getInt(4));
+			cursor.moveToNext();
+		}
+		db.endTransaction();
+		return routes;
+	}
+	
+	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
+		db.beginTransaction();
+		Cursor cursor = db.query("stop_times", STOPTIME_COLUMNS,"trip_id=? AND stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()}, null, null,null);
+		cursor.moveToFirst();
+		for(int i = 0; i < cursor.getCount(); i++) {
+			StopTime t = new StopTime();
+			t.setId(cursor.getInt(0));
+			t.setTripId(cursor.getInt(1));
+			String arrival = cursor.getString(2);
+			String departure = cursor.getString(3);
+			cursor.moveToNext();
+		}
+		return null;
+	}
+	
+	public ArrayList<Trip> getTrips(Station station) {
+		db.beginTransaction();
+		ArrayList<Trip> trips = new ArrayList<Trip>();
+		Cursor cursor = db.rawQuery("select trips.id, trips.service_id, trips.route_id, trips.headsign, trips.direction, trips.block_id from stop_times join trips where ? = stop_times.stop_id AND stop_times.trip_id=trips.id group by trips.direction",new String[] {station.getId().toString() });
+		cursor.moveToFirst();
+		for(int i =0; i < cursor.getCount(); i++) {
+			Trip t = new Trip();
+			t.setId(cursor.getInt(0));
+			t.setServiceId(cursor.getInt(1));
+			t.setRouteId(cursor.getInt(2));
+			t.setHeadsign(cursor.getString(3));
+			t.setDirection(cursor.getInt(4));
+			t.setBlockId(cursor.getString(5));
+			trips.add(t);
+			cursor.moveToNext();
+		}
+		db.endTransaction();
+		return trips;
 	}
 	
 }

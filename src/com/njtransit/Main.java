@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
+import com.njtransit.domain.Trip;
 
 public class Main extends Activity implements LocationListener {
     /** Called when the activity is first created. */
@@ -45,7 +46,10 @@ public class Main extends Activity implements LocationListener {
 				Log.d("database", later - now + " seconds");
 				ArrayList<Station> stations = adapter.getAllStations();
 				session.setStations(stations);
-				session.findClosestStation(null);
+				ArrayList<Trip> trips = adapter.getTrips(session.findClosestStation(null));
+				for(Trip t : trips) {
+					Log.i("trip", t.getHeadsign());
+				}
 				return 1;
 			}
         	
