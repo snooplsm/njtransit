@@ -2,6 +2,7 @@ package com.njtransit;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,7 +26,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		String[] create = new String[] {
 				"create table trips(id int primary key, route_id int, service_id int, headsign varchar(255), direction int, block_id varchar(255))",
 				"create table stops(id int primary key, name varchar(255), desc varchar(255), lat real, lon real, zone_id)",
-				"create table stop_times(trip_id int, arrival date, departure date, stop_id int, stop_sequence int, pickup_type int, drop_off_type int)",
+				"create table stop_times(trip_id int, arrival time, departure time, stop_id int, stop_sequence int, pickup_type int, drop_off_type int)",
 				"create table routes(id int primary key, agency_id int, short_name varchar(255), long_name varchar(255), route_type int)",
 				"create table calendar(service_id int, monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start date, end date)",
 				//agency_id,agency_name,agency_url,agency_timezone
@@ -38,6 +39,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			db.execSQL(str);
 		}
 		db.setVersion(1);
+		db.setTransactionSuccessful();
 		db.endTransaction();
 		
 		InputStream input = null;
@@ -61,11 +63,14 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {
-				
 			}
+			db.setTransactionSuccessful();
+			db.endTransaction();
+			
 			input = context.getAssets().open("calendar.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();
 			while((nextLine = reader.readNext())!=null) {
 				int serviceId = Integer.parseInt(nextLine[0].trim());
 				int monday = Integer.parseInt(nextLine[1].trim());
@@ -99,10 +104,12 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {}
-			
+			db.setTransactionSuccessful();
+			db.endTransaction();
 			input = context.getAssets().open("calendar_dates.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();
 			while((nextLine = reader.readNext())!=null) {
 				int serviceId = Integer.parseInt(nextLine[0]);
 				String date = nextLine[1];
@@ -120,9 +127,12 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {}
+			db.setTransactionSuccessful();
+			db.endTransaction();
 			input = context.getAssets().open("stops.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();
 			while((nextLine = reader.readNext())!=null) {
 				int id = Integer.parseInt(nextLine[0]);
 				String name = nextLine[1];
@@ -143,9 +153,12 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {}
+			db.setTransactionSuccessful();
+			db.endTransaction();
 			input = context.getAssets().open("trips.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();
 			while((nextLine = reader.readNext())!=null) {
 				int routeId = Integer.parseInt(nextLine[0]);
 				//route_id,service_id,trip_id,trip_headsign,direction_id,block_id
@@ -167,9 +180,12 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {}
+			db.setTransactionSuccessful();
+			db.endTransaction();
 			input = context.getAssets().open("routes.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();			
 			while((nextLine=reader.readNext())!=null) {
 				int id = Integer.parseInt(nextLine[0]);
 				int agencyId = Integer.parseInt(nextLine[1]);
@@ -188,9 +204,12 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				reader.close();
 				input.close();
 			} catch (Exception e) {}
+			db.setTransactionSuccessful();
+			db.endTransaction();
 			input = context.getAssets().open("stop_times.txt");
 			reader = new CSVReader(new InputStreamReader(input));
 			reader.readNext();
+			db.beginTransaction();
 			while((nextLine=reader.readNext())!=null) {
 //trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 				ContentValues cv = new ContentValues();
@@ -204,12 +223,13 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				db.insert("stop_times", null, cv);
 			}
 			db.setTransactionSuccessful();
+			db.endTransaction();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
-			db.endTransaction();
 			try {
 				input.close();
+				
 			} catch (Exception e) {
 				
 			}
