@@ -137,8 +137,8 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				int id = Integer.parseInt(nextLine[0]);
 				String name = nextLine[1];
 				String desc = nextLine[2];
-				Float lat = Float.parseFloat(nextLine[3]);
-				Float lng = Float.parseFloat(nextLine[4]);
+				Double lat = Double.parseDouble(nextLine[3]);
+				Double lng = Double.parseDouble(nextLine[4]);
 				int zoneId = Integer.parseInt(nextLine[5]);
 				ContentValues cv = new ContentValues();
 				cv.put("id", id);

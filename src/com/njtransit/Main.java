@@ -3,22 +3,36 @@ package com.njtransit;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 
-public class Main extends Activity {
+public class Main extends Activity implements LocationListener {
     /** Called when the activity is first created. */
 	
 	private NJTransitDBAdapter adapter;   
+	
+	private LocationManager locationManager;
+	
+	private Session session = Session.get();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,
+                this);
+        Location lastKnown = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        session.setLastKnownLocation(lastKnown);
         
         new AsyncTask<Void,Void,Integer>() {
 
@@ -30,9 +44,8 @@ public class Main extends Activity {
 				Long later = SystemClock.currentThreadTimeMillis();
 				Log.d("database", later - now + " seconds");
 				ArrayList<Station> stations = adapter.getAllStations();
-				for(Station s : stations) {
-					Log.i("station", s.getName());
-				}
+				session.setStations(stations);
+				session.findClosestStation(null);
 				return 1;
 			}
         	
@@ -40,4 +53,29 @@ public class Main extends Activity {
         
         
     }
+
+	@Override
+	public void onLocationChanged(Location location) {
+		double latitude = location.getLatitude();
+		double longitude = location.getLongitude();
+		double wtf = latitude + longitude;
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
 }

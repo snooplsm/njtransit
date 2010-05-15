@@ -40,12 +40,10 @@ public class NJTransitDBAdapter {
 		while(count>0) {
 			count--;			
 			Station station = new Station();
-			String[] names =cursor.getColumnNames();
-			int index = cursor.getColumnIndex("id");
 			station.setId(cursor.getInt(0));
 			station.setName(cursor.getString(1));
-			station.setLatitude(cursor.getFloat(2));
-			station.setLongitude(cursor.getFloat(3));
+			station.setLatitude(cursor.getDouble(2));
+			station.setLongitude(cursor.getDouble(3));
 			stations.add(station);
 			cursor.moveToNext();
 		}

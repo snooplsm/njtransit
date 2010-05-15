@@ -12,7 +12,7 @@ public class Distance {
 	 * @param lon2
 	 * @return distance between points in meters
 	 */
-	public static double greatCircle(Float lat1, Float lon1, Float lat2, Float lon2) {
+	public static double greatCircle(double lat1, double lon1, double lat2, double lon2) {
 		double dLat = Math.toRadians(lat2-lat1);
 		double dLon = Math.toRadians(lon2-lon1);
 		double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);

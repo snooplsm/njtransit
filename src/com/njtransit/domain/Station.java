@@ -6,9 +6,9 @@ public class Station {
 	
 	private String name;
 	
-	private Float latitude;
+	private Double latitude;
 	
-	private Float longitude;
+	private Double longitude;
 	
 	private Integer zoneId;
 
@@ -16,11 +16,11 @@ public class Station {
 		return id;
 	}
 
-	public Float getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public Float getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
@@ -36,11 +36,11 @@ public class Station {
 		this.id = id;
 	}
 
-	public void setLatitude(Float latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
