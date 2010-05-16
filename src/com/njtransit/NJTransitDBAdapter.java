@@ -109,6 +109,7 @@ public class NJTransitDBAdapter {
 			cursor.moveToNext();
 			stopTimes.add(t);
 		}
+		db.endTransaction();
 		return stopTimes;
 	}
 	
