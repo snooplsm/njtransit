@@ -1,19 +1,19 @@
 package com.njtransit.domain;
 
-import java.sql.Time;
+import java.util.Calendar;
 
 public class StopTime {
 
-	public Integer getId() {
-		return id;
+	public Integer getStationId() {
+		return stationId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
 	}
-	private Integer id;
+	private Integer stationId;
 	private Integer tripId;
-	private Time arrival;
-	private Time departure;
+	private Calendar arrival;
+	private Calendar departure;
 	private Integer sequence;
 	private Integer pickupType;
 	private Integer dropOffType;
@@ -42,16 +42,16 @@ public class StopTime {
 	public void setDropOffType(Integer dropOffType) {
 		this.dropOffType = dropOffType;
 	}
-	public Time getArrival() {
+	public Calendar getArrival() {
 		return arrival;
 	}
-	public void setArrival(Time arrival) {
+	public void setArrival(Calendar arrival) {
 		this.arrival = arrival;
 	}
-	public Time getDeparture() {
+	public Calendar getDeparture() {
 		return departure;
 	}
-	public void setDeparture(Time departure) {
+	public void setDeparture(Calendar departure) {
 		this.departure = departure;
 	}
 }

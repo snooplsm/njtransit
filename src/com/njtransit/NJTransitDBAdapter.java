@@ -1,6 +1,7 @@
 package com.njtransit;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +19,7 @@ public class NJTransitDBAdapter {
 		this.context = context;
 	}
 	
-	private static final int VERSION = 1;
+	private static final int VERSION = 5;
 	
 	private Context context;
 
@@ -29,7 +30,7 @@ public class NJTransitDBAdapter {
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
 	private static String[] TRIP_COLUMNS = new String[] {"id", "service_id", "route_id", "headsign", "direction", "block_id"};
-	private static String[] STOPTIME_COLUMNS = new String[] {"id", "trip_id","arrival","departure","sequence","pickup_type","drop_off_type"};
+	private static String[] STOPTIME_COLUMNS = new String[] {"arrival","departure","sequence","pickup_type","drop_off_type"};
 	
 	public NJTransitDBAdapter open() {
 		helper = new NJTransitDBHelper(context, "njtransit", null, VERSION);
@@ -90,17 +91,25 @@ public class NJTransitDBAdapter {
 	
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
 		db.beginTransaction();
-		Cursor cursor = db.query("stop_times", STOPTIME_COLUMNS,"trip_id=? AND stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()}, null, null,null);
+		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});
 		cursor.moveToFirst();
+		ArrayList<StopTime> stopTimes = new ArrayList<StopTime>(cursor.getCount());
 		for(int i = 0; i < cursor.getCount(); i++) {
 			StopTime t = new StopTime();
-			t.setId(cursor.getInt(0));
-			t.setTripId(cursor.getInt(1));
-			String arrival = cursor.getString(2);
-			String departure = cursor.getString(3);
+			t.setStationId(station.getId());
+			t.setTripId(trip.getId());
+			Calendar a = Calendar.getInstance();			
+			Long arrival = cursor.getLong(0);
+			a.setTimeInMillis(arrival);
+			t.setArrival(a);
+			Long departure = cursor.getLong(1);
+			Calendar d = Calendar.getInstance();
+			t.setDeparture(d);
+			d.setTimeInMillis(departure);			
 			cursor.moveToNext();
+			stopTimes.add(t);
 		}
-		return null;
+		return stopTimes;
 	}
 	
 	public ArrayList<Trip> getTrips(Station station) {

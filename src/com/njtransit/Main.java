@@ -11,9 +11,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.GridView;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
+import com.njtransit.domain.StopTime;
 import com.njtransit.domain.Trip;
 
 public class Main extends Activity implements LocationListener {
@@ -29,9 +31,13 @@ public class Main extends Activity implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        GridView grid = (GridView) findViewById(R.id.grid);
+        
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,
                 this);
+        
         Location lastKnown = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         session.setLastKnownLocation(lastKnown);
         
@@ -53,6 +59,13 @@ public class Main extends Activity implements LocationListener {
 				ArrayList<Station> stations2 = session.findClosestStations(null, 6);
 				for(Station s : stations2) {
 					Log.i("station", s.getName());
+					ArrayList<Trip> tripz = adapter.getTrips(s);
+					for(Trip t : tripz) {
+						ArrayList<StopTime> stopTimes = adapter.getAllStopTimes(s, t);
+						for(StopTime st : stopTimes) {
+							
+						}
+					}
 				}
 				return 1;
 			}

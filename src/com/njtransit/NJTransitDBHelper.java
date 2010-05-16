@@ -2,7 +2,7 @@ package com.njtransit;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
+import java.text.SimpleDateFormat;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,33 +20,61 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		super(context, name, factory, version);
 		this.context = context;
 	}
+	
+	
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String[] create = new String[] {
-				"create table trips(id int primary key, route_id int, service_id int, headsign varchar(255), direction int, block_id varchar(255))",
-				"create table stops(id int primary key, name varchar(255), desc varchar(255), lat real, lon real, zone_id)",
-				"create table stop_times(trip_id int, arrival time, departure time, stop_id int, stop_sequence int, pickup_type int, drop_off_type int)",
-				"create table routes(id int primary key, agency_id int, short_name varchar(255), long_name varchar(255), route_type int)",
-				"create table calendar(service_id int, monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start date, end date)",
+				"create table if not exists trips(id int primary key, route_id int, service_id int, headsign varchar(255), direction int, block_id varchar(255))",
+				"create table if not exists stops(id int primary key, name varchar(255), desc varchar(255), lat real, lon real, zone_id)",
+				"create table if not exists stop_times(trip_id int, arrival int, departure int, stop_id int, sequence int, pickup_type int, drop_off_type int)",
+				"create table if not exists routes(id int primary key, agency_id int, short_name varchar(255), long_name varchar(255), route_type int)",
+				"create table if not exists calendar(service_id int, monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start date, end date)",
 				//agency_id,agency_name,agency_url,agency_timezone
-				"create table calendar_dates(service_id int, calendar_date date, exception_type int)",
-				"create table agency(id int primary key, name varchar(255), url varchar(255))"
+				"create table if not exists calendar_dates(service_id int, calendar_date int, exception_type int)",
+				"create table if not exists agency(id int primary key, name varchar(255), url varchar(255))"
 			};
-		
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
 		db.beginTransaction();
 		for(String str : create) {
 			db.execSQL(str);
 		}
-		db.setVersion(1);
 		db.setTransactionSuccessful();
 		db.endTransaction();
 		
 		InputStream input = null;
 		try {
-			input = context.getAssets().open("agency.txt");
+			input = context.getAssets().open("stop_times.txt");
 			CSVReader reader = new CSVReader(new InputStreamReader(input));
+			reader.readNext();
 			String[] nextLine;
+			db.beginTransaction();
+			while((nextLine=reader.readNext())!=null) {
+//trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
+				ContentValues cv = new ContentValues();
+				cv.put("trip_id", nextLine[0]);
+				try {
+					if(nextLine[1].trim().length()!=0) {
+						cv.put("arrival", df.parse("01/01/1970 " + nextLine[1]).getTime());
+					}
+					if(nextLine[2].trim().length()!=0) {
+						cv.put("departure", df.parse("01/01/1970 " + nextLine[2]).getTime());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				cv.put("stop_id", nextLine[3]);
+				cv.put("sequence", nextLine[4]);
+				cv.put("pickup_type", nextLine[5]);
+				cv.put("drop_off_type", nextLine[6]);
+				db.insert("stop_times", null, cv);
+			}
+			db.setTransactionSuccessful();
+			db.endTransaction();
+			input = context.getAssets().open("agency.txt");
+			reader = new CSVReader(new InputStreamReader(input));			
 			reader.readNext();
 			db.beginTransaction();
 			while((nextLine = reader.readNext())!=null) {
@@ -205,25 +233,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				input.close();
 			} catch (Exception e) {}
 			db.setTransactionSuccessful();
-			db.endTransaction();
-			input = context.getAssets().open("stop_times.txt");
-			reader = new CSVReader(new InputStreamReader(input));
-			reader.readNext();
-			db.beginTransaction();
-			while((nextLine=reader.readNext())!=null) {
-//trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
-				ContentValues cv = new ContentValues();
-				cv.put("trip_id", nextLine[0]);
-				cv.put("arrival", nextLine[1]);
-				cv.put("departure", nextLine[2]);
-				cv.put("stop_id", nextLine[3]);
-				cv.put("stop_sequence", nextLine[4]);
-				cv.put("pickup_type", nextLine[5]);
-				cv.put("drop_off_type", nextLine[6]);
-				db.insert("stop_times", null, cv);
-			}
-			db.setTransactionSuccessful();
-			db.endTransaction();
+			db.endTransaction();			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -238,8 +248,14 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-
+		db.execSQL("drop table if exists agency");
+		db.execSQL("drop table if exists routes");
+		db.execSQL("drop table if exists stop_times");
+		db.execSQL("drop table if exists stops");
+		db.execSQL("drop table if exists trips");
+		db.execSQL("drop table if exists calendar");
+		db.execSQL("drop table if exists calendar_dates");
+		onCreate(db);
 	}
 
 }
