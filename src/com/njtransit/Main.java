@@ -50,6 +50,10 @@ public class Main extends Activity implements LocationListener {
 				for(Trip t : trips) {
 					Log.i("trip", t.getHeadsign());
 				}
+				ArrayList<Station> stations2 = session.findClosestStations(null, 6);
+				for(Station s : stations2) {
+					Log.i("station", s.getName());
+				}
 				return 1;
 			}
         	
