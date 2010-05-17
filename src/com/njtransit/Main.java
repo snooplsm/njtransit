@@ -12,6 +12,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.GridView;
@@ -53,6 +54,7 @@ public class Main extends Activity implements LocationListener {
 
 			@Override
 			protected Integer doInBackground(Void... params) {
+				
 				Long now = SystemClock.currentThreadTimeMillis();
 				adapter = new NJTransitDBAdapter(Main.this).open();
 				
@@ -60,7 +62,7 @@ public class Main extends Activity implements LocationListener {
 				Log.d("database", later - now + " seconds");
 				
 				ArrayList<Station> stations = adapter.getAllStations();
-				if(stations != null) {
+				if(stations == null) {
 					warn("could not retrieve stations");
 				} else {
 					session.setStations(stations);
@@ -78,6 +80,9 @@ public class Main extends Activity implements LocationListener {
 					for(int i=0;i<trips.size();i++) {
 						tripNames[i] = trips.get(i).getHeadsign();
 					}
+					
+					Looper.prepare();
+					
 					dialog.dismiss();
 					AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
 					builder.setTitle("Select a trip");
@@ -87,6 +92,7 @@ public class Main extends Activity implements LocationListener {
 					    }
 					});
 					AlertDialog alert = builder.create();
+					alert.show();
 				}
 				
 				ArrayList<Station> closestStations = session.findClosestStations(null, 6);
@@ -110,6 +116,7 @@ public class Main extends Activity implements LocationListener {
         }.execute();
     }
 
+	/** @see LocationListener#onLocationChanged(Location) */
 	@Override
 	public void onLocationChanged(Location location) {
 		double latitude = location.getLatitude();
