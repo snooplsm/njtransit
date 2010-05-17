@@ -325,7 +325,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * Loads a txt file of based on the name of a table, extracts ContentValues from valuesProvider and inserts data into db
+	 * Loads a txt file based on the name of a table, extracts ContentValues from valuesProvider and inserts data into db
 	 * @param tm
 	 * @param tableName
 	 * @param valuesProvider
