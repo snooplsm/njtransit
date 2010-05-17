@@ -22,6 +22,7 @@ import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.StopTime;
 import com.njtransit.domain.Trip;
+import com.njtransit.ui.adapter.MainGridAdapter;
 
 public class Main extends Activity implements LocationListener {
     
@@ -43,6 +44,7 @@ public class Main extends Activity implements LocationListener {
         setContentView(R.layout.main);
         
         GridView grid = (GridView) findViewById(R.id.grid);
+        grid.setAdapter(new MainGridAdapter(this));
         
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,

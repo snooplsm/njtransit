@@ -4,6 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.njtransit.R;
+
 
 public class MainGridAdapter extends BaseAdapter {
 
@@ -13,25 +19,36 @@ public class MainGridAdapter extends BaseAdapter {
 		this.context = context;
 	}
 	
-	@Override
 	public int getCount() {
-		return 1;
-	}
+		return mThumbIds.length;
+    }
 
-	@Override
-	public Object getItem(int position) {
-		return null;
-	}
+    public Object getItem(int position) {
+        return null;
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return 0;
-	}
+    public long getItemId(int position) {
+        return 0;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    // create a new ImageView for each item referenced by the Adapter
+    public View getView(int position, View convertView, ViewGroup parent) {
+    	ImageView imageView;
+        if (convertView == null) {  // if it's not recycled, initialize some attributes
+            imageView = new ImageView(context);
+            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(8, 8, 8, 8);
+        } else {
+            imageView = (ImageView) convertView;
+        }
 
+        imageView.setImageResource(mThumbIds[position]);
+        return imageView;
+    }
+
+    // references to our images
+    private Integer[] mThumbIds = {
+    	R.drawable.android_0, R.drawable.android_1, R.drawable.android_2
+    };
 }
