@@ -6,7 +6,6 @@ import java.util.Calendar;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 
 import com.njtransit.domain.Route;
 import com.njtransit.domain.Station;
@@ -114,6 +113,9 @@ public class NJTransitDBAdapter {
 	}
 	
 	public ArrayList<Trip> getTrips(Station station) {
+		if(station == null) {
+			return new ArrayList<Trip>();
+		}
 		db.beginTransaction();
 		ArrayList<Trip> trips = new ArrayList<Trip>();
 		Cursor cursor = db.rawQuery("select trips.id, trips.service_id, trips.route_id, trips.headsign, trips.direction, trips.block_id from stop_times join trips where ? = stop_times.stop_id AND stop_times.trip_id=trips.id group by trips.direction",new String[] {station.getId().toString() });
@@ -131,6 +133,5 @@ public class NJTransitDBAdapter {
 		}
 		db.endTransaction();
 		return trips;
-	}
-	
+	}	
 }
