@@ -3,12 +3,14 @@ package com.njtransit;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.CharBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -48,6 +50,10 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			CursorFactory factory, int version) {
 		super(context, name, factory, version);
 		this.context = context;
+		// the follow exists only to test #onCreate
+		for(String db : context.databaseList()) {
+			context.deleteDatabase(db);
+		}
 	}
 	
 	/** @see SQLiteOpenHelper#onCreate(SQLiteDatabase) */
@@ -77,6 +83,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
+						throw new RuntimeException(e);
 					}
 					
 					cv.put("stop_id", nextLine[3]);
@@ -337,7 +344,11 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				InputStream input = null;
 				CSVReader reader = null;
 				try {
-					input = context.getAssets().open(tableName + ".txt");
+					final String fileName = tableName + ".txt";
+					if(!fileExists(fileName)) {
+						throw new RuntimeException(fileName + " does not exist under assets directory");
+					}
+					input = context.getAssets().open(fileName, AssetManager.ACCESS_BUFFER);
 					reader = new CSVReader(new InputStreamReader(input));
 					reader.readNext(); // read in the header line
 					List<ContentValues> values = valuesProvider.getContentValues(reader);
@@ -347,6 +358,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				} catch(Throwable t) {
 					Log.e("Error loadding " + tableName, t.getMessage(), t);
 					t.printStackTrace();
+					throw new RuntimeException(t);
 				} finally {
 					try {
 						input.close();
@@ -354,9 +366,19 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 					} catch(Throwable t) {
 						Log.e("Error closing streams for " + tableName, t.getMessage(), t);
 						t.printStackTrace();
+						throw new RuntimeException(t);
 					}
 				}
 			}
 		});
+	}
+	
+	private boolean fileExists(String name) throws IOException {
+		for(String af:context.getAssets().list("")) {
+			if(af.equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
