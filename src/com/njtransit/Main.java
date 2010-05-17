@@ -1,6 +1,7 @@
 package com.njtransit;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -75,24 +76,9 @@ public class Main extends Activity implements LocationListener {
 					for(Trip t : trips) {
 						Log.i("trip", t.getHeadsign());
 					}
-					
-					final CharSequence[] tripNames = new CharSequence[trips.size()];
-					for(int i=0;i<trips.size();i++) {
-						tripNames[i] = trips.get(i).getHeadsign();
-					}
-					
 					Looper.prepare();
-					
 					dialog.dismiss();
-					AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
-					builder.setTitle("Select a trip");
-					builder.setItems(tripNames, new DialogInterface.OnClickListener() {
-					    public void onClick(DialogInterface dialog, int item) {
-					        warn(tripNames[item]);
-					    }
-					});
-					AlertDialog alert = builder.create();
-					alert.show();
+					onShowTrips(trips);
 				}
 				
 				ArrayList<Station> closestStations = session.findClosestStations(null, 6);
@@ -115,6 +101,38 @@ public class Main extends Activity implements LocationListener {
         	
         }.execute();
     }
+	
+	/** show list of closest stations */
+	public void onShowClosedStations(List<Station> stations) {
+		final CharSequence[] names = new CharSequence[stations.size()];
+		for(int i=0;i<stations.size();i++) {
+			names[i] = stations.get(i).getName();
+		}
+		AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
+		builder.setTitle("Select a Station closest to you");
+		builder.setItems(names, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		        warn(names[item]);
+		    }
+		});
+		builder.create().show();
+	}
+	
+	/** show list of trips */
+	public void onShowTrips(List<Trip> trips) {
+		final CharSequence[] tripNames = new CharSequence[trips.size()];
+		for(int i=0;i<trips.size();i++) {
+			tripNames[i] = trips.get(i).getHeadsign();
+		}
+		AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
+		builder.setTitle("Select a trip");
+		builder.setItems(tripNames, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		        warn(tripNames[item]);
+		    }
+		});
+		builder.create().show();
+	}
 
 	/** @see LocationListener#onLocationChanged(Location) */
 	@Override
