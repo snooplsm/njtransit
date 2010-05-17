@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -63,7 +64,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		
 		createSchema(manager);
 		
-		load(manager, "stop_times", new ContentValuesProvider(){
+		loadPartitioned(manager, "stop_times", 2, new ContentValuesProvider(){
 
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader) throws IOException {
@@ -94,38 +95,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				return values;
 			}
 		});
-		
-		load(manager, "stop_times", new ContentValuesProvider(){
-			@Override
-			public List<ContentValues> getContentValues(CSVReader reader)
-					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
-				String[] nextLine;
-				while((nextLine=reader.readNext())!=null) {
-					//trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
-					ContentValues cv = new ContentValues();
-					cv.put("trip_id", nextLine[0]);
-					try {
-						if(nextLine[1].trim().length()!=0) {
-							cv.put("arrival", df.parse("01/01/1970 " + nextLine[1]).getTime());
-						}
-						if(nextLine[2].trim().length()!=0) {
-							cv.put("departure", df.parse("01/01/1970 " + nextLine[2]).getTime());
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
 					
-					cv.put("stop_id", nextLine[3]);
-					cv.put("sequence", nextLine[4]);
-					cv.put("pickup_type", nextLine[5]);
-					cv.put("drop_off_type", nextLine[6]);
-					values.add(cv);
-				}
-				return values;
-			}
-		});
-			
 		load(manager, "agency", new ContentValuesProvider(){
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
@@ -186,7 +156,6 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			}
 		});
 			
-
 		load(manager, "calendar_dates", new ContentValuesProvider(){
 
 			@Override
@@ -210,8 +179,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				return values;
 			}
 		});
-			
-		
+				
 		load(manager, "stops", new ContentValuesProvider() {
 
 			@Override
@@ -267,7 +235,6 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			}
 		});	
 		
-
 		load(manager, "routes", new ContentValuesProvider() {
 
 			@Override
@@ -330,6 +297,14 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		});
 	}
 	
+	/** Asset.h has an UNCOMPRESS_DATA_MAX property set to 1M. An IOException will be thrown for files over this size
+	 * This method loads a series a files that are partitioned into a series of file_0.txt, file_1.txt... */
+	private void loadPartitioned(TransactionManager tm, final String tableName, int partions,  final ContentValuesProvider valuesProvider) {
+		for(int i=0; i<partions;i++) {
+			load(tm, tableName, i, valuesProvider);
+		}
+	}
+	
 	/**
 	 * Loads a txt file based on the name of a table, extracts ContentValues from valuesProvider and inserts data into db
 	 * @param tm
@@ -337,17 +312,28 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 	 * @param valuesProvider
 	 */
 	private void load(TransactionManager tm, final String tableName, final ContentValuesProvider valuesProvider) {
+		load(tm, tableName, null, valuesProvider);
+	}
+	
+	/**
+	 * Handles loading of a resource. If partition is not null an `_`+partition will be appended to the file name
+	 * @param tm
+	 * @param tableName
+	 * @param partion 
+	 * @param valuesProvider
+	 */
+	private void load(TransactionManager tm, final String tableName, final Integer partition, final ContentValuesProvider valuesProvider) {
 		tm.exec(new Transactional(){
 			@Override
 			public void work(SQLiteDatabase db) {
 				InputStream input = null;
 				CSVReader reader = null;
 				try {
-					final String fileName = tableName + ".txt";
+					final String fileName = tableName + (partition != null ? "_" + partition : "") + ".txt";
 					if(!fileExists(fileName)) {
 						throw new RuntimeException(fileName + " does not exist under assets directory");
 					}
-					input = context.getAssets().open(fileName, AssetManager.ACCESS_BUFFER);
+					input = context.getAssets().open(fileName);
 					reader = new CSVReader(new InputStreamReader(input));
 					reader.readNext(); // read in the header line
 					List<ContentValues> values = valuesProvider.getContentValues(reader);
