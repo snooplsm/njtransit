@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.location.Location;
@@ -47,7 +48,7 @@ public class Main extends Activity implements LocationListener {
         
         Location lastKnown = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         session.setLastKnownLocation(lastKnown);
-        
+        final ProgressDialog dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
         new AsyncTask<Void,Void,Integer>() {
 
 			@Override
@@ -77,7 +78,7 @@ public class Main extends Activity implements LocationListener {
 					for(int i=0;i<trips.size();i++) {
 						tripNames[i] = trips.get(i).getHeadsign();
 					}
-					
+					dialog.dismiss();
 					AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
 					builder.setTitle("Select a trip");
 					builder.setItems(tripNames, new DialogInterface.OnClickListener() {
