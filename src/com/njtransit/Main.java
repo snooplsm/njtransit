@@ -1,6 +1,5 @@
 package com.njtransit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -11,31 +10,20 @@ import android.content.DialogInterface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.util.Log;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
-import com.njtransit.domain.StopTime;
-import com.njtransit.domain.Trip;
 import com.njtransit.ui.adapter.MainGridAdapter;
 
 public class Main extends Activity implements LocationListener {
-    
-	private NJTransitDBAdapter adapter;   
-	
+   
 	private LocationManager locationManager;
 	
-	private Session session = Session.get();
-	
-	private void warn(CharSequence msg) {
-		//Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-		Log.e("err!", msg.toString());
-	}
+	private Session session;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -43,105 +31,48 @@ public class Main extends Activity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        session = Session.get();
+        
         GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(new MainGridAdapter(this));
         
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,
                 this);
-        
-        Location lastKnown = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        session.setLastKnownLocation(lastKnown);
-        final ProgressDialog dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
-        new AsyncTask<Void,Void,Integer>() {
+        session.setLastKnownLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
+        final ProgressDialog dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
+        
+        SessionInitializer.exec(new NJTransitDBAdapter(this), session, new InitializationListener() {
 			@Override
-			protected Integer doInBackground(Void... params) {
-				
-				Long now = SystemClock.currentThreadTimeMillis();
-				adapter = new NJTransitDBAdapter(Main.this).open();
-				
-				Long later = SystemClock.currentThreadTimeMillis();
-				Log.d("database", later - now + " seconds");
-				
-				ArrayList<Station> stations = adapter.getAllStations();
-				if(stations == null) {
-					warn("could not retrieve stations");
-				} else {
-					session.setStations(stations);
-				}
-				
-				ArrayList<Trip> trips = adapter.getTrips(session.findClosestStation(null));
-				if(trips == null) {
-					warn("could not retrieve trips");
-				} else {
-					for(Trip t : trips) {
-						Log.i("trip", t.getHeadsign());
-					}
-					Looper.prepare();
-					dialog.dismiss();
-					onShowTrips(trips);
-				}
-				
-				ArrayList<Station> closestStations = session.findClosestStations(null, 6);
-				if(closestStations == null) {
-					warn("could not retrieve closest stations");
-				} else {
-					for(Station s : closestStations) {
-						Log.i("station", s.getName());
-						ArrayList<Trip> tripz = adapter.getTrips(s);
-						for(Trip t : tripz) {
-							ArrayList<StopTime> stopTimes = adapter.getAllStopTimes(s, t);
-							for(StopTime st : stopTimes) {
-								
-							}
-						}
-					}
-				}
-				return 1;
+			public void initialized(List<Station> closestStations) {
+				dialog.dismiss();
+				onShowClosestStations(closestStations);
 			}
-        	
-        }.execute();
+        });
     }
 	
 	/** show list of closest stations */
-	public void onShowClosedStations(List<Station> stations) {
+	public void onShowClosestStations(final List<Station> stations) {
 		final CharSequence[] names = new CharSequence[stations.size()];
-		for(int i=0;i<stations.size();i++) {
+		for(int i=0; i<stations.size(); i++) {
 			names[i] = stations.get(i).getName();
 		}
-		AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
-		builder.setTitle("Select a Station closest to you");
-		builder.setItems(names, new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("Select a Station closest to you").setItems(names, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
-		        warn(names[item]);
+		    	onStationSelected(stations.get(item));
 		    }
-		});
-		builder.create().show();
+		}).create().show();
 	}
 	
-	/** show list of trips */
-	public void onShowTrips(List<Trip> trips) {
-		final CharSequence[] tripNames = new CharSequence[trips.size()];
-		for(int i=0;i<trips.size();i++) {
-			tripNames[i] = trips.get(i).getHeadsign();
-		}
-		AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
-		builder.setTitle("Select a trip");
-		builder.setItems(tripNames, new DialogInterface.OnClickListener() {
-		    public void onClick(DialogInterface dialog, int item) {
-		        warn(tripNames[item]);
-		    }
-		});
-		builder.create().show();
+	public void onStationSelected(Station s) {
+		info(s.getName() + " selected");
 	}
 
 	/** @see LocationListener#onLocationChanged(Location) */
 	@Override
-	public void onLocationChanged(Location location) {
-		double latitude = location.getLatitude();
-		double longitude = location.getLongitude();
-		double wtf = latitude + longitude;
+	public void onLocationChanged(Location l) {
+		info(String.format("location changed [%s,%s]",l.getLatitude(), l.getLongitude()));
 	}
 
 	/** @see LocationListener#onProviderDisabled(String) */
@@ -160,5 +91,9 @@ public class Main extends Activity implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		
+	}
+
+	private void info(CharSequence msg) {
+		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 	}
 }

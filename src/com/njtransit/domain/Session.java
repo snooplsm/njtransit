@@ -1,6 +1,8 @@
 package com.njtransit.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.TreeMap;
 
 import android.location.Location;
@@ -25,7 +27,7 @@ public class Session {
 	private Station currentArrivalStation;
 	private Station currentDestintionStation;
 
-	private ArrayList<Station> stations;
+	private List<Station> stations;
 	
 	/**
 	 * 
@@ -33,7 +35,7 @@ public class Session {
 	 * @return
 	 */
 	public Station findClosestStation(Location location) {
-		ArrayList<Station> s = findClosestStations(location,1);
+		List<Station> s = findClosestStations(location,1);
 		if(s==null || s.isEmpty()) {
 			return null;
 		}
@@ -41,15 +43,15 @@ public class Session {
 	}
 	
 	/**
-	 * This is a week algorithm, if performance is a concern we should address it.
+	 * This is a weak algorithm, if performance is a concern we should address it.
 	 * 
 	 * @param location
 	 * @param max
 	 * @return
 	 */
-	public ArrayList<Station> findClosestStations(Location location, int max) {
-		if(location==null) location = lastKnownLocation;
-		if(location==null || stations==null || stations.isEmpty()) return null;
+	public List<Station> findClosestStations(Location location, int max) {
+		if(location == null) location = lastKnownLocation;
+		if(location == null || stations == null || stations.isEmpty()) return getStations().subList(0, 2);
 		TreeMap<Double,Station> closest = new TreeMap<Double,Station>();
 		for(Station s : stations) {
 			double dist = Distance.greatCircle(location.getLatitude(), location.getLongitude(), s.getLatitude(), s.getLongitude());
@@ -68,7 +70,7 @@ public class Session {
 		return new ArrayList<Station>(closest.values());
 	}
 
-	public ArrayList<Station> getStations() {
+	public List<Station> getStations() {
 		return stations;
 	}
 
