@@ -4,19 +4,18 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.njtransit.domain.Session;
+
 public class StationList extends ListActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] stations = getIntent().getExtras().getStringArray("stations");
-      
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.station_list_item, stations));
+        setListAdapter(new StationAdapter(this, R.layout.station_row, Session.get().getStations()));
 
         ListView list = getListView();
         list.setTextFilterEnabled(true);
