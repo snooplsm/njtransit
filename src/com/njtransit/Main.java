@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -70,6 +71,15 @@ public class Main extends Activity implements LocationListener {
 		    		onStationSelected(stations[index]);
 		    	} else {
 		    		info("Show full list of stations");
+		    		Intent next = new Intent(Main.this, StationList.class);
+		    		String[] names  = new String[session.getStations().size()];
+		    		int n = 0;
+		    		for(Station s:session.getStations()) {
+		    			names[n] = s.getName();
+		    			n++;
+		    		}
+		    		next.putExtra("stations", names);
+		    		startActivity(next);
 		    	}
 		    }
 		}).create().show();
