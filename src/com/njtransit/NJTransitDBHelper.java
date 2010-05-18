@@ -51,9 +51,9 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		super(context, name, factory, version);
 		this.context = context;
 		// the follow exists only to test #onCreate
-		for(String db : context.databaseList()) {
-			context.deleteDatabase(db);
-		}
+		//for(String db : context.databaseList()) {
+		//	context.deleteDatabase(db);
+		//}
 	}
 	
 	/** @see SQLiteOpenHelper#onCreate(SQLiteDatabase) */
@@ -64,43 +64,43 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		
 		createSchema(manager);
 		
-		loadPartitioned(manager, "stop_times", 2, new ContentValuesProvider(){
-
-			@Override
-			public List<ContentValues> getContentValues(CSVReader reader) throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
-				String[] nextLine;
-				while((nextLine=reader.readNext())!=null) {
-					//trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
-					ContentValues cv = new ContentValues();
-					cv.put("trip_id", nextLine[0]);
-					try {
-						if(nextLine[1].trim().length()!=0) {
-							cv.put("arrival", df.parse("01/01/1970 " + nextLine[1]).getTime());
-						}
-						if(nextLine[2].trim().length()!=0) {
-							cv.put("departure", df.parse("01/01/1970 " + nextLine[2]).getTime());
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						throw new RuntimeException(e);
-					}
-					
-					cv.put("stop_id", nextLine[3]);
-					cv.put("sequence", nextLine[4]);
-					cv.put("pickup_type", nextLine[5]);
-					cv.put("drop_off_type", nextLine[6]);
-					values.add(cv);
-				}
-				return values;
-			}
-		});
+//		loadPartitioned(manager, "stop_times", 2, new ContentValuesProvider(){
+//
+//			@Override
+//			public List<ContentValues> getContentValues(CSVReader reader) throws IOException {
+//				List<ContentValues> values = new ArrayList<ContentValues>(20000);
+//				String[] nextLine;
+//				while((nextLine=reader.readNext())!=null) {
+//					//trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
+//					ContentValues cv = new ContentValues();
+//					cv.put("trip_id", nextLine[0]);
+//					try {
+//						if(nextLine[1].trim().length()!=0) {
+//							cv.put("arrival", df.parse("01/01/1970 " + nextLine[1]).getTime());
+//						}
+//						if(nextLine[2].trim().length()!=0) {
+//							cv.put("departure", df.parse("01/01/1970 " + nextLine[2]).getTime());
+//						}
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//						throw new RuntimeException(e);
+//					}
+//					
+//					cv.put("stop_id", nextLine[3]);
+//					cv.put("sequence", nextLine[4]);
+//					cv.put("pickup_type", nextLine[5]);
+//					cv.put("drop_off_type", nextLine[6]);
+//					values.add(cv);
+//				}
+//				return values;
+//			}
+//		});
 					
 		load(manager, "agency", new ContentValuesProvider(){
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(2);
 				String[] nextLine;
 				while((nextLine = reader.readNext())!=null) {
 					int id = Integer.parseInt(nextLine[0]);
@@ -121,7 +121,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(15);
 				String[] nextLine;
 				while((nextLine = reader.readNext())!=null) {
 					int serviceId = Integer.parseInt(nextLine[0].trim());
@@ -161,7 +161,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(14);
 				String[] nextLine;
 				while((nextLine = reader.readNext())!=null) {
 					int serviceId = Integer.parseInt(nextLine[0]);
@@ -185,22 +185,16 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(225);
 				String[] nextLine;
 				while((nextLine = reader.readNext())!=null) {
-					int id = Integer.parseInt(nextLine[0]);
-					String name = nextLine[1];
-					String desc = nextLine[2];
-					Double lat = Double.parseDouble(nextLine[3]);
-					Double lng = Double.parseDouble(nextLine[4]);
-					int zoneId = Integer.parseInt(nextLine[5]);
 					ContentValues cv = new ContentValues();
-					cv.put("id", id);
-					cv.put("name", name);
-					cv.put("desc", desc);
-					cv.put("lat",lat);
-					cv.put("lon",lng);
-					cv.put("zone_id",zoneId);
+					cv.put("id", Integer.parseInt(nextLine[0]));
+					cv.put("name", nextLine[1]);
+					cv.put("desc", nextLine[2]);
+					cv.put("lat",Double.parseDouble(nextLine[3]));
+					cv.put("lon",Double.parseDouble(nextLine[4]));
+					cv.put("zone_id", Integer.parseInt(nextLine[5]));
 					values.add(cv);
 				}
 				return values;
@@ -212,23 +206,23 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(3520);
 				String[] nextLine;
+				final String routeId = "route_id";
+				final String svcId = "service_id";
+				final String id = "id";
+				final String dir = "direction";
+				final String headsign = "headsign";
+				final String blockId = "block_id";
 				while((nextLine = reader.readNext())!=null) {
-					int routeId = Integer.parseInt(nextLine[0]);
 					// route_id, service_id, trip_id, trip_headsign, direction_id, block_id
-					int serviceId = Integer.parseInt(nextLine[1]);
-					int id = Integer.parseInt(nextLine[2]);
-					String headsign = nextLine[3];
-					int direction = Integer.parseInt(nextLine[4]);
-					String blockId = nextLine[5];
 					ContentValues cv = new ContentValues();
-					cv.put("route_id",routeId);
-					cv.put("service_id", serviceId);
-					cv.put("id", id);
-					cv.put("direction", direction);
-					cv.put("headsign", headsign);
-					cv.put("block_id", blockId);
+					cv.put(routeId,Integer.parseInt(nextLine[0]));
+					cv.put(svcId, Integer.parseInt(nextLine[1]));
+					cv.put(id, Integer.parseInt(nextLine[2]));
+					cv.put(dir, Integer.parseInt(nextLine[4]));
+					cv.put(headsign, nextLine[3]);
+					cv.put(blockId, nextLine[5]);
 					values.add(cv);
 				}
 				return values;
@@ -240,7 +234,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			@Override
 			public List<ContentValues> getContentValues(CSVReader reader)
 					throws IOException {
-				List<ContentValues> values = new ArrayList<ContentValues>();
+				List<ContentValues> values = new ArrayList<ContentValues>(17);
 				String[] nextLine;
 				while((nextLine=reader.readNext())!=null) {
 					int id = Integer.parseInt(nextLine[0]);

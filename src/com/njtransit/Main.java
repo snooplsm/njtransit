@@ -1,6 +1,6 @@
 package com.njtransit;
 
-import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -45,7 +44,7 @@ public class Main extends Activity implements LocationListener {
         
         SessionInitializer.exec(new NJTransitDBAdapter(this), session, new InitializationListener() {
 			@Override
-			public void initialized(List<Station> closestStations) {
+			public void initialized(Map<Station, Double> closestStations) {
 				dialog.dismiss();
 				onShowClosestStations(closestStations);
 			}
@@ -53,20 +52,31 @@ public class Main extends Activity implements LocationListener {
     }
 	
 	/** show list of closest stations */
-	public void onShowClosestStations(final List<Station> stations) {
-		final CharSequence[] names = new CharSequence[stations.size()];
-		for(int i=0; i<stations.size(); i++) {
-			names[i] = stations.get(i).getName();
+	public void onShowClosestStations(final Map<Station, Double> closest) {
+		final CharSequence[] options = new CharSequence[closest.size() + 1];
+		final Station[] stations = new Station[closest.size()];
+		           
+		int i = 0;
+		for(Map.Entry<Station, Double> s : closest.entrySet()) {
+			stations[i] = s.getKey();
+			options[i] = s.getKey().getName() + " about " + s.getValue() + " meters away";
+			i++;
 		}
-		new AlertDialog.Builder(this).setTitle("Select a Station closest to you").setItems(names, new DialogInterface.OnClickListener() {
-		    public void onClick(DialogInterface dialog, int item) {
-		    	onStationSelected(stations.get(item));
+		options[closest.size()] = closest.isEmpty() ? "Go": "Or find your own";
+		
+		new AlertDialog.Builder(this).setTitle(closest.isEmpty() ? "Select Station" : "Select a Station closest to you").setItems(options, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int index) {
+		    	if(closest.size() < index) {
+		    		onStationSelected(stations[index]);
+		    	} else {
+		    		info("Show full list of stations");
+		    	}
 		    }
 		}).create().show();
 	}
 	
 	public void onStationSelected(Station s) {
-		info(s.getName() + " selected");
+		info("selected " + s.getName());
 	}
 
 	/** @see LocationListener#onLocationChanged(Location) */

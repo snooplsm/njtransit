@@ -2,7 +2,9 @@ package com.njtransit.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import android.location.Location;
@@ -34,12 +36,12 @@ public class Session {
 	 * @param location can be null, if so defaults to lastKnownLocation
 	 * @return
 	 */
-	public Station findClosestStation(Location location) {
-		List<Station> s = findClosestStations(location,1);
+	public Map<Station, Double> findClosestStation(Location location) {
+		Map<Station, Double> s = findClosestStations(location, 1);
 		if(s==null || s.isEmpty()) {
-			return null;
+			return Collections.<Station, Double>emptyMap();
 		}
-		return s.get(0);
+		return s;
 	}
 	
 	/**
@@ -47,11 +49,17 @@ public class Session {
 	 * 
 	 * @param location
 	 * @param max
-	 * @return
+	 * @return Key-Value collection of station to relative metered distances
 	 */
-	public List<Station> findClosestStations(Location location, int max) {
+	public Map<Station, Double> findClosestStations(Location location, int max) {
 		if(location == null) location = lastKnownLocation;
-		if(location == null || stations == null || stations.isEmpty()) return getStations().subList(0, 2);
+		if(location == null || stations == null || stations.isEmpty()) return new HashMap<Station,Double>(2){
+			private static final long serialVersionUID = 1L;
+			{
+				put(getStations().get(0), 100.0);
+				put(getStations().get(1), 200.0);
+			}
+		};
 		TreeMap<Double,Station> closest = new TreeMap<Double,Station>();
 		for(Station s : stations) {
 			double dist = Distance.greatCircle(location.getLatitude(), location.getLongitude(), s.getLatitude(), s.getLongitude());
@@ -67,7 +75,11 @@ public class Session {
 				}
 			}
 		}
-		return new ArrayList<Station>(closest.values());
+		Map<Station, Double> inverted = new HashMap<Station, Double>(closest.size());
+		for(Map.Entry<Double, Station> e: closest.entrySet()) {
+			inverted.put(e.getValue(), e.getKey());
+		}
+		return inverted;
 	}
 
 	public List<Station> getStations() {
