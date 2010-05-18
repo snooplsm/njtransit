@@ -52,4 +52,8 @@ public class Station {
 		this.zoneId = zoneId;
 	}
 	
+	@Override
+	public String toString() {
+	  return getName();
+	}
 }

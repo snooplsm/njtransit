@@ -4,6 +4,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip"
     android:background="#ffffff">
+     
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
