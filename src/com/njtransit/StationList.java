@@ -4,10 +4,8 @@ import java.util.List;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -16,8 +14,6 @@ import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 
 public class StationList extends ListActivity {
-	private EditText filterText;
-	private TextWatcher watcher;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,10 +32,4 @@ public class StationList extends ListActivity {
           }
         });
     }
-	
-	@Override
-	protected void onDestroy() {
-	    super.onDestroy();
-	    filterText.removeTextChangedListener(watcher);
-	}
 }
