@@ -1,4 +1,4 @@
-package com.njtransit;
+package com.njtransit.ui.adapter;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.njtransit.R;
 import com.njtransit.domain.Station;
 
 public class StationAdapter extends ArrayAdapter<Station> {

@@ -10,17 +10,22 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
-import com.njtransit.ui.adapter.StationAdapter;
+import com.njtransit.domain.Trip;
+import com.njtransit.ui.adapter.TripAdapter;
 
-public class StationList extends ListActivity {
-	
+public class TripList extends ListActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final List<Station> stations = Session.get().getStations();
-        setListAdapter(new StationAdapter(this, R.layout.station_row, stations));
+        
+        Bundle extras = getIntent().getExtras();
+        Integer stationId = extras.getInt("station");
+        
+        
+        final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
+        final List<Trip> trips = db.getTrips(db.getStation(stationId));
+        setListAdapter(new TripAdapter(this, R.layout.trip_row, trips));
         
         ListView list = getListView();
         list.setTextFilterEnabled(true);
@@ -28,7 +33,7 @@ public class StationList extends ListActivity {
         list.setOnItemClickListener(new OnItemClickListener() {
           public void onItemClick(AdapterView<?> parent, View view,
               int pos, long id) {
-            Toast.makeText(getApplicationContext(), stations.get(pos).getName(),
+            Toast.makeText(getApplicationContext(), trips.get(pos).getHeadsign(),
                 Toast.LENGTH_SHORT).show();
           }
         });

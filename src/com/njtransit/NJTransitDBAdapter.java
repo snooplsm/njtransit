@@ -38,6 +38,25 @@ public class NJTransitDBAdapter {
 		return this;
 	}
 	
+	
+	public Station getStation(Integer id) {
+		Cursor cursor = db.query("stops", STATION_COLUMNS, "id=?", new String[] {
+		  id.toString()
+		}, null, null, null);
+		int cnt = cursor.getCount();
+		cursor.moveToFirst();
+		while(cnt > 0) {
+			cnt--;			
+			Station station = new Station();
+			station.setId(cursor.getInt(0));
+			station.setName(cursor.getString(1));
+			station.setLatitude(cursor.getDouble(2));
+			station.setLongitude(cursor.getDouble(3));
+			return station;
+		}
+		return null;
+	}
+	
 	/**
 	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't suppor trig functions so its easier to do it this way.
 	 * prob takes 8-32K of mem to represent all this data.

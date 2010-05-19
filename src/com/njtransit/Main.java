@@ -127,19 +127,13 @@ public class Main extends Activity implements LocationListener {
 	}
 	
 	private void onListStations() {
-		Intent next = new Intent(Main.this, StationList.class);
-		String[] names  = new String[session.getStations().size()];
-		int n = 0;
-		for(Station s : session.getStations()) {
-			names[n] = s.getName();
-			n++;
-		}
-		next.putExtra("stations", names);
-		startActivity(next);
+		startActivity(new Intent(this, StationList.class));
 	}
 	
 	private void onStationSelected(Station s) {
-		
+		Intent next = new Intent(this, TripList.class);
+		next.putExtra("station", s.getId());
+		startActivity(next);
 	}
 	
 	private void onShowPrefs() {
