@@ -131,13 +131,15 @@ public class NJTransitDBAdapter {
 		return stopTimes;
 	}
 	
-	public ArrayList<Trip> getTrips(Station station) {
-		if(station == null) {
+	public ArrayList<Trip> getTrips(Integer stationId) {
+		if(stationId == null) {
 			return new ArrayList<Trip>();
 		}
 		db.beginTransaction();
 		ArrayList<Trip> trips = new ArrayList<Trip>();
-		Cursor cursor = db.rawQuery("select trips.id, trips.service_id, trips.route_id, trips.headsign, trips.direction, trips.block_id from stop_times join trips where ? = stop_times.stop_id AND stop_times.trip_id=trips.id group by trips.direction",new String[] {station.getId().toString() });
+		Cursor cursor = db.rawQuery("select trips.id, trips.service_id, trips.route_id, trips.headsign, trips.direction, trips.block_id from stop_times join trips where ? = stop_times.stop_id AND stop_times.trip_id=trips.id group by trips.direction",new String[] {
+		  stationId.toString() 
+		});
 		cursor.moveToFirst();
 		for(int i =0; i < cursor.getCount(); i++) {
 			Trip t = new Trip();
@@ -152,5 +154,9 @@ public class NJTransitDBAdapter {
 		}
 		db.endTransaction();
 		return trips;
+	}
+	
+	public ArrayList<Trip> getTrips(Station station) {
+		return station == null ? new ArrayList<Trip>() : getTrips(station.getId());
 	}	
 }

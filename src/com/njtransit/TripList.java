@@ -19,12 +19,8 @@ public class TripList extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        Bundle extras = getIntent().getExtras();
-        Integer stationId = extras.getInt("station");
-        
-        
         final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
-        final List<Trip> trips = db.getTrips(db.getStation(stationId));
+        final List<Trip> trips = db.getTrips(getIntent().getExtras().getInt("station"));
         setListAdapter(new TripAdapter(this, R.layout.trip_row, trips));
         
         ListView list = getListView();
