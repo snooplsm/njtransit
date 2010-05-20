@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -146,6 +147,8 @@ public class Main extends Activity implements LocationListener {
 	}
 	
 	private void onStationSelected(Station s) {
+		Toast.makeText(getApplicationContext(), "Selected station " + s.getName(),
+                Toast.LENGTH_SHORT).show();
 		Intent next = new Intent(this, TripList.class);
 		next.putExtra("station", s.getId());
 		startActivity(next);
