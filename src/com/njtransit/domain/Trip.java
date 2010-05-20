@@ -14,6 +14,24 @@ public class Trip {
 	
 	private Integer routeId;
 
+	public Trip() {
+		
+	}
+	
+	public Trip(Integer id, Integer serviceId, String headsign,
+			Integer direction, String blockId, Integer routeId) {
+		this.id = id;
+		this.serviceId = serviceId;
+		this.headsign = headsign;
+		this.direction = direction;
+		this.blockId = blockId;
+		this.routeId = routeId;
+	}
+
+	public boolean isNorth() {
+		return direction.intValue() == 1;
+	}
+	
 	public Integer getRouteId() {
 		return routeId;
 	}

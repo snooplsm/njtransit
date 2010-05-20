@@ -131,9 +131,18 @@ public class NJTransitDBAdapter {
 		return stopTimes;
 	}
 	
+	/** Return at most 2 trips for a station. North | South bound */
 	public ArrayList<Trip> getTrips(Integer stationId) {
-		if(stationId == null) {
-			return new ArrayList<Trip>();
+		if(stationId == null || true) {
+			return new ArrayList<Trip>(){
+				private static final long serialVersionUID = 1L;
+				{
+					add(new Trip(1, 1, "343 River Line Camden",
+							0, "175B43003", 1));
+					add(new Trip(1, 1, "343 River Line Trenton",
+							1, "175B43001", 1));
+				}
+			};
 		}
 		db.beginTransaction();
 		ArrayList<Trip> trips = new ArrayList<Trip>();

@@ -36,7 +36,7 @@ public class TripAdapter extends ArrayAdapter<Trip> {
             	 headsign.setText(s.getHeadsign()); 
              }
              if(direction != null){
-            	 direction.setText(s.getDirection().equals(0) ? ">" : "<");
+            	 direction.setText(s.getDirection().equals(0) ? "South" : "North");
              }
          }
          return v;

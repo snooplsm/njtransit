@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -25,11 +24,11 @@ public class Main extends Activity implements LocationListener {
    
 	private static final int PREFS = 1;
 	private static final int QUIT = 2;
+	private static final int REFRESH_LOC = 3;
 	
 	private LocationManager locationManager;
 	
 	private Session session;
-	
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -47,7 +46,7 @@ public class Main extends Activity implements LocationListener {
                 this);
         session.setLastKnownLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
-        final ProgressDialog dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
+        final ProgressDialog dialog = progress("Loading. Please wait...");
         
         SessionInitializer.exec(new NJTransitDBAdapter(this), session, new InitializationListener() {
 			@Override
@@ -57,6 +56,7 @@ public class Main extends Activity implements LocationListener {
 			}
         });
     }
+	
 	
 	/** show list of closest stations */
 	public void onShowClosestStations(final Map<Station, Double> closest) {
@@ -85,7 +85,7 @@ public class Main extends Activity implements LocationListener {
 	/** @see LocationListener#onLocationChanged(Location) */
 	@Override
 	public void onLocationChanged(Location l) {
-		info(String.format("location changed [%s,%s]",l.getLatitude(), l.getLongitude()));
+		
 	}
 
 	/** @see LocationListener#onProviderDisabled(String) */
@@ -110,6 +110,7 @@ public class Main extends Activity implements LocationListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, PREFS, 0, "Prefs");
 	    menu.add(0, QUIT, 0, "Quit");
+	    menu.add(0, REFRESH_LOC, 0, "Refresh Location");
 	    return true;
 	}
 	
@@ -122,8 +123,22 @@ public class Main extends Activity implements LocationListener {
 	    case QUIT:
 	        finish();
 	        return true;
+	    case REFRESH_LOC:
+	    	refreshClosestStations();
+	    	return true;
 	    }
 	    return false;
+	}
+	
+	private void refreshClosestStations() {
+		ProgressDialog pd = progress("Fetching current location");
+		Map<Station, Double> closest = session.findClosestStations(null, 6);
+		pd.dismiss();
+		onShowClosestStations(closest);
+	}
+	
+	private ProgressDialog progress(String msg) {
+		return ProgressDialog.show(this, "", msg, true);
 	}
 	
 	private void onListStations() {
@@ -138,9 +153,5 @@ public class Main extends Activity implements LocationListener {
 	
 	private void onShowPrefs() {
 		startActivity(new Intent(this, Prefs.class));
-	}
-	
-	private void info(CharSequence msg) {
-		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 	}
 }
