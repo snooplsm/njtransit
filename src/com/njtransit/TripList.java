@@ -71,7 +71,7 @@ public class TripList extends ListActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
           public void onItemClick(AdapterView<?> parent, View view,
               int pos, long id) {
-            Toast.makeText(getApplicationContext(), trips.get(pos).getHeadsign(),
+            Toast.makeText(getApplicationContext(), trips.get(pos-1).getHeadsign(),
                 Toast.LENGTH_SHORT).show();
           }
         });
