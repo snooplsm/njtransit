@@ -4,12 +4,6 @@ import java.util.Calendar;
 
 public class StopTime {
 
-	public Integer getStationId() {
-		return stationId;
-	}
-	public void setStationId(Integer stationId) {
-		this.stationId = stationId;
-	}
 	private Integer stationId;
 	private Integer tripId;
 	private Calendar arrival;
@@ -18,9 +12,36 @@ public class StopTime {
 	private Integer pickupType;
 	private Integer dropOffType;
 	
+	public StopTime() {
+		
+	}
+
+	
+	public StopTime(Integer stationId, Integer tripId, Calendar arrival,
+			Calendar departure, Integer sequence, Integer pickupType,
+			Integer dropOffType) {
+		this.stationId = stationId;
+		this.tripId = tripId;
+		this.arrival = arrival;
+		this.departure = departure;
+		this.sequence = sequence;
+		this.pickupType = pickupType;
+		this.dropOffType = dropOffType;
+	}
+
+
+	public Integer getStationId() {
+		return stationId;
+	}
+	
+	public void setStationId(Integer stationId) {
+		this.stationId = stationId;
+	}
+	
 	public Integer getTripId() {
 		return tripId;
 	}
+	
 	public void setTripId(Integer tripId) {
 		this.tripId = tripId;
 	}

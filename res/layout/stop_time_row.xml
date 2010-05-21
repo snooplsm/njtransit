@@ -11,20 +11,20 @@
         android:layout_weight="1"
         android:layout_height="fill_parent">
         <TextView
-            android:id="@+id/station_name"
-            android:layout_width="fill_parent"
+            android:id="@+id/arrival"
+            android:layout_width="wrap_content"
             android:layout_height="0dip"
             android:layout_weight="1"
             android:textColor="#333333"
-            android:gravity="center_vertical"
+            android:gravity="left"
         />
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dip"
             android:layout_weight="1" 
-            android:id="@+id/station_distance"
-            android:singleLine="true"
-            android:ellipsize="marquee"
+            android:id="@+id/departure"
+            android:textColor="#333333"
+            android:gravity="right"
         />
     </LinearLayout>
 </LinearLayout>

@@ -80,4 +80,8 @@ public class Trip {
 		this.blockId = blockId;
 	}
 	
+	public String toString() {
+		return getHeadsign();
+	}
+	
 }

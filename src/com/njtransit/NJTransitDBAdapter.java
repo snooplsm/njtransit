@@ -2,6 +2,7 @@ package com.njtransit;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -25,6 +26,8 @@ public class NJTransitDBAdapter {
 	private NJTransitDBHelper helper;
 	
 	private SQLiteDatabase db;
+	
+	private boolean mocking = true;
 	
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
@@ -107,6 +110,50 @@ public class NJTransitDBAdapter {
 		return routes;
 	}
 	
+	
+	private List<StopTime> mockTimes(Integer sid, Integer tid) {
+		ArrayList<StopTime> times = new ArrayList<StopTime>();
+		Calendar a = Calendar.getInstance();			
+		a.setTimeInMillis(System.currentTimeMillis() * 60 * 60);
+		
+		Calendar d = Calendar.getInstance();
+		d.setTimeInMillis(System.currentTimeMillis() * 60 * 60 * 60);			
+		
+		times.add(new StopTime(sid, tid, a,
+				d, null, null,
+				null));
+		
+		times.add(new StopTime(sid, tid, a,
+				d, null, null,
+				null));
+		return times;
+	}
+	
+	public List<StopTime> getAllStopTimes(Integer sid, Integer tid) {
+		if(mocking) {
+			return mockTimes(sid, tid);
+		}
+		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {
+			tid.toString(), sid.toString()
+		});
+		cursor.moveToFirst();
+		ArrayList<StopTime> stopTimes = new ArrayList<StopTime>(cursor.getCount());
+		for(int i = 0; i < cursor.getCount(); i++) {
+			
+			Calendar a = Calendar.getInstance();			
+			a.setTimeInMillis(cursor.getLong(0));
+			
+			Calendar d = Calendar.getInstance();
+			d.setTimeInMillis(cursor.getLong(1));			
+			
+			stopTimes.add(new StopTime(sid, tid, a,
+					d, null, null,
+					null));
+						
+			cursor.moveToNext();
+		}
+		return stopTimes;
+	}
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
 		db.beginTransaction();
 		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});
