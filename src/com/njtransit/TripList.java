@@ -65,8 +65,7 @@ public class TripList extends ListActivity {
         TextView headsign = (TextView)findViewById(R.id.trip_headsign);
         headsign.setText(trip == 0 ? trips.get(0).getHeadsign() : db.getTrip(trip).getHeadsign());
         
-        // TODO how do we get all stations for a given trip?
-        final List<Station> stations = db.getAllStations();
+        final List<Station> stations = db.stationsWithin(trip == 0 ? trips.get(0).getId() : trip);
         
         setListAdapter(new StationAdapter(this, R.layout.station_list, stations));
         
