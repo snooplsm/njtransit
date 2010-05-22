@@ -129,13 +129,61 @@ public class NJTransitDBAdapter {
 		return times;
 	}
 	
+	private List<Station> mockStationsWithin() {
+		return new ArrayList<Station>(20) {
+			private static final long serialVersionUID = 1L;
+		{
+			add(new Station(1,"30TH ST. PHL.",39.956565,-75.182327,5961));
+			add(new Station(2,"ABSECON",39.424333,-74.502091,333));
+			add(new Station(3,"ALLENDALE",41.030902,-74.130957,2893));
+			add(new Station(4,"ALLENHURST",40.237659,-74.006769,5453));
+			add(new Station(5,"ANDERSON STREET",40.894458,-74.043781,1357));
+			add(new Station(6,"ANNANDALE",40.645173,-74.878569,5197));
+			add(new Station(8,"ASBURY PARK",40.215359,-74.014782,5453));
+			add(new Station(9,"ATCO",39.783547,-74.907588,4429));
+			add(new Station(10,"ATLANTIC CITY",39.363573,-74.442523,77));
+			add(new Station(11,"AVENEL",40.577620,-74.277530,2381));
+			add(new Station(12,"BASKING RIDGE",40.711380,-74.555267,4173));
+			add(new Station(13,"BAY HEAD",40.075843,-74.046931,5965));
+			add(new Station(14,"BAY STREET",40.808178,-74.208681,1357));
+			add(new Station(15,"BELMAR",40.180590,-74.027301,5709));
+			add(new Station(17,"BERKELEY HEIGHTS",40.682345,-74.442649,2893));
+			add(new Station(18,"BERNARDSVILLE",40.716847,-74.571023,4173));
+			add(new Station(19,"BLOOMFIELD AVENUE",40.792709,-74.200043,1101));
+			add(new Station(20,"BOONTON",40.903378,-74.407733,3661));
+		}};
+	}
+	
+	/** All stations within a given trips train line */
+	public List<Station> stationsWithin(Integer tripId) {
+		List<Station> stations = new ArrayList<Station>();
+		if(mocking) {
+			stations.addAll(mockStationsWithin());
+			return stations;
+		}
+		
+		Cursor cursor = db.rawQuery("select s.id, s.name, s.lat, s.lon, s.zone_id from stop_times st inner join stops s on s.id=st.fk_stop_id where ts.trip_id=?", new String[] {
+				tripId.toString()
+		});
+		
+		cursor.moveToFirst();
+		for(int i = 0; i < cursor.getCount(); i++) {
+			stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4)));
+			cursor.moveToNext();
+		}
+		
+		return stations;
+	}
+	
 	public List<StopTime> getAllStopTimes(Integer sid, Integer tid) {
 		if(mocking) {
 			return mockTimes(sid, tid);
 		}
+		
 		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {
 			tid.toString(), sid.toString()
 		});
+		
 		cursor.moveToFirst();
 		ArrayList<StopTime> stopTimes = new ArrayList<StopTime>(cursor.getCount());
 		for(int i = 0; i < cursor.getCount(); i++) {

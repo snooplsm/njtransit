@@ -12,6 +12,19 @@ public class Station {
 	
 	private Integer zoneId;
 
+	public Station() {
+		
+	}
+	
+	public Station(Integer id, String name, Double latitude, Double longitude,
+			Integer zoneId) {
+		this.id = id;
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.zoneId = zoneId;
+	}
+
 	public Integer getId() {
 		return id;
 	}
