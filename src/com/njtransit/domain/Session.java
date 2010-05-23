@@ -113,5 +113,14 @@ public class Session {
 	public void setCurrentDestintionStation(Station currentDestintionStation) {
 		this.currentDestintionStation = currentDestintionStation;
 	}
+	
+	public Station getStation(Integer id) {
+		for(Station s : stations) {
+			if(s.getId().equals(id)) {
+				return s;
+			}
+		}
+		return null;
+	}
 
 }

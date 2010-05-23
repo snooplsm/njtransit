@@ -29,9 +29,7 @@ public class Main extends Activity implements LocationListener {
 	private static final int PREFS = 1;
 	private static final int QUIT = 2;
 	private static final int REFRESH_LOC = 3;
-
 	private static final DecimalFormat df = new DecimalFormat("#");
-
 	private LocationManager locationManager;
 
 	private Session session;
@@ -82,9 +80,8 @@ public class Main extends Activity implements LocationListener {
 				Double d2 = closest.get(object2);
 				return d1.compareTo(d2);
 			}
-
 		});
-
+		
 		for(Station s : stations) {		
 			options[i] = s.getName() + "\n " + df.format(closest.get(s)) + " meters";
 			i++;
