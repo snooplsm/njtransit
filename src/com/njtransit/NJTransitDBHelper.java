@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -53,25 +55,34 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 	}
 
 	private void copyDataBase(String at) throws IOException {
-
-		// Open your local db as the input stream
-		InputStream in = context.getAssets().open("njtransit.sqlite");
-
-		// Open the empty db as the output stream
-		OutputStream out = new FileOutputStream(at);
-
-		// transfer bytes from in -> out
-		byte[] buffer = new byte[1024];
-		int count = in.available();
-		int length;
-		while ((length = in.read(buffer)) > 0) {
-			out.write(buffer, 0, length);
+		long start = System.currentTimeMillis();
+		
+		List<String> partions = new ArrayList<String>();
+		final String[] assets = context.getAssets().list("");
+		for(String a : assets) {
+			if(a.startsWith("njtransit.sqlite.partition")) {
+				partions.add(a);
+			}
 		}
-
-		// Close the streams
-		out.flush();
-		out.close();
-		in.close();
+		OutputStream out = null;
+		try {
+			out = new FileOutputStream(at);
+			byte[] buffer = new byte[1024];
+			for(String partition : partions) {
+				final InputStream in = context.getAssets().open(partition);
+				while(in.read(buffer) > 0) {
+					out.write(buffer);
+				}
+				in.close();
+			}
+		} finally {
+			if(out != null) {
+				out.flush();
+				out.close();
+			}
+		}
+		
+		Log.i(getClass().getSimpleName(), "Slurped in db in "+(System.currentTimeMillis()-start)+"ms");
 	}
 
 	public void openDataBase(String at) throws SQLException {

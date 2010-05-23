@@ -39,7 +39,6 @@ public class NJTransitDBAdapter {
 		try {
 			helper = new NJTransitDBHelper(context);
 			// FOR TESTING (remove me)
-			context.deleteDatabase("njtransit");
 			context.deleteDatabase("njtransit.sqlite");
 			final String atPath = context.getDatabasePath("njtransit.sqlite").getAbsolutePath();
 			helper.createDataBase(atPath);
@@ -199,6 +198,7 @@ public class NJTransitDBAdapter {
 		}
 		return stopTimes;
 	}
+	
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
 		db.beginTransaction();
 		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});
