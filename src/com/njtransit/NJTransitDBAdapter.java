@@ -38,8 +38,6 @@ public class NJTransitDBAdapter {
 	public NJTransitDBAdapter open() {
 		try {
 			helper = new NJTransitDBHelper(context);
-			// FOR TESTING (remove me)
-			context.deleteDatabase("njtransit.sqlite");
 			final String atPath = context.getDatabasePath("njtransit.sqlite").getAbsolutePath();
 			helper.createDataBase(atPath);
 			helper.openDataBase(atPath);
