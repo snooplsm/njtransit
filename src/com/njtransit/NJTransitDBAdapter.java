@@ -22,10 +22,10 @@ public class NJTransitDBAdapter {
 	private static final int VERSION = 5;
 	
 	private Context context;
-
-	private NJTransitDBHelper helper;
 	
 	private SQLiteDatabase db;
+	
+	private NJTransitDBHelper helper;
 	
 	private boolean mocking = true;
 	
@@ -35,11 +35,17 @@ public class NJTransitDBAdapter {
 	private static String[] STOPTIME_COLUMNS = new String[] {"arrival","departure","sequence","pickup_type","drop_off_type"};
 	
 	public NJTransitDBAdapter open() {
-		helper = new NJTransitDBHelper(context, "njtransit", null, VERSION);
-		//readable
-		db = helper.getWritableDatabase();
+		try {
+			helper = new NJTransitDBHelper(context);
+			helper.createDataBase();
+			helper.openDataBase();
+			db = helper.getWritableDatabase();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		return this;
 	}
+	
 	
 	
 	public Station getStation(Integer id) {
