@@ -11,11 +11,10 @@ public class StopTime {
 	private Integer sequence;
 	private Integer pickupType;
 	private Integer dropOffType;
-	
+
 	public StopTime() {
 		
 	}
-
 	
 	public StopTime(Integer stationId, Integer tripId, Calendar arrival,
 			Calendar departure, Integer sequence, Integer pickupType,

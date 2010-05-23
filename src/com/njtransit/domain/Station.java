@@ -11,10 +11,6 @@ public class Station {
 	private Double longitude;
 	
 	private Integer zoneId;
-
-	public Station() {
-		
-	}
 	
 	public Station(Integer id, String name, Double latitude, Double longitude,
 			Integer zoneId) {
@@ -43,26 +39,6 @@ public class Station {
 
 	public Integer getZoneId() {
 		return zoneId;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setZoneId(Integer zoneId) {
-		this.zoneId = zoneId;
 	}
 	
 	@Override

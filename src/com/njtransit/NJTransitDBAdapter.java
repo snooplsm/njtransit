@@ -55,13 +55,8 @@ public class NJTransitDBAdapter {
 		int cnt = cursor.getCount();
 		cursor.moveToFirst();
 		while(cnt > 0) {
-			cnt--;			
-			Station station = new Station();
-			station.setId(cursor.getInt(0));
-			station.setName(cursor.getString(1));
-			station.setLatitude(cursor.getDouble(2));
-			station.setLongitude(cursor.getDouble(3));
-			return station;
+			cnt--;
+			return new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), null);
 		}
 		return null;
 	}
@@ -78,13 +73,8 @@ public class NJTransitDBAdapter {
 		ArrayList<Station> stations = new ArrayList<Station>(count);
 		cursor.moveToFirst();
 		while(count>0) {
-			count--;			
-			Station station = new Station();
-			station.setId(cursor.getInt(0));
-			station.setName(cursor.getString(1));
-			station.setLatitude(cursor.getDouble(2));
-			station.setLongitude(cursor.getDouble(3));
-			stations.add(station);
+			count--;
+			stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), null));
 			cursor.moveToNext();
 		}
 		db.endTransaction();
@@ -104,12 +94,7 @@ public class NJTransitDBAdapter {
 		cursor.moveToFirst();
 		while(count>0) {
 			count--;
-			Route route = new Route();
-			route.setId(cursor.getInt(0));
-			route.setAgencyId(cursor.getInt(1));
-			route.setShortName(cursor.getString(2));
-			route.setLongName(cursor.getString(3));
-			route.setRouteType(cursor.getInt(4));
+			routes.add(new Route(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4)));
 			cursor.moveToNext();
 		}
 		db.endTransaction();
@@ -259,14 +244,7 @@ public class NJTransitDBAdapter {
 		ArrayList<Trip> trips = new ArrayList<Trip>(Math.max(0,count));
 		cursor.moveToFirst();
 		for(int i =0; i < cursor.getCount(); i++) {
-			Trip t = new Trip();
-			t.setId(cursor.getInt(0));
-			t.setServiceId(cursor.getInt(1));
-			t.setRouteId(cursor.getInt(2));
-			t.setHeadsign(cursor.getString(3));
-			t.setDirection(cursor.getInt(4));
-			t.setBlockId(cursor.getString(5));
-			trips.add(t);
+			trips.add(new Trip(cursor.getInt(0), cursor.getInt(1), cursor.getString(3), cursor.getInt(4), cursor.getString(5),  null));
 			cursor.moveToNext();
 		}
 		db.endTransaction();
