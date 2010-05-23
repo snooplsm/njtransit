@@ -30,7 +30,6 @@ public class TripList extends ListActivity {
         ViewGroup header = (ViewGroup)inflater.inflate(R.layout.trip_header, view, false);
         view.addHeaderView(header, null, false);
         
-        
         final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
         final Integer station = getIntent().getExtras().getInt("station");
         final List<Trip> trips = db.getTrips(station);
@@ -62,6 +61,7 @@ public class TripList extends ListActivity {
 		       }
         	});
         }
+        
         TextView headsign = (TextView)findViewById(R.id.trip_headsign);
         headsign.setText(trip == 0 ? trips.get(0).getHeadsign() : db.getTrip(trip).getHeadsign());
         
@@ -73,7 +73,7 @@ public class TripList extends ListActivity {
         view.setOnItemClickListener(new OnItemClickListener() {
           public void onItemClick(AdapterView<?> parent, View view,
               int pos, long id) {
-            Toast.makeText(getApplicationContext(), stations.get(pos-1).getName(),
+            Toast.makeText(getApplicationContext(), "Selected destination " +stations.get(pos-1).getName(),
                 Toast.LENGTH_SHORT).show();
             Intent next = new Intent(TripList.this, StopTimeList.class);
             next.putExtra("sa", station);
