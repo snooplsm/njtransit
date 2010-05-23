@@ -27,7 +27,7 @@ public class NJTransitDBAdapter {
 	
 	private NJTransitDBHelper helper;
 	
-	private boolean mocking = true;
+	private boolean mocking = false;
 	
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
@@ -161,15 +161,15 @@ public class NJTransitDBAdapter {
 	}
 	
 	/** All stations within a given trips train line */
-	public List<Station> stationsWithin(Integer tripId) {
+	public List<Station> stationsWithin(Station station, Trip trip) {
 		List<Station> stations = new ArrayList<Station>();
 		if(mocking) {
 			stations.addAll(mockStationsWithin());
 			return stations;
 		}
-		
-		Cursor cursor = db.rawQuery("select s.id, s.name, s.lat, s.lon, s.zone_id from stop_times st inner join stops s on s.id=st.fk_stop_id where ts.trip_id=?", new String[] {
-				tripId.toString()
+		char gtlt = trip.getDirection()==0 ? '<' : '>'; 
+		Cursor cursor = db.rawQuery("select s.id, s.name, s.lat, s.lon, s.zone_id from stop_times st inner join stops s on s.id=st.stop_id where st.trip_id=? and st.sequence " + gtlt + " (select sequence from stop_times where stop_id = ? and trip_id = ?)", new String[] {
+				station.getId().toString(), trip.getId().toString()
 		});
 		
 		cursor.moveToFirst();

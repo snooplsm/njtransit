@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Trip;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -32,8 +33,8 @@ public class TripList extends ListActivity {
         
         
         final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
-        final Integer station = getIntent().getExtras().getInt("station");
-        final List<Trip> trips = db.getTrips(station);
+        final Integer stationId = getIntent().getExtras().getInt("station");
+        final List<Trip> trips = db.getTrips(stationId);
         
         // this will only be set within the context of the second trip
         final Integer trip = getIntent().getExtras().getInt("flip");
@@ -46,7 +47,7 @@ public class TripList extends ListActivity {
 					@Override
 					public void onClick(View v) {
 						Intent next = new Intent(TripList.this, TripList.class);
-						next.putExtra("station", station);
+						next.putExtra("station", stationId);
 						next.putExtra("flip", trips.get(1).getId());
 						startActivity(next);
 					}
@@ -65,7 +66,8 @@ public class TripList extends ListActivity {
         TextView headsign = (TextView)findViewById(R.id.trip_headsign);
         headsign.setText(trip == 0 ? trips.get(0).getHeadsign() : db.getTrip(trip).getHeadsign());
         
-        final List<Station> stations = db.stationsWithin(trip == 0 ? trips.get(0).getId() : trip);
+        Station station = Session.get().getStation(stationId);
+        final List<Station> stations = db.stationsWithin(station, trip == 0 ? trips.get(0) : null);
         
         setListAdapter(new StationAdapter(this, R.layout.station_list, stations));
         
@@ -76,7 +78,7 @@ public class TripList extends ListActivity {
             Toast.makeText(getApplicationContext(), stations.get(pos-1).getName(),
                 Toast.LENGTH_SHORT).show();
             Intent next = new Intent(TripList.this, StopTimeList.class);
-            next.putExtra("sa", station);
+            next.putExtra("sa", stationId);
             next.putExtra("sb", stations.get(pos-1).getId());
             next.putExtra("trip", trip == 0 ? trips.get(0).getId() : trip);
             startActivity(next);
