@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -37,8 +38,12 @@ public class NJTransitDBAdapter {
 	public NJTransitDBAdapter open() {
 		try {
 			helper = new NJTransitDBHelper(context);
-			helper.createDataBase();
-			helper.openDataBase();
+			// FOR TESTING (remove me)
+			context.deleteDatabase("njtransit");
+			context.deleteDatabase("njtransit.sqlite");
+			final String atPath = context.getDatabasePath("njtransit.sqlite").getAbsolutePath();
+			helper.createDataBase(atPath);
+			helper.openDataBase(atPath);
 			db = helper.getWritableDatabase();
 		} catch (Exception e) {
 			throw new RuntimeException(e);

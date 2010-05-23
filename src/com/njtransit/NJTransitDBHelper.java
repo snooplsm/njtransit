@@ -24,8 +24,6 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		this.context = context;
 	}
 	
-	
-
 	@Override
 	public synchronized SQLiteDatabase getReadableDatabase() {
 		return db;
@@ -36,100 +34,68 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		return db;
 	}
 
-	public void createDataBase() throws IOException {
-
-		boolean dbExist = checkDataBase();
-
+	public void createDataBase(String at) throws IOException {
+		boolean dbExist = checkDataBase(at);
 		if (dbExist) {
 			// do nothing - database already exist
 		} else {
-
 			// By calling this method and empty database will be created into
 			// the default system path
-			// of your application so we are gonna be able to overwrite that
+			// of your application so we are goina be able to overwrite that
 			// database with our database.
 			super.getReadableDatabase();
-
 			try {
-
-				copyDataBase();
-
+				copyDataBase(at);
 			} catch (IOException e) {
-
-				throw new Error("Error copying database");
-
+				throw new RuntimeException("Error copying database", e);
 			}
 		}
-
 	}
 
-	private static String DB_PATH = "/data/data/com.njtransit/databases/njtransit.sqlite";
-
-	private void copyDataBase() throws IOException {
+	private void copyDataBase(String at) throws IOException {
 
 		// Open your local db as the input stream
-		AssetManager am = context.getAssets();
-		String[] f = am.list("");
-		for(String k : f) {
-			Log.i("f", k);
-		}
-		InputStream myInput = context.getAssets().open("njtransit.sqlite");
-
-		// Path to the just created empty db
-		String outFileName = DB_PATH;
+		InputStream in = context.getAssets().open("njtransit.sqlite");
 
 		// Open the empty db as the output stream
-		OutputStream myOutput = new FileOutputStream(outFileName);
+		OutputStream out = new FileOutputStream(at);
 
-		// transfer bytes from the inputfile to the outputfile
+		// transfer bytes from in -> out
 		byte[] buffer = new byte[1024];
+		int count = in.available();
 		int length;
-		while ((length = myInput.read(buffer)) > 0) {
-			myOutput.write(buffer, 0, length);
+		while ((length = in.read(buffer)) > 0) {
+			out.write(buffer, 0, length);
 		}
 
 		// Close the streams
-		myOutput.flush();
-		myOutput.close();
-		myInput.close();
+		out.flush();
+		out.close();
+		in.close();
 	}
 
-	public void openDataBase() throws SQLException {
-		// Open the database
-		String myPath = DB_PATH;
-		db = SQLiteDatabase.openDatabase(myPath, null,
+	public void openDataBase(String at) throws SQLException {
+		db = SQLiteDatabase.openDatabase(at, null,
 				SQLiteDatabase.OPEN_READWRITE);
 	}
 
 	public synchronized void close() {
-
-		if (db != null)
-			db.close();
+		if (db != null) db.close();
 		super.close();
-
 	}
 
-	private boolean checkDataBase() {
-
+	private boolean checkDataBase(String at) {
 		SQLiteDatabase checkDB = null;
-
 		try {
-			String myPath = DB_PATH;
-			checkDB = SQLiteDatabase.openDatabase(myPath, null,
+			checkDB = SQLiteDatabase.openDatabase(at, null,
 					SQLiteDatabase.OPEN_READWRITE);
-
 		} catch (SQLiteException e) {
-
-			// database does't exist yet.
-
-		}
-
-		if (checkDB != null) {
-
-			checkDB.close();
-
-		}
-
+			// database does't exist yet. if not, that's okay. we will create one
+		} finally {
+			if (checkDB != null) {
+				checkDB.close();
+			}
+		}		
 		return checkDB != null ? true : false;
 	}
 
