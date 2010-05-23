@@ -167,9 +167,10 @@ public class NJTransitDBAdapter {
 			stations.addAll(mockStationsWithin());
 			return stations;
 		}
-		char gtlt = trip.getDirection()==0 ? '<' : '>'; 
-		Cursor cursor = db.rawQuery("select s.id, s.name, s.lat, s.lon, s.zone_id from stop_times st inner join stops s on s.id=st.stop_id where st.trip_id=? and st.sequence " + gtlt + " (select sequence from stop_times where stop_id = ? and trip_id = ?)", new String[] {
-				station.getId().toString(), trip.getId().toString()
+		char gtlt = trip.getDirection()==0 ? '>' : '<';
+		String sql = "select s.id, s.name, s.lat, s.lon, s.zone_id from stop_times st inner join stops s on s.id=st.stop_id where st.trip_id=? and st.sequence " + gtlt + " (select sequence from stop_times where stop_id = ? and trip_id = ?)";
+		Cursor cursor = db.rawQuery(sql, new String[] { trip.getId().toString(),
+				station.getId().toString(), trip.getId().toString(), 
 		});
 		
 		cursor.moveToFirst();
@@ -186,7 +187,7 @@ public class NJTransitDBAdapter {
 			return mockTimes(sid, tid);
 		}
 		
-		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {
+		Cursor cursor = db.rawQuery("select time(arrival,'unixepoch','localtime'), time(departure,'unixepoch','localtime') from stop_times where trip_id=? and stop_id=?", new String[] {
 			tid.toString(), sid.toString()
 		});
 		
@@ -239,7 +240,7 @@ public class NJTransitDBAdapter {
 	
 	/** Return at most 2 trips for a station. North | South bound */
 	public ArrayList<Trip> getTrips(Integer stationId) {
-		if(stationId == null || true) {
+		if(stationId == null) {
 			return new ArrayList<Trip>(){
 				private static final long serialVersionUID = 1L;
 				{
@@ -251,10 +252,11 @@ public class NJTransitDBAdapter {
 			};
 		}
 		db.beginTransaction();
-		ArrayList<Trip> trips = new ArrayList<Trip>();
 		Cursor cursor = db.rawQuery("select trips.id, trips.service_id, trips.route_id, trips.headsign, trips.direction, trips.block_id from stop_times join trips where ? = stop_times.stop_id AND stop_times.trip_id=trips.id group by trips.direction",new String[] {
 		  stationId.toString() 
 		});
+		int count = cursor.getCount();
+		ArrayList<Trip> trips = new ArrayList<Trip>(Math.max(0,count));
 		cursor.moveToFirst();
 		for(int i =0; i < cursor.getCount(); i++) {
 			Trip t = new Trip();

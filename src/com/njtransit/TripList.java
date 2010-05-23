@@ -37,18 +37,29 @@ public class TripList extends ListActivity {
         final List<Trip> trips = db.getTrips(stationId);
         
         // this will only be set within the context of the second trip
-        final Integer trip = getIntent().getExtras().getInt("flip");
+        final Integer tripId = getIntent().getExtras().getInt("flip");
+        final Integer tripPos = getIntent().getExtras().getInt("tripPos");
         
-        Button flip = (Button) findViewById(R.id.reverse_direction);
+        final Button flip = (Button) findViewById(R.id.reverse_direction);
     	
-        if(trip.intValue() == 0) {
-        	if(trips.size() > 1) {
+        if(tripId.intValue() == 0) {
+        	if(trips.size() == 2) {
 	        	flip.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						Intent next = new Intent(TripList.this, TripList.class);
 						next.putExtra("station", stationId);
-						next.putExtra("flip", trips.get(1).getId());
+						Trip trip = null;
+						Integer newTripPos = null;
+						if(tripPos.intValue()==0) {
+							newTripPos = 1;
+							
+						} else {
+							newTripPos = 0;
+						}
+						trip = trips.get(newTripPos);
+						next.putExtra("flip", trip.getId());
+						next.putExtra("tripPos", newTripPos);
 						startActivity(next);
 					}
 	        	});
@@ -64,10 +75,13 @@ public class TripList extends ListActivity {
         	});
         }
         TextView headsign = (TextView)findViewById(R.id.trip_headsign);
-        headsign.setText(trip == 0 ? trips.get(0).getHeadsign() : db.getTrip(trip).getHeadsign());
+        
+        Trip trip = trips.get(tripPos);
+        
+        headsign.setText(trip.getHeadsign());
         
         Station station = Session.get().getStation(stationId);
-        final List<Station> stations = db.stationsWithin(station, trip == 0 ? trips.get(0) : null);
+        final List<Station> stations = db.stationsWithin(station, trips.get(tripId));
         
         setListAdapter(new StationAdapter(this, R.layout.station_list, stations));
         
@@ -80,7 +94,7 @@ public class TripList extends ListActivity {
             Intent next = new Intent(TripList.this, StopTimeList.class);
             next.putExtra("sa", stationId);
             next.putExtra("sb", stations.get(pos-1).getId());
-            next.putExtra("trip", trip == 0 ? trips.get(0).getId() : trip);
+            next.putExtra("trip", tripId.intValue() == 0 ? trips.get(0).getId() : tripId);
             startActivity(next);
           }
         });

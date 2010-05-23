@@ -116,7 +116,7 @@ public class Session {
 	
 	public Station getStation(Integer id) {
 		for(Station s : stations) {
-			if(s.getId()==id) {
+			if(s.getId().equals(id)) {
 				return s;
 			}
 		}
