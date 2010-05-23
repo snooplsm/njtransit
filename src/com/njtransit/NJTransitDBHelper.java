@@ -13,17 +13,16 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class NJTransitDBHelper extends SQLiteOpenHelper {
 
-	private Context context;
+	private AssetManager assets;
 
 	private SQLiteDatabase db;
 
 	public NJTransitDBHelper(Context context) {
 		super(context, "njtransit", null, 1);
-		this.context = context;
+		this.assets = context.getAssets();
 	}
 	
 	@Override
@@ -37,14 +36,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 	}
 
 	public void createDataBase(String at) throws IOException {
-		boolean dbExist = checkDataBase(at);
-		if (dbExist) {
-			// do nothing - database already exist
-		} else {
-			// By calling this method and empty database will be created into
-			// the default system path
-			// of your application so we are goina be able to overwrite that
-			// database with our database.
+		if (!checkDataBase(at)) {
 			super.getReadableDatabase();
 			try {
 				copyDataBase(at);
@@ -55,13 +47,11 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 	}
 
 	private void copyDataBase(String at) throws IOException {
-		long start = System.currentTimeMillis();
-		
 		List<String> partions = new ArrayList<String>();
-		final String[] assets = context.getAssets().list("");
-		for(String a : assets) {
-			if(a.startsWith("njtransit.sqlite.partition")) {
-				partions.add(a);
+		final String[] files = assets.list("");
+		for(String f : files) {
+			if(f.startsWith("njtransit.sqlite.partition")) {
+				partions.add(f);
 			}
 		}
 		OutputStream out = null;
@@ -69,7 +59,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 			out = new FileOutputStream(at);
 			byte[] buffer = new byte[1024];
 			for(String partition : partions) {
-				final InputStream in = context.getAssets().open(partition);
+				final InputStream in = assets.open(partition);
 				while(in.read(buffer) > 0) {
 					out.write(buffer);
 				}
@@ -81,8 +71,6 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				out.close();
 			}
 		}
-		
-		Log.i(getClass().getSimpleName(), "Slurped in db in "+(System.currentTimeMillis()-start)+"ms");
 	}
 
 	public void openDataBase(String at) throws SQLException {
@@ -107,19 +95,16 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				checkDB.close();
 			}
 		}		
-		return checkDB != null ? true : false;
+		return checkDB != null;
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 
 	}
-
 }
