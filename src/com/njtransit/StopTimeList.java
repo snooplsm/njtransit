@@ -28,7 +28,6 @@ public class StopTimeList extends ListActivity {
         ViewGroup header = (ViewGroup)inflater.inflate(R.layout.stop_time_header, view, false);
         view.addHeaderView(header, null, false);
         
-        
         final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
         final Integer stationA = getIntent().getExtras().getInt("sa");
         final Integer stationB = getIntent().getExtras().getInt("sb");
@@ -38,6 +37,7 @@ public class StopTimeList extends ListActivity {
         if(headsign != null) {
         	headsign.setText(db.getTrip(trip).getHeadsign());
         }
+        
         TextView aName = (TextView) findViewById(R.id.station_a);
         if(aName != null) {
         	aName.setText(db.getStation(stationA).getName());
