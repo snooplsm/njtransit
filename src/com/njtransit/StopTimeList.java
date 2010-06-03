@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.njtransit.domain.StopTime;
+import com.njtransit.domain.Trip;
 import com.njtransit.ui.adapter.StopTimeAdapter;
 
 public class StopTimeList extends ListActivity {
@@ -31,11 +32,12 @@ public class StopTimeList extends ListActivity {
         final NJTransitDBAdapter db = new NJTransitDBAdapter(this).open();
         final Integer stationA = getIntent().getExtras().getInt("sa");
         final Integer stationB = getIntent().getExtras().getInt("sb");
-        final Integer trip = getIntent().getExtras().getInt("trip");
+        final Integer tripId = getIntent().getExtras().getInt("trip");
         
+        Trip trip = db.getTrip(tripId);
         TextView headsign = (TextView)findViewById(R.id.trip_headsign);
         if(headsign != null) {
-        	headsign.setText(db.getTrip(trip).getHeadsign());
+        	headsign.setText(trip.getHeadsign());
         }
         
         TextView aName = (TextView) findViewById(R.id.station_a);

@@ -31,13 +31,16 @@ public final class R {
     public static final class layout {
         public static final int main=0x7f030000;
         public static final int station_list=0x7f030001;
-        public static final int station_row=0x7f030002;
-        public static final int stop_time_header=0x7f030003;
-        public static final int stop_time_list=0x7f030004;
-        public static final int stop_time_row=0x7f030005;
-        public static final int trip_header=0x7f030006;
-        public static final int trip_list=0x7f030007;
-        public static final int trip_row=0x7f030008;
+        public static final int station_list_home=0x7f030002;
+        public static final int station_list_impl=0x7f030003;
+        public static final int station_list_xml_2=0x7f030004;
+        public static final int station_row=0x7f030005;
+        public static final int stop_time_header=0x7f030006;
+        public static final int stop_time_list=0x7f030007;
+        public static final int stop_time_row=0x7f030008;
+        public static final int trip_header=0x7f030009;
+        public static final int trip_list=0x7f03000a;
+        public static final int trip_row=0x7f03000b;
     }
     public static final class string {
         public static final int app_name=0x7f050000;

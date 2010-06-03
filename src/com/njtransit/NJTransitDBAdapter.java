@@ -1,6 +1,5 @@
 package com.njtransit;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -169,14 +168,18 @@ public class NJTransitDBAdapter {
 		return stations;
 	}
 	
-	public List<StopTime> getAllStopTimes(Integer sid, Integer tid) {
+	public List<StopTime> getAllStopTimes(Integer sid, Trip trip) {
 		if(mocking) {
-			return mockTimes(sid, tid);
+			return mockTimes(sid, trip.getId());
 		}
 		
-		Cursor cursor = db.rawQuery("select time(arrival,'unixepoch','localtime'), time(departure,'unixepoch','localtime') from stop_times where trip_id=? and stop_id=?", new String[] {
-			tid.toString(), sid.toString()
-		});
+		Cursor cursor = db.rawQuery(
+				"select time(arrival,'unixepoch','localtime'), time(departure,'unixepoch','localtime') " +
+				"from stop_times where trip_id in " +
+					"(select id from trips where route_id = ?)"
+						, new String[] {
+						trip.getRouteId().toString(), sid.toString()
+				});
 		
 		cursor.moveToFirst();
 		ArrayList<StopTime> stopTimes = new ArrayList<StopTime>(cursor.getCount());
@@ -188,7 +191,7 @@ public class NJTransitDBAdapter {
 			Calendar d = Calendar.getInstance();
 			d.setTimeInMillis(cursor.getLong(1));			
 			
-			stopTimes.add(new StopTime(sid, tid, a,
+			stopTimes.add(new StopTime(sid, trip.getId(), a,
 					d, null, null,
 					null));
 						

@@ -21,7 +21,7 @@ public class StationList extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final List<Station> stations = Session.get().getStations();
-        setListAdapter(new StationAdapter(this, R.layout.station_row, stations));
+        setListAdapter(new StationAdapter(this, R.layout.station_row,StationAdapter.ALPHA, stations, Session.get()));
         
         ListView list = getListView();
         list.setTextFilterEnabled(true);

@@ -83,7 +83,7 @@ public class TripList extends ListActivity {
         Station station = Session.get().getStation(stationId);
         final List<Station> stations = db.stationsWithin(station, trips.get(tripId));
         
-        setListAdapter(new StationAdapter(this, R.layout.station_list, stations));
+        setListAdapter(new StationAdapter(this, R.layout.station_list, StationAdapter.ALPHA, stations, Session.get()));
         
         view.setTextFilterEnabled(true);
         view.setOnItemClickListener(new OnItemClickListener() {
