@@ -2,7 +2,9 @@ package com.njtransit;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.TimeZone;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -198,6 +200,68 @@ public class NJTransitDBAdapter {
 			cursor.moveToNext();
 		}
 		return stopTimes;
+	}
+	
+	private Integer tempTableIndex = 0;
+	
+	private static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+	
+	public ArrayList<StopTime> getStopTimes(Station depart, Station arrive) {
+		db.beginTransaction();
+		int tempTableIndex = ++this.tempTableIndex;
+		String tableName = "atrips"+tempTableIndex;
+		String optiTableName = "astop_times"+tempTableIndex;
+		try{
+			String createTableStatement = String.format("create temporary table %s (id int)", tableName);
+			db.execSQL(createTableStatement);
+			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+			int day = cal.get(Calendar.DAY_OF_WEEK);
+			String dayA = DAYS[day-1];
+			String dayB = DAYS[day % 7];
+			String calendarSql = String.format("select service_id from calendar where %s=1 or %s=1",dayA,dayB);
+			Cursor c = db.rawQuery(calendarSql, null);
+			c.moveToFirst();
+			ArrayList<Integer> count = new ArrayList<Integer>();
+			for(int i = 0; i < c.getCount(); i++) {
+				Integer val = c.getInt(0);
+				count.add(val);
+				c.moveToNext();
+			}
+			c.close();
+			StringBuilder b = new StringBuilder("(");
+			for(Iterator<Integer> i = count.iterator(); i.hasNext();) {
+				b.append(i.next());
+				if(i.hasNext()) {
+					b.append(",");
+				}				
+			}
+			b.append(")");
+			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
+			db.execSQL(String.format("create temporary table %s (stop_id int, trip_id int, departure int, sequence int)",optiTableName));
+			try {
+				db.execSQL(String.format("insert into %s select st.stop_id, st.trip_id, st.departure, st.sequence from stop_times st where (st.stop_id=%s or st.stop_id=%s) and st.trip_id in (select id from %s) order by time(st.departure,'unixepoch') ",optiTableName, depart.getId(),arrive.getId(),tableName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			ArrayList<Object> cd = new ArrayList<Object>();
+			try {
+			c = db.rawQuery(String.format("select a.stop_id, a.departure from %s a join %s b on (b.stop_id= %s ) where a.stop_id=%s and a.sequence < b.sequence",optiTableName,optiTableName,depart.getId(),arrive.getId()),null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			c.moveToFirst();
+			for(int i = 0; i < c.getCount(); i++) {
+				int stopId = c.getInt(0);
+				String date = c.getString(1);
+				c.moveToNext();
+			}
+			c.close();
+			db.execSQL("drop table " + tableName);
+			
+		} finally {
+			
+		}
+		return null;
 	}
 	
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
