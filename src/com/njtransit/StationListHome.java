@@ -1,14 +1,15 @@
 package com.njtransit;
 
-import com.njtransit.ui.adapter.StationAdapter;
-
-import android.app.SearchManager;
 import android.app.TabActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+
+import com.njtransit.domain.Session;
+import com.njtransit.domain.Station;
+import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListHome extends TabActivity {
 	
@@ -20,6 +21,11 @@ public class StationListHome extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.station_list_home);
+		Session sess = Session.get();
+		NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
+		Station trenton = a.getStation(148);
+		Station newark = a.getStation(107);
+		a.getStopTimes(trenton, newark);
 		tabHost =  getTabHost();
 		TabContentFactory f = new TabContentFactory() {
 
