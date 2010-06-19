@@ -9,9 +9,11 @@ import java.util.TimeZone;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.njtransit.domain.Route;
 import com.njtransit.domain.Station;
+import com.njtransit.domain.Stop;
 import com.njtransit.domain.StopTime;
 import com.njtransit.domain.Trip;
 
@@ -206,11 +208,10 @@ public class NJTransitDBAdapter {
 	
 	private static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 	
-	public ArrayList<StopTime> getStopTimes(Station depart, Station arrive) {
+	public ArrayList<Stop> getStopTimes(Station depart, Station arrive) {
 		db.beginTransaction();
 		int tempTableIndex = ++this.tempTableIndex;
 		String tableName = "atrips"+tempTableIndex;
-		String optiTableName = "astop_times"+tempTableIndex;
 		try{
 			String createTableStatement = String.format("create temporary table %s (id int)", tableName);
 			db.execSQL(createTableStatement);
@@ -236,32 +237,39 @@ public class NJTransitDBAdapter {
 				}				
 			}
 			b.append(")");
+			
+//			String newTempTable ="mytemp"+tempTableIndex;
+//			db.execSQL(String.format("create temporary table %s (stop_id_a int, stop_id_b int, departure_a int, departure_b int, sequence_a int, sequence_b int, trip_id_a int, trip_id_b int)",newTempTable));
+//			c = db.rawQuery(String.format("insert into %s select a.stop_id,null,a.sequence,null,a.departure,null,a.trip_id,null from stop_times a where a.stop_id=%s order by a.trip_id",newTempTable,arrive.getId()), null);
+//			c = db.rawQuery(String.format("insert into %s select null,a.stop_id,null,null,a.sequence,null,a.departure,null,a.trip_id from stop_times a where a.stop_id=%s order by a.trip_id",newTempTable,depart.getId()), null);
+//			c = db.rawQuery(String.format("update %s set stop_id_b=, args), selectionArgs)
+//			int count2 = c.getCount();
+//			
 			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
-			db.execSQL(String.format("create temporary table %s (stop_id int, trip_id int, departure int, sequence int)",optiTableName));
-			try {
-				db.execSQL(String.format("insert into %s select st.stop_id, st.trip_id, st.departure, st.sequence from stop_times st where (st.stop_id=%s or st.stop_id=%s) and st.trip_id in (select id from %s) order by time(st.departure,'unixepoch') ",optiTableName, depart.getId(),arrive.getId(),tableName));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			ArrayList<Object> cd = new ArrayList<Object>();
-			try {
-			c = db.rawQuery(String.format("select a.stop_id, a.departure from %s a join %s b on (b.stop_id= %s ) where a.stop_id=%s and a.sequence < b.sequence",optiTableName,optiTableName,depart.getId(),arrive.getId()),null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			c = db.rawQuery(String.format("select st.stop_id, st.trip_id, st.departure from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
+			Long now = System.currentTimeMillis();
 			c.moveToFirst();
+			Long after = System.currentTimeMillis();
+			double diff = (after - now) / 1000.0;
+			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			for(int i = 0; i < c.getCount(); i++) {
 				int stopId = c.getInt(0);
-				String date = c.getString(1);
+				long departure = c.getLong(1);
+				Calendar caldep = Calendar.getInstance();
+				int sequence = c.getInt(2);
+				cal.setTimeInMillis(departure);
+				stops.add(new Stop(stopId, caldep, sequence));
 				c.moveToNext();
 			}
+			int total = c.getCount();
+			System.out.println(total);
+			
 			c.close();
 			db.execSQL("drop table " + tableName);
-			
 		} finally {
 			
 		}
-		return null;
+		return null;	
 	}
 	
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
