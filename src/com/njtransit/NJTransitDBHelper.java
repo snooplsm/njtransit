@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,6 +57,11 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 		}
 		OutputStream out = null;
 		try {
+			File file = new File(at);
+			File parent = file.getParentFile();
+			if(parent!=null) {
+				parent.mkdirs();
+			}
 			out = new FileOutputStream(at);
 			byte[] buffer = new byte[1024];
 			for(String partition : partions) {
@@ -65,7 +71,9 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				}
 				in.close();
 			}
-		} finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
 			if(out != null) {
 				out.flush();
 				out.close();
