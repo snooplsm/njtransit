@@ -23,6 +23,7 @@ public class StationListHome extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.station_list_home);
 		NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
+		session.setAdapter(a);
 //		Station trenton = a.getStation(148);
 //		Station newark = a.getStation(107);
 //		List<Stop> stops = a.getStopTimes(trenton, newark);
