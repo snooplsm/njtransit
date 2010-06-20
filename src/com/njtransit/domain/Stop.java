@@ -1,31 +1,34 @@
 package com.njtransit.domain;
 
-import java.util.Calendar;
 
 public class Stop {
 	
-	private int id;
+	private int tripId,depart,arrive;
 	
-	private Calendar departure;
+	private transient double duration = Double.NaN;
 	
-	private int sequence;
+//	public double getDuration() {
+//		if(Double.isNaN(duration)) {
+//			String arrive = arrival.getTime().toGMTString();
+//			String depart = departure.getTime().toGMTString();
+//			long diff = arrival.getTimeInMillis() - departure.getTimeInMillis();
+//			duration = diff / 1000.0;
+//		}
+//		return duration;
+//	}
+
+	public Stop(int tripId, int depart, int arrive) {
+		this.tripId = tripId;
+		this.depart = depart;
+		this.arrive =arrive;
+	}
 	
-	public Stop(int id, Calendar departure, int sequence) {
-		this.departure = departure;
-		this.id = id;
-		this.sequence = sequence;
+	public int getTripId() {
+		return tripId;
 	}
-
-	public int getSequence() {
-		return sequence;
-	}
-
-	public Calendar getDeparture() {
-		return departure;
-	}
-
-	public int getId() {
-		return id;
+	
+	public int getDuration() {
+		return (arrive-depart)/60000;
 	}
 
 }

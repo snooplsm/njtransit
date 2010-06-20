@@ -208,6 +208,8 @@ public class NJTransitDBAdapter {
 	
 	private static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 	
+	
+	
 	public ArrayList<Stop> getStopTimes(Station depart, Station arrive) {
 		db.beginTransaction();
 		int tempTableIndex = ++this.tempTableIndex;
@@ -246,19 +248,21 @@ public class NJTransitDBAdapter {
 //			int count2 = c.getCount();
 //			
 			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
-			c = db.rawQuery(String.format("select st.stop_id, st.trip_id, st.departure from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
+			c = db.rawQuery(String.format("select st.trip_id, time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch'), time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch') from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
 			Long now = System.currentTimeMillis();
 			c.moveToFirst();
 			Long after = System.currentTimeMillis();
 			double diff = (after - now) / 1000.0;
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			for(int i = 0; i < c.getCount(); i++) {
-				int stopId = c.getInt(0);
-				long departure = c.getLong(1);
-				Calendar caldep = Calendar.getInstance();
-				int sequence = c.getInt(2);
-				cal.setTimeInMillis(departure);
-				stops.add(new Stop(stopId, caldep, sequence));
+				String[] args = c.getString(1).split(":");
+				int hourDepart = toInt(args[0]);
+				int minuteDepart = toInt(args[1]);
+				args = c.getString(2).split(":");
+				int hourArrive = toInt(args[0]);
+				int minuteArrive = toInt(args[1]);
+				Stop stop = new Stop(c.getInt(0),hourDepart*3600000+minuteDepart+60000,hourArrive*3600000+minuteArrive*60000);
+				stops.add(stop);
 				c.moveToNext();
 			}
 			int total = c.getCount();
@@ -266,12 +270,15 @@ public class NJTransitDBAdapter {
 			
 			c.close();
 			db.execSQL("drop table " + tableName);
+			return stops;
 		} finally {
 			
 		}
-		return null;	
 	}
 	
+	private int toInt(String s) {
+		return Integer.parseInt(s);
+	}
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
 		db.beginTransaction();
 		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});

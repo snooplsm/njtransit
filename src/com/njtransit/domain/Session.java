@@ -8,10 +8,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 
 import com.njtransit.utils.Distance;
 
-public class Session {
+public class Session implements LocationListener {
 
 	private Session() {
 	}
@@ -26,11 +29,25 @@ public class Session {
 	}
 
 	private Location lastKnownLocation;
-	private Station currentArrivalStation;
-	private Station currentDestintionStation;
+	private Station arrivalStation;
+	private Station departureStation;
 
 	private List<Station> stations;
 	
+	private LocationManager locationManager;
+	
+	public void setLocationManager(LocationManager locationManager) {
+		this.locationManager = locationManager;
+		if(locationManager!=null) {
+			lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			if(lastKnownLocation==null) {
+		        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,
+		                this);
+			}
+
+		}
+	}
+
 	/**
 	 * 
 	 * @param location can be null, if so defaults to lastKnownLocation
@@ -97,23 +114,23 @@ public class Session {
 	public void setLastKnownLocation(Location lastKnownLocation) {
 		this.lastKnownLocation = lastKnownLocation;
 	}
-
-	public Station getCurrentArrivalStation() {
-		return currentArrivalStation;
-	}
-
-	public void setCurrentArrivalStation(Station currentArrivalStation) {
-		this.currentArrivalStation = currentArrivalStation;
-	}
-
-	public Station getCurrentDestintionStation() {
-		return currentDestintionStation;
-	}
-
-	public void setCurrentDestintionStation(Station currentDestintionStation) {
-		this.currentDestintionStation = currentDestintionStation;
-	}
 	
+	public Station getArrivalStation() {
+		return arrivalStation;
+	}
+
+	public void setArrivalStation(Station arrivalStation) {
+		this.arrivalStation = arrivalStation;
+	}
+
+	public Station getDepartureStation() {
+		return departureStation;
+	}
+
+	public void setDepartureStation(Station departureStation) {
+		this.departureStation = departureStation;
+	}
+
 	public Station getStation(Integer id) {
 		for(Station s : stations) {
 			if(s.getId().equals(id)) {
@@ -121,6 +138,31 @@ public class Session {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+
+		this.lastKnownLocation = location;
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

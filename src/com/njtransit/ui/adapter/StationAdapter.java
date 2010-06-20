@@ -2,6 +2,7 @@ package com.njtransit.ui.adapter;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -103,27 +104,16 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	@Override
 	public int getPositionForSection(int arg) {
 		char c = sections[arg];
-		int count = getCount();
-		for(int i = 0; i < count; i++) {
-			Station s = getItem(i);
-			if(s.getName().charAt(0)==c) {
-				return i;
-			}
-		}
-		return 0;
+		return characterToPos.get(c);
 	}
 
 	@Override
 	public int getSectionForPosition(int arg) {
 		Station s = getItem(arg);
 		
-		for(int i = 0; i < sections.length; i++) {
-			Character c = sections[i];
-			if(c.equals(s.getName().charAt(0))) {
-				return c;
-			}
-		}
-		return 0;
+		char c = s.getName().charAt(0);
+		
+		return characterToPos.get(c);
 	}
 
 	@Override
@@ -137,16 +127,24 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	private void calculateSections() {
 		if(sections!=null) return;
-		HashSet<Character> c = new HashSet<Character>();		
+		HashSet<Character> c = new HashSet<Character>();	
+		posToCharacter = new HashMap<Integer, Character>();
+		characterToPos = new HashMap<Character, Integer>();
 		for(int i = 0; i < getCount(); i++) {
 			Station s = getItem(i);
 			char ch = s.getName().charAt(0);
-			c.add(ch);			
+			if(c.add(ch)) {
+				posToCharacter.put(i, ch);
+				characterToPos.put(ch, i);
+			}
 		}
 		sections = new Character[c.size()];
 		c.toArray(sections);
 		Arrays.sort(sections);
 	}
 
+	private HashMap<Integer, Character> posToCharacter;
+	private HashMap<Character, Integer> characterToPos;
+	
 	private Character[] sections;
 }

@@ -8,7 +8,6 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
-import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListHome extends TabActivity {
@@ -17,31 +16,36 @@ public class StationListHome extends TabActivity {
 	
 	private StationListImpl stations;
 	
+	private Session session = Session.get();
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.station_list_home);
-		Session sess = Session.get();
 		NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
-		Station trenton = a.getStation(148);
-		Station newark = a.getStation(107);
-		a.getStopTimes(trenton, newark);
+//		Station trenton = a.getStation(148);
+//		Station newark = a.getStation(107);
+//		List<Stop> stops = a.getStopTimes(trenton, newark);
+		
 		tabHost =  getTabHost();
 		TabContentFactory f = new TabContentFactory() {
 
 			@Override
 			public View createTabContent(String arg) {
+				int mode = session.getDepartureStation()==null ? StationListImpl.FIRST_STATION_MODE : StationListImpl.SECOND_STATION_MODE;
 				if("Alpha".equals(arg)) {
 					if(stations==null) {
 						stations = (StationListImpl)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
 					}
 					stations.setType(StationAdapter.ALPHA);
+					stations.setMode(mode);
 					return stations;
 				}else
 				if("Nearby".equals(arg)) {
 					if(stations==null) {
 						stations = (StationListImpl)getLayoutInflater().inflate(R.layout.station_list_xml_2, null);
 					}
+					stations.setMode(mode);
 					stations.setType(StationAdapter.ALPHA);					
 					return stations;
 				}				
