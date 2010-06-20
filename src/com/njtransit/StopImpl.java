@@ -2,11 +2,11 @@ package com.njtransit;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.njtransit.domain.Session;
 
-public class StopImpl extends LinearLayout {
+public class StopImpl extends ListView {
 
 	private Session session = Session.get();
 	
@@ -16,16 +16,5 @@ public class StopImpl extends LinearLayout {
 		super(context, attrs);
 	}
 
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//		headerText = (TextView)findViewById(R.id.station_header);
-//		
-//		headerText.setText(session.getDepartureStation().getName() + " > " + session.getArrivalStation().getName());
-		
-		super.onLayout(changed, l, t, r, b);
-	}
 	
-
-	
-
 }

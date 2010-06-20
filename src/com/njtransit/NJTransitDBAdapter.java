@@ -82,6 +82,7 @@ public class NJTransitDBAdapter {
 			stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), null));
 			cursor.moveToNext();
 		}
+		cursor.close();
 		db.endTransaction();
 		return stations;
 	}
@@ -102,6 +103,7 @@ public class NJTransitDBAdapter {
 			routes.add(new Route(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4)));
 			cursor.moveToNext();
 		}
+		cursor.close();
 		db.endTransaction();
 		return routes;
 	}
@@ -168,7 +170,7 @@ public class NJTransitDBAdapter {
 			stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4)));
 			cursor.moveToNext();
 		}
-		
+		cursor.close();
 		return stations;
 	}
 	
@@ -201,6 +203,7 @@ public class NJTransitDBAdapter {
 						
 			cursor.moveToNext();
 		}
+		cursor.close();
 		return stopTimes;
 	}
 	
@@ -265,9 +268,6 @@ public class NJTransitDBAdapter {
 				stops.add(stop);
 				c.moveToNext();
 			}
-			int total = c.getCount();
-			System.out.println(total);
-			
 			c.close();
 			db.execSQL("drop table " + tableName);
 			return stops;
@@ -299,6 +299,7 @@ public class NJTransitDBAdapter {
 			cursor.moveToNext();
 			stopTimes.add(t);
 		}
+		cursor.close();
 		db.endTransaction();
 		return stopTimes;
 	}
@@ -332,6 +333,7 @@ public class NJTransitDBAdapter {
 			trips.add(new Trip(cursor.getInt(0), cursor.getInt(1), cursor.getString(3), cursor.getInt(4), cursor.getString(5),  null));
 			cursor.moveToNext();
 		}
+		cursor.close();
 		db.endTransaction();
 		return trips;
 	}
@@ -339,4 +341,12 @@ public class NJTransitDBAdapter {
 	public ArrayList<Trip> getTrips(Station station) {
 		return station == null ? new ArrayList<Trip>() : getTrips(station.getId());
 	}	
+	
+	public int countStations() {
+		Cursor cursor = db.rawQuery("select count(*) from stops", null);
+		cursor.moveToFirst();
+		int count = cursor.getInt(0);
+		cursor.close();
+		return count;
+	}
 }

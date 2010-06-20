@@ -12,6 +12,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import com.njtransit.NJTransitDBAdapter;
+import com.njtransit.NJTransitDBHelper;
 import com.njtransit.utils.Distance;
 
 public class Session implements LocationListener {
@@ -35,7 +37,16 @@ public class Session implements LocationListener {
 	private List<Station> stations;
 	
 	private LocationManager locationManager;
+	private NJTransitDBAdapter adapter;
 	
+	public NJTransitDBAdapter getAdapter() {
+		return adapter;
+	}
+
+	public void setAdapter(NJTransitDBAdapter adapter) {
+		this.adapter = adapter;
+	}
+
 	public void setLocationManager(LocationManager locationManager) {
 		this.locationManager = locationManager;
 		if(locationManager!=null) {

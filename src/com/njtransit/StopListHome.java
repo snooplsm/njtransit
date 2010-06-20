@@ -17,6 +17,8 @@ public class StopListHome extends TabActivity {
 	
 	private TextView title;
 	
+	private StopImpl stopTimes;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +35,10 @@ public class StopListHome extends TabActivity {
 			@Override
 			public View createTabContent(String arg) {
 				if("Default".equals(arg)) {
-					return getLayoutInflater().inflate(R.layout.stop_impl, null);
+					if(stopTimes!=null) {
+						stopTimes = (StopImpl)getLayoutInflater().inflate(R.layout.stop_impl, null);
+					}
+					return stopTimes;
 				}
 				//int mode = session.getDepartureStation()==null ? StationListImpl.FIRST_STATION_MODE : StationListImpl.SECOND_STATION_MODE;
 //				if("Alpha".equals(arg)) {
