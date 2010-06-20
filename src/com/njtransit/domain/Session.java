@@ -100,6 +100,15 @@ public class Session implements LocationListener {
 	}
 
 	public List<Station> getStations() {
+		if(stations!=null) {
+			ArrayList<Station> station = new ArrayList<Station>();
+			for(Station s : stations) {
+				if(s.getId().equals(148) || s.getId().equals(107)) {
+					station.add(s);
+				}
+			}
+			return station;
+		}
 		return stations;
 	}
 
