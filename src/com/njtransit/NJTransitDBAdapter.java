@@ -9,7 +9,6 @@ import java.util.TimeZone;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.njtransit.domain.Route;
 import com.njtransit.domain.Station;
@@ -23,8 +22,6 @@ public class NJTransitDBAdapter {
 		this.context = context;
 	}
 	
-	private static final int VERSION = 5;
-	
 	private Context context;
 	
 	private SQLiteDatabase db;
@@ -35,8 +32,6 @@ public class NJTransitDBAdapter {
 	
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
-	private static String[] TRIP_COLUMNS = new String[] {"id", "service_id", "route_id", "headsign", "direction", "block_id"};
-	private static String[] STOPTIME_COLUMNS = new String[] {"arrival","departure","sequence","pickup_type","drop_off_type"};
 	
 	public NJTransitDBAdapter open() {
 		try {
@@ -252,10 +247,10 @@ public class NJTransitDBAdapter {
 //			
 			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
 			c = db.rawQuery(String.format("select st.trip_id, time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch'), time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch') from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
-			Long now = System.currentTimeMillis();
+			//Long now = System.currentTimeMillis();
 			c.moveToFirst();
-			Long after = System.currentTimeMillis();
-			double diff = (after - now) / 1000.0;
+			//Long after = System.currentTimeMillis();
+
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			for(int i = 0; i < c.getCount(); i++) {
 				String[] args = c.getString(1).split(":");
