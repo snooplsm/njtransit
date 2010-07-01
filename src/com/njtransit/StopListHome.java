@@ -35,7 +35,7 @@ public class StopListHome extends TabActivity {
 			@Override
 			public View createTabContent(String arg) {
 				if("Default".equals(arg)) {
-					if(stopTimes!=null) {
+					if(stopTimes==null) {
 						stopTimes = (StopImpl)getLayoutInflater().inflate(R.layout.stop_impl, null);
 					}
 					return stopTimes;
