@@ -34,6 +34,9 @@ public class NJTransitDBAdapter {
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
 	
 	public NJTransitDBAdapter open() {
+		if(db!=null && db.isOpen()) {
+			return this;
+		}
 		try {
 			helper = new NJTransitDBHelper(context);
 			final String atPath = context.getDatabasePath("njtransit.sqlite").getAbsolutePath();
@@ -46,7 +49,15 @@ public class NJTransitDBAdapter {
 		return this;
 	}
 	
+	public void openDB() {
+		if(db!=null && !db.isOpen()) {
+			db = helper.getWritableDatabase();
+		}
+	}
 	
+	public void closeDB() {
+		helper.close();
+	}
 	
 	public Station getStation(Integer id) {
 		Cursor cursor = db.query("stops", STATION_COLUMNS, "id=?", new String[] {

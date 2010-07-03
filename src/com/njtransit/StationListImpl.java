@@ -43,7 +43,7 @@ public class StationListImpl extends ListView {
 
 	public StationListImpl(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);		
-		NJTransitDBAdapter adapt = new NJTransitDBAdapter(context).open();
+		NJTransitDBAdapter adapt = session.getAdapter();
 		session.setStations(adapt.getAllStations());
 		adapter = new StationAdapter(context,R.layout.station_row,StationAdapter.ALPHA, session.getStations(), session);
 		setAdapter(adapter);

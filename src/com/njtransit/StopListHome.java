@@ -65,5 +65,4 @@ public class StopListHome extends TabActivity {
 //		tabHost.addTab(tabHost.newTabSpec("Nearby").setIndicator("Nearby").setContent(f));		
 		tabHost.setCurrentTab(0);	
 	}
-	
 }

@@ -86,6 +86,7 @@ public class NJTransitDBHelper extends SQLiteOpenHelper {
 				SQLiteDatabase.OPEN_READWRITE);
 	}
 
+	@Override
 	public synchronized void close() {
 		if (db != null) db.close();
 		super.close();

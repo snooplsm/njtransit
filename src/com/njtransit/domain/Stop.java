@@ -19,4 +19,13 @@ public class Stop {
 		return (arrive-depart)/60000;
 	}
 
+	public int getDepart() {
+		return depart;
+	}
+
+	public int getArrive() {
+		return arrive;
+	}
+	
+
 }
