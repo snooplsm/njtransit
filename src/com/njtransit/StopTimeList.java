@@ -65,7 +65,6 @@ public class StopTimeList extends ListActivity {
         });
     }
 	private String fmt(Calendar c) {
-		SimpleDateFormat f = new SimpleDateFormat("hh:mma");
-		return f.format(c.getTime());
+		return new SimpleDateFormat("hh:mma").format(c.getTime());
 	}
 }

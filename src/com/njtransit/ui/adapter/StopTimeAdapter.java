@@ -16,7 +16,7 @@ import com.njtransit.domain.StopTime;
 
 /** Renders a list of {@link StopTime}s */
 public class StopTimeAdapter extends ArrayAdapter<StopTime> {
-private List<StopTime> items;
+	private List<StopTime> items;
 	
 	public StopTimeAdapter(Context context, int textViewResourceId,
 			List<StopTime> items) {
@@ -47,7 +47,6 @@ private List<StopTime> items;
 	}
 	
 	private String fmt(Calendar c) {
-		SimpleDateFormat f = new SimpleDateFormat("hh:mma");
-		return f.format(c.getTime());
+		return new SimpleDateFormat("hh:mma").format(c.getTime());
 	}
 }
