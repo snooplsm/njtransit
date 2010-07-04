@@ -25,6 +25,9 @@ public class StationListImpl extends ListView {
 
 	public void setMode(int mode) {
 		this.mode = mode;
+		if(mode==SECOND_STATION_MODE) {
+			adapter.remove(session.getDepartureStation());
+		}
 	}
 
 	private StationAdapter adapter;
