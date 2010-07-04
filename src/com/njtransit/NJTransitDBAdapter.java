@@ -1,5 +1,7 @@
 package com.njtransit;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -257,30 +259,49 @@ public class NJTransitDBAdapter {
 //			int count2 = c.getCount();
 //			
 			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
-			c = db.rawQuery(String.format("select st.trip_id, time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch'), time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch') from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
+			c = db.rawQuery(String.format("select st.trip_id, datetime(st.departure,'unixepoch'), datetime(sp.arrival,'unixepoch'), time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch') from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
 			//Long now = System.currentTimeMillis();
 			c.moveToFirst();
 			//Long after = System.currentTimeMillis();
 
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			for(int i = 0; i < c.getCount(); i++) {
-				String[] args = c.getString(1).split(":");
-				int hourDepart = toInt(args[0]);
-				int minuteDepart = toInt(args[1]);
-				args = c.getString(2).split(":");
-				int hourArrive = toInt(args[0]);
-				int minuteArrive = toInt(args[1]);
-				Stop stop = new Stop(c.getInt(0),hourDepart*3600000+minuteDepart+60000,hourArrive*3600000+minuteArrive*60000);
+				@SuppressWarnings("unused")
+				String aa = c.getString(1);
+				@SuppressWarnings("unused")
+				String dd = c.getString(2);
+				Calendar ac = Calendar.getInstance();
+				ac.setTime(DF.parse(aa));
+				Calendar dc = Calendar.getInstance();
+				dc.setTime(DF.parse(dd));
+				if(dc.get(Calendar.DAY_OF_YEAR)!=ac.get(Calendar.DAY_OF_YEAR)) {
+					dc.set(Calendar.YEAR, 1970);
+					dc.set(Calendar.DAY_OF_YEAR, 1);
+					ac.set(Calendar.YEAR, 1970);
+					ac.set(Calendar.DAY_OF_YEAR, 1);
+				}
+				if(dc.get(Calendar.HOUR_OF_DAY)<ac.get(Calendar.HOUR_OF_DAY)) {
+					dc.set(Calendar.YEAR, 1970);
+					dc.set(Calendar.DAY_OF_YEAR, 2);
+					ac.set(Calendar.YEAR, 1970);
+					ac.set(Calendar.DAY_OF_YEAR, 1);
+				}
+				Stop stop = new Stop(c.getInt(0),ac,dc);
 				stops.add(stop);
 				c.moveToNext();
 			}
 			c.close();
 			db.execSQL("drop table " + tableName);
 			return stops;
-		} finally {
-			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {			
 		}
+		return null;
 	}
+	
+	private static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
 	
 	private int toInt(String s) {
 		return Integer.parseInt(s);

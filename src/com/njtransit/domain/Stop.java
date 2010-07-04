@@ -1,11 +1,15 @@
 package com.njtransit.domain;
 
+import java.util.Calendar;
+
 
 public class Stop {
 	
-	private int tripId,depart,arrive;
+	private int tripId;
+	
+	private Calendar depart,arrive;
 
-	public Stop(int tripId, int depart, int arrive) {
+	public Stop(int tripId, Calendar arrive, Calendar depart) {
 		this.tripId = tripId;
 		this.depart = depart;
 		this.arrive =arrive;
@@ -14,18 +18,13 @@ public class Stop {
 	public int getTripId() {
 		return tripId;
 	}
-	
-	public int getDuration() {
-		return (arrive-depart)/60000;
-	}
 
-	public int getDepart() {
+	public Calendar getDepart() {
 		return depart;
 	}
 
-	public int getArrive() {
+	public Calendar getArrive() {
 		return arrive;
-	}
-	
+	}	
 
 }
