@@ -82,5 +82,4 @@ public class StationListImpl extends ListView {
 	public StationListImpl(Context context) {
 		this(context,null);
 	}
-
 }

@@ -266,9 +266,7 @@ public class NJTransitDBAdapter {
 
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			for(int i = 0; i < c.getCount(); i++) {
-				@SuppressWarnings("unused")
 				String aa = c.getString(1);
-				@SuppressWarnings("unused")
 				String dd = c.getString(2);
 				Calendar ac = Calendar.getInstance();
 				ac.setTime(DF.parse(aa));
@@ -303,9 +301,6 @@ public class NJTransitDBAdapter {
 	
 	private static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
 	
-	private int toInt(String s) {
-		return Integer.parseInt(s);
-	}
 	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
 		db.beginTransaction();
 		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});

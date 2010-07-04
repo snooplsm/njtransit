@@ -1,8 +1,8 @@
 package com.njtransit;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,12 +13,8 @@ import com.njtransit.domain.Stop;
 
 public class StopTimeRow extends LinearLayout {
 
-	private TextView arrival, departure;
+	private TextView time;
 	private TextView duration;
-	private Stop stop;
-	
-	private static SimpleDateFormat DF = new SimpleDateFormat("hh:mm");
-	private static SimpleDateFormat DFAM = new SimpleDateFormat("a");
 	
 	public StopTimeRow(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -26,27 +22,24 @@ public class StopTimeRow extends LinearLayout {
 
 	@Override
 	public void onFinishInflate() {
-		 arrival = (TextView)findViewById(R.id.arrival);
-		 departure = (TextView)findViewById(R.id.departure);
+		 time = (TextView)findViewById(R.id.time);
 		 duration = (TextView)findViewById(R.id.duration);
 	}
 	
-	public void setStop(Stop stop) {
-		this.stop = stop;
-		arrival.setText(format(stop.getArrive())+" - ");
-		departure.setText(format(stop.getDepart()));
-		duration.setText(duration(this.stop));
+	public StopTimeRow setStop(Stop stop) {
+		time.setText(format(stop.getArrive(), stop.getDepart()));
+		duration.setText(duration(stop));
+		return this;
 	}
 	
 	public static String duration(Stop s) {
-		final long diff = Math.abs(s.getArrive().getTimeInMillis()-s.getDepart().getTimeInMillis());
-		
+		final long diff = Math.abs(s.getArrive().getTimeInMillis() - s.getDepart().getTimeInMillis());	
 		long mins = diff / 60000;
-		return ""+mins +" min";
+		return String.format("%s min", mins);
 	}
 
-	public static String format(Calendar c) {
-		Date date = c.getTime();
-		return DF.format(date) + " " + Character.toLowerCase(DFAM.format(date).charAt(0));
+	private String format(Calendar arriving, Calendar departing) {
+		DateFormat f = new SimpleDateFormat("hh:mm aa");
+		return String.format("%s - %s", f.format(arriving.getTime()), f.format(departing.getTime())).toLowerCase();
 	}
 }

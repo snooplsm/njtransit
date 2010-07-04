@@ -5,28 +5,28 @@
     android:padding="6dip"
     android:background="#ffffff">
      
-    <LinearLayout
+   <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_weight="1"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:gravity="left">
+ 
        <TextView
-           android:id="@+id/arrival"
+           android:id="@+id/time"
            android:layout_width="wrap_content"
            android:layout_height="0dip"
            android:layout_weight="1"
            android:textColor="#333333"
            android:gravity="left"
        />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="0dip"
-           android:layout_weight="1" 
-           android:id="@+id/departure"
-           android:textColor="#333333"
-           android:gravity="left"
-       />
-       
+   </LinearLayout>    
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:gravity="right">   
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="0dip"
@@ -35,5 +35,5 @@
            android:textColor="#333333"
            android:gravity="right"
        />
-    </LinearLayout>
+   </LinearLayout>
 </com.njtransit.StopTimeRow>
