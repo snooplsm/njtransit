@@ -34,7 +34,19 @@ public class Session implements LocationListener {
 	private Station departureStation;
 
 	private List<Station> stations;
+	private Map<Integer, Service> services;
 	
+	public Map<Integer, Service> getServices() {
+		return services;
+	}
+
+	public void setServices(List<Service> services) {
+		this.services = new HashMap<Integer,Service>();
+		for(Service s : services) {
+			this.services.put(s.getId(), s);
+		}
+	}
+
 	@SuppressWarnings("unused")
 	private LocationManager locationManager;
 	

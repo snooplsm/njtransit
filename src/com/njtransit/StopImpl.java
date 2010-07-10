@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
+import com.njtransit.model.StopsQueryResult;
 
 public class StopImpl extends ListView {
 	
@@ -24,7 +25,8 @@ public class StopImpl extends ListView {
 		Station arrive = session.getArrivalStation();
 		Station departure = session.getDepartureStation();
 		
-		List<Stop> stops = session.getAdapter().getStopTimes(departure, arrive);
+		StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
+		List<Stop> stops = sqr.getStops();
 		
 		setAdapter(new ArrayAdapter<Stop>(context, 1, stops) {
 			@Override

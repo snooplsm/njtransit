@@ -2,12 +2,16 @@ package com.njtransit;
 
 import android.app.TabActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
+import com.njtransit.domain.Station;
+import com.njtransit.domain.Stop;
+import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListHome extends TabActivity {
@@ -24,10 +28,16 @@ public class StationListHome extends TabActivity {
 		setContentView(R.layout.station_list_home);
 		NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
 		session.setAdapter(a);
-//		Station trenton = a.getStation(148);
-//		Station newark = a.getStation(107);
-//		List<Stop> stops = a.getStopTimes(trenton, newark);
-		
+		session.setServices(a.getServices());
+		Station trenton = a.getStation(148);
+		Station newark = a.getStation(107);
+		StopsQueryResult sqr = a.getStopTimes(session.getServices(), trenton, newark);
+		if(sqr.getQueryDuration()>1) {
+			Log.w("query-length", "Query length exceeds 1 second : " + sqr.getQueryDuration());
+		}
+		for(Stop s : sqr.getStops()) {
+			s.getArrive();
+		}
 		tabHost =  getTabHost();
 		TabContentFactory f = new TabContentFactory() {
 

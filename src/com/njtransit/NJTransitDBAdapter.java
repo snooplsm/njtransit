@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 import android.content.Context;
@@ -21,6 +22,7 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.domain.StopTime;
 import com.njtransit.domain.Trip;
+import com.njtransit.model.StopsQueryResult;
 
 public class NJTransitDBAdapter {
 
@@ -225,7 +227,7 @@ public class NJTransitDBAdapter {
 	
 	
 	
-	public ArrayList<Stop> getStopTimes(Station depart, Station arrive) {
+	public StopsQueryResult getStopTimes(final Map<Integer, Service> services, Station depart, Station arrive, int...days) {
 		db.beginTransaction();
 		int tempTableIndex = ++this.tempTableIndex;
 		String tableName = "atrips"+tempTableIndex;
@@ -233,19 +235,25 @@ public class NJTransitDBAdapter {
 			String createTableStatement = String.format("create temporary table %s (id int)", tableName);
 			db.execSQL(createTableStatement);
 			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-			int day = cal.get(Calendar.DAY_OF_WEEK);
-			String dayA = DAYS[day-1];
-			String dayB = DAYS[day % 7];
-			String calendarSql = String.format("select service_id from calendar where %s=1 or %s=1",dayA,dayB);
-			Cursor c = db.rawQuery(calendarSql, null);
-			c.moveToFirst();
+			String calendarSql = null;
+			Cursor c;
 			ArrayList<Integer> count = new ArrayList<Integer>();
-			for(int i = 0; i < c.getCount(); i++) {
-				Integer val = c.getInt(0);
-				count.add(val);
-				c.moveToNext();
+			if(days!=null) {
+				
+			} else {
+				int day = cal.get(Calendar.DAY_OF_WEEK);
+				String dayA = DAYS[day-1];
+				String dayB = DAYS[day % 7];
+				calendarSql = String.format("select service_id from calendar where %s=1 or %s=1",dayA,dayB);
+				c = db.rawQuery(calendarSql, null);
+				c.moveToFirst();
+				for(int i = 0; i < c.getCount(); i++) {
+					Integer val = c.getInt(0);
+					count.add(val);
+					c.moveToNext();
+				}
+				c.close();
 			}
-			c.close();
 			StringBuilder b = new StringBuilder("(");
 			for(Iterator<Integer> i = count.iterator(); i.hasNext();) {
 				b.append(i.next());
@@ -254,19 +262,11 @@ public class NJTransitDBAdapter {
 				}				
 			}
 			b.append(")");
-			
-//			String newTempTable ="mytemp"+tempTableIndex;
-//			db.execSQL(String.format("create temporary table %s (stop_id_a int, stop_id_b int, departure_a int, departure_b int, sequence_a int, sequence_b int, trip_id_a int, trip_id_b int)",newTempTable));
-//			c = db.rawQuery(String.format("insert into %s select a.stop_id,null,a.sequence,null,a.departure,null,a.trip_id,null from stop_times a where a.stop_id=%s order by a.trip_id",newTempTable,arrive.getId()), null);
-//			c = db.rawQuery(String.format("insert into %s select null,a.stop_id,null,null,a.sequence,null,a.departure,null,a.trip_id from stop_times a where a.stop_id=%s order by a.trip_id",newTempTable,depart.getId()), null);
-//			c = db.rawQuery(String.format("update %s set stop_id_b=, args), selectionArgs)
-//			int count2 = c.getCount();
-//			
 			db.execSQL(String.format("insert into %s select id from trips where service_id in " + b.toString(),tableName));
 			c = db.rawQuery(String.format("select st.trip_id, datetime(st.departure,'unixepoch'), datetime(sp.arrival,'unixepoch'), time(st.departure,'unixepoch'), time(sp.arrival,'unixepoch') from stop_times st join stop_times sp on (sp.stop_id=%s) where st.stop_id=%s AND st.trip_id=sp.trip_id and st.trip_id in (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
-			//Long now = System.currentTimeMillis();
+			Long queryStart = System.currentTimeMillis();
 			c.moveToFirst();
-			//Long after = System.currentTimeMillis();
+			Long queryEnd = System.currentTimeMillis();
 
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			HashSet<Integer> tripIds = new HashSet<Integer>();
@@ -297,8 +297,9 @@ public class NJTransitDBAdapter {
 			}
 			c.close();
 			db.execSQL("drop table " + tableName);
-			HashMap<Integer,Service> trips =  getTrips(tripIds);
-			return stops;
+			HashMap<Integer,Service> trips =  getTrips(services, tripIds);
+			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
+			return sqr;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -309,7 +310,7 @@ public class NJTransitDBAdapter {
 	
 	private static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
 	
-	public HashMap<Integer, Service> getTrips(Collection<Integer> tripIds) {
+	public HashMap<Integer, Service> getTrips(Map<Integer, Service> services, Collection<Integer> tripIds) {
 		db.beginTransaction();
 		StringBuilder b = new StringBuilder("(");
 		for(Iterator<Integer> i = tripIds.iterator(); i.hasNext();) {
@@ -321,48 +322,13 @@ public class NJTransitDBAdapter {
 		b.append(")");
 		Cursor cursor = db.rawQuery(String.format("select t.id, t.service_id from trips t where t.id in %s", b.toString()),null);
 		cursor.moveToFirst();
-		HashMap<Integer, Integer> tToS = new HashMap<Integer,Integer>();
-		HashMap<Integer,Integer> sToT = new HashMap<Integer,Integer>();
 		HashMap<Integer, Service> tripToService = new HashMap<Integer,Service>();
 		for(int i = 0; i < cursor.getCount(); i++) {
-//			boolean[] result = new boolean[cursor.getColumnNames().length-2];
-//			for(int j = 2; j <= 8; j++) {
-//				result[j-2] = cursor.getInt(j) == 0 ? false : true;				
-//			}
-//			Service s = services.get(cursor.getInt(1));
-//			if(s==null) {
-//				s = new Service(cursor.getInt(1),result);
-//				services.put(s.getId(), s);
-//			} else {
-//				hit++;
-//			}
-			tToS.put(cursor.getInt(0), cursor.getInt(1));
-			sToT.put(cursor.getInt(1), cursor.getInt(0));
-			//tripToService.put(cursor.getInt(0), s);
+			tripToService.put(cursor.getInt(1),services.get(cursor.getInt(1)));
 			cursor.moveToNext();
 		}
 		cursor.close();
-		b.delete(1, b.length());
-		for(Iterator<Integer> i = sToT.keySet().iterator(); i.hasNext();) {
-			b.append(i.next());
-			if(i.hasNext()) {
-				b.append(",");
-			}				
-		}
-		b.append(")");
-		cursor = db.rawQuery(String.format("select s.service_id, s.monday, s.tuesday, s.wednesday, s.thursday, s.friday, s.saturday, s.sunday from calendar s where s.service_id in %s", b.toString()),null);
-		cursor.moveToFirst();
-		for(int i = 0; i < cursor.getCount(); i++) {
-			boolean[] result = new boolean[cursor.getColumnNames().length-1];
-			for(int j = 1; j <= 7; j++) {
-				result[j-1] = cursor.getInt(j) == 0 ? false : true;				
-			}
-			
-			Service s = new Service(cursor.getInt(1),result);
 		
-			tripToService.put(sToT.get(s.getId()), s);
-			cursor.moveToNext();
-		}
 		return tripToService;
 	}
 	
@@ -435,5 +401,21 @@ public class NJTransitDBAdapter {
 		int count = cursor.getInt(0);
 		cursor.close();
 		return count;
+	}
+
+	public ArrayList<Service> getServices() {
+		Cursor cursor = db.rawQuery("select service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday from calendar", null);
+		cursor.moveToFirst();
+		ArrayList<Service> services = new ArrayList<Service>(cursor.getCount());
+		for(int i = 0; i < cursor.getCount(); i++) {
+			boolean[] result = new boolean[cursor.getColumnNames().length-1];
+			for(int j = 1; j <= 7; j++) {
+				result[j-1] = cursor.getInt(j) == 0 ? false : true;				
+			}
+			
+			Service s = new Service(cursor.getInt(0),result);
+			services.add(s);
+		}
+		return services;
 	}
 }

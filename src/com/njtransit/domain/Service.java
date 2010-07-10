@@ -1,19 +1,32 @@
 package com.njtransit.domain;
 
-public class Service {
+public class Service implements Comparable<Service> {
 
 	private int id;
-	private boolean monday,tuesday,wednesday,thursday,friday,saturday,sunday;
+	private int flag;
 	
 	public Service(int id, boolean... startWithMonday) {
 		this.id = id;
-		monday = startWithMonday[0];
-		tuesday = startWithMonday[1];
-		wednesday = startWithMonday[2];
-		thursday = startWithMonday[3];
-		friday = startWithMonday[4];
-		saturday = startWithMonday[5];
-		sunday = startWithMonday[6];
+		addFlag(startWithMonday[0],0);
+		addFlag(startWithMonday[1],1);
+		addFlag(startWithMonday[2],2);
+		addFlag(startWithMonday[3],3);
+		addFlag(startWithMonday[4],4);
+		addFlag(startWithMonday[5],5);
+		addFlag(startWithMonday[6],6);
+	}
+	
+	private void addFlag(boolean add, int pos) {
+		if(add) {
+			flag = (flag | (int) Math.pow(2, pos));
+		} else {
+			flag = (flag & ~(int)Math.pow(2, pos));
+		}
+	}
+	
+	private boolean hasFlag(int pos) {
+		int powered = (int)Math.pow(2,pos);
+		return (powered & flag) == powered;
 	}
 
 	@Override
@@ -43,31 +56,36 @@ public class Service {
 	}
 
 	public boolean isFriday() {
-		return friday;
+		return hasFlag(4);
 	}
 
 	public boolean isMonday() {
-		return monday;
+		return hasFlag(0);
 	}
 
 	public boolean isSaturday() {
-		return saturday;
+		return hasFlag(5);
 	}
 
 	public boolean isSunday() {
-		return sunday;
+		return hasFlag(6);
 	}
 
 	public boolean isThursday() {
-		return thursday;
+		return hasFlag(3);
 	}
 
 	public boolean isTuesday() {
-		return tuesday;
+		return hasFlag(1);
 	}
 
 	public boolean isWednesday() {
-		return wednesday;
+		return hasFlag(2);
+	}
+
+	@Override
+	public int compareTo(Service another) {
+		return Integer.valueOf(id).compareTo(another.id);
 	}
 	
 }
