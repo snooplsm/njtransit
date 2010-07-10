@@ -223,7 +223,7 @@ public class NJTransitDBAdapter {
 	
 	private Integer tempTableIndex = 0;
 	
-	private static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+	public static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 	
 	
 	
@@ -239,7 +239,25 @@ public class NJTransitDBAdapter {
 			Cursor c;
 			ArrayList<Integer> count = new ArrayList<Integer>();
 			if(days!=null) {
-				
+				String query = "";
+				for(int i = 0 ; i < days.length; i++) {
+					int day = days[i];
+					
+					if(i!=0 && i!=days.length-1) {
+						query+=" or ";
+					}
+					query+=DAYS[day-1];
+					query+="=1";
+				}
+				calendarSql = "select service_id from calendar where " + query;
+				c = db.rawQuery(calendarSql, null);
+				c.moveToFirst();
+				for(int i = 0; i < c.getCount(); i++) {
+					Integer val = c.getInt(0);
+					count.add(val);
+					c.moveToNext();
+				}
+				c.close();
 			} else {
 				int day = cal.get(Calendar.DAY_OF_WEEK);
 				String dayA = DAYS[day-1];

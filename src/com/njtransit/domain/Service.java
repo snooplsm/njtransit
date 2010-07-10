@@ -1,5 +1,7 @@
 package com.njtransit.domain;
 
+import java.util.Calendar;
+
 public class Service implements Comparable<Service> {
 
 	private int id;
@@ -75,6 +77,16 @@ public class Service implements Comparable<Service> {
 		return hasFlag(3);
 	}
 
+	public boolean isToday() {
+		int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+		return hasFlag(today+1 % 7);
+	}
+	
+	public boolean isTomorrow() {
+		int tomorrow = (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) +1 );
+		return hasFlag(tomorrow+1%7);
+	}
+	
 	public boolean isTuesday() {
 		return hasFlag(1);
 	}

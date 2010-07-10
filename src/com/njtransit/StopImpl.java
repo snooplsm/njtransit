@@ -1,5 +1,7 @@
 package com.njtransit;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.njtransit.domain.Service;
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
@@ -27,6 +30,18 @@ public class StopImpl extends ListView {
 		
 		StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 		List<Stop> stops = sqr.getStops();
+		
+		ArrayList<Stop> today = new ArrayList<Stop>();
+		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
+		for(Stop stop : sqr.getStops()) {
+			Service service = sqr.getTripToService().get(stop.getTripId());
+			if(service.isToday()) {
+				today.add(stop);
+			}
+			if(service.isTomorrow()) {
+				tomorrow.add(stop);
+			}
+		}
 		
 		setAdapter(new ArrayAdapter<Stop>(context, 1, stops) {
 			@Override
