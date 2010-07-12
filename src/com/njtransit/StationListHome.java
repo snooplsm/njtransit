@@ -22,22 +22,26 @@ public class StationListHome extends TabActivity {
 	
 	private Session session = Session.get();
 	
+	private static boolean created = false;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.station_list_home);
-		NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
-		session.setAdapter(a);
-		session.setServices(a.getServices());
-		Station trenton = a.getStation(148);
-		Station newark = a.getStation(107);
-		StopsQueryResult sqr = a.getStopTimes(session.getServices(), trenton, newark);
-		if(sqr.getQueryDuration()>1) {
-			Log.w("query-length", "Query length exceeds 1 second : " + sqr.getQueryDuration());
+		if(!created) {
+			NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
+			session.setAdapter(a);
+			session.setServices(a.getServices());
 		}
-		for(Stop s : sqr.getStops()) {
-			s.getArrive();
-		}
+//		Station trenton = a.getStation(148);
+//		Station newark = a.getStation(107);
+//		StopsQueryResult sqr = a.getStopTimes(session.getServices(), trenton, newark);
+//		if(sqr.getQueryDuration()>1) {
+//			Log.w("query-length", "Query length exceeds 1 second : " + sqr.getQueryDuration());
+//		}
+//		for(Stop s : sqr.getStops()) {
+//			s.getArrive();
+//		}
 		tabHost =  getTabHost();
 		TabContentFactory f = new TabContentFactory() {
 
@@ -57,7 +61,7 @@ public class StationListHome extends TabActivity {
 						stations = (StationListImpl)getLayoutInflater().inflate(R.layout.station_list_xml_2, null);
 					}
 					stations.setMode(mode);
-					stations.setType(StationAdapter.ALPHA);					
+					stations.setType(StationAdapter.ALPHA);
 					return stations;
 				}				
 				return null;
@@ -67,6 +71,7 @@ public class StationListHome extends TabActivity {
 		tabHost.addTab(tabHost.newTabSpec("Alpha").setIndicator("Alpha").setContent(f));
 		tabHost.addTab(tabHost.newTabSpec("Nearby").setIndicator("Nearby").setContent(f));		
 		tabHost.setCurrentTab(0);		
+		created = true;
 	}
 
 	@Override

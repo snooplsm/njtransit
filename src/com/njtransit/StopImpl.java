@@ -1,7 +1,7 @@
 package com.njtransit;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import android.content.Context;
@@ -22,6 +22,8 @@ public class StopImpl extends ListView {
 	
 	private Session session = Session.get();
 	
+	private static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+	
 	public StopImpl(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
@@ -35,6 +37,8 @@ public class StopImpl extends ListView {
 		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
 		for(Stop stop : sqr.getStops()) {
 			Service service = sqr.getTripToService().get(stop.getTripId());
+			String time = DF.format(stop.getDepart().getTime());
+			String arrives = DF.format(stop.getArrive().getTime());
 			if(service.isToday()) {
 				today.add(stop);
 			}
@@ -43,7 +47,9 @@ public class StopImpl extends ListView {
 			}
 		}
 		
-		setAdapter(new ArrayAdapter<Stop>(context, 1, stops) {
+		today.addAll(tomorrow);
+		
+		setAdapter(new ArrayAdapter<Stop>(context, 1,today) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

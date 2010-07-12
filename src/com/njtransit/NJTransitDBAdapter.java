@@ -238,7 +238,7 @@ public class NJTransitDBAdapter {
 			String calendarSql = null;
 			Cursor c;
 			ArrayList<Integer> count = new ArrayList<Integer>();
-			if(days!=null) {
+			if(days.length>0) {
 				String query = "";
 				for(int i = 0 ; i < days.length; i++) {
 					int day = days[i];
@@ -322,6 +322,7 @@ public class NJTransitDBAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {			
+			db.endTransaction();
 		}
 		return null;
 	}
@@ -342,37 +343,12 @@ public class NJTransitDBAdapter {
 		cursor.moveToFirst();
 		HashMap<Integer, Service> tripToService = new HashMap<Integer,Service>();
 		for(int i = 0; i < cursor.getCount(); i++) {
-			tripToService.put(cursor.getInt(1),services.get(cursor.getInt(1)));
+			tripToService.put(cursor.getInt(0),services.get(cursor.getInt(1)));
 			cursor.moveToNext();
-		}
-		cursor.close();
-		
-		return tripToService;
-	}
-	
-	public ArrayList<StopTime> getAllStopTimes(Station station, Trip trip) {
-		db.beginTransaction();
-		Cursor cursor = db.rawQuery("select arrival, departure from stop_times where trip_id=? and stop_id=?", new String[] {trip.getId().toString(), station.getId().toString()});
-		cursor.moveToFirst();
-		ArrayList<StopTime> stopTimes = new ArrayList<StopTime>(cursor.getCount());
-		for(int i = 0; i < cursor.getCount(); i++) {
-			StopTime t = new StopTime();
-			t.setStationId(station.getId());
-			t.setTripId(trip.getId());
-			Calendar a = Calendar.getInstance();			
-			Long arrival = cursor.getLong(0);
-			a.setTimeInMillis(arrival);
-			t.setArrival(a);
-			Long departure = cursor.getLong(1);
-			Calendar d = Calendar.getInstance();
-			t.setDeparture(d);
-			d.setTimeInMillis(departure);			
-			cursor.moveToNext();
-			stopTimes.add(t);
 		}
 		cursor.close();
 		db.endTransaction();
-		return stopTimes;
+		return tripToService;
 	}
 	
 	public Trip getTrip(Integer id) {
@@ -426,13 +402,18 @@ public class NJTransitDBAdapter {
 		cursor.moveToFirst();
 		ArrayList<Service> services = new ArrayList<Service>(cursor.getCount());
 		for(int i = 0; i < cursor.getCount(); i++) {
-			boolean[] result = new boolean[cursor.getColumnNames().length-1];
-			for(int j = 1; j <= 7; j++) {
-				result[j-1] = cursor.getInt(j) == 0 ? false : true;				
-			}
+			boolean[] result = new boolean[7];
+			result[0] = cursor.getInt(1)==1;
+			result[1] = cursor.getInt(2)==1;
+			result[2] = cursor.getInt(3)==1;
+			result[3] = cursor.getInt(4)==1;
+			result[4] = cursor.getInt(5)==1;
+			result[5] = cursor.getInt(6)==1;
+			result[6] = cursor.getInt(7)==1;
 			
 			Service s = new Service(cursor.getInt(0),result);
 			services.add(s);
+			cursor.moveToNext();
 		}
 		return services;
 	}

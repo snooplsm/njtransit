@@ -28,7 +28,8 @@ public class Service implements Comparable<Service> {
 	
 	private boolean hasFlag(int pos) {
 		int powered = (int)Math.pow(2,pos);
-		return (powered & flag) == powered;
+		int poweredAndFlagged = powered & flag;
+		return poweredAndFlagged == powered;
 	}
 
 	@Override
@@ -79,12 +80,12 @@ public class Service implements Comparable<Service> {
 
 	public boolean isToday() {
 		int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-		return hasFlag(today+1 % 7);
+		return hasFlag(today-1 % 6);
 	}
 	
 	public boolean isTomorrow() {
-		int tomorrow = (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) +1 );
-		return hasFlag(tomorrow+1%7);
+		int tomorrow = (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + 1;
+		return hasFlag(tomorrow-1%6);
 	}
 	
 	public boolean isTuesday() {
