@@ -38,11 +38,9 @@ public class StopTimeRow extends LinearLayout {
 	}
 	
 	public StopTimeRow setAway(Long from) {
-		long diff = stop.getArrive().getTimeInMillis() - from;
+		long diff = stop.getDepart().getTimeInMillis() - from;
 		int mins = (int)Math.floor(diff/60000.0D);
-		if(mins<0 || mins > 21) {
-			
-		} else {
+		if(mins>0 && mins < 59) {
 			System.out.println("yea");
 			away.setText(""+mins +"");
 		}

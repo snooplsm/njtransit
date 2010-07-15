@@ -2,7 +2,7 @@ package com.njtransit;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
@@ -58,12 +58,21 @@ public class StopImpl extends ListView {
 		today.addAll(tomorrow);
 		ArrayAdapter<Stop> adapter;
 		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1,today) {
+			
+			private HashMap<Integer, StopTimeRow> map = new HashMap<Integer, StopTimeRow>();
+			
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
+				//TODO: figure out a way to recycle to reduce latency
+				if(map.containsKey(position)) {
+					return map.get(position);
+				}
 				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				Stop stop = getItem(position);
 				try {
-					return ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
+					StopTimeRow row = ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
+					map.put(position,row);
+					return row;
 				}catch (Exception e) {
 					throw new RuntimeException(e);
 				}
@@ -71,7 +80,7 @@ public class StopImpl extends ListView {
 		});
 		
 		if(closest!=null) {
-			//setSelectionFromTop(adapter.getPosition(closest),10);
+			setSelectionFromTop(adapter.getPosition(closest),10);
 		}
 	}
 }
