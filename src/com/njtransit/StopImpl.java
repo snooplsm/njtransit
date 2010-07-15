@@ -2,6 +2,7 @@ package com.njtransit;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.Context;
@@ -22,7 +23,7 @@ public class StopImpl extends ListView {
 	
 	private Session session = Session.get();
 	
-	private static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+	public static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
 	
 	public StopImpl(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -35,27 +36,42 @@ public class StopImpl extends ListView {
 		
 		ArrayList<Stop> today = new ArrayList<Stop>();
 		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
+		Stop closest = null;
+		Long closestDiff = Long.MAX_VALUE;
+		final Long now = System.currentTimeMillis();
 		for(Stop stop : sqr.getStops()) {
 			Service service = sqr.getTripToService().get(stop.getTripId());
-			String time = DF.format(stop.getDepart().getTime());
-			String arrives = DF.format(stop.getArrive().getTime());
+
 			if(service.isToday()) {
+				Long diff = now - stop.getDepart().getTimeInMillis();
+				if(diff > 0 && diff < now && diff < closestDiff) {
+					closest = stop;
+					closestDiff = diff;
+				}
 				today.add(stop);
 			}
 			if(service.isTomorrow()) {
 				tomorrow.add(stop);
 			}
-		}
+		}		
 		
 		today.addAll(tomorrow);
-		
-		setAdapter(new ArrayAdapter<Stop>(context, 1,today) {
+		ArrayAdapter<Stop> adapter;
+		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1,today) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				Stop stop = getItem(position);
-				return ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop);
+				try {
+					return ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
+				}catch (Exception e) {
+					throw new RuntimeException(e);
+				}
 			}
-		});	
+		});
+		
+		if(closest!=null) {
+			//setSelectionFromTop(adapter.getPosition(closest),10);
+		}
 	}
 }

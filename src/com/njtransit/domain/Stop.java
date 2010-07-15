@@ -9,7 +9,7 @@ public class Stop {
 	
 	private Calendar depart,arrive;
 
-	public Stop(int tripId, Calendar arrive, Calendar depart) {
+	public Stop(int tripId, Calendar depart, Calendar arrive) {
 		this.tripId = tripId;
 		this.depart = depart;
 		this.arrive =arrive;

@@ -288,28 +288,39 @@ public class NJTransitDBAdapter {
 
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			HashSet<Integer> tripIds = new HashSet<Integer>();
+			
+			Calendar now = Calendar.getInstance();
 			for(int i = 0; i < c.getCount(); i++) {
-				String aa = c.getString(1);
-				String dd = c.getString(2);
-				Calendar ac = Calendar.getInstance();
-				ac.setTime(DF.parse(aa));
+				String dept = c.getString(1);
+				String arrv = c.getString(2);
+				Calendar temp = Calendar.getInstance();
 				Calendar dc = Calendar.getInstance();
-				dc.setTime(DF.parse(dd));
-				if(dc.get(Calendar.DAY_OF_YEAR)!=ac.get(Calendar.DAY_OF_YEAR)) {
-					dc.set(Calendar.YEAR, 1970);
-					dc.set(Calendar.DAY_OF_YEAR, 1);
-					ac.set(Calendar.YEAR, 1970);
-					ac.set(Calendar.DAY_OF_YEAR, 1);
+				temp.setTime(DF.parse(dept));
+				dc.set(Calendar.YEAR, now.get(Calendar.YEAR));
+				dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+				dc.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
+				dc.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));
+				Calendar ac = Calendar.getInstance();
+				temp.setTime(DF.parse(arrv));
+				ac.set(Calendar.YEAR, now.get(Calendar.YEAR));
+				ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+				ac.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
+				ac.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));				
+				String aad = StopImpl.DF.format(dc.getTime());
+				String aada = StopImpl.DF.format(ac.getTime());
+				if(ac.get(Calendar.DAY_OF_YEAR)!=dc.get(Calendar.DAY_OF_YEAR)) {
+					ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+					dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
 				}
-				if(dc.get(Calendar.HOUR_OF_DAY)<ac.get(Calendar.HOUR_OF_DAY)) {
-					dc.set(Calendar.YEAR, 1970);
-					dc.set(Calendar.DAY_OF_YEAR, 2);
-					ac.set(Calendar.YEAR, 1970);
-					ac.set(Calendar.DAY_OF_YEAR, 1);
+				if(ac.get(Calendar.HOUR_OF_DAY)<dc.get(Calendar.HOUR_OF_DAY)) {
+					ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR)+1);
 				}
+				aada = StopImpl.DF.format(ac.getTime());
+				aad = StopImpl.DF.format(dc.getTime());
 				int tripId = c.getInt(0);
 				tripIds.add(tripId);
-				Stop stop = new Stop(tripId,ac,dc);
+
+				Stop stop = new Stop(tripId,dc,ac);
 				stops.add(stop);
 				c.moveToNext();
 			}
