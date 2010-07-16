@@ -4,9 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,14 @@ public class StopImpl extends ListView {
 	private Session session = Session.get();
 	
 	public static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+	
+	private Map<Integer, StopTimeRow> stopRows = new HashMap<Integer,StopTimeRow>();
+	
+	private TimerTask updaterThread = null;
+	
+	private boolean needsReschedule = false;
+	
+	private Timer timer;
 	
 	public StopImpl(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -59,19 +71,17 @@ public class StopImpl extends ListView {
 		ArrayAdapter<Stop> adapter;
 		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1,today) {
 			
-			private HashMap<Integer, StopTimeRow> map = new HashMap<Integer, StopTimeRow>();
-			
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				//TODO: figure out a way to recycle to reduce latency
-				if(map.containsKey(position)) {
-					return map.get(position);
+				if(stopRows.containsKey(position)) {
+					return stopRows.get(position);
 				}
 				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				Stop stop = getItem(position);
 				try {
 					StopTimeRow row = ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
-					map.put(position,row);
+					stopRows.put(position,row);
 					return row;
 				}catch (Exception e) {
 					throw new RuntimeException(e);
@@ -82,5 +92,42 @@ public class StopImpl extends ListView {
 		if(closest!=null) {
 			setSelectionFromTop(adapter.getPosition(closest),10);
 		}
+		
+		timer = new Timer(false);
+		timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
 	}
+	
+	private TimerTask newUpdaterThread() {
+		updaterThread = new TimerTask() {
+
+			@Override
+			public void run() {
+				Long now = System.currentTimeMillis();
+				for(StopTimeRow row : stopRows.values()) {
+					row.setAway(now);
+				}
+			}			
+		};
+		return updaterThread;
+	}
+	
+	public void onResume() {
+		if(timer!=null && needsReschedule) {
+			timer = new Timer(false);			
+			timer.scheduleAtFixedRate(newUpdaterThread(), 100, 7000);
+		}
+	}
+	
+	public void onPause() {
+		
+		try {
+			if(timer!=null) {
+				needsReschedule = true;
+				timer.cancel();
+			}
+		}catch (Exception e) {
+			Log.w("error", "onResume");
+		}
+	}
+
 }

@@ -300,12 +300,14 @@ public class NJTransitDBAdapter {
 				dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
 				dc.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
 				dc.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));
+				dc.set(Calendar.SECOND, 0);
 				Calendar ac = Calendar.getInstance();
 				temp.setTime(DF.parse(arrv));
 				ac.set(Calendar.YEAR, now.get(Calendar.YEAR));
 				ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
 				ac.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
-				ac.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));				
+				ac.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));			
+				ac.set(Calendar.SECOND, 0);
 				String aad = StopImpl.DF.format(dc.getTime());
 				String aada = StopImpl.DF.format(ac.getTime());
 				if(ac.get(Calendar.DAY_OF_YEAR)!=dc.get(Calendar.DAY_OF_YEAR)) {

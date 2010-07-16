@@ -41,6 +41,19 @@ public class StopListHome extends TabActivity {
 		tabHost.setCurrentTab(0);	
 	}
 	
+	protected void onPause() {
+		super.onPause();
+		if(stopTimes!=null) {
+			stopTimes.onPause();
+		}
+	}
+	
+	protected void onResume() {
+		super.onResume();
+		if(stopTimes!=null) {
+			stopTimes.onResume();
+		}
+	}
 	private String renderTitle(Station departing, Station arriving) {
 		return String.format("%s > %s", departing, arriving);
 	}

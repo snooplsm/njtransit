@@ -3,11 +3,12 @@ package com.njtransit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.njtransit.domain.Stop;
@@ -17,6 +18,9 @@ public class StopTimeRow extends LinearLayout {
 	private TextView time;
 	private TextView duration;
 	private TextView away;
+	
+	private int lastAway=-1;
+	
 	private Stop stop;
 	
 	public StopTimeRow(Context context, AttributeSet attrs) {
@@ -40,9 +44,24 @@ public class StopTimeRow extends LinearLayout {
 	public StopTimeRow setAway(Long from) {
 		long diff = stop.getDepart().getTimeInMillis() - from;
 		int mins = (int)Math.floor(diff/60000.0D);
-		if(mins>0 && mins < 59) {
-			System.out.println("yea");
+		if(mins>0 && mins < 59) {						
 			away.setText(""+mins +"");
+			if(lastAway!=-1 && lastAway!=mins) {
+				lastAway = mins;
+				postInvalidate();
+				if(getParent() instanceof ListView) {
+					((ListView)getParent()).postInvalidate();
+				}
+			}
+			if(lastAway==-1) {
+				lastAway = mins;
+			}
+		} else {
+			away.setText("");
+			postInvalidate();
+			if(getParent() instanceof ListView) {
+				((ListView)getParent()).postInvalidate();
+			}
 		}
 		
 		return this;
