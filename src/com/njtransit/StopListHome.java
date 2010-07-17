@@ -32,7 +32,7 @@ public class StopListHome extends TabActivity {
 			public View createTabContent(String arg) {
 				if(defaultTabTxt.equals(arg)) {
 					if(stopTimes == null) {
-						stopTimes = (StopImpl)getLayoutInflater().inflate(R.layout.stop_impl, null);
+						stopTimes = (StopImpl) getLayoutInflater().inflate(R.layout.stop_impl, null);
 					}
 					return stopTimes;
 				}			
@@ -44,7 +44,7 @@ public class StopListHome extends TabActivity {
 	
 	protected void onPause() {
 		super.onPause();
-		if(stopTimes!=null) {
+		if(stopTimes != null) {
 			stopTimes.onPause();
 		}
 	}

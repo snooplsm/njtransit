@@ -1,9 +1,6 @@
 package com.njtransit;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,13 +20,9 @@ import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 
 /** List of StopTimeRows */
-public class StopImpl extends ListView {
+public class StopImpl extends ListView implements Traversable<StopTimeRow> {
 	
 	private Session session = Session.get();
-	
-	public static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-	
-	private Map<Integer, StopTimeRow> stopRows = new HashMap<Integer, StopTimeRow>();
 	
 	private TimerTask updaterThread = null;
 	
@@ -68,23 +61,17 @@ public class StopImpl extends ListView {
 		
 		today.addAll(tomorrow);
 		ArrayAdapter<Stop> adapter;
-		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1,today) {
-			
+		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1, today) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
-				//TODO: figure out a way to recycle to reduce latency
-				if(stopRows.containsKey(position)) {
-					return stopRows.get(position);
-				}
-				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				Stop stop = getItem(position);
-				try {
-					StopTimeRow row = ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
-					stopRows.put(position, row);
-					return row;
-				}catch (Exception e) {
-					throw new RuntimeException(e);
-				}
+				return getOrInflateRow(convertView).setStop(getItem(position)).setAway(now);
+			}
+			
+			private StopTimeRow getOrInflateRow(View current) {
+				return (StopTimeRow) (current == null ?
+					((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+						.inflate(R.layout.stop_time_row, null)
+					: current);
 			}
 		});
 		
@@ -96,15 +83,27 @@ public class StopImpl extends ListView {
 		timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
 	}
 	
+	@Override
+	public void foreach(Fn<StopTimeRow> f) {
+		int cnt = getAdapter().getCount();
+		StopTimeRow r = null;
+		for(int i = 0; i < cnt; i++) {
+			r = (StopTimeRow) getAdapter().getView(i, r, null);
+			f.apply(r);
+		}
+	}
+	
 	private TimerTask newUpdaterThread() {
 		updaterThread = new TimerTask() {
 
 			@Override
 			public void run() {
-				Long now = System.currentTimeMillis();
-				for(StopTimeRow row : stopRows.values()) {
-					row.setAway(now);
-				}
+				Fn<StopTimeRow> updateAway = new Fn<StopTimeRow>() {
+					public void apply(StopTimeRow r) {
+						r.setAway(System.currentTimeMillis());
+					}
+				};
+				foreach(updateAway);
 			}			
 		};
 		return updaterThread;
