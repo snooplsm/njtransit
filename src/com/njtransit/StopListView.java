@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -33,6 +34,11 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 	
 	public StopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		setScrollbarFadingEnabled(true);
+		setSmoothScrollbarEnabled(true);
+	
+		ProgressDialog progress = ProgressDialog.show(getContext(),    
+	              "Please wait...", "Loading stop times ...", true);
 		
 		final Station arrive = session.getArrivalStation();
 		final Station departure = session.getDepartureStation();
@@ -42,10 +48,6 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 			}
 		});
-		
-		setScrollbarFadingEnabled(true);
-		
-		setSmoothScrollbarEnabled(true);
 		
 		ArrayList<Stop> today = new ArrayList<Stop>();
 		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
@@ -69,6 +71,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		}		
 		
 		today.addAll(tomorrow);
+		
 		ArrayAdapter<Stop> adapter;
 		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1, today) {
 			@Override
@@ -87,6 +90,8 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		if(closest != null) {
 			setSelectionFromTop(adapter.getPosition(closest), 10);
 		}
+		
+		progress.dismiss();
 		
 		timer = new Timer(false);
 		timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
