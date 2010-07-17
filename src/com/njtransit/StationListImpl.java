@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -63,11 +64,14 @@ public class StationListImpl extends ListView {
 				
 				Station station = adapter.getItem(position);
 				
-				if(mode == FIRST_STATION_MODE) {
+				
+				if(mode == FIRST_STATION_MODE) {					
+					Toast.makeText(getContext(), station.getName().toLowerCase() + " departure selected", Toast.LENGTH_SHORT).show();
 					session.setDepartureStation(station);
 					getContext().startActivity(new Intent(getContext(), StationListHome.class));
 				} else {
 					// SHOW TIMES!
+					Toast.makeText(getContext(), station.getName().toLowerCase() + " arrival selected", Toast.LENGTH_SHORT).show();
 					session.setArrivalStation(station);
 					getContext().startActivity(new Intent(getContext(), StopListHome.class));
 				}	
