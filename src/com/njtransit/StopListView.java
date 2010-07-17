@@ -43,34 +43,39 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		final Station arrive = session.getArrivalStation();
 		final Station departure = session.getDepartureStation();
 		
-		StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
+		final StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
 			public StopsQueryResult apply() {
 				return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 			}
 		});
 		
-		ArrayList<Stop> today = new ArrayList<Stop>();
-		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
-		Stop closest = null;
-		Long closestDiff = Long.MAX_VALUE;
+		final ArrayList<Stop> today = new ArrayList<Stop>();
+		final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
 		final Long now = System.currentTimeMillis();
-		for(Stop stop : sqr.getStops()) {
-			Service service = sqr.getTripToService().get(stop.getTripId());
-
-			if(service.isToday()) {
-				Long diff = now - stop.getDepart().getTimeInMillis();
-				if(diff > 0 && diff < now && diff < closestDiff) {
-					closest = stop;
-					closestDiff = diff;
-				}
-				today.add(stop);
+		final Stop closest = Bench.time("find closest", new Bench.Fn<Stop>() {
+			@Override
+			public Stop apply() {
+				Stop closest = null;
+				Long closestDiff = Long.MAX_VALUE;
+				for(Stop stop : sqr.getStops()) {
+					Service service = sqr.getTripToService().get(stop.getTripId());
+					if(service.isToday()) {
+						Long diff = now - stop.getDepart().getTimeInMillis();
+						if(diff > 0 && diff < now && diff < closestDiff) {
+							closest = stop;
+							closestDiff = diff;
+						}
+						today.add(stop);
+					}
+					if(service.isTomorrow()) {
+						tomorrow.add(stop);
+					}
+				}		
+				today.addAll(tomorrow);
+				return closest;
 			}
-			if(service.isTomorrow()) {
-				tomorrow.add(stop);
-			}
-		}		
+		});
 		
-		today.addAll(tomorrow);
 		
 		ArrayAdapter<Stop> adapter;
 		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1, today) {

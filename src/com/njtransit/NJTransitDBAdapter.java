@@ -1,6 +1,5 @@
 package com.njtransit;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -327,8 +326,8 @@ public class NJTransitDBAdapter {
 			HashMap<Integer,Service> trips =  getTrips(services, tripIds);
 			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
 			return sqr;
-		} catch (ParseException e) {
-			e.printStackTrace();
+		} catch (Throwable t) {
+			t.printStackTrace();
 		} finally {			
 			db.endTransaction();
 		}
