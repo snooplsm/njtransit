@@ -43,8 +43,8 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		
 		setAdapter(new ArrayAdapter<Stop>(getContext(), 1, stops) {
 			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				return getOrInflateRow(convertView).setStop(getItem(position)).setAway(System.currentTimeMillis());
+			public View getView(int position, View convertView, ViewGroup parent) {				
+				return getOrInflateRow(convertView).setStop(getItem(position)).setAway(StopListView.this,System.currentTimeMillis());
 			}
 			
 			private StopTimeRow getOrInflateRow(View current) {
@@ -115,22 +115,19 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				if(closest != null) {
 					setSelectionFromTop(((ArrayAdapter<Stop>)getAdapter()).getPosition(closest), 10);
 				}
-				//timer = new Timer(false);
-				//timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
+				timer = new Timer(false);
+				timer.scheduleAtFixedRate(newUpdaterThread(), 1000, 1000);
 		    }
 			
 		}.execute();
 	}
-	
-	
-	
 	
 	@Override
 	public void foreach(Fn<StopTimeRow> f) {
 		int cnt = getAdapter().getCount();
 		StopTimeRow r = null;
 		for(int i = 0; i < cnt; i++) {
-			r = (StopTimeRow) getAdapter().getView(i, r, null);
+			r = (StopTimeRow) getAdapter().getView(i, r, this);
 			f.apply(r);
 		}
 	}
@@ -140,9 +137,10 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 
 			@Override
 			public void run() {
-				Fn<StopTimeRow> updateAway = new Fn<StopTimeRow>() {
+				final Long now = System.currentTimeMillis();
+				Fn<StopTimeRow> updateAway = new Fn<StopTimeRow>() {					
 					public void apply(StopTimeRow r) {
-						r.setAway(System.currentTimeMillis());
+						r.setAway(StopListView.this,now);
 					}
 				};
 				foreach(updateAway);

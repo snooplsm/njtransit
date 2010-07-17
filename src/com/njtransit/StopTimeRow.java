@@ -40,16 +40,16 @@ public class StopTimeRow extends LinearLayout {
 		return this;
 	}
 	
-	public StopTimeRow setAway(Long from) {
+	public StopTimeRow setAway(ListView parent, Long from) {
 		long diff = stop.getDepart().getTimeInMillis() - from;
 		int mins = (int)Math.floor(diff/60000.0D);
 		if(mins>0 && mins < 59) {						
 			away.setText(""+mins +"");
-			if(lastAway!=-1 && lastAway!=mins) {
+			if(lastAway!=mins) {
 				lastAway = mins;
 				postInvalidate();
-				if(getParent() instanceof ListView) {
-					((ListView)getParent()).postInvalidate();
+				if(parent instanceof ListView) {
+					parent.postInvalidate();
 				}
 			}
 			if(lastAway==-1) {
@@ -58,8 +58,8 @@ public class StopTimeRow extends LinearLayout {
 		} else {
 			away.setText("");
 			postInvalidate();
-			if(getParent() instanceof ListView) {
-				((ListView)getParent()).postInvalidate();
+			if(parent instanceof ListView) {
+				parent.postInvalidate();
 			}
 		}
 		
