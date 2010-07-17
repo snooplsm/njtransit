@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,66 +41,85 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		ProgressDialog progress = ProgressDialog.show(getContext(),    
 	              "Please wait...", "Loading stop times ...", true);
 		
-		final Station arrive = session.getArrivalStation();
-		final Station departure = session.getDepartureStation();
-		
-		final StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
-			public StopsQueryResult apply() {
-				return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
-			}
-		});
-		
-		final ArrayList<Stop> today = new ArrayList<Stop>();
-		final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
-		final Long now = System.currentTimeMillis();
-		final Stop closest = Bench.time("find closest", new Bench.Fn<Stop>() {
+		new AsyncTask<Void, Void, Void>() {
+
+			ProgressDialog progress = null;
+			
 			@Override
-			public Stop apply() {
-				Stop closest = null;
-				Long closestDiff = Long.MAX_VALUE;
-				for(Stop stop : sqr.getStops()) {
-					Service service = sqr.getTripToService().get(stop.getTripId());
-					if(service.isToday()) {
-						Long diff = now - stop.getDepart().getTimeInMillis();
-						if(diff > 0 && diff < now && diff < closestDiff) {
-							closest = stop;
-							closestDiff = diff;
-						}
-						today.add(stop);
+			protected Void doInBackground(Void... params) {
+				final Station arrive = session.getArrivalStation();
+				final Station departure = session.getDepartureStation();
+				
+				final StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
+					public StopsQueryResult apply() {
+						return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 					}
-					if(service.isTomorrow()) {
-						tomorrow.add(stop);
+				});
+				
+				final ArrayList<Stop> today = new ArrayList<Stop>();
+				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
+				final Long now = System.currentTimeMillis();
+				final Stop closest = Bench.time("find closest", new Bench.Fn<Stop>() {
+					@Override
+					public Stop apply() {
+						Stop closest = null;
+						Long closestDiff = Long.MAX_VALUE;
+						for(Stop stop : sqr.getStops()) {
+							Service service = sqr.getTripToService().get(stop.getTripId());
+							if(service.isToday()) {
+								Long diff = now - stop.getDepart().getTimeInMillis();
+								if(diff > 0 && diff < now && diff < closestDiff) {
+									closest = stop;
+									closestDiff = diff;
+								}
+								today.add(stop);
+							}
+							if(service.isTomorrow()) {
+								tomorrow.add(stop);
+							}
+						}		
+						today.addAll(tomorrow);
+						return closest;
 					}
-				}		
-				today.addAll(tomorrow);
-				return closest;
-			}
-		});
-		
-		
-		ArrayAdapter<Stop> adapter;
-		setAdapter(adapter = new ArrayAdapter<Stop>(context, 1, today) {
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				return getOrInflateRow(convertView).setStop(getItem(position)).setAway(now);
+				});
+				
+				
+				ArrayAdapter<Stop> adapter;
+				setAdapter(adapter = new ArrayAdapter<Stop>(getContext(), 1, today) {
+					@Override
+					public View getView(int position, View convertView, ViewGroup parent) {
+						return getOrInflateRow(convertView).setStop(getItem(position)).setAway(now);
+					}
+					
+					private StopTimeRow getOrInflateRow(View current) {
+						return (StopTimeRow) (current == null ?
+							((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+								.inflate(R.layout.stop_time_row, null)
+							: current);
+					}
+				});
+				
+				if(closest != null) {
+					setSelectionFromTop(adapter.getPosition(closest), 10);
+				}
+				return null;
 			}
 			
-			private StopTimeRow getOrInflateRow(View current) {
-				return (StopTimeRow) (current == null ?
-					((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-						.inflate(R.layout.stop_time_row, null)
-					: current);
+			@Override
+			protected void onPreExecute() {
+				progress = ProgressDialog.show(getContext(),    
+			              "Please wait...", "Loading stop times ...", true);
 			}
-		});
-		
-		if(closest != null) {
-			setSelectionFromTop(adapter.getPosition(closest), 10);
-		}
-		
-		progress.dismiss();
-		
-		timer = new Timer(false);
-		timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
+			
+			@Override
+			protected void onPostExecute(Void res) {
+				progress.dismiss();
+				
+				timer = new Timer(false);
+				timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
+		    }
+			
+		}.execute();
 	}
 	
 	@Override

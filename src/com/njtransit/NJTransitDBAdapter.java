@@ -228,6 +228,8 @@ public class NJTransitDBAdapter {
 	
 	public StopsQueryResult getStopTimes(final Map<Integer, Service> services, Station depart, Station arrive, int...days) {
 		db.beginTransaction();
+
+		StopsQueryResult sqr = null;
 		int tempTableIndex = ++this.tempTableIndex;
 		String tableName = "atrips"+tempTableIndex;
 		try{
@@ -324,14 +326,13 @@ public class NJTransitDBAdapter {
 			c.close();
 			db.execSQL("drop table " + tableName);
 			HashMap<Integer,Service> trips =  getTrips(services, tripIds);
-			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
-			return sqr;
+			 sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
 		} catch (Throwable t) {
 			t.printStackTrace();
 		} finally {			
 			db.endTransaction();
 		}
-		return null;
+		return sqr;
 	}
 	
 	private static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
