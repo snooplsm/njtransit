@@ -22,13 +22,14 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 
+/** List of StopTimeRows */
 public class StopImpl extends ListView {
 	
 	private Session session = Session.get();
 	
 	public static SimpleDateFormat DF = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
 	
-	private Map<Integer, StopTimeRow> stopRows = new HashMap<Integer,StopTimeRow>();
+	private Map<Integer, StopTimeRow> stopRows = new HashMap<Integer, StopTimeRow>();
 	
 	private TimerTask updaterThread = null;
 	
@@ -79,7 +80,7 @@ public class StopImpl extends ListView {
 				Stop stop = getItem(position);
 				try {
 					StopTimeRow row = ((StopTimeRow)inflater.inflate(R.layout.stop_time_row, null)).setStop(stop).setAway(now);
-					stopRows.put(position,row);
+					stopRows.put(position, row);
 					return row;
 				}catch (Exception e) {
 					throw new RuntimeException(e);
@@ -87,8 +88,8 @@ public class StopImpl extends ListView {
 			}
 		});
 		
-		if(closest!=null) {
-			setSelectionFromTop(adapter.getPosition(closest),10);
+		if(closest != null) {
+			setSelectionFromTop(adapter.getPosition(closest), 10);
 		}
 		
 		timer = new Timer(false);
@@ -110,7 +111,7 @@ public class StopImpl extends ListView {
 	}
 	
 	public void onResume() {
-		if(timer!=null && needsReschedule) {
+		if(timer != null && needsReschedule) {
 			timer = new Timer(false);			
 			timer.scheduleAtFixedRate(newUpdaterThread(), 100, 7000);
 		}
@@ -118,11 +119,11 @@ public class StopImpl extends ListView {
 	
 	public void onPause() {
 		try {
-			if(timer!=null) {
+			if(timer != null) {
 				needsReschedule = true;
 				timer.cancel();
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			Log.w("error", "onResume");
 		}
 	}

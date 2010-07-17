@@ -23,13 +23,14 @@ public class StopListHome extends TabActivity {
 		
 		((TextView) findViewById(R.id.title)).setText(renderTitle(session.getDepartureStation(), session.getArrivalStation()));
 		
+		final String defaultTabTxt = "Default";
 		TabHost tabHost =  getTabHost();
 		
-		tabHost.addTab(tabHost.newTabSpec("Default").setIndicator("Default").setContent(new TabContentFactory() {
+		tabHost.addTab(tabHost.newTabSpec(defaultTabTxt).setIndicator(defaultTabTxt).setContent(new TabContentFactory() {
 
 			@Override
 			public View createTabContent(String arg) {
-				if("Default".equals(arg)) {
+				if(defaultTabTxt.equals(arg)) {
 					if(stopTimes == null) {
 						stopTimes = (StopImpl)getLayoutInflater().inflate(R.layout.stop_impl, null);
 					}
@@ -54,6 +55,7 @@ public class StopListHome extends TabActivity {
 			stopTimes.onResume();
 		}
 	}
+	
 	private String renderTitle(Station departing, Station arriving) {
 		return String.format("%s > %s", departing, arriving);
 	}

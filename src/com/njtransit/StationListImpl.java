@@ -13,10 +13,16 @@ import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListImpl extends ListView {
 	
-	public static int FIRST_STATION_MODE = 0, SECOND_STATION_MODE=1;
+	public static int FIRST_STATION_MODE = 0, SECOND_STATION_MODE = 1;
 	
+	private StationAdapter adapter;
+	
+	private Session session = Session.get();
+	
+	/** either {@value StationAdapter#ALPHA} or {@value StationAdapter#NEARBY} */
 	private Integer type;
 	
+	/** either {@value #FIRST_STATION_MODE} of {@value #SECOND_STATION_MODE} */
 	private int mode;
 	
 	public int getMode() {
@@ -25,14 +31,10 @@ public class StationListImpl extends ListView {
 
 	public void setMode(int mode) {
 		this.mode = mode;
-		if(mode==SECOND_STATION_MODE) {
+		if(mode == SECOND_STATION_MODE) {
 			adapter.remove(session.getDepartureStation());
 		}
 	}
-
-	private StationAdapter adapter;
-	
-	private Session session = Session.get();
 
 	public Integer getType() {
 		return type;
@@ -71,13 +73,5 @@ public class StationListImpl extends ListView {
 				}	
 			}
 		});
-	}
-
-	public StationListImpl(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
-	}
-
-	public StationListImpl(Context context) {
-		this(context,null);
 	}
 }
