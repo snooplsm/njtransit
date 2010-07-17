@@ -4,8 +4,8 @@ import android.app.TabActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
+import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -14,7 +14,7 @@ public class StopListHome extends TabActivity {
 
 	private Session session = Session.get();
 	
-	private StopImpl stopTimes;
+	private StopListView stopTimes;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class StopListHome extends TabActivity {
 			public View createTabContent(String arg) {
 				if(defaultTabTxt.equals(arg)) {
 					if(stopTimes == null) {
-						stopTimes = (StopImpl) getLayoutInflater().inflate(R.layout.stop_impl, null);
+						stopTimes = (StopListView) getLayoutInflater().inflate(R.layout.stop_list_view, null);
 					}
 					return stopTimes;
 				}			

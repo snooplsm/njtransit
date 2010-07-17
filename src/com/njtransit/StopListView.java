@@ -18,9 +18,10 @@ import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
+import com.njtransit.utils.Bench;
 
 /** List of StopTimeRows */
-public class StopImpl extends ListView implements Traversable<StopTimeRow> {
+public class StopListView extends ListView implements Traversable<StopTimeRow> {
 	
 	private Session session = Session.get();
 	
@@ -30,13 +31,21 @@ public class StopImpl extends ListView implements Traversable<StopTimeRow> {
 	
 	private Timer timer;
 	
-	public StopImpl(Context context, AttributeSet attrs) {
+	public StopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
-		Station arrive = session.getArrivalStation();
-		Station departure = session.getDepartureStation();
+		final Station arrive = session.getArrivalStation();
+		final Station departure = session.getDepartureStation();
 		
-		StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
+		StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
+			public StopsQueryResult apply() {
+				return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
+			}
+		});
+		
+		setScrollbarFadingEnabled(true);
+		
+		setSmoothScrollbarEnabled(true);
 		
 		ArrayList<Stop> today = new ArrayList<Stop>();
 		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
