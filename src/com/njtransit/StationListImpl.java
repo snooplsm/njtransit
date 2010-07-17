@@ -68,10 +68,8 @@ public class StationListImpl extends ListView {
 					// SHOW TIMES!
 					session.setArrivalStation(station);
 					getContext().startActivity(new Intent(getContext(), StopListHome.class));
-				}
-				
+				}	
 			}
-			
 		});
 	}
 

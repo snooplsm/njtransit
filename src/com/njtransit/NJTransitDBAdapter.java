@@ -328,7 +328,6 @@ public class NJTransitDBAdapter {
 			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
 			return sqr;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {			
 			db.endTransaction();

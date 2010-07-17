@@ -9,7 +9,5 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 
 	public StopAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
-		// TODO Auto-generated constructor stub
 	}
-
 }

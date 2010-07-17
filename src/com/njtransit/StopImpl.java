@@ -117,7 +117,6 @@ public class StopImpl extends ListView {
 	}
 	
 	public void onPause() {
-		
 		try {
 			if(timer!=null) {
 				needsReschedule = true;
@@ -127,5 +126,4 @@ public class StopImpl extends ListView {
 			Log.w("error", "onResume");
 		}
 	}
-
 }
