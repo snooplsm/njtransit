@@ -74,4 +74,9 @@ public class StationListImpl extends ListView {
 			}
 		});
 	}
+	
+	/** called by linflater#inflate */
+	public StationListImpl(Context context, AttributeSet attrs) {
+		this(context, attrs, 0);
+	}
 }
