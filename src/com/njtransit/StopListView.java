@@ -1,6 +1,7 @@
 package com.njtransit;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,24 +34,38 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 	
 	private Timer timer;
 	
+	private List<Stop> stops = new ArrayList<Stop>();
+	
 	public StopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		setScrollbarFadingEnabled(true);
 		setSmoothScrollbarEnabled(true);
-	
-		ProgressDialog progress = ProgressDialog.show(getContext(),    
-	              "Please wait...", "Loading stop times ...", true);
 		
-		new AsyncTask<Void, Void, Void>() {
+		setAdapter(new ArrayAdapter<Stop>(getContext(), 1, stops) {
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				return getOrInflateRow(convertView).setStop(getItem(position)).setAway(System.currentTimeMillis());
+			}
+			
+			private StopTimeRow getOrInflateRow(View current) {
+				return (StopTimeRow) (current == null ?
+					((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+						.inflate(R.layout.stop_time_row, null)
+					: current);
+			}
+		});
+		
+		new AsyncTask<Void, Void, Stop>() {
 
 			ProgressDialog progress = null;
 			
+			@SuppressWarnings("unchecked")
 			@Override
-			protected Void doInBackground(Void... params) {
+			protected Stop doInBackground(Void... params) {
 				final Station arrive = session.getArrivalStation();
 				final Station departure = session.getDepartureStation();
 				
-				final StopsQueryResult sqr =  Bench.time("get stop time", new Bench.Fn<StopsQueryResult>() {
+				final StopsQueryResult sqr =  Bench.time("get stop times", new Bench.Fn<StopsQueryResult>() {
 					public StopsQueryResult apply() {
 						return session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 					}
@@ -73,8 +88,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 									closestDiff = diff;
 								}
 								today.add(stop);
-							}
-							if(service.isTomorrow()) {
+							} else {
 								tomorrow.add(stop);
 							}
 						}		
@@ -83,26 +97,9 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 					}
 				});
 				
+				stops.addAll(today);
 				
-				ArrayAdapter<Stop> adapter;
-				setAdapter(adapter = new ArrayAdapter<Stop>(getContext(), 1, today) {
-					@Override
-					public View getView(int position, View convertView, ViewGroup parent) {
-						return getOrInflateRow(convertView).setStop(getItem(position)).setAway(now);
-					}
-					
-					private StopTimeRow getOrInflateRow(View current) {
-						return (StopTimeRow) (current == null ?
-							((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-								.inflate(R.layout.stop_time_row, null)
-							: current);
-					}
-				});
-				
-				if(closest != null) {
-					setSelectionFromTop(adapter.getPosition(closest), 10);
-				}
-				return null;
+				return closest;
 			}
 			
 			@Override
@@ -111,16 +108,22 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 			              "Please wait...", "Loading stop times ...", true);
 			}
 			
+			@SuppressWarnings("unchecked")
 			@Override
-			protected void onPostExecute(Void res) {
+			protected void onPostExecute(Stop closest) {
 				progress.dismiss();
-				
-				timer = new Timer(false);
-				timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
+				if(closest != null) {
+					setSelectionFromTop(((ArrayAdapter<Stop>)getAdapter()).getPosition(closest), 10);
+				}
+				//timer = new Timer(false);
+				//timer.scheduleAtFixedRate(newUpdaterThread(), 7000, 7000);
 		    }
 			
 		}.execute();
 	}
+	
+	
+	
 	
 	@Override
 	public void foreach(Fn<StopTimeRow> f) {

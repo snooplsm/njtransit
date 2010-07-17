@@ -20,7 +20,6 @@ public class StopListHome extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_list_home);
-		
 		((TextView) findViewById(R.id.title)).setText(renderTitle(session.getDepartureStation(), session.getArrivalStation()));
 		
 		final String defaultTabTxt = "Default";
