@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;

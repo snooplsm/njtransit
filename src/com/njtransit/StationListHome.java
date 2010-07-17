@@ -2,16 +2,11 @@ package com.njtransit;
 
 import android.app.TabActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
-import com.njtransit.domain.Station;
-import com.njtransit.domain.Stop;
-import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListHome extends TabActivity {
@@ -73,18 +68,4 @@ public class StationListHome extends TabActivity {
 		tabHost.setCurrentTab(0);		
 		created = true;
 	}
-
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		return super.onKeyUp(keyCode, event);
-	}
-
-	@Override
-	public boolean onSearchRequested() {
-		// TODO Auto-generated method stub
-		return super.onSearchRequested();
-	}
-	
-	
 }

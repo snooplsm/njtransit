@@ -3,7 +3,6 @@ package com.njtransit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,7 +43,6 @@ public class StopImpl extends ListView {
 		Station departure = session.getDepartureStation();
 		
 		StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
-		List<Stop> stops = sqr.getStops();
 		
 		ArrayList<Stop> today = new ArrayList<Stop>();
 		ArrayList<Stop> tomorrow = new ArrayList<Stop>();
