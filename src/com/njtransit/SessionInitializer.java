@@ -9,7 +9,7 @@ import com.njtransit.domain.Station;
 
 /** Initializes the current user's session */
 public class SessionInitializer {
-	public static void exec(final NJTransitDBAdapter db, final Session session, final InitializationListener l) {
+	public static void exec(final DatabaseAdapter db, final Session session, final InitializationListener l) {
 		new AsyncTask<Void, Void, Map<Station, Double>>() {
 
 			@Override

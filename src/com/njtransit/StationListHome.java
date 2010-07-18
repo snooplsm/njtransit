@@ -38,7 +38,7 @@ public class StationListHome extends TabActivity implements LocationListener {
 		setContentView(R.layout.station_list_home);
 		
 		if(!created) {
-			NJTransitDBAdapter a = new NJTransitDBAdapter(this).open();
+			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
 			session.setServices(a.getServices());
 		}
