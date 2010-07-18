@@ -33,7 +33,11 @@ public class NJTransitDBAdapter {
 	
 	private SQLiteDatabase db;
 	
+	private SQLiteDatabase localDb;
+	
 	private NJTransitDBHelper helper;
+	
+	private LocalStorageHelper localStorageHelper;
 	
 	private boolean mocking = false;
 	
@@ -41,7 +45,7 @@ public class NJTransitDBAdapter {
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
 	
 	public NJTransitDBAdapter open() {
-		if(db!=null && db.isOpen()) {
+		if(db!=null) {
 			return this;
 		}
 		try {
@@ -50,6 +54,7 @@ public class NJTransitDBAdapter {
 			helper.createDataBase(atPath);
 			helper.openDataBase(atPath);
 			db = helper.getWritableDatabase();
+			localStorageHelper = new LocalStorageHelper(context);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
