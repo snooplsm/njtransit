@@ -44,25 +44,35 @@ public class StopTimeRow extends LinearLayout {
 	}
 	
 	public boolean setAway(ListView parent) {
-		populateDuration();
-		long diff = stop.getDepart().getTimeInMillis() - System.currentTimeMillis();
-		int mins = (int)diff/60000;
-		boolean changed = false;
-		if(lastAway!=mins) {
-			changed = true;
-			if(mins > 0 && mins < 61) {
-				away.setText(Integer.valueOf(mins));
-			} else {
-				away.setText("");
+		try {
+			long diff = stop.getDepart().getTimeInMillis() - System.currentTimeMillis();
+			int mins = (int)diff/60000;
+			boolean changed = false;
+			if(lastAway!=mins && lastAway > -60) {
+				changed = true;
+				lastAway = mins;
+				if(mins > 0 && mins < 61) {
+					if(mins<=61) {
+						away.setTextColor(getResources().getColor(R.color.red_light));
+						away.postInvalidate();
+					}
+					away.setText(String.valueOf(mins));
+				} else {
+					away.setText("");
+				}
+				populateDuration();
 			}
-			populateDuration();
-		}		
-		return changed;
+			return changed;
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
 	}
 	
-	private static final String DURATION_ONLY = "duration: %s minutes";
+	private static final String DURATION_ONLY = "%s mins";
 	
-	private static final String DURATION_AND_DEPARTURE = "departs in: %s | duration: %s minutes";
+	private static final String DURATION_AND_DEPARTURE = "%s mins";
 	
 	public Long getDepartureInSeconds() {
 		return System.currentTimeMillis()-stop.getDepart().getTimeInMillis() / 1000;
@@ -71,23 +81,22 @@ public class StopTimeRow extends LinearLayout {
 	public String duration() {
 		final long diff = stop.getArrive().getTimeInMillis()-stop.getDepart().getTimeInMillis();	
 		long mins = diff / 60000;
-		Long departureInSeconds = getDepartureInSeconds();
-		if(departureInSeconds < 0 || departureInSeconds>3600) {
+		Long departureInSeconds = getDepartureInSeconds() / 60;
+		if(departureInSeconds < 0 || departureInSeconds>60) {
 			departureInSeconds = null;
 		}
 		
 		if(departureInSeconds==null) {
 			return String.format(DURATION_ONLY, mins);
+		} else {
+			return String.format(DURATION_AND_DEPARTURE, mins);
 		}
-		return String.format(DURATION_AND_DEPARTURE, departureInSeconds/60,mins);
 	}
 
 	private String format(Calendar departing, Calendar arriving) {
 		DateFormat f = new SimpleDateFormat("hh:mm aa");
 		String depart =  f.format(departing.getTime());
 		String arrive = f.format(arriving.getTime());
-		depart = depart.substring(0, depart.length()-2);
-		arrive = arrive.substring(0, arrive.length()-2);
-		return String.format("%s - %s", arrive, depart ).toLowerCase();
+		return String.format("%s - %s", depart, arrive ).toLowerCase();
 	}
 }

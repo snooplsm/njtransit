@@ -423,6 +423,7 @@ public class NJTransitDBAdapter {
 			services.add(s);
 			cursor.moveToNext();
 		}
+		cursor.close();
 		return services;
 	}
 }

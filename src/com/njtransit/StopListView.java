@@ -44,7 +44,13 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		setAdapter(new ArrayAdapter<Stop>(getContext(), 1, stops) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
-				StopTimeRow str = getOrInflateRow(convertView).setStop(getItem(position));
+				StopTimeRow str = null;
+				try {
+					str = getOrInflateRow(convertView).setStop(getItem(position));										
+				}catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}				
 				str.setAway(StopListView.this);
 				return str;
 			}
@@ -144,8 +150,13 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				changed = false;
 				Fn<StopTimeRow> updateAway = new Fn<StopTimeRow>() {					
 					public void apply(StopTimeRow r) {
-						if(r.setAway(StopListView.this)) {
-							changed = true;
+						try {
+							if(r.setAway(StopListView.this)) {
+								changed = true;
+							
+							}
+						}catch (Exception e) {
+							throw new RuntimeException(e);
 						}
 					}
 				};
