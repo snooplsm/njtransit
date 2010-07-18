@@ -15,9 +15,6 @@ import com.njtransit.ui.adapter.StationAdapter;
 public class StationListImpl extends ListView {
 	
 	public static int FIRST_STATION_MODE = 0, SECOND_STATION_MODE = 1;
-	
-	private StationAdapter adapter;
-	
 	private Session session = Session.get();
 	
 	/** either {@value StationAdapter#ALPHA} or {@value StationAdapter#NEARBY} */
@@ -29,58 +26,69 @@ public class StationListImpl extends ListView {
 	public int getMode() {
 		return mode;
 	}
-
-	public void setMode(int mode) {
+	
+	public StationListImpl setMode(int mode) {
 		this.mode = mode;
 		if(mode == SECOND_STATION_MODE) {
-			adapter.remove(session.getDepartureStation());
+			getStationAdapter().remove(session.getDepartureStation());
 		}
+		return this;
 	}
 
 	public Integer getType() {
 		return type;
 	}
-
-	public void setType(Integer type) {
+	
+	public StationListImpl setType(Integer type) {
 		this.type = type;
-		adapter.setType(type);
+		getStationAdapter().setType(type);
 		invalidateViews();
-	}
-
+		return this;
+	}	
+	
 	public StationListImpl(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);		
-		NJTransitDBAdapter adapt = session.getAdapter();
-		session.setStations(adapt.getAllStations());
-		adapter = new StationAdapter(context,R.layout.station_row,StationAdapter.ALPHA, session.getStations(), session);
-		setAdapter(adapter);
+		NJTransitDBAdapter db = session.getAdapter();
+		session.setStations(db.getAllStations());
+		
+		// TODO base default type on preference
+		setAdapter(new StationAdapter(context, R.layout.station_row, StationAdapter.ALPHA, session.getStations(), session));
 		setType(attrs.getAttributeIntValue(null, "type", StationAdapter.ALPHA));
+		
+		setScrollbarFadingEnabled(true);
 		setFastScrollEnabled(true);
 		setTextFilterEnabled(true);
 		setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long id) {
-				
-				Station station = adapter.getItem(position);
-				
-				
-				if(mode == FIRST_STATION_MODE) {					
-					Toast.makeText(getContext(), station.getName().toLowerCase() + " departure selected", Toast.LENGTH_SHORT).show();
-					session.setDepartureStation(station);
-					getContext().startActivity(new Intent(getContext(), StationListHome.class));
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+				Station station = getStationAdapter().getItem(position);
+				if(mode == FIRST_STATION_MODE) {	
+					onDepartureSelected(station);
 				} else {
-					// SHOW TIMES!
-					Toast.makeText(getContext(), station.getName().toLowerCase() + " arrival selected", Toast.LENGTH_SHORT).show();
-					session.setArrivalStation(station);
-					getContext().startActivity(new Intent(getContext(), StopListHome.class));
+					onArrivalSelected(station);
 				}	
 			}
 		});
 	}
 	
+	private void onDepartureSelected(Station station){
+		Toast.makeText(getContext(), "depart from " + station.getName().toLowerCase(), Toast.LENGTH_SHORT).show();
+		session.setDepartureStation(station);
+		getContext().startActivity(new Intent(getContext(), StationListHome.class));
+	}
+	
+	private void onArrivalSelected(Station station) {
+		Toast.makeText(getContext(), "arrive at "+station.getName().toLowerCase(), Toast.LENGTH_SHORT).show();
+		session.setArrivalStation(station);
+		getContext().startActivity(new Intent(getContext(), StopListHome.class));
+	}
+	
 	/** called by linflater#inflate */
 	public StationListImpl(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
+	}
+	
+	private StationAdapter getStationAdapter() {
+		return (StationAdapter) getAdapter();
 	}
 }

@@ -67,7 +67,6 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 
 			ProgressDialog progress = null;
 			
-			@SuppressWarnings("unchecked")
 			@Override
 			protected Stop doInBackground(Void... params) {
 				final Station arrive = session.getArrivalStation();

@@ -20,6 +20,7 @@ import com.njtransit.R;
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
+import com.njtransit.utils.Locations;
 
 public class StationAdapter extends ArrayAdapter<Station> implements SectionIndexer, Filterable {
 	
@@ -27,15 +28,19 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	private int type;
 	
-	public static final int ALPHA=1,NEARBY=2;
+	private HashMap<Integer, Character> posToCharacter;
+	
+	private HashMap<Character, Integer> characterToPos;
+	
+	private Character[] sections;
+	
+	public static final int ALPHA = 1, NEARBY = 2;
 	
 	private static Comparator<Station> ALPHA_SORT = new Comparator<Station>() {
-
 		@Override
-		public int compare(Station object1, Station object2) {
-			return object1.getName().compareToIgnoreCase(object2.getName());
+		public int compare(Station a, Station b) {
+			return a.getName().compareToIgnoreCase(b.getName());
 		}
-		
 	};
 	
 	private static NearbyComparator NEARBY_SORT = new NearbyComparator();
@@ -47,19 +52,18 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 		public NearbyComparator() {
 		}
 		
-		public void setHome(Location location) {
-			this.home = location;
+		public void setHome(Location l) {
+			this.home = l;
 		}
 
 		@Override
-		public int compare(Station object1, Station object2) {
-			if(home==null) {
-				return object1.getName().compareToIgnoreCase(object2.getName());
+		public int compare(Station a, Station b) {
+			if(home == null) {
+				return a.getName().compareToIgnoreCase(b.getName());
 			}
-			Double dist = Distance.greatCircle(home.getLatitude(), home.getLongitude(), object1.getLatitude(), object1.getLongitude());
-			return dist.compareTo(Distance.greatCircle(home.getLatitude(), home.getLongitude(), object2.getLatitude(), object2.getLongitude()));
+			Double dist = Distance.greatCircle(home.getLatitude(), home.getLongitude(), a.getLatitude(), a.getLongitude());
+			return dist.compareTo(Distance.greatCircle(home.getLatitude(), home.getLongitude(), b.getLatitude(), b.getLongitude()));
 		}
-		
 	}
 	
 	public StationAdapter(Context context, int textViewResourceId, int type,
@@ -71,54 +75,51 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	public void setType(int type) {
 		this.type = type;
-		if(type==ALPHA) {
+		if(type == ALPHA) {
 			sort(ALPHA_SORT);
 		} else {
 			NEARBY_SORT.setHome(session.getLastKnownLocation());
 			sort(NEARBY_SORT);
 		}
-		
 	}
-
+	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent) {
-		 View v = convertView;
-         if (v == null) {
-             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-             v = inflater.inflate(R.layout.station_row, null);
-         }
+		 View v = getOrInflateView(convertView);
          Station s = getItem(pos);
          if (s != null) {
              TextView name = (TextView) v.findViewById(R.id.station_name);
-             TextView distance = (TextView) v.findViewById(R.id.station_distance);
              if (name != null) {
             	 name.setText(s.getName()); 
              }
-             if(distance != null){
-            	 distance.setText("about {{x}} away");
+             TextView distance = (TextView) v.findViewById(R.id.station_distance);
+             if(distance != null && session.getLastKnownLocation() != null){
+            	 distance.setText(Locations.relativeDistanceFrom(session.getLastKnownLocation()).to(s).inWords());
              }
          }
          return v;
 	}
+	
+	private View getOrInflateView(View v) {
+		return v != null ? v : ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.station_row, null);    
+	}
 
 	@Override
-	public int getPositionForSection(int arg) {
-		char c = sections[arg];
+	public int getPositionForSection(int section) {
+		char c = sections[section];
 		return characterToPos.get(c);
 	}
 
 	@Override
-	public int getSectionForPosition(int arg) {
-		Station s = getItem(arg);
-		
+	public int getSectionForPosition(int pos) {
+		Station s = getItem(pos);
 		char c = s.getName().charAt(0);
-		
 		return characterToPos.get(c);
 	}
 
 	@Override
 	public Object[] getSections() {
-		if(type==NEARBY) {
+		if(type == NEARBY) {
 			return null;
 		}
 		calculateSections();
@@ -142,9 +143,4 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 		c.toArray(sections);
 		Arrays.sort(sections);
 	}
-
-	private HashMap<Integer, Character> posToCharacter;
-	private HashMap<Character, Integer> characterToPos;
-	
-	private Character[] sections;
 }
