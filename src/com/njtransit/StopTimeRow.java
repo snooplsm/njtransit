@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.ListView;

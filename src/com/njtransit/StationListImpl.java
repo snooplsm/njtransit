@@ -1,5 +1,7 @@
 package com.njtransit;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
@@ -18,10 +20,30 @@ public class StationListImpl extends ListView {
 	private Session session = Session.get();
 	
 	/** either {@value StationAdapter#ALPHA} or {@value StationAdapter#NEARBY} */
-	private Integer type;
+	private Integer type = StationAdapter.ALPHA;
 	
 	/** either {@value #FIRST_STATION_MODE} of {@value #SECOND_STATION_MODE} */
-	private int mode;
+	private int mode = FIRST_STATION_MODE;
+	
+	/** optional user generated query provided by searchable input */
+	private String query;
+	
+	
+	public StationListImpl setQuery(String q) {
+		this.query = q;
+		if(q != null && q.length() > 0) {
+			getStationAdapter().clear();
+			List<Station> filtered = session.getAdapter().getAllStationsLike(query);
+			for(Station s:filtered) {
+				getStationAdapter().add(s);
+			}
+			getStationAdapter().setType(getType());
+			invalidateViews();
+		}
+		return this;
+	}
+	
+	
 	
 	public int getMode() {
 		return mode;

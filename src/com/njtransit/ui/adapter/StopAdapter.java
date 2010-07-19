@@ -1,9 +1,7 @@
 package com.njtransit.ui.adapter;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import android.content.Context;
 import android.view.LayoutInflater;

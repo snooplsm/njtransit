@@ -29,7 +29,6 @@ public class Locations {
 			METRIC, ENGLISH
 		}
 		private LatLong from, to;
-		private Units units;
 		
 		public RelativeDistance(Location from) {
 			this.from = new LatLong(from.getLatitude(), from.getLongitude());
@@ -50,11 +49,6 @@ public class Locations {
 			return results[0];
 		}
 		
-		public RelativeDistance in(Units u) {
-			this.units = u;
-			return this;
-		}
-		
 		public String inWords() {
 			float dist = get();
 			return  "about " + (dist/1000 > 0 ? (format(dist/1000) + " kilometers") : (format(dist) + " meters")) + " away";
@@ -63,9 +57,7 @@ public class Locations {
 		private String format(float f) {
 			return new DecimalFormat("#0.0").format(f);
 		}
-	}
-	
-	
+	}	
 	
 	public static RelativeDistance relativeDistanceFrom(Location l) {
 		return new RelativeDistance(l);

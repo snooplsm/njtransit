@@ -1,7 +1,9 @@
 package com.njtransit;
 
+import android.app.SearchManager;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -64,14 +66,39 @@ public class StationListHome extends TabActivity implements LocationListener {
 				} else {
 					getLocations().removeUpdates(StationListHome.this);
 				}
+
+				String query = null;
+				Intent intent = getIntent();
+			    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			      query = intent.getStringExtra(SearchManager.QUERY);
+			    }
 				
-				return stations.setType(type).setMode(mode);
+				return stations.setType(type).setMode(mode).setQuery(query);
 			}
 		};
 		tabHost.addTab(tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
 		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));		
 		tabHost.setCurrentTab(0);		
 		created = true;
+	}
+	
+	@Override
+	public boolean onSearchRequested() {
+		// pause, search just got invoked
+	    return super.onSearchRequested();
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+	    setIntent(intent);
+	    handleIntent(intent);
+	}
+
+	private void handleIntent(Intent intent) {
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	      String query = intent.getStringExtra(SearchManager.QUERY);
+	      getTabHost().setCurrentTab(getTabHost().getCurrentTab());
+	    }
 	}
 
 	@Override

@@ -105,6 +105,31 @@ public class DatabaseAdapter {
 		return stations;
 	}
 	
+	public ArrayList<Station> getAllStationsLike(String name) {
+		Cursor cursor = null;
+		ArrayList<Station> stations = null;
+		try {
+			db.beginTransaction();	
+			String sql = "select id, name, lat, lon, zone_id from stops where name like ?";
+			cursor = db.rawQuery(sql, new String[] { "%"+name+"%"});
+			int count = cursor.getCount();
+			stations = new ArrayList<Station>(count);
+			cursor.moveToFirst();
+			while(count > 0) {
+				count--;
+				stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), null));
+				cursor.moveToNext();
+			}
+			cursor.close();
+		} finally {
+			if(cursor != null) {
+				cursor.close();
+			}
+			db.endTransaction();
+		}		
+		return stations;
+	}
+	
 	/**
 	 * This will load ~12 routes.
 	 * 
