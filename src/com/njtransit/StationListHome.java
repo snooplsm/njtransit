@@ -30,10 +30,6 @@ public class StationListHome extends TabActivity implements LocationListener {
 	/** static??? */
 	private static boolean created = false;
 	
-	private LocationManager getLocations() {
-		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	}
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,29 +92,30 @@ public class StationListHome extends TabActivity implements LocationListener {
 
 	private void handleIntent(Intent intent) {
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	      String query = intent.getStringExtra(SearchManager.QUERY);
 	      getTabHost().setCurrentTab(getTabHost().getCurrentTab());
 	    }
 	}
 
 	@Override
 	public void onLocationChanged(Location l) {
-		Toast.makeText(this, "loc changed to " + l.getLatitude() + ":" + l.getLongitude(), Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
 		session.setLastKnownLocation(l);
+		getTabHost().setCurrentTab(getTabHost().getCurrentTab());
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		Toast.makeText(this, "provider disabled " + provider, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		Toast.makeText(this, "provided enabled " + provider, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
-		Toast.makeText(this, "status changed " + provider + " to " + status, Toast.LENGTH_SHORT).show();
+	}
+	
+	private LocationManager getLocations() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 }
