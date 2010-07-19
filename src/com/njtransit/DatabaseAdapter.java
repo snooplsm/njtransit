@@ -295,6 +295,7 @@ public class DatabaseAdapter {
 		query = "insert into trip_history (trip_summary, created) values (%s,datetime(%s,'unixepoch','gmt'))";
 		query = String.format(query,summaryId,queried);
 		localDb.execSQL(query);
+		localDb.setTransactionSuccessful();
 		localDb.endTransaction();
 	}
 	
@@ -302,6 +303,7 @@ public class DatabaseAdapter {
 		String query = "select station_depart, station_arrive from trip_summary order by total desc";
 		Cursor cursor = localDb.rawQuery(query, null);
 		ArrayList<Station> station = new ArrayList<Station>();
+		cursor.moveToFirst();
 		for(int i = 0; i < cursor.getCount(); i++) {
 			int depart = cursor.getInt(0);
 			int arrive = cursor.getInt(1);

@@ -42,7 +42,7 @@ public class StationListView extends ListView {
 		return type;
 	}
 	
-	public StationListView setType(Integer type) {
+	public StationListView setType(int type) {
 		if(this.type==StationAdapter.FAVORITES && type!=StationAdapter.FAVORITES) {
 			getStationAdapter().clear();
 			for(Station s : session.getStations()) {
@@ -76,9 +76,7 @@ public class StationListView extends ListView {
 	}	
 	
 	public StationListView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);		
-		DatabaseAdapter db = session.getAdapter();
-		session.setStations(db.getAllStations());
+		super(context, attrs, defStyle);				
 		
 		// TODO base default type on preference
 		setAdapter(new StationAdapter(context, R.layout.station_row, StationAdapter.ALPHA, session.getStations(), session));

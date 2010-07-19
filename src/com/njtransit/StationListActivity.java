@@ -8,8 +8,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
+import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -41,6 +43,7 @@ public class StationListActivity extends TabActivity implements LocationListener
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
 			session.setServices(a.getServices());
+			session.setStations(a.getAllStations());
 		}
 		
 		session.setLocationManager(getLocations());
@@ -51,21 +54,21 @@ public class StationListActivity extends TabActivity implements LocationListener
 		final String favorites = "Favorites";
 		
 		TabHost tabHost =  getTabHost();
-		TabContentFactory f = new TabContentFactory() {
+		
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+
 			@Override
-			public View createTabContent(String name) {
+			public void onTabChanged(String tabId) {
+				// TODO Auto-generated method stub
 				int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
 				final int type;
-				if(alphaTabTxt.equals(name)) {
+				if(alphaTabTxt.equals(tabId)) {
 					type = StationAdapter.ALPHA;
 				}else
-				if(proximityTabTxt.equals(StationAdapter.NEARBY)) {
+				if(proximityTabTxt.equals(tabId)) {
 					type = StationAdapter.NEARBY;
 				}else {
 					type = StationAdapter.FAVORITES;
-				}
-				if(stations == null) {
-					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
 				}
 				if(type == StationAdapter.NEARBY) {
 					getLocations().removeUpdates(StationListActivity.this);
@@ -74,12 +77,23 @@ public class StationListActivity extends TabActivity implements LocationListener
 				else {
 					getLocations().removeUpdates(StationListActivity.this);
 				}
+				stations.setType(type).setMode(mode);
+			}
+			
+		});
+		TabContentFactory f = new TabContentFactory() {
+			@Override
+			public View createTabContent(String name) {								
+				if(stations == null) {
+					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
+				}					
+				return stations;
 				
-				return stations.setType(type).setMode(mode);
 			}
 		};
-		this.set
-		tabHost.addTab(tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
+		TabSpec spc;
+		tabHost.addTab(spc =tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
+		
 		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));
 		tabHost.addTab(tabHost.newTabSpec(favorites).setIndicator(favorites).setContent(f));
 		tabHost.setCurrentTab(0);		

@@ -1,5 +1,6 @@
 package com.njtransit.ui.adapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	public StationAdapter(Context context, int textViewResourceId, int type,
 			List<Station> items, Session session) {
-		super(context, textViewResourceId, items);		
+		super(context, textViewResourceId, new ArrayList<Station>(items));		
 		this.session = session;		
 		setType(type);
 	}
