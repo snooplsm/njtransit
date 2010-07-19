@@ -34,6 +34,7 @@ public class Session implements LocationListener {
 	private Station departureStation;
 
 	private List<Station> stations;
+	
 	private Map<Integer, Service> services;
 	
 	public Map<Integer, Service> getServices() {

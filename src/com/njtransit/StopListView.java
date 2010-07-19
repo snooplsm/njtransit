@@ -34,6 +34,8 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 	private Timer timer;
 
 	private List<Stop> stops = new ArrayList<Stop>();
+	
+	private Long started = System.currentTimeMillis();
 
 	public StopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -118,6 +120,14 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				c.clear(Calendar.SECOND);
 				c.set(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
 				timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
+				new Thread() {
+
+					@Override
+					public void run() {
+						session.getAdapter().saveHistory(session.getDepartureStation().getId(), session.getArrivalStation().getId(), started);
+					}
+					
+				}.start();
 			}
 
 		}.execute();

@@ -43,6 +43,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		}
 		String away = str.getAway(this.parent);
 		str.setAway(away);
+		str.populateDuration();
 		return str;
 	}
 

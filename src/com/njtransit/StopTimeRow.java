@@ -40,7 +40,7 @@ public class StopTimeRow extends LinearLayout {
 		return this;
 	}
 
-	private void populateDuration() {
+	public void populateDuration() {
 		duration.setText(duration());
 	}
 
