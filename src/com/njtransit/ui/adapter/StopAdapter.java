@@ -1,9 +1,7 @@
 package com.njtransit.ui.adapter;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -45,6 +43,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		}
 		String away = str.getAway(this.parent);
 		str.setAway(away);
+		str.populateDuration();
 		return str;
 	}
 

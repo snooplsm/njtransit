@@ -13,7 +13,7 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		version1(db);
+		version1(db);	
 	}
 
 	@Override
@@ -21,10 +21,14 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 
 	}
 	
+	@Override
+	public synchronized void close() {
+		super.close();
+	}
+
 	private void version1(SQLiteDatabase db) {
-		db.beginTransaction();
-		db.execSQL("create table trip_history (id int primary key, station_depart int, station_arrive int, created int)");
-		db.endTransaction();
+		db.execSQL("create table trip_summary (id int primary key, station_depart int, station_arrive int, created int, total int default 0)");
+		db.execSQL("create table trip_history (trip_summary int primary key, created int)");
 	}
 
 }

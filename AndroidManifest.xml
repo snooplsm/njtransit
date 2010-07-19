@@ -7,14 +7,14 @@
 	
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
 		android:debuggable="true" android:theme="@style/OrangeTheme">
-		<activity android:name=".StationListHome" android:label="@string/app_name"
+		<activity android:name=".StationListActivity" android:label="@string/app_name"
 			android:theme="@android:style/Theme.NoTitleBar">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="StopListHome" android:theme="@android:style/Theme.NoTitleBar" />
+		<activity android:name="StopTabActivity" android:theme="@android:style/Theme.NoTitleBar" />
 		<activity android:name="Prefs" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
