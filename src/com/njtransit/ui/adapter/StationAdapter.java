@@ -95,7 +95,10 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
              }
              TextView distance = (TextView) v.findViewById(R.id.station_distance);
              if(distance != null && session.getLastKnownLocation() != null){
+            	 distance.setVisibility(View.VISIBLE);
             	 distance.setText(Locations.relativeDistanceFrom(session.getLastKnownLocation()).to(s).inWords());
+             } else {
+            	 distance.setVisibility(View.GONE);
              }
          }
          return v;

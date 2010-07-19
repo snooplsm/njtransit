@@ -14,7 +14,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name="StopTabActivity" android:theme="@android:style/Theme.NoTitleBar" />
+		<activity android:name="StopActivity" android:theme="@android:style/Theme.NoTitleBar" />
 		<activity android:name="Prefs" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>

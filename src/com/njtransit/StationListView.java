@@ -106,7 +106,7 @@ public class StationListView extends ListView {
 	private void onArrivalSelected(Station station) {
 		Toast.makeText(getContext(), "arrive at "+station.getName().toLowerCase(), Toast.LENGTH_SHORT).show();
 		session.setArrivalStation(station);
-		getContext().startActivity(new Intent(getContext(), StopTabActivity.class));
+		getContext().startActivity(new Intent(getContext(), StopActivity.class));
 	}
 	
 	/** called by linflater#inflate */

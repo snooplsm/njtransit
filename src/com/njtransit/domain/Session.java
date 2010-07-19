@@ -190,4 +190,10 @@ public class Session implements LocationListener {
 		
 	}
 
+	public void reverseTrip() {
+		Station tmp = departureStation;
+		departureStation = arrivalStation;
+		arrivalStation = tmp;
+	}
+
 }

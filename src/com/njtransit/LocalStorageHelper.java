@@ -28,7 +28,7 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 
 	private void version1(SQLiteDatabase db) {
 		db.execSQL("create table trip_summary (id integer primary key autoincrement, station_depart int, station_arrive int, created int, total int default 0)");
-		db.execSQL("create table trip_history (trip_summary int primary key, created int)");
+		db.execSQL("create table trip_history (trip_summary int, created int)");
 	}
 
 }
