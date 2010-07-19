@@ -24,32 +24,32 @@ import com.njtransit.model.StopsQueryResult;
 public class DatabaseAdapter {
 
 	public static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
-	
+
 	private static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
-	
+
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
-	
+
 	private Context context;
-	
+
 	private SQLiteDatabase db;
-	
+
 	private NJTransitDBHelper helper;
-	
+
 	private SQLiteDatabase localDb;
-	
+
 	private LocalStorageHelper localStorageHelper;
-	
+
 	private Integer tempTableIndex = 0;
-	
+
 	public DatabaseAdapter(Context context) {
 		this.context = context;
 	}
-	
+
 	public void closeDB() {
 		helper.close();
 		localStorageHelper.close();
 	}
-	
+
 	public int countStations() {
 		Cursor cursor = db.rawQuery("select count(*) from stops", null);
 		cursor.moveToFirst();
@@ -57,7 +57,7 @@ public class DatabaseAdapter {
 		cursor.close();
 		return count;
 	}
-	
+
 	/**
 	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't suppor trig functions so its easier to do it this way.
 	 * prob takes 8-32K of mem to represent all this data.
@@ -77,6 +77,31 @@ public class DatabaseAdapter {
 		return stations;
 	}
 	
+	public ArrayList<Station> getAllStationsLike(String name) {
+		Cursor cursor = null;
+		ArrayList<Station> stations = null;
+		try {
+			db.beginTransaction();	
+			String sql = "select id, name, lat, lon, zone_id from stops where name like ?";
+			cursor = db.rawQuery(sql, new String[] { "%"+name+"%"});
+			int count = cursor.getCount();
+			stations = new ArrayList<Station>(count);
+			cursor.moveToFirst();
+			while(count > 0) {
+				count--;
+				stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), null));
+				cursor.moveToNext();
+			}
+			cursor.close();
+		} finally {
+			if(cursor != null) {
+				cursor.close();
+			}
+			db.endTransaction();
+		}		
+		return stations;
+	}
+
 	public ArrayList<Service> getServices() {
 		Cursor cursor = db.rawQuery("select service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday from calendar", null);
 		cursor.moveToFirst();
@@ -90,7 +115,7 @@ public class DatabaseAdapter {
 			result[4] = cursor.getInt(5)==1;
 			result[5] = cursor.getInt(6)==1;
 			result[6] = cursor.getInt(7)==1;
-			
+
 			Service s = new Service(cursor.getInt(0),result);
 			services.add(s);
 			cursor.moveToNext();
@@ -98,7 +123,7 @@ public class DatabaseAdapter {
 		cursor.close();
 		return services;
 	}
-	
+
 	public StopsQueryResult getStopTimes(final Map<Integer, Service> services, Station depart, Station arrive, int...days) {
 		db.beginTransaction();
 
@@ -116,7 +141,7 @@ public class DatabaseAdapter {
 				String query = "";
 				for(int i = 0 ; i < days.length; i++) {
 					int day = days[i];
-					
+
 					if(i!=0 && i!=days.length-1) {
 						query+=" or ";
 					}
@@ -162,7 +187,7 @@ public class DatabaseAdapter {
 
 			ArrayList<Stop> stops = new ArrayList<Stop>(c.getCount());
 			HashSet<Integer> tripIds = new HashSet<Integer>();
-			
+
 			Calendar now = Calendar.getInstance();
 			for(int i = 0; i < c.getCount(); i++) {
 				String dept = c.getString(1);
@@ -207,12 +232,12 @@ public class DatabaseAdapter {
 		}
 		return sqr;
 	}
-	
+
 	public Trip getTrip(Integer id) {
 		return new Trip(id, 1, "343 River Line Camden",
 				0, "175B43003", 1);
 	}
-	
+
 	/** Return at most 2 trips for a station. North | South bound */
 	public ArrayList<Trip> getTrips(Integer stationId) {
 		if(stationId == null) {
@@ -241,7 +266,7 @@ public class DatabaseAdapter {
 		db.endTransaction();
 		return trips;
 	}
-	
+
 	public HashMap<Integer, Service> getTrips(Map<Integer, Service> services, Collection<Integer> tripIds) {
 		db.beginTransaction();
 		StringBuilder b = new StringBuilder("(");
@@ -263,11 +288,11 @@ public class DatabaseAdapter {
 		db.endTransaction();
 		return tripToService;
 	}
-	
+
 	public ArrayList<Trip> getTrips(Station station) {
 		return station == null ? new ArrayList<Trip>() : getTrips(station.getId());
 	}	
-	
+
 	public void saveHistory(Integer departureId, Integer arrivalId, Long queried) {
 		localDb.beginTransaction();
 		String query = "select id from trip_summary where station_depart=%s and station_arrive=%s";
@@ -288,7 +313,7 @@ public class DatabaseAdapter {
 		query = "select id from trip_summary where station_depart=%s and station_arrive=%s";
 		query = String.format(query,departureId,arrivalId);
 		cursor = localDb.rawQuery(query, null);
-		
+
 		cursor.moveToFirst();
 		int summaryId = cursor.getInt(0);
 		cursor.close();
@@ -298,7 +323,7 @@ public class DatabaseAdapter {
 		localDb.setTransactionSuccessful();
 		localDb.endTransaction();
 	}
-	
+
 	public ArrayList<Station> getMostVisitedStations(Session session, Long now) {
 		String query = "select station_depart, station_arrive from trip_summary order by total desc";
 		Cursor cursor = localDb.rawQuery(query, null);
@@ -320,7 +345,7 @@ public class DatabaseAdapter {
 		cursor.close();
 		return station;
 	}
-	
+
 	public DatabaseAdapter open() {
 		if(db!=null) {
 			return this;

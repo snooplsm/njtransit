@@ -8,10 +8,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.TabHost.OnTabChangeListener;
-import android.widget.TabHost.TabContentFactory;
-import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
+import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -21,9 +19,9 @@ import com.njtransit.ui.adapter.StationAdapter;
  * then a destination station before forwarding control to the StopListHome 
  * activity.
  */
-public class StationListActivity extends TabActivity implements LocationListener {
+public class StationListHome extends TabActivity implements LocationListener {
 	
-	private StationListView stations;
+	private StationListImpl stations;
 	
 	private Session session = Session.get();
 	
@@ -43,7 +41,6 @@ public class StationListActivity extends TabActivity implements LocationListener
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
 			session.setServices(a.getServices());
-			session.setStations(a.getAllStations());
 		}
 		
 		session.setLocationManager(getLocations());
@@ -51,49 +48,28 @@ public class StationListActivity extends TabActivity implements LocationListener
 		
 		final String alphaTabTxt = "By Name";
 		final String proximityTabTxt = "By Proximity";
-		final String favorites = "Favorites";
 		
 		TabHost tabHost =  getTabHost();
-		
-		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-
-			@Override
-			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
-				int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
-				final int type;
-				if(alphaTabTxt.equals(tabId)) {
-					type = StationAdapter.ALPHA;
-				}else
-				if(proximityTabTxt.equals(tabId)) {
-					type = StationAdapter.NEARBY;
-				}else {
-					type = StationAdapter.FAVORITES;
-				}
-				if(type == StationAdapter.NEARBY) {
-					getLocations().removeUpdates(StationListActivity.this);
-					getLocations().requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0, StationListActivity.this);
-				} 
-				else {
-					getLocations().removeUpdates(StationListActivity.this);
-				}
-				stations.setType(type).setMode(mode);
-			}
-			
-		});
 		TabContentFactory f = new TabContentFactory() {
 			@Override
-			public View createTabContent(String name) {								
+			public View createTabContent(String name) {
+				int mode = session.getDepartureStation() == null ? StationListImpl.FIRST_STATION_MODE : StationListImpl.SECOND_STATION_MODE;
+				int type = alphaTabTxt.equals(name) ? StationAdapter.ALPHA : StationAdapter.NEARBY;
 				if(stations == null) {
-					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
-				}					
-				return stations;
+					stations = (StationListImpl)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
+				}
+				if(type == StationAdapter.NEARBY) {
+					getLocations().removeUpdates(StationListHome.this);
+					getLocations().requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0, StationListHome.this);
+				} else {
+					getLocations().removeUpdates(StationListHome.this);
+				}
 				
+				return stations.setType(type).setMode(mode);
 			}
 		};
 		tabHost.addTab(tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
-		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));
-		tabHost.addTab(tabHost.newTabSpec(favorites).setIndicator(favorites).setContent(f));
+		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));		
 		tabHost.setCurrentTab(0);		
 		created = true;
 	}

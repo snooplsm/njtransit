@@ -1,11 +1,11 @@
 package com.njtransit.ui.adapter;
 
-import com.njtransit.domain.Session;
-
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
+
+import com.njtransit.domain.Session;
 
 public class StationAdapter2 implements ListAdapter {
 

@@ -91,7 +91,13 @@ public class StationListActivity extends TabActivity implements LocationListener
 				
 			}
 		};
+<<<<<<< HEAD
+		TabSpec spc;
+		tabHost.addTab(spc =tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
+		
+=======
 		tabHost.addTab(tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
+>>>>>>> c9b24ff8fb744fa5b1f523fb980edba59d00e98c
 		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));
 		tabHost.addTab(tabHost.newTabSpec(favorites).setIndicator(favorites).setContent(f));
 		tabHost.setCurrentTab(0);		
