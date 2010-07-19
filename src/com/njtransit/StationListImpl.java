@@ -48,7 +48,7 @@ public class StationListImpl extends ListView {
 	
 	public StationListImpl(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);		
-		NJTransitDBAdapter db = session.getAdapter();
+		DatabaseAdapter db = session.getAdapter();
 		session.setStations(db.getAllStations());
 		
 		// TODO base default type on preference

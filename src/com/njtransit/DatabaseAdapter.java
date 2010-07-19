@@ -23,9 +23,9 @@ import com.njtransit.domain.StopTime;
 import com.njtransit.domain.Trip;
 import com.njtransit.model.StopsQueryResult;
 
-public class NJTransitDBAdapter {
+public class DatabaseAdapter {
 
-	public NJTransitDBAdapter(Context context) {
+	public DatabaseAdapter(Context context) {
 		this.context = context;
 	}
 	
@@ -44,7 +44,7 @@ public class NJTransitDBAdapter {
 	private static String[] STATION_COLUMNS = new String[] {"id","name","lat","lon","zone_id"};
 	private static String[] ROUTE_COLUMNS = new String[] {"id", "agency_id", "short_name", "long_name", "route_type"};
 	
-	public NJTransitDBAdapter open() {
+	public DatabaseAdapter open() {
 		if(db!=null) {
 			return this;
 		}
