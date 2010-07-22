@@ -21,7 +21,7 @@ public class Bench {
 	public static <R> R time(String subject, Fn<R> f, Reporter reporter) {
 		long start = System.currentTimeMillis();
 		R result = f.apply();
-		reporter.report(subject, start - System.currentTimeMillis());
+		reporter.report(subject, System.currentTimeMillis() - start);
 		return result;
 	}
 	
