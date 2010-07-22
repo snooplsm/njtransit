@@ -8,7 +8,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
+import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 
@@ -34,9 +34,13 @@ public class StationListActivity extends TabActivity implements LocationListener
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 	
+	private TextView getListHeader() {
+		return (TextView) findViewById(R.id.list_header);
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.station_list_home);
 		
 		if(!created) {
@@ -65,12 +69,18 @@ public class StationListActivity extends TabActivity implements LocationListener
 				final int type;
 				if(alphaTabTxt.equals(tabId)) {
 					type = StationAdapter.ALPHA;
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "select departure": "select destination");
 				} else if (proximityTabTxt.equals(tabId)) {
 					type = StationAdapter.NEARBY;
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "select departure": "select destination");
+					
 				} else {
 					type = StationAdapter.FAVORITES;
+					getListHeader().setText("favorite trips");
+					
 				}
 				stations.setType(type).setMode(mode);
+				
 			}
 			
 		});
