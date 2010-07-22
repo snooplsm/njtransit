@@ -8,10 +8,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
-import android.widget.TabHost.TabSpec;
-import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -27,8 +26,9 @@ public class StationListActivity extends TabActivity implements LocationListener
 	
 	private Session session = Session.get();
 	
-	/** static??? */
-	private static boolean created = false;
+	private boolean created = false;
+	
+	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 	
 	private LocationManager getLocations() {
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -46,8 +46,11 @@ public class StationListActivity extends TabActivity implements LocationListener
 			session.setStations(a.getAllStations());
 		}
 		
-		session.setLocationManager(getLocations());
-		session.setLastKnownLocation(getLocations().getLastKnownLocation(LocationManager.GPS_PROVIDER));
+		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
+		if(session.getLastKnownLocation() == null) {
+			// listen until we find one then
+			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
+		}
 		
 		final String alphaTabTxt = "By Name";
 		final String proximityTabTxt = "By Proximity";
@@ -56,26 +59,16 @@ public class StationListActivity extends TabActivity implements LocationListener
 		TabHost tabHost =  getTabHost();
 		
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-
 			@Override
 			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
 				int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
 				final int type;
 				if(alphaTabTxt.equals(tabId)) {
 					type = StationAdapter.ALPHA;
-				}else
-				if(proximityTabTxt.equals(tabId)) {
+				} else if (proximityTabTxt.equals(tabId)) {
 					type = StationAdapter.NEARBY;
-				}else {
+				} else {
 					type = StationAdapter.FAVORITES;
-				}
-				if(type == StationAdapter.NEARBY) {
-					getLocations().removeUpdates(StationListActivity.this);
-					getLocations().requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0, StationListActivity.this);
-				} 
-				else {
-					getLocations().removeUpdates(StationListActivity.this);
 				}
 				stations.setType(type).setMode(mode);
 			}
@@ -91,31 +84,33 @@ public class StationListActivity extends TabActivity implements LocationListener
 				
 			}
 		};
-		tabHost.addTab(tabHost.newTabSpec(alphaTabTxt).setIndicator(alphaTabTxt).setContent(f));
-		tabHost.addTab(tabHost.newTabSpec(proximityTabTxt).setIndicator(proximityTabTxt).setContent(f));
-		tabHost.addTab(tabHost.newTabSpec(favorites).setIndicator(favorites).setContent(f));
+		addTab(alphaTabTxt, f);
+		addTab(proximityTabTxt, f);
+		addTab(favorites, f);
 		tabHost.setCurrentTab(0);		
 		created = true;
 	}
-
+	
 	@Override
 	public void onLocationChanged(Location l) {
-		Toast.makeText(this, "loc changed to " + l.getLatitude() + ":" + l.getLongitude(), Toast.LENGTH_SHORT).show();
 		session.setLastKnownLocation(l);
+		getTabHost().setCurrentTab(getTabHost().getCurrentTab());
+		getLocations().removeUpdates(this);
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		Toast.makeText(this, "provider disabled " + provider, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		Toast.makeText(this, "provided enabled " + provider, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
-		Toast.makeText(this, "status changed " + provider + " to " + status, Toast.LENGTH_SHORT).show();
+	}
+	
+	protected void addTab(String named, TabContentFactory contents) {
+		getTabHost().addTab(getTabHost().newTabSpec(named).setIndicator(named).setContent(contents));
 	}
 }

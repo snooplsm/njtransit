@@ -8,14 +8,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 
 import com.njtransit.DatabaseAdapter;
 import com.njtransit.utils.Distance;
 
-public class Session implements LocationListener {
+public class Session  {
 
 	private Session() {
 	}
@@ -59,18 +57,6 @@ public class Session implements LocationListener {
 
 	public void setAdapter(DatabaseAdapter adapter) {
 		this.adapter = adapter;
-	}
-
-	public void setLocationManager(LocationManager locationManager) {
-		this.locationManager = locationManager;
-		if(locationManager!=null) {
-			lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			if(lastKnownLocation==null) {
-		        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3600000, 0,
-		                this);
-			}
-
-		}
 	}
 
 	/**
@@ -165,30 +151,6 @@ public class Session implements LocationListener {
 		return null;
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-
-		this.lastKnownLocation = location;
-		
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void reverseTrip() {
 		Station tmp = departureStation;
