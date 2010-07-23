@@ -69,10 +69,10 @@ public class StationListActivity extends TabActivity implements LocationListener
 				final int type;
 				if(alphaTabTxt.equals(tabId)) {
 					type = StationAdapter.ALPHA;
-					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "select departure": "select destination");
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "Select departure station": "Select destination station");
 				} else if (proximityTabTxt.equals(tabId)) {
 					type = StationAdapter.NEARBY;
-					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "select departure": "select destination");
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "Select departure station": "Select destination station");
 					
 				} else {
 					type = StationAdapter.FAVORITES;
@@ -108,6 +108,15 @@ public class StationListActivity extends TabActivity implements LocationListener
 		getLocations().removeUpdates(this);
 	}
 
+	@Override
+	public void onBackPressed() {
+		// if we are in the context context of an arrival station and go back, we need a
+		// way of know we are selecting a departure station again
+		session.setDepartureStation(null);
+		session.setArrivalStation(null);
+		super.onBackPressed();
+	}
+	
 	@Override
 	public void onProviderDisabled(String provider) {
 	}
