@@ -17,7 +17,7 @@ import com.njtransit.ui.adapter.StationAdapter;
 
 public class StationListView extends ListView {
 	
-	public static int FIRST_STATION_MODE = 0, SECOND_STATION_MODE = 1;
+	public static final int FIRST_STATION_MODE = 0, SECOND_STATION_MODE = 1;
 	private Session session = Session.get();
 	
 	/** either {@value StationAdapter#ALPHA} or {@value StationAdapter#NEARBY} */
@@ -77,7 +77,6 @@ public class StationListView extends ListView {
 	
 	public StationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);				
-		
 		// TODO base default type on preference
 		setAdapter(new StationAdapter(context, R.layout.station_row, StationAdapter.ALPHA, session.getStations(), session));
 		setType(attrs.getAttributeIntValue(null, "type", StationAdapter.ALPHA));
