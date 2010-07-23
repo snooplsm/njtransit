@@ -15,10 +15,25 @@ public class Station {
 	public Station(Integer id, String name, Double latitude, Double longitude,
 			Integer zoneId) {
 		this.id = id;
-		this.name = name;
+		setName(name);
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.zoneId = zoneId;
+	}
+	
+	private void setName(String str) {
+		char lastChar=' ';
+		StringBuilder sb = new StringBuilder(str);
+		for(int i = 0; i < sb.length();i++) {
+			char nowChar = sb.charAt(i);
+			if(lastChar==' ' || lastChar=='/') {
+				sb.setCharAt(i, Character.toUpperCase(nowChar));
+			} else {
+				sb.setCharAt(i, Character.toLowerCase(nowChar));
+			}
+			lastChar = nowChar;
+		}
+		this.name = sb.toString();
 	}
 
 	public Integer getId() {
