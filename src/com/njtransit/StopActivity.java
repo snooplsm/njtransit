@@ -53,55 +53,6 @@ public class StopActivity extends Activity {
 			Intent intent = new Intent(this, StopActivity.class);
 			startActivity(intent);
 		}		
-//		switch (item.getItemId()) {
-//		case MENU_REFRESH:
-//			executeSearchTask(null);
-//			return true;
-//		case MENU_SHOUT:
-//			Intent intent = new Intent(this,
-//					CheckinOrShoutGatherInfoActivity.class);
-//			intent.putExtra(
-//					CheckinOrShoutGatherInfoActivity.INTENT_EXTRA_IS_SHOUT,
-//					true);
-//			startActivity(intent);
-//			return true;
-//		case MENU_MYINFO:
-//			Intent intentUser = new Intent(FriendsActivity.this,
-//					UserDetailsActivity.class);
-//			intentUser.putExtra(UserDetailsActivity.EXTRA_USER_ID,
-//					((Foursquared) getApplication()).getUserId());
-//			startActivity(intentUser);
-//			return true;
-//		case MENU_MORE:
-//			// Submenu items generate id zero, but we check on item title below.
-//			return true;
-//		default:
-//			if (item.getTitle().equals(
-//					mMenuMoreSubitems.get(MENU_MORE_SORT_METHOD))) {
-//				showDialog(DIALOG_SORT_METHOD);
-//				return true;
-//			} else if (item.getTitle().equals("Map")) {
-//				startActivity(new Intent(FriendsActivity.this,
-//						FriendsMapActivity.class));
-//				return true;
-//			} else if (item.getTitle().equals(
-//					mMenuMoreSubitems.get(MENU_MORE_LEADERBOARD))) {
-//				startActivity(new Intent(FriendsActivity.this,
-//						StatsActivity.class));
-//				return true;
-//			} else if (item.getTitle().equals(
-//					mMenuMoreSubitems.get(MENU_MORE_ADD_FRIENDS))) {
-//				startActivity(new Intent(FriendsActivity.this,
-//						AddFriendsActivity.class));
-//				return true;
-//			} else if (item.getTitle().equals(
-//					mMenuMoreSubitems.get(MENU_MORE_FRIEND_REQUESTS))) {
-//				startActivity(new Intent(FriendsActivity.this,
-//						FriendRequestsActivity.class));
-//				return true;
-//			}
-//			break;
-//		}
 		return super.onOptionsItemSelected(item);
 	}
 
