@@ -5,10 +5,12 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.Toast;
@@ -27,9 +29,9 @@ public class StationListActivity extends TabActivity implements LocationListener
 	
 	private Session session = Session.get();
 	
-	private boolean created = false;
-	
 	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
+	
+	private boolean ignoreTabSelect = false;
 	
 	private LocationManager getLocations() {
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -45,7 +47,8 @@ public class StationListActivity extends TabActivity implements LocationListener
 		} else {
 			setTitle(getString(R.string.adeparting_from) + " " + session.getDepartureStation().getName());
 		}
-		if(!created) {
+		if(session.getAdapter()==null) {
+			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
 			session.setServices(a.getServices());
@@ -76,7 +79,11 @@ public class StationListActivity extends TabActivity implements LocationListener
 				} else {
 					type = StationAdapter.FAVORITES;					
 				}
-				stations.setType(type).setMode(mode);
+				if(!ignoreTabSelect) {					
+					session.setStationOrderType(type);
+					stations.setType(type).setMode(mode);
+				}
+				
 				
 			}
 			
@@ -86,16 +93,34 @@ public class StationListActivity extends TabActivity implements LocationListener
 			public View createTabContent(String name) {								
 				if(stations == null) {
 					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
+					int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
+					stations.setMode(mode);
 				}					
 				return stations;
 				
 			}
 		};
+
+		ignoreTabSelect = true;
+//        TabsUtil.addNativeLookingTab(this, tabHost, alphaTabTxt, alphaTabTxt, 
+//                R.drawable.places_tab);
 		addTab(alphaTabTxt, f);
 		addTab(proximityTabTxt, f);
+//        TabsUtil.addNativeLookingTab(this, tabHost, proximityTabTxt, alphaTabTxt, 
+//                R.drawable.places_tab);
 		addTab(favorites, f);
-		tabHost.setCurrentTab(0);		
-		created = true;
+//        TabsUtil.addNativeLookingTab(this, tabHost, favorites, alphaTabTxt, 
+//                R.drawable.places_tab);
+		ignoreTabSelect = false;
+		if(session.getStationOrderType()==StationAdapter.ALPHA) {
+			tabHost.setCurrentTab(0);
+		}
+		if(session.getStationOrderType()==StationAdapter.NEARBY) {
+			tabHost.setCurrentTab(1);
+		}
+		if(session.getStationOrderType()==StationAdapter.FAVORITES) {
+			tabHost.setCurrentTab(2);
+		}		
 	}
 	
 	@Override
@@ -114,6 +139,43 @@ public class StationListActivity extends TabActivity implements LocationListener
 		super.onBackPressed();
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		if(stations.getType()==StationAdapter.FAVORITES) {
+			MenuItem clear = menu.add(Menu.NONE,1,Menu.FIRST,getString(R.string.clear_favorites));
+			clear.setIcon(R.drawable.clear_favorites);
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==1) {
+			new AsyncTask<Void, Void, Void>() {
+
+				@Override
+				protected void onPostExecute(Void result) {
+					getTabHost().setCurrentTab(0);
+				}
+
+				@Override
+				protected void onPreExecute() {
+					Toast.makeText(getApplicationContext(), "Clearing Favorites", Toast.LENGTH_SHORT).show();
+				}
+
+				@Override
+				protected Void doInBackground(Void... params) {
+					session.getAdapter().deleteFavorites();
+					return null;
+				}
+				
+			}.execute();
+		}		
+		return super.onOptionsItemSelected(item);
+	}
+
+
 	@Override
 	public void onProviderDisabled(String provider) {
 	}

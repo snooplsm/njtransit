@@ -30,6 +30,15 @@ public class Session  {
 	private Location lastKnownLocation;
 	private Station arrivalStation;
 	private Station departureStation;
+	private int stationOrderType = 1;
+
+	public int getStationOrderType() {
+		return stationOrderType;
+	}
+
+	public void setStationOrderType(int stationOrderType) {
+		this.stationOrderType = stationOrderType;
+	}
 
 	private List<Station> stations;
 	

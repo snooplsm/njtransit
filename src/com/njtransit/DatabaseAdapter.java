@@ -297,7 +297,7 @@ public class DatabaseAdapter {
 
 	public void saveHistory(Integer departureId, Integer arrivalId, Long queried) {
 		localDb.beginTransaction();
-		String query = "select id from trip_summary where station_depart=%s and station_arrive=%s";
+		String query = "select id from trip_summary where station_depart=%s and station_arrive=%s limit 10";
 		query = String.format(query,departureId,arrivalId);
 		Cursor cursor = localDb.rawQuery(query,null);
 		Integer id = null;
@@ -370,5 +370,14 @@ public class DatabaseAdapter {
 		if(db!=null && !db.isOpen()) {
 			db = helper.getWritableDatabase();
 		}
+	}
+
+	public void deleteFavorites() {
+		localDb.beginTransaction();
+		localDb.execSQL("delete from trip_history");
+		localDb.execSQL("delete from trip_summary");
+		localDb.setTransactionSuccessful();
+		localDb.endTransaction();
+		
 	}
 }

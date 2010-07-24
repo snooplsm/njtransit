@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">NJTransit</string>
+  <string name="app_name_full">NJTransit Rail</string>
+  <string name="disclaimer">NJTransit Rail is not affiliated with NJ Transit.</string>
   <string name="departure_station">departure station</string>
   <string name="adeparting_from">Departing from</string>
+  <string name="clear_favorites">Clear Favorites</string>
   <string name="minute_short">m</string>
   <string name="hour_short">h</string>
   <string name="reverse">Reverse</string>

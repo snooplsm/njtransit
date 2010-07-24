@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -42,7 +41,8 @@ public class StopActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE,1,Menu.FIRST,getString(R.string.reverse));
+		MenuItem reverse = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.reverse));
+		reverse.setIcon(R.drawable.reverse);
 		return true;
 	}
 
