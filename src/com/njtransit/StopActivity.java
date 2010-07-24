@@ -42,7 +42,7 @@ public class StopActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE,1,Menu.FIRST,"Reverse");
+		menu.add(Menu.NONE,1,Menu.FIRST,getString(R.string.reverse));
 		return true;
 	}
 
