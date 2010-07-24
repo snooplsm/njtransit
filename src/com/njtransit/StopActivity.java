@@ -20,7 +20,7 @@ public class StopActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_list_home);
-		((TextView) findViewById(R.id.title)).setText(renderTitle(
+		setTitle(renderTitle(
 				session.getDepartureStation(), session.getArrivalStation()));
 		stopTimes = (StopListView) findViewById(R.id.list);
 	}
@@ -106,6 +106,6 @@ public class StopActivity extends Activity {
 	}
 
 	private String renderTitle(Station departing, Station arriving) {
-		return String.format("%s > %s", departing, arriving);
+		return String.format("%s to %s", departing, arriving);
 	}
 }

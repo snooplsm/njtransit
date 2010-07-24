@@ -158,7 +158,9 @@ public class DatabaseAdapter {
 				}
 				c.close();
 			} else {
+				//public static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 				int day = cal.get(Calendar.DAY_OF_WEEK);
+				//FRIDAY == 6
 				String dayA = DAYS[day-1];
 				String dayB = DAYS[day % 7];
 				calendarSql = String.format("select service_id from calendar where %s=1 or %s=1",dayA,dayB);

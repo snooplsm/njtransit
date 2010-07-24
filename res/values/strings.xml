@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">njtransit</string>
+  <string name="app_name">NJTransit</string>
+  <string name="departure_station">departure station</string>
+  <string name="adeparting_from">Departing from</string>
   <string name="minute_short">m</string>
   <string name="hour_short">h</string>
   <string name="second_short">s</string>

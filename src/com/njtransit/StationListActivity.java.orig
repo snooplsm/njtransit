@@ -11,7 +11,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
+<<<<<<< Updated upstream
+=======
 import android.widget.Toast;
+>>>>>>> Stashed changes
 
 import com.njtransit.domain.Session;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -35,6 +38,9 @@ public class StationListActivity extends TabActivity implements LocationListener
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 	
+	private TextView getListHeader() {
+		return (TextView) findViewById(R.id.list_header);
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,10 +77,15 @@ public class StationListActivity extends TabActivity implements LocationListener
 				final int type;
 				if(alphaTabTxt.equals(tabId)) {
 					type = StationAdapter.ALPHA;
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "Select departure station": "Select destination station");
 				} else if (proximityTabTxt.equals(tabId)) {
-					type = StationAdapter.NEARBY;					
+					type = StationAdapter.NEARBY;
+					getListHeader().setText(mode == StationListView.FIRST_STATION_MODE ? "Select departure station": "Select destination station");
+					
 				} else {
-					type = StationAdapter.FAVORITES;					
+					type = StationAdapter.FAVORITES;
+					getListHeader().setText("favorite trips");
+					
 				}
 				stations.setType(type).setMode(mode);
 				

@@ -9,13 +9,14 @@ public class Service implements Comparable<Service> {
 	
 	public Service(int id, boolean... startWithMonday) {
 		this.id = id;
-		addFlag(startWithMonday[0],0);
-		addFlag(startWithMonday[1],1);
-		addFlag(startWithMonday[2],2);
-		addFlag(startWithMonday[3],3);
-		addFlag(startWithMonday[4],4);
-		addFlag(startWithMonday[5],5);
-		addFlag(startWithMonday[6],6);
+		// SUNDAY IS 1 aka 0
+		addFlag(startWithMonday[6],0);
+		addFlag(startWithMonday[0],1);
+		addFlag(startWithMonday[1],2);
+		addFlag(startWithMonday[2],3);
+		addFlag(startWithMonday[3],4);
+		addFlag(startWithMonday[4],5);
+		addFlag(startWithMonday[5],6);		
 	}
 	
 	private void addFlag(boolean add, int pos) {
@@ -59,41 +60,41 @@ public class Service implements Comparable<Service> {
 	}
 
 	public boolean isFriday() {
-		return hasFlag(4);
-	}
-
-	public boolean isMonday() {
-		return hasFlag(0);
-	}
-
-	public boolean isSaturday() {
 		return hasFlag(5);
 	}
 
-	public boolean isSunday() {
+	public boolean isMonday() {
+		return hasFlag(1);
+	}
+
+	public boolean isSaturday() {
 		return hasFlag(6);
 	}
 
+	public boolean isSunday() {
+		return hasFlag(0);
+	}
+
 	public boolean isThursday() {
-		return hasFlag(3);
+		return hasFlag(4);
 	}
 
 	public boolean isToday() {
 		int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-		return hasFlag(today-1 % 6);
+		return hasFlag(today-1);
 	}
 	
 	public boolean isTomorrow() {
 		int tomorrow = (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) + 1;
-		return hasFlag(tomorrow-1%6);
+		return hasFlag(tomorrow);
 	}
 	
 	public boolean isTuesday() {
-		return hasFlag(1);
+		return hasFlag(2);
 	}
 
 	public boolean isWednesday() {
-		return hasFlag(2);
+		return hasFlag(3);
 	}
 
 	@Override
