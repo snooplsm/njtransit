@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.njtransit" android:versionName="2010-07-17" android:versionCode="2010071700"
+	package="com.njtransit" android:versionName="2010-07-24" android:versionCode="2010072400"
 	android:debuggable="true">
   <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="6" />
   <application android:icon="@drawable/icon" android:label="@string/app_name"
