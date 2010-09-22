@@ -26,6 +26,16 @@ public class StationListView extends ListView {
 	/** either {@value #FIRST_STATION_MODE} of {@value #SECOND_STATION_MODE} */
 	private int mode;
 	
+	/** filter the current list down to stations that match name */
+	public StationListView filter(String name) {
+		getStationAdapter().clear();
+		ArrayList<Station> stations = session.getAdapter().getAllStationsLike(name);
+		for(Station s : stations) {
+			getStationAdapter().add(s);
+		}
+		return this;
+	}
+	
 	public int getMode() {
 		return mode;
 	}
@@ -43,15 +53,14 @@ public class StationListView extends ListView {
 	}
 	
 	public StationListView setType(int type) {
-		if(this.type==StationAdapter.FAVORITES && type!=StationAdapter.FAVORITES) {
+		if(this.type == StationAdapter.FAVORITES && type != StationAdapter.FAVORITES) {
 			getStationAdapter().clear();
 			for(Station s : session.getStations()) {
 				getStationAdapter().add(s);
 			}
 		}
-		if(type==StationAdapter.FAVORITES) {
+		if(type == StationAdapter.FAVORITES) {
 			new AsyncTask<Void, Void, ArrayList<Station>>() {
-
 				@Override
 				protected ArrayList<Station> doInBackground(Void... params) {
 					ArrayList<Station> stations = session.getAdapter().getMostVisitedStations(session, System.currentTimeMillis());
@@ -64,9 +73,7 @@ public class StationListView extends ListView {
 					for(Station s : result) {
 						getStationAdapter().add(s);
 					}
-				}
-
-				
+				}				
 			}.execute();
 		}
 		this.type = type;
@@ -108,7 +115,7 @@ public class StationListView extends ListView {
 		getContext().startActivity(new Intent(getContext(), StopActivity.class));
 	}
 	
-	/** called by linflater#inflate */
+	/** called by inflater#inflate */
 	public StationListView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}

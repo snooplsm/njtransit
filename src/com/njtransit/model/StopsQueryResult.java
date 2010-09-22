@@ -52,6 +52,5 @@ public class StopsQueryResult {
 
 	public List<Stop> getStops() {
 		return stops;
-	}
-	
+	}	
 }

@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalStorageHelper extends SQLiteOpenHelper {
-
 	
 	public LocalStorageHelper(Context context) {
 		super(context, "local_storage", null, 1);
@@ -30,5 +29,4 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 		db.execSQL("create table trip_summary (id integer primary key autoincrement, station_depart int, station_arrive int, created int, total int default 0)");
 		db.execSQL("create table trip_history (trip_summary int, created int)");
 	}
-
 }

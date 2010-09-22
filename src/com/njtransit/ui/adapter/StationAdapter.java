@@ -35,7 +35,7 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	private Character[] sections;
 	
-	public static final int ALPHA = 1, NEARBY = 2, FAVORITES = 3;
+	public static final int ALPHA = 0, NEARBY = 1, FAVORITES = 2;
 	
 	private static Comparator<Station> ALPHA_SORT = new Comparator<Station>() {
 		@Override

@@ -1,7 +1,9 @@
 package com.njtransit;
 
+import android.app.SearchManager;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,10 +12,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
-import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.ui.adapter.StationAdapter;
@@ -31,23 +32,14 @@ public class StationListActivity extends TabActivity implements LocationListener
 	
 	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 	
-	private boolean ignoreTabSelect = false;
-	
-	private LocationManager getLocations() {
-		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	}
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.station_list_home);
-		if(session.getDepartureStation()==null) {
-			setTitle(getString(R.string.app_name)+": " + getString(R.string.departure_station));
-		} else {
-			setTitle(getString(R.string.adeparting_from) + " " + session.getDepartureStation().getName());
-		}
-		if(session.getAdapter()==null) {
+		
+		setTitle(session.getDepartureStation() == null ? String.format("%s : %s",getString(R.string.app_name), getString(R.string.departure_station)) : String.format("%s : %s", getString(R.string.adeparting_from), session.getDepartureStation().getName()));
+		
+		if(session.getAdapter() == null) {
 			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
@@ -57,7 +49,6 @@ public class StationListActivity extends TabActivity implements LocationListener
 		
 		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
 		if(session.getLastKnownLocation() == null) {
-			// listen until we find one then
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
 		}
 		
@@ -65,9 +56,24 @@ public class StationListActivity extends TabActivity implements LocationListener
 		final String proximityTabTxt = "By Proximity";
 		final String favorites = "Favorites";
 		
-		TabHost tabHost =  getTabHost();
 		
-		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+		TabContentFactory f = new TabContentFactory() {
+			@Override
+			public View createTabContent(String name) {								
+				if(stations == null) {
+					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
+					int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
+					stations.setMode(mode);
+				}					
+				return stations;
+			}
+		};
+
+		addTab(alphaTabTxt, f);
+		addTab(proximityTabTxt, f);
+		addTab(favorites, f);
+		
+		getTabHost().setOnTabChangedListener(new OnTabChangeListener() {
 			@Override
 			public void onTabChanged(String tabId) {
 				int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
@@ -79,48 +85,24 @@ public class StationListActivity extends TabActivity implements LocationListener
 				} else {
 					type = StationAdapter.FAVORITES;					
 				}
-				if(!ignoreTabSelect) {					
-					session.setStationOrderType(type);
-					stations.setType(type).setMode(mode);
-				}
-				
-				
+								
+				session.setStationOrderType(type);
+				stations.setType(type).setMode(mode);
+				if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+				    stations.filter(getIntent().getStringExtra(SearchManager.QUERY));
+				}	
 			}
-			
 		});
-		TabContentFactory f = new TabContentFactory() {
-			@Override
-			public View createTabContent(String name) {								
-				if(stations == null) {
-					stations = (StationListView)getLayoutInflater().inflate(R.layout.station_list_xml_2, null); 
-					int mode = session.getDepartureStation() == null ? StationListView.FIRST_STATION_MODE : StationListView.SECOND_STATION_MODE;
-					stations.setMode(mode);
-				}					
-				return stations;
-				
-			}
-		};
+		
+		getTabHost().setCurrentTab(session.getStationOrderType());
+		withIntent(getIntent());
+	}
+	
 
-		ignoreTabSelect = true;
-//        TabsUtil.addNativeLookingTab(this, tabHost, alphaTabTxt, alphaTabTxt, 
-//                R.drawable.places_tab);
-		addTab(alphaTabTxt, f);
-		addTab(proximityTabTxt, f);
-//        TabsUtil.addNativeLookingTab(this, tabHost, proximityTabTxt, alphaTabTxt, 
-//                R.drawable.places_tab);
-		addTab(favorites, f);
-//        TabsUtil.addNativeLookingTab(this, tabHost, favorites, alphaTabTxt, 
-//                R.drawable.places_tab);
-		ignoreTabSelect = false;
-		if(session.getStationOrderType()==StationAdapter.ALPHA) {
-			tabHost.setCurrentTab(0);
-		}
-		if(session.getStationOrderType()==StationAdapter.NEARBY) {
-			tabHost.setCurrentTab(1);
-		}
-		if(session.getStationOrderType()==StationAdapter.FAVORITES) {
-			tabHost.setCurrentTab(2);
-		}		
+	@Override
+	protected void onNewIntent(Intent intent) {
+	    setIntent(intent);
+	    withIntent(intent);
 	}
 	
 	@Override
@@ -190,5 +172,15 @@ public class StationListActivity extends TabActivity implements LocationListener
 	
 	protected void addTab(String named, TabContentFactory contents) {
 		getTabHost().addTab(getTabHost().newTabSpec(named).setIndicator(named).setContent(contents));
+	}
+	
+	private LocationManager getLocations() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	}
+	
+	private void withIntent(Intent intent) {
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	    	getTabHost().setCurrentTab(getTabHost().getCurrentTab());
+	    }
 	}
 }
