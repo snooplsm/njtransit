@@ -59,7 +59,7 @@ public class DatabaseAdapter {
 	}
 
 	/**
-	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't suppor trig functions so its easier to do it this way.
+	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't support trig functions so its easier to do it this way.
 	 * prob takes 8-32K of mem to represent all this data.
 	 * @return all stations
 	 */
