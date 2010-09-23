@@ -52,7 +52,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				final Station arrive = session.getArrivalStation();
 				final Station departure = session.getDepartureStation();
 
-				final StopsQueryResult sqr =  session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
+				final StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
