@@ -20,7 +20,6 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StopAdapter;
-import com.njtransit.utils.Bench;
 
 /** List of StopTimeRows */
 public class StopListView extends ListView implements Traversable<StopTimeRow> {
@@ -53,45 +52,32 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				final Station arrive = session.getArrivalStation();
 				final Station departure = session.getDepartureStation();
 
-				final StopsQueryResult sqr = Bench.time("get stop times",
-						new Bench.Fn<StopsQueryResult>() {
-							public StopsQueryResult apply() {
-								return session.getAdapter().getStopTimes(
-										session.getServices(), departure,
-										arrive);
-							}
-						});
+				final StopsQueryResult sqr =  session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
 
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
 				final Long now = System.currentTimeMillis();
-				final Stop closest = Bench.time("find closest",
-						new Bench.Fn<Stop>() {
-							@Override
-							public Stop apply() {
-								Stop closest = null;
-								Long closestDiff = Long.MAX_VALUE;
-								for (Stop stop : sqr.getStops()) {
-									Service service = sqr.getTripToService()
-											.get(stop.getTripId());
-									if (service.isToday()) {
-										Long diff = now
-												- stop.getDepart()
-														.getTimeInMillis();
-										if (diff > 0 && diff < now
-												&& diff < closestDiff) {
-											closest = stop;
-											closestDiff = diff;
-										}
-										today.add(stop);
-									} else {
-										tomorrow.add(stop);
-									}
-								}
-								today.addAll(tomorrow);
-								return closest;
-							}
-						});
+				
+				Stop closest = null;
+				Long closestDiff = Long.MAX_VALUE;
+				for (Stop stop : sqr.getStops()) {
+					Service service = sqr.getTripToService()
+							.get(stop.getTripId());
+					if (service.isToday()) {
+						Long diff = now
+								- stop.getDepart()
+										.getTimeInMillis();
+						if (diff > 0 && diff < now
+								&& diff < closestDiff) {
+							closest = stop;
+							closestDiff = diff;
+						}
+						today.add(stop);
+					} else {
+						tomorrow.add(stop);
+					}
+				}
+				today.addAll(tomorrow);
 
 				stops.addAll(today);
 
@@ -121,12 +107,10 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				c.set(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
 				timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
 				new Thread() {
-
 					@Override
 					public void run() {
 						session.getAdapter().saveHistory(session.getDepartureStation().getId(), session.getArrivalStation().getId(), started);
 					}
-					
 				}.start();
 			}
 
