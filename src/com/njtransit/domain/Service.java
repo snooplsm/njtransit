@@ -81,7 +81,8 @@ public class Service implements Comparable<Service> {
 
 	public boolean isToday() {
 		int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-		return hasFlag(today-1);
+		boolean flag = hasFlag(today-1);
+		return flag;
 	}
 	
 	public boolean isTomorrow() {
