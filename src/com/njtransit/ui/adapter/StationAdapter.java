@@ -37,14 +37,14 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 	
 	public static final int ALPHA = 0, NEARBY = 1, FAVORITES = 2;
 	
-	private static Comparator<Station> ALPHA_SORT = new Comparator<Station>() {
+	private static final Comparator<Station> ALPHA_SORT = new Comparator<Station>() {
 		@Override
 		public int compare(Station a, Station b) {
 			return a.getName().compareToIgnoreCase(b.getName());
 		}
 	};
 	
-	private static NearbyComparator NEARBY_SORT = new NearbyComparator();
+	private static final NearbyComparator NEARBY_SORT = new NearbyComparator();
 	
 	private static class NearbyComparator implements Comparator<Station> {
 		
@@ -53,8 +53,9 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 		public NearbyComparator() {
 		}
 		
-		public void setHome(Location l) {
+		public NearbyComparator setHome(Location l) {
 			this.home = l;
+			return this;
 		}
 
 		@Override
@@ -78,9 +79,8 @@ public class StationAdapter extends ArrayAdapter<Station> implements SectionInde
 		this.type = type;
 		if(type == ALPHA) {
 			sort(ALPHA_SORT);
-		} else {
-			NEARBY_SORT.setHome(session.getLastKnownLocation());
-			sort(NEARBY_SORT);
+		} else {		
+			sort(NEARBY_SORT.setHome(session.getLastKnownLocation()));
 		}
 	}
 	

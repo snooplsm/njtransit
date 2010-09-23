@@ -42,7 +42,7 @@ public class StopActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		MenuItem reverse = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.reverse));
-		reverse.setIcon(R.drawable.reverse);
+		reverse.setIcon(R.drawable.signpost);
 		return true;
 	}
 

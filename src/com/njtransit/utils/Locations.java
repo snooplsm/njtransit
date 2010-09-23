@@ -51,7 +51,7 @@ public class Locations {
 		
 		public String inWords() {
 			float dist = get();
-			return  "about " + (dist/1000 > 0 ? (format(dist/1000) + " kilometers") : (format(dist) + " meters")) + " away";
+			return  "~ " + (dist/1000 > 0 ? (format(dist/1000) + " kilometers") : (format(dist) + " meters")) + " away";
 		}
 		
 		private String format(float f) {
