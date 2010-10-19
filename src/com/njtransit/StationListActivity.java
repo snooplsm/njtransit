@@ -17,6 +17,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 
 import com.njtransit.domain.Session;
+import com.njtransit.service.UpdaterService;
 import com.njtransit.ui.adapter.StationAdapter;
 
 /** Holds two tabs for selecting stations (in alphabetical order or by proximity). 
@@ -45,6 +46,7 @@ public class StationListActivity extends TabActivity implements LocationListener
 			session.setAdapter(a);
 			session.setServices(a.getServices());
 			session.setStations(a.getAllStations());
+			getApplicationContext().startService(new Intent(getApplicationContext(),UpdaterService.class));
 		}
 		
 		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
@@ -52,8 +54,8 @@ public class StationListActivity extends TabActivity implements LocationListener
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
 		}
 		
-		final String alphaTabTxt = "By Name";
-		final String proximityTabTxt = "By Proximity";
+		final String alphaTabTxt = "Name";
+		final String proximityTabTxt = "Proximity";
 		final String favorites = "Favorites";
 		
 		

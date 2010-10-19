@@ -31,6 +31,18 @@ public class Session  {
 	private Station arrivalStation;
 	private Station departureStation;
 	private int stationOrderType = 1;
+	private Preferences preferences;
+
+	public Preferences getPreferences() {
+		if(preferences==null) {
+			preferences = new Preferences();
+		}
+		return preferences;
+	}
+
+	public void setPreferences(Preferences preferences) {
+		this.preferences = preferences;
+	}
 
 	public int getStationOrderType() {
 		return stationOrderType;

@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +34,7 @@ public class DatabaseAdapter {
 
 	private SQLiteDatabase db;
 
-	private NJTransitDBHelper helper;
+	private TransitDBHelper helper;
 
 	private SQLiteDatabase localDb;
 
@@ -353,10 +354,21 @@ public class DatabaseAdapter {
 			return this;
 		}
 		try {
-			helper = new NJTransitDBHelper(context);
-			final String atPath = context.getDatabasePath("njtransit.sqlite").getAbsolutePath();
-			helper.createDataBase(atPath);
-			helper.openDataBase(atPath);
+			helper = new TransitDBHelper(context);
+			File dbFile = context.getDatabasePath("database.sqlite");			
+			String moveOnRestart = Root.getMoveOnRestart(context);
+			if(moveOnRestart!=null) {
+				File file = new File(context.getFilesDir(), moveOnRestart);
+				if(file.exists()) {
+					//atPath = file.getAbsolutePath();
+					boolean moved = file.renameTo(dbFile);
+					if(moved) {
+						Root.setMoveOnRestart(context, null);
+					}
+				}
+			}
+			helper.createDataBase(dbFile.getAbsolutePath());
+			helper.openDataBase(dbFile.getAbsolutePath());
 			db = helper.getWritableDatabase();
 			localStorageHelper = new LocalStorageHelper(context);
 			localDb = localStorageHelper.getWritableDatabase();

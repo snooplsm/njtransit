@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.location.Location;
 
+import com.njtransit.domain.Preferences.Unit;
 import com.njtransit.domain.Station;
 
 public class Locations {
@@ -25,12 +26,12 @@ public class Locations {
 	}
 	
 	public static class RelativeDistance {
-		public enum Units {
-			METRIC, ENGLISH
-		}
+
 		private LatLong from, to;
+		private Unit unit;
 		
-		public RelativeDistance(Location from) {
+		public RelativeDistance(Location from, Unit unit) {
+			this.unit = unit;
 			this.from = new LatLong(from.getLatitude(), from.getLongitude());
 		}
 		
@@ -51,15 +52,21 @@ public class Locations {
 		
 		public String inWords() {
 			float dist = get();
-			return  "~ " + (dist/1000 > 0 ? (format(dist/1000) + " kilometers") : (format(dist) + " meters")) + " away";
+			float calc;
+			if(unit==Unit.METRIC) {
+				calc = dist/1000;
+				return (calc > 0 ? (format(calc) + " kilometers") : (format(dist) + " meters"));
+			}
+			calc = (float)(dist/1609.344);
+			return (calc > 0 ? (format(calc) + " miles") : (format(dist/.3048) + " feet"));
 		}
 		
-		private String format(float f) {
+		private String format(Number f) {
 			return new DecimalFormat("#0.0").format(f);
 		}
 	}	
 	
-	public static RelativeDistance relativeDistanceFrom(Location l) {
-		return new RelativeDistance(l);
+	public static RelativeDistance relativeDistanceFrom(Location l, Unit unit) {
+		return new RelativeDistance(l, unit);
 	}
 }

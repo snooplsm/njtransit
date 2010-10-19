@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="update_threshold">8640000</string>
+  <string name="update_url">http://192.168.3.1/transit/njtransit/version.json</string>
   <string name="app_name">NJTransit</string>
   <string name="app_name_full">NJTransit Rail</string>
   <string name="disclaimer">NJTransit Rail is not affiliated with NJ Transit.</string>
