@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="6dip"
-    android:background="#ffffff"
+    android:padding="8dip"
     android:gravity="fill_vertical">
      
     <LinearLayout
@@ -18,15 +17,13 @@
             android:layout_weight="1"
             android:textColor="#333333"
             android:textStyle="bold"
-            android:gravity="fill_vertical"
         />
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1" 
+            android:layout_weight="1"
             android:id="@+id/station_distance"
             android:singleLine="true"
-            android:gravity="fill_vertical"
             android:ellipsize="marquee"
             android:textColor="#8F8F8F"
         />

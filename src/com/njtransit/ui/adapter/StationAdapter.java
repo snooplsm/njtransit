@@ -13,8 +13,9 @@ import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.SectionIndexer;
@@ -93,15 +94,18 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent) {
 		View v = getOrInflateView(convertView);
-		v.setOnTouchListener(new OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				v.setBackgroundColor(Color.parseColor("#F4A83D"));
-				return false;
-			}
-
-		});
+//		v.setOnTouchListener(new OnTouchListener() {
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {				
+//				if(event.getAction()==MotionEvent.ACTION_CANCEL) {
+//					v.setBackgroundColor(Color.WHITE);					
+//				} else {
+//					v.setBackgroundColor(Color.parseColor("#F4A83D"));
+//				}
+//				return true;
+//			}
+//		});
+		
 		Station s = getItem(pos);
 		if (s != null) {
 			TextView name = (TextView) v.findViewById(R.id.station_name);
@@ -115,6 +119,8 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 						.relativeDistanceFrom(session.getLastKnownLocation(),
 								session.getPreferences().getUnits()).to(s)
 						.inWords());
+			} else {
+				distance.setVisibility(View.GONE);
 			}
 		}
 		return v;
