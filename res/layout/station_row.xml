@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:gravity="fill_vertical">
      
     <LinearLayout
         android:orientation="vertical"
@@ -13,18 +14,19 @@
         <TextView
             android:id="@+id/station_name"
             android:layout_width="fill_parent"
-            android:layout_height="0dip"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:textColor="#333333"
-            android:gravity="center_vertical"
             android:textStyle="bold"
+            android:gravity="fill_vertical"
         />
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="0dip"
+            android:layout_height="fill_parent"
             android:layout_weight="1" 
             android:id="@+id/station_distance"
             android:singleLine="true"
+            android:gravity="fill_vertical"
             android:ellipsize="marquee"
             android:textColor="#8F8F8F"
         />
