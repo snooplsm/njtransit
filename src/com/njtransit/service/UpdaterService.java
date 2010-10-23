@@ -48,7 +48,7 @@ public class UpdaterService extends Service {
 
 	private DefaultHttpClient client;
 
-	@Override
+	
 	public IBinder onBind(Intent arg0) {
 		return mBinder;
 	}
@@ -214,7 +214,6 @@ public class UpdaterService extends Service {
 		return convertToHex(sha1hash);
 	}
 
-	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		return START_STICKY;
 	}

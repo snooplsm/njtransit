@@ -7,6 +7,16 @@ public class Preferences {
 	}
 	
 	private Unit units = Unit.ENGLISH;
+	
+	private Boolean findScheduleOnLaunch = true;
+
+	public Boolean getFindScheduleOnLaunch() {
+		return findScheduleOnLaunch;
+	}
+
+	public void setFindScheduleOnLaunch(Boolean findScheduleOnLaunch) {
+		this.findScheduleOnLaunch = findScheduleOnLaunch;
+	}
 
 	public Unit getUnits() {
 		return units;
