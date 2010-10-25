@@ -1,2 +1,3 @@
-bin
-gen/com/njtransit/R.java
+^/bin
+^/gen/com/njtransit/R.java
+^/target

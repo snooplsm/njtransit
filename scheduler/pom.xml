@@ -39,15 +39,6 @@
 
 	</repositories>
 	<build>
-		<resources>
-			<resource>
-				<directory>${resourceOutputDirectory}</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<plugins>
@@ -98,6 +89,14 @@
 					<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
 					<packageName>${packageName}</packageName>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>touch</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

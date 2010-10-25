@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010090101" android:versionName="2010-09-01" package="com.njtransit.rail">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010090101" android:versionName="2010-09-01" package="com.njtransit">
 	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="6"/>
-	<application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/OrangeTheme">
+	<application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/OrangeTheme" package="com.njtransit.rail">
 		<activity android:label="@string/app_name" android:name=".StationListActivity" android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
