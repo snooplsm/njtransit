@@ -8,12 +8,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
+import com.njtransit.model.StopsQueryResult;
 
 public class ExampleActivity extends Activity implements LocationListener  {
 
@@ -45,13 +45,16 @@ public class ExampleActivity extends Activity implements LocationListener  {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.jumper);
-
+		DeviceInformation i = DeviceInformation.getDeviceInformatino(this);
+		String uuid = i.getUuid();
 		if(session.getAdapter() == null) {
 			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
-			//session.setServices(a.getServices());
+			session.setServices(a.getServices());
 			session.setStations(a.getAllStations());
+			session.setDepartureStation(session.getStation(148));
+			session.setArrivalStation(session.getStation(105));
 			//getApplicationContext().startService(new Intent(getApplicationContext(),UpdaterService.class));
 		}
 		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
@@ -73,6 +76,20 @@ public class ExampleActivity extends Activity implements LocationListener  {
 				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
 				startActivityForResult(intent, ARRIVAL_REQUEST_CODE);
 			}
+		});
+		
+		Button getSchedule = (Button)findViewById(R.id.get_schedule);
+		getSchedule.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				new Thread() {
+					public void run() {
+						final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
+					}
+				}.start();
+			}
+			
 		});
 	}
 	

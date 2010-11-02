@@ -8,13 +8,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.njtransit.domain.AlternateService;
+import com.njtransit.domain.IService;
 import com.njtransit.domain.Service;
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
@@ -103,10 +107,10 @@ public class DatabaseAdapter {
 		return stations;
 	}
 
-	public ArrayList<Service> getServices() {
+	public ArrayList<IService> getServices() {
 		Cursor cursor = db.rawQuery("select service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday from calendar", null);
 		cursor.moveToFirst();
-		ArrayList<Service> services = new ArrayList<Service>(cursor.getCount());
+		ArrayList<IService> services = new ArrayList<IService>(cursor.getCount());
 		for(int i = 0; i < cursor.getCount(); i++) {
 			boolean[] result = new boolean[7];
 			result[0] = cursor.getInt(1)==1;
@@ -125,7 +129,125 @@ public class DatabaseAdapter {
 		return services;
 	}
 
-	public StopsQueryResult getStopTimes(final Map<Integer, Service> services, Station depart, Station arrive, int...days) {
+	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive) {
+		try {
+			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH)+1;
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			String today = year+"-"+(month<10 ? "0"+month : month)+"-"+(day < 10 ? ("0"+day) : day);
+			cal.add(Calendar.DAY_OF_MONTH, 1);
+			int year2 = cal.get(Calendar.YEAR);
+			int month2 = cal.get(Calendar.MONTH)+1;
+			int day2 = cal.get(Calendar.DAY_OF_MONTH);
+			String tomorrow = year2+"-"+(month2<10 ? "0"+month2 : month2)+"-"+(day2 < 10 ? ("0"+day2) : day2);
+			Cursor c = db.rawQuery("select service_id, calendar_date, exception_type from calendar_dates where date(calendar_date,'unixepoch') in ('"+today+"', '"+tomorrow+"') group by service_id",null);
+			
+			Map<Integer, IService> services = new HashMap<Integer,IService>(c.getCount());
+			for(int i = 0; i < c.getCount(); i++) {
+				c.moveToNext();
+				int id = c.getInt(0);
+				long date = c.getLong(1);
+				Calendar dateCal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+				dateCal.setTimeInMillis(date);
+				int exception = c.getInt(2);
+				services.put(id,new AlternateService(id,dateCal,exception));
+			}
+			c.close();
+			StringBuilder b = new StringBuilder(" service_id=-1 ");
+			for(Map.Entry<Integer, IService> k : services.entrySet()) {
+				b.append(" or ");
+				b.append(" service_id=");
+				b.append(services.get(k.getKey()).getId());
+			}
+			//String sql = String.format("select t.id from trips t join stop_times st on (t.id = st.trip_id and st.stop_id = %s)  where t.service_id in (%s) ",arrive.getId(),b);
+			String sql = String.format("select stop_id,sequence,arrival,departure,trip_id from stop_times st where (st.stop_id=%s or st.stop_id=%s) and st.trip_id in (select id from trips where %s)",arrive.getId(),depart.getId(),b);
+			// (select id from %s) AND st.sequence < sp.sequence order by st.departure",arrive.getId(),depart.getId(),tableName), null);
+			c = db.rawQuery(sql,null);
+			int count = c.getCount();
+			long stSequence = -1;
+			long spSequence = -1;
+			//List<TempStopTime> arrivals = new ArrayList<TempStopTime>(count/2);
+			//List<TempStopTime> departures = new ArrayList<TempStopTime>(count/2);
+			Map<Integer,TempStopTime> arrivals = new HashMap<Integer,TempStopTime>();
+			Map<Integer,TempStopTime> departures = new HashMap<Integer,TempStopTime>();
+			for(int i = 0; i < count; i++) {
+				c.moveToNext();
+				long stopId = c.getLong(0);
+				int sequence = c.getInt(1);
+				long departure = c.getLong(2);
+				long arrival = c.getLong(3);	
+				int tripId = c.getInt(4);
+				if(stopId==arrive.getId()) {
+					arrivals.put(tripId,new TempStopTime(tripId,stopId,sequence,departure,arrival));
+				} else {
+					departures.put(tripId,new TempStopTime(tripId,stopId,sequence,departure,arrival));
+				}				
+			}
+			c.close();
+			List<Stop> times = new ArrayList<Stop>();
+			b = new StringBuilder("-1");
+			Set<Integer> tripIds = new HashSet<Integer>();
+			for(Map.Entry<Integer, TempStopTime> s : arrivals.entrySet()) {
+				TempStopTime departure = departures.get(s.getKey());
+				if(departure==null) {
+					continue;
+				}
+				if(s.getValue().sequence<departure.sequence) {
+//					Calendar dc = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+//					dc.setTimeInMillis(departure.departure);
+//					dc.set(Calendar.YEAR, now.get(Calendar.YEAR));
+//					dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+//					dc.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
+//					dc.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));
+//					dc.set(Calendar.SECOND, 0);
+//					Calendar ac = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+//					ac.setTimeInMillis(s.getValue().arrival);
+//					temp.setTime(DF.parse(arrv));
+//					ac.set(Calendar.YEAR, now.get(Calendar.YEAR));
+//					ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+//					ac.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
+//					ac.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));			
+//					ac.set(Calendar.SECOND, 0);
+//					if(ac.get(Calendar.DAY_OF_YEAR)!=dc.get(Calendar.DAY_OF_YEAR)) {
+//						ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+//						dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+//					}
+//					if(ac.get(Calendar.HOUR_OF_DAY)<dc.get(Calendar.HOUR_OF_DAY)) {
+//						ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR)+1);
+//					}
+					//Stop stop = new Stop(s.getKey(),Calendar.getInstance(TimeZone.getTimeZone("UTC")).set)
+					Stop stop = null;
+					times.add(stop);
+					tripIds.add(s.getKey());
+				}
+			}
+			return new StopsQueryResult(depart, arrive, 0L, 1L, getTrips(services, tripIds), times);
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private class TempStopTime {
+		
+		private int sequence;
+		private long departure;
+		private long arrival;
+		private long stopId;
+		private int tripId;
+		public TempStopTime(int tripId,long stopId,int sequence, long departure, long arrival) {
+			this.tripId = tripId;
+			this.stopId = stopId;
+			this.sequence = sequence;
+			this.departure = departure;
+			this.arrival = arrival;
+		}
+		
+		
+	}
+	
+	public StopsQueryResult getStopTimes(final Map<Integer, IService> services, Station depart, Station arrive, int...days) {
 		db.beginTransaction();
 
 		StopsQueryResult sqr = null;
@@ -138,6 +260,9 @@ public class DatabaseAdapter {
 			String calendarSql = null;
 			Cursor c;
 			ArrayList<Integer> count = new ArrayList<Integer>();
+			if(services.size()==0) {
+				
+			} else {
 			if(days.length>0) {
 				String query = "";
 				for(int i = 0 ; i < days.length; i++) {
@@ -226,10 +351,11 @@ public class DatabaseAdapter {
 			}
 			c.close();
 			db.execSQL("drop table " + tableName);
-			HashMap<Integer,Service> trips =  getTrips(services, tripIds);
+			HashMap<Integer,IService> trips =  getTrips(services, tripIds);
 			 sqr = new StopsQueryResult(depart,arrive,queryStart,queryEnd,trips,stops);
+			}
 		} catch (Throwable t) {
-			t.printStackTrace();
+			throw new RuntimeException(t);
 		} finally {			
 			db.endTransaction();
 		}
@@ -270,8 +396,7 @@ public class DatabaseAdapter {
 		return trips;
 	}
 
-	public HashMap<Integer, Service> getTrips(Map<Integer, Service> services, Collection<Integer> tripIds) {
-		db.beginTransaction();
+	public HashMap<Integer, IService> getTrips(Map<Integer, IService> services, Collection<Integer> tripIds) {
 		StringBuilder b = new StringBuilder("(");
 		for(Iterator<Integer> i = tripIds.iterator(); i.hasNext();) {
 			b.append(i.next());
@@ -282,13 +407,12 @@ public class DatabaseAdapter {
 		b.append(")");
 		Cursor cursor = db.rawQuery(String.format("select t.id, t.service_id from trips t where t.id in %s", b.toString()),null);
 		cursor.moveToFirst();
-		HashMap<Integer, Service> tripToService = new HashMap<Integer,Service>();
+		HashMap<Integer, IService> tripToService = new HashMap<Integer,IService>();
 		for(int i = 0; i < cursor.getCount(); i++) {
 			tripToService.put(cursor.getInt(0),services.get(cursor.getInt(1)));
 			cursor.moveToNext();
 		}
 		cursor.close();
-		db.endTransaction();
 		return tripToService;
 	}
 

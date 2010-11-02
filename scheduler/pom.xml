@@ -34,9 +34,17 @@
 			<version>20090211</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.admob</groupId>
+			<artifactId>sdk-android</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<repositories>
-
+		<repository>
+			<id>ryan</id>
+			<url>http://ryangravener.com/maven</url>
+		</repository>
 	</repositories>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -126,9 +134,9 @@
 					<zipalign>
 						<verbose>true</verbose>
 					</zipalign>
+					<genDirectory>gen</genDirectory>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-					<generatedSourcesDirectory>gen</generatedSourcesDirectory>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>
@@ -150,7 +158,7 @@
 			<properties>
 				<artifactId>njtransit-rail</artifactId>
 				<url>http://wmwm.us/njtransit</url>
-				<name>NJTransit Rail</name>		
+				<name>NJTransit Rail</name>
 				<androidManifestTarget>../schedule-providers/njtransit-rail/AndroidManifest.xml</androidManifestTarget>
 				<resourceOverlayDirectory>../schedule-providers/njtransit-rail/res</resourceOverlayDirectory>
 				<assetsDirectory>../schedule-providers/njtransit-rail/assets</assetsDirectory>

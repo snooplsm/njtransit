@@ -17,8 +17,12 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		if(oldVersion<2) {
-			version2(db);
+		int newerVersion = oldVersion+1;
+		while(newerVersion <= newVersion) {
+			if(newerVersion==2) {
+				version2(db);
+			}		
+			newerVersion++;
 		}
 	}
 	
@@ -29,6 +33,7 @@ public class LocalStorageHelper extends SQLiteOpenHelper {
 
 	private void version2(SQLiteDatabase db) {
 		db.execSQL("create table preferences (name varchar(25) unique, value varchar(100))");
+		db.execSQL("create table logs (id integer primary key autoincrement, created integer, data text)");
 	}
 	
 	private void version1(SQLiteDatabase db) {

@@ -3,6 +3,7 @@ package com.njtransit.model;
 import java.util.List;
 import java.util.Map;
 
+import com.njtransit.domain.IService;
 import com.njtransit.domain.Service;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
@@ -13,11 +14,11 @@ public class StopsQueryResult {
 	
 	private Long queryStart,queryEnd;
 	
-	private Map<Integer,Service> tripToService;
+	private Map<Integer,IService> tripToService;
 	
 	private List<Stop> stops;
 	
-	public StopsQueryResult(Station depart, Station arrive, Long queryStart, Long queryEnd, Map<Integer,Service> tripToService, List<Stop> stops) {
+	public StopsQueryResult(Station depart, Station arrive, Long queryStart, Long queryEnd, Map<Integer, IService> tripToService, List<Stop> stops) {
 		this.depart = depart;
 		this.arrive = arrive;
 		this.queryEnd = queryEnd;
@@ -46,7 +47,7 @@ public class StopsQueryResult {
 		return queryEnd;
 	}
 
-	public Map<Integer, Service> getTripToService() {
+	public Map<Integer, IService> getTripToService() {
 		return tripToService;
 	}
 

@@ -54,15 +54,15 @@ public class Session  {
 
 	private List<Station> stations;
 	
-	private Map<Integer, Service> services;
+	private Map<Integer, IService> services;
 	
-	public Map<Integer, Service> getServices() {
+	public Map<Integer, IService> getServices() {
 		return services;
 	}
 
-	public void setServices(List<Service> services) {
-		this.services = new HashMap<Integer,Service>();
-		for(Service s : services) {
+	public void setServices(List<IService> services) {
+		this.services = new HashMap<Integer,IService>();
+		for(IService s : services) {
 			this.services.put(s.getId(), s);
 		}
 	}

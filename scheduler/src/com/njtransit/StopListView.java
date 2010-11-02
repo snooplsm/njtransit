@@ -14,7 +14,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.njtransit.domain.Service;
+import com.njtransit.domain.IService;
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
@@ -61,7 +61,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				Stop closest = null;
 				Long closestDiff = Long.MAX_VALUE;
 				for (Stop stop : sqr.getStops()) {
-					Service service = sqr.getTripToService()
+					IService service = sqr.getTripToService()
 							.get(stop.getTripId());
 					if (service.isToday()) {
 						Long diff = now

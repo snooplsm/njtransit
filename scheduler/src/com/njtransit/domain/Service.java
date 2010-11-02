@@ -2,7 +2,7 @@ package com.njtransit.domain;
 
 import java.util.Calendar;
 
-public class Service implements Comparable<Service> {
+public class Service implements IService, Comparable<Service> {
 
 	private int id;
 	private int flag;

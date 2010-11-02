@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -48,7 +50,8 @@ public class UpdaterService extends Service {
 
 	private DefaultHttpClient client;
 
-	
+	private Timer timer;
+
 	public IBinder onBind(Intent arg0) {
 		return mBinder;
 	}
@@ -56,119 +59,137 @@ public class UpdaterService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Context ctx = getApplicationContext();
-		int lastVersion = Root.getDatabaseVersion(ctx);
-		int version = Root.getVersion(ctx);
-		Date lastChecked = Root.getLastChecked(ctx);
-		if (lastChecked != null) {
-			long now = System.currentTimeMillis();
-			Long updateThreshold = Long.parseLong(getResources().getString(
-					R.string.update_threshold));
-			if (now - lastChecked.getTime() < updateThreshold) {
-				this.stopSelf();
-				return;
-			}
-		}
-		HttpParams params = new BasicHttpParams();
-		HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
-		HttpProtocolParams.setContentCharset(params, "utf-8");
+		timer = new Timer(false);
+		timer.schedule(new TimerTask() {
 
-		params.setBooleanParameter("http.protocol.expect-continue", false);
-		SchemeRegistry registry = new SchemeRegistry();
-		registry.register(new Scheme("http", PlainSocketFactory
-				.getSocketFactory(), 80));
-		ThreadSafeClientConnManager manager = new ThreadSafeClientConnManager(
-				params, registry);
-		HttpConnectionParams.setConnectionTimeout(params, 2000);
-		HttpConnectionParams.setSoTimeout(params, 2000);
-		client = new DefaultHttpClient(manager, params);
-		String postUrl = getResources().getString(R.string.update_url);
-		HttpPost post = new HttpPost(postUrl);
-		try {
-			HttpResponse response = client.execute(post);
-			int status = response.getStatusLine().getStatusCode();
-			if (status >= 200 && status < 300) {
-				String updateString = read(response.getEntity().getContent());
-				JSONObject update = new JSONObject(updateString);
-				Integer newestVersion = update.getInt("version");
-				String sha = update.getString("sha");
-				Long length = update.getLong("length");
-				if (newestVersion > version && newestVersion >lastVersion) {
-					String url = update.getString("url");
-					HttpGet get = new HttpGet(url);
-					File fileDir = ctx.getFilesDir();
-					File downloads = new File(fileDir, "downloads");
-					downloads.mkdirs();
-					for (File file : downloads.listFiles()) {
-						if (!file.getName().endsWith(newestVersion + ".tmp")) {
-							file.delete();
-						}
+			public void run() {
+				Context ctx = getApplicationContext();
+				int lastVersion = Root.getDatabaseVersion(ctx);
+				int version = Root.getVersion(ctx);
+				Date lastChecked = Root.getLastChecked(ctx);
+				if (lastChecked != null) {
+					long now = System.currentTimeMillis();
+					Long updateThreshold = Long.parseLong(getResources()
+							.getString(R.string.update_threshold));
+					if (now - lastChecked.getTime() < updateThreshold) {
+						UpdaterService.this.stopSelf();
+						return;
 					}
-					File newDB = new File(downloads, newestVersion + ".tmp");
-					Long newDBLength = newDB.length();
-					boolean resume = false;
-					if (newDB.exists()) {
-						if (length.equals(newDBLength)) {
-							String newSha = SHA1(newDB);
-							if(newSha.equals(sha)) {
-								Root.saveDatabaseVersion(ctx, newestVersion);
-								Root.setMoveOnRestart(ctx, "downloads/"+newDB.getName());
-								Root.setLastChecked(ctx, System.currentTimeMillis());
+				}
+				HttpParams params = new BasicHttpParams();
+				HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+				HttpProtocolParams.setContentCharset(params, "utf-8");
+
+				params.setBooleanParameter("http.protocol.expect-continue",
+						false);
+				SchemeRegistry registry = new SchemeRegistry();
+				registry.register(new Scheme("http", PlainSocketFactory
+						.getSocketFactory(), 80));
+				ThreadSafeClientConnManager manager = new ThreadSafeClientConnManager(
+						params, registry);
+				HttpConnectionParams.setConnectionTimeout(params, 2000);
+				HttpConnectionParams.setSoTimeout(params, 2000);
+				client = new DefaultHttpClient(manager, params);
+				String postUrl = getResources().getString(R.string.update_url);
+				HttpPost post = new HttpPost(postUrl);
+				try {
+					HttpResponse response = client.execute(post);
+					int status = response.getStatusLine().getStatusCode();
+					if (status >= 200 && status < 300) {
+						String updateString = read(response.getEntity()
+								.getContent());
+						JSONObject update = new JSONObject(updateString);
+						Integer newestVersion = update.getInt("version");
+						String sha = update.getString("sha");
+						Long length = update.getLong("length");
+						if (newestVersion > version
+								&& newestVersion > lastVersion) {
+							String url = update.getString("url");
+							HttpGet get = new HttpGet(url);
+							File fileDir = ctx.getFilesDir();
+							File downloads = new File(fileDir, "downloads");
+							downloads.mkdirs();
+							for (File file : downloads.listFiles()) {
+								if (!file.getName().endsWith(
+										newestVersion + ".tmp")) {
+									file.delete();
+								}
+							}
+							File newDB = new File(downloads, newestVersion
+									+ ".tmp");
+							Long newDBLength = newDB.length();
+							boolean resume = false;
+							if (newDB.exists()) {
+								if (length.equals(newDBLength)) {
+									String newSha = SHA1(newDB);
+									if (newSha.equals(sha)) {
+										Root.saveDatabaseVersion(ctx,
+												newestVersion);
+										Root.setMoveOnRestart(ctx, "downloads/"
+												+ newDB.getName());
+										Root.setLastChecked(ctx,
+												System.currentTimeMillis());
+									}
+								} else {
+									if (newDBLength > length) {
+										newDB.delete();
+									} else {
+										resume = true;
+										get.addHeader("Range",
+												"bytes=" + newDB.length() + "-");
+									}
+								}
+							}
+							response = client.execute(get);
+							status = response.getStatusLine().getStatusCode();
+							if (status >= 200 && status < 300) {
+								byte[] buffer = new byte[1024 * 5];
+								InputStream in = response.getEntity()
+										.getContent();
+								int read;
+								FileOutputStream fos = null;
+
+								newDB.createNewFile();
+								try {
+									fos = new FileOutputStream(newDB, resume);
+									while ((read = in.read(buffer)) != -1) {
+										fos.write(buffer, 0, read);
+									}
+									fos.flush();
+									fos.close();
+									String newDBSha = SHA1(newDB);
+									if (sha.equals(newDBSha)) {
+										Root.saveDatabaseVersion(ctx,
+												newestVersion);
+										Root.setMoveOnRestart(ctx, "downloads/"
+												+ newDB.getName());
+										Root.setLastChecked(ctx,
+												System.currentTimeMillis());
+									} else {
+										newDB.delete();
+									}
+
+								} catch (Exception e) {
+
+								} finally {
+									if (fos != null) {
+										fos.flush();
+										fos.close();
+									}
+								}
 							}
 						} else {
-							if (newDBLength > length) {
-								newDB.delete();
-							} else {
-								resume = true;
-								get.addHeader("Range",
-										"bytes=" + newDB.length() + "-");
-							}
+							Root.setLastChecked(ctx, System.currentTimeMillis());
 						}
-					}
-					response = client.execute(get);
-					status = response.getStatusLine().getStatusCode();
-					if (status >= 200 && status < 300) {
-						byte[] buffer = new byte[1024 * 5];
-						InputStream in = response.getEntity().getContent();
-						int read;
-						FileOutputStream fos = null;
 
-						newDB.createNewFile();
-						try {
-							fos = new FileOutputStream(newDB, resume);
-							while ((read = in.read(buffer)) != -1) {
-								fos.write(buffer, 0, read);
-							}
-							fos.flush();
-							fos.close();
-							String newDBSha = SHA1(newDB);
-							if(sha.equals(newDBSha)) {
-								Root.saveDatabaseVersion(ctx, newestVersion);
-								Root.setMoveOnRestart(ctx, "downloads/"+newDB.getName());
-								Root.setLastChecked(ctx, System.currentTimeMillis());
-							} else {
-								newDB.delete();
-							}
-							
-						} catch (Exception e) {
-
-						} finally {
-							if (fos != null) {
-								fos.flush();
-								fos.close();
-							}
-						}
 					}
-				} else {
-					Root.setLastChecked(ctx, System.currentTimeMillis());
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+
 				}
-
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-		}
+		}, 30000);
 	}
 
 	private static String convertToHex(byte[] data) {
@@ -187,9 +208,10 @@ public class UpdaterService extends Service {
 		return buf.toString();
 	}
 
-	public static String SHA1(File file) throws NoSuchAlgorithmException, FileNotFoundException {
+	public static String SHA1(File file) throws NoSuchAlgorithmException,
+			FileNotFoundException {
 		FileInputStream fis = new FileInputStream(file);
-		return SHA1(fis);				
+		return SHA1(fis);
 	}
 
 	public static String SHA1(InputStream is) throws NoSuchAlgorithmException {
