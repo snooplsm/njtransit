@@ -74,41 +74,70 @@ public class DatabaseAdapter {
 		Cursor cursor = db.query("stops", STATION_COLUMNS, null, null, null, null, "name");
 		int count = cursor.getCount();
 		ArrayList<Station> stations = new ArrayList<Station>(count);
-		cursor.moveToFirst();
-		ArrayList<String> names = new ArrayList<String>(count);		
+		cursor.moveToFirst();		
 		while(count>0) {
 			count--;
 			String name = cursor.getString(1);
 			int id = cursor.getInt(0);
-			String modifiedName = null;
-			for(int i = names.size()-1;i>=0;i--) {
-				String lastName = names.get(i);
-				int id2 = stations.get(i).getId();
-				String descriptiveName = stations.get(i).getDescriptiveName();
-				if(descriptiveName==null && lastName.equalsIgnoreCase(name)) {
-					Cursor nameCursor = db.rawQuery(String.format("select routes.long_name, stop_times.stop_id from routes join trips on (trips.route_id=routes.id) join stop_times on (stop_times.stop_id=%s or stop_times.stop_id=%s) group by stop_times.stop_id limit 2",id,id2), null);					
-					for(int j = 0; j < nameCursor.getCount(); j++) {
-						nameCursor.moveToNext();
-						if(nameCursor.getInt(1)==id) {
-							Station s = stations.get(i);
-							s.setDescriptiveName(name + " - " +  nameCursor.getString(0));
-						} else {
-							modifiedName = name + " - " +  nameCursor.getString(0);
-						}
-					}
-				}else {
-					break;
-				}
-				
-			}
+			
 			Station station = new Station(id, name, cursor.getDouble(2), cursor.getDouble(3), null);
-			if(modifiedName!=null) {
-				station.setDescriptiveName(modifiedName);
-			}
 			stations.add(station);
-			names.add(name);
 			cursor.moveToNext();
 		}
+		Set<Integer> dupes = new HashSet<Integer>();
+		for(int i = 0; i < stations.size(); i++) {
+			Station a = stations.get(i);
+			for(int j = i+1; j < stations.size(); j++) {
+				Station b = stations.get(j);
+				if(b.getName().equals(a.getName())) {
+					dupes.add(a.getId());
+					dupes.add(b.getId());
+				}
+			}
+		}
+		if(!dupes.isEmpty()) {
+			StringBuilder b = new StringBuilder();
+			for(Iterator<Integer> i = dupes.iterator(); i.hasNext();) {
+				b.append(i.next()).append(" ");
+				if(i.hasNext()) {
+					b.append(" , ");
+				}
+			}
+			Cursor nameCursor = db.rawQuery(String.format("select routes.long_name, stop_times.stop_id from stop_times join trips on (stop_times.trip_id=trips.id) join routes on (routes.id=trips.route_id) where stop_times.stop_id in (%s) group by stop_times.stop_id",b),null);
+			for(int i = 0; i < nameCursor.getCount(); i++) {
+				nameCursor.moveToNext();
+				String name = nameCursor.getString(0);
+				Integer stationId = nameCursor.getInt(1);
+				for(Station s : stations) {
+					if(s.getId().equals(stationId)) {
+						s.setDescriptiveName(s.getName() + " - " + name);
+					}
+				}
+			}
+			nameCursor.close();
+		}
+		
+//		String modifiedName = null;
+//		for(int i = names.size()-1;i>=0;i--) {
+//			String lastName = names.get(i);
+//			int id2 = stations.get(i).getId();
+//			String descriptiveName = stations.get(i).getDescriptiveName();
+//			if(descriptiveName==null && lastName.equalsIgnoreCase(name)) {
+//				Cursor nameCursor = db.rawQuery(String.format("select routes.long_name, stop_times.stop_id from routes join trips on (trips.route_id=routes.id) join stop_times on (stop_times.stop_id=%s or stop_times.stop_id=%s) group by stop_times.stop_id limit 2",id,id2), null);					
+//				for(int j = 0; j < nameCursor.getCount(); j++) {
+//					nameCursor.moveToNext();
+//					if(nameCursor.getInt(1)==id) {
+//						Station s = stations.get(i);
+//						s.setDescriptiveName(name + " - " +  nameCursor.getString(0));
+//					} else {
+//						modifiedName = name + " - " +  nameCursor.getString(0);
+//					}
+//				}
+//			}else {
+//				break;
+//			}
+//			
+//		}
 		cursor.close();
 		return stations;
 	}
