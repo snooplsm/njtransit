@@ -110,7 +110,11 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 		if (s != null) {
 			TextView name = (TextView) v.findViewById(R.id.station_name);
 			if (name != null) {
-				name.setText(s.getName());
+				if(s.getDescriptiveName()!=null) {
+					name.setText(s.getDescriptiveName());
+				} else {
+					name.setText(s.getName());
+				}
 			}
 			TextView distance = (TextView) v
 					.findViewById(R.id.station_distance);

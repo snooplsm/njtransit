@@ -1,7 +1,10 @@
 package com.njtransit;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,6 +38,8 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 	private List<Stop> stops = new ArrayList<Stop>();
 	
 	private Long started = System.currentTimeMillis();
+	
+	private SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	public StopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -52,7 +57,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				final Station arrive = session.getArrivalStation();
 				final Station departure = session.getDepartureStation();
 
-				final StopsQueryResult sqr = session.getAdapter().getStopTimes(session.getServices(), departure, arrive);
+				final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(departure, arrive);
 
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
@@ -63,22 +68,47 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				for (Stop stop : sqr.getStops()) {
 					IService service = sqr.getTripToService()
 							.get(stop.getTripId());
-					if (service.isToday()) {
-						Long diff = now
-								- stop.getDepart()
-										.getTimeInMillis();
+					Calendar relativeTime = Calendar.getInstance();
+					relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
+					relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
+					if (service.isToday()) {	
+						String time = DF.format(relativeTime.getTime());
+						Long diff =  now - relativeTime.getTimeInMillis();
+						
 						if (diff > 0 && diff < now
 								&& diff < closestDiff) {
 							closest = stop;
 							closestDiff = diff;
 						}
 						today.add(stop);
-					} else {
+					} 
+					if (service.isTomorrow()) {
+						relativeTime.add(Calendar.DAY_OF_YEAR, 1);
+						String time = DF.format(relativeTime.getTime());
+						Long diff =  now - relativeTime.getTimeInMillis();
+						
+						if (diff > 0 && diff < now
+								&& diff < closestDiff) {
+							closest = stop;
+							closestDiff = diff;
+						}
 						tomorrow.add(stop);
 					}
+					
 				}
+				Comparator<Stop> comparator = new Comparator<Stop>() {
+
+					@Override
+					public int compare(Stop o1, Stop o2) {
+						return o1.getDepart().compareTo(o2.getDepart());
+					}
+					
+				};
+				Collections.sort(today,comparator);
+				Collections.sort(tomorrow,comparator);
 				today.addAll(tomorrow);
 
+				
 				stops.addAll(today);
 
 				return closest;
@@ -166,9 +196,7 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 			timer = new Timer(false);
 			timer.schedule(newUpdaterThread(), 300);
 			Calendar c = Calendar.getInstance();
-			c.clear(Calendar.MILLISECOND);
-			c.clear(Calendar.SECOND);
-			c.set(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
+			c.add(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
 			timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
 		}
 	}

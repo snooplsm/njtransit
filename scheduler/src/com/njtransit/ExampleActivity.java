@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
-import com.njtransit.model.StopsQueryResult;
 
 public class ExampleActivity extends Activity implements LocationListener  {
 
@@ -30,7 +29,7 @@ public class ExampleActivity extends Activity implements LocationListener  {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode==RESULT_OK) {
-			Station station = session.getStation(data.getIntExtra("stationId", -1));
+			Station station = session.getStation(data.getIntExtra("stationId",-1));
 			if(requestCode==DEPARTURE_REQUEST_CODE) {
 				session.setDepartureStation(station);
 				departure.setText(station.getName());
@@ -51,7 +50,6 @@ public class ExampleActivity extends Activity implements LocationListener  {
 			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
-			session.setServices(a.getServices());
 			session.setStations(a.getAllStations());
 			session.setDepartureStation(session.getStation(148));
 			session.setArrivalStation(session.getStation(105));
@@ -83,14 +81,25 @@ public class ExampleActivity extends Activity implements LocationListener  {
 
 			@Override
 			public void onClick(View arg0) {
-				new Thread() {
-					public void run() {
-						final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
-					}
-				}.start();
+//				new Thread() {
+//					public void run() {
+//						final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
+//					}
+//				}.start();
+				Intent intent = new Intent(getApplicationContext(), StopActivity.class);
+				startActivity(intent);
 			}
 			
 		});
+	}
+	
+	/**
+	 * Expose for testing purposes.
+	 * 
+	 * @return
+	 */
+	public Session getSession() {
+		return session;
 	}
 	
 	private LocationManager getLocations() {

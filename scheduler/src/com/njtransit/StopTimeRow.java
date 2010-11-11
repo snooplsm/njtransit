@@ -99,6 +99,6 @@ public class StopTimeRow extends LinearLayout {
 		DateFormat f = new SimpleDateFormat("hh:mm aa");
 		String depart = f.format(departing.getTime());
 		String arrive = f.format(arriving.getTime());
-		return String.format("%s - %s", depart, arrive).toLowerCase();
+		return String.format("%s - %s    %s", depart, arrive,stop.getTripId()).toLowerCase();
 	}
 }

@@ -6,12 +6,20 @@ public class Station {
 	
 	private String name;
 	
+	private String descriptiveName;
+	
+	private String altered;
+	
 	private Double latitude;
 	
 	private Double longitude;
 	
 	private Integer zoneId;
 	
+	public String getDescriptiveName() {
+		return descriptiveName;
+	}
+
 	public Station(Integer id, String name, Double latitude, Double longitude,
 			Integer zoneId) {
 		this.id = id;
@@ -22,6 +30,14 @@ public class Station {
 	}
 	
 	private void setName(String str) {
+		this.name = makePretty(str);
+	}
+	
+	public void setDescriptiveName(String str) {
+		this.descriptiveName = makePretty(str);
+	}
+	
+	private String makePretty(String str) {
 		char lastChar=' ';
 		StringBuilder sb = new StringBuilder(str);
 		for(int i = 0; i < sb.length();i++) {
@@ -33,7 +49,7 @@ public class Station {
 			}
 			lastChar = nowChar;
 		}
-		this.name = sb.toString();
+		return sb.toString();
 	}
 
 	public Integer getId() {

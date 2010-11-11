@@ -89,24 +89,16 @@
 					</sources>
 				</configuration>
 			</plugin>
-			<!--<plugin>
-				<groupId>com.gent</groupId>
+			<!--
+				<plugin> <groupId>com.gent</groupId>
 				<artifactId>maven-scheduler-plugin</artifactId>
-				<version>1.0-SNAPSHOT</version>
-				<configuration>
-					<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
-					<packageName>${packageName}</packageName>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>touch</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			--><plugin>
+				<version>1.0-SNAPSHOT</version> <configuration>
+				<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
+				<packageName>${packageName}</packageName> </configuration>
+				<executions> <execution> <phase>compile</phase> <goals>
+				<goal>touch</goal> </goals> </execution> </executions> </plugin>
+			-->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3</version>
