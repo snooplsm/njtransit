@@ -526,8 +526,8 @@ public class DatabaseAdapter {
 					}
 				}
 			}
-			helper.createDataBase(dbFile.getAbsolutePath());
-			helper.openDataBase(dbFile.getAbsolutePath());
+			helper.createDataBase(dbFile.getName());
+			helper.openDataBase(dbFile.getName());
 			db = helper.getWritableDatabase();
 			localStorageHelper = new LocalStorageHelper(context);
 			localDb = localStorageHelper.getWritableDatabase();

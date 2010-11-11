@@ -64,12 +64,12 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 		Collections.sort(partions);
 		OutputStream out = null;
 		try {
-			File file = new File(at);
+			File file = ctx.getDatabasePath(at);
 			File parent = file.getParentFile();
 			if (parent != null) {
 				parent.mkdirs();
 			}
-			out = new FileOutputStream(at);
+			out = new FileOutputStream(file);
 			byte[] buffer = new byte[1024];
 			for (String partition : partions) {
 				final InputStream in = assets.open("database/"+partition);
@@ -89,8 +89,8 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	public void openDataBase(String at) throws SQLException {
-		db = SQLiteDatabase.openDatabase(at, null,
+	public void openDataBase(String at) throws SQLException {		
+		db = SQLiteDatabase.openDatabase(ctx.getDatabasePath(at).getAbsolutePath(), null,
 				SQLiteDatabase.OPEN_READWRITE);
 	}
 
