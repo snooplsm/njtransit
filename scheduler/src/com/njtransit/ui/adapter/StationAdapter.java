@@ -8,13 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.location.Location;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
