@@ -101,8 +101,6 @@ public class StationListView extends ListView {
 		setAdapter(new StationAdapter(context, R.layout.station_row,
 				StationAdapter.ALPHA, session.getStations(), session));
 		setType(attrs.getAttributeIntValue(null, "type", StationAdapter.ALPHA));
-		setScrollbarFadingEnabled(true);
-		setFastScrollEnabled(true);
 		setTextFilterEnabled(true);
 		setOnItemClickListener(new OnItemClickListener() {
 			@Override

@@ -50,7 +50,7 @@ public class ExampleActivity extends Activity implements LocationListener  {
 			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
-			session.setStations(a.getAllStations());
+			session.setStations(a.getStations());
 			session.setDepartureStation(session.getStation(148));
 			session.setArrivalStation(session.getStation(105));
 			//getApplicationContext().startService(new Intent(getApplicationContext(),UpdaterService.class));
