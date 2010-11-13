@@ -19,7 +19,7 @@ import com.njtransit.domain.Station;
  * station and then a destination station before forwarding control to the
  * StopListHome activity.
  */
-public class StationListActivity extends Activity {
+public class StationListActivity extends Activity implements OnJumpListener {
 
 	private StationListView stations;
 
@@ -27,10 +27,6 @@ public class StationListActivity extends Activity {
 	
 	private Session session = Session.get();
 	
-	private OnJumpListener jump;
-	
-	private JumpDialog dialog;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,26 +42,25 @@ public class StationListActivity extends Activity {
 				finish();
 			}
 		});
-		jump = new OnJumpListener() {
-
-			@Override
-			public void onJump(Character c) {
-				Object[] sections = stations.getStationAdapter().getSections();
-				for(int i = 0; i < sections.length; i++) {
-					if(sections[i].equals(c)) {
-						int pos = stations.getStationAdapter().getPositionForSection(i);
-						stations.setSelectionFromTop(pos,0);
-						break;
-					}
-				}
-			}
-
-		};
-		dialog = new JumpDialog(this, jump).only(getStationLetters())
-				.inRowsOf(5);
-		dialog.show();
+		
+		
+		
+		new JumpDialog(this, this).only(getStationLetters())
+				.inRowsOf(5).show();
 	}
 
+	@Override
+	public void onJump(Character c) {
+		Object[] sections = stations.getStationAdapter().getSections();
+		for(int i = 0; i < sections.length; i++) {
+			if(sections[i].equals(c)) {
+				int pos = stations.getStationAdapter().getPositionForSection(i);
+				stations.setSelectionFromTop(pos,0);
+				break;
+			}
+		}
+	}
+	
 	private Set<Character> getStationLetters() {
 		synchronized (this) {
 			if (stationLetters.isEmpty()) {
