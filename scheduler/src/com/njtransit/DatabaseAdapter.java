@@ -61,70 +61,6 @@ public class DatabaseAdapter {
 		cursor.close();
 		return count;
 	}
-
-	/**
-	 * This will load ~250 stations, should we page them?  Right now sqlite doesn't support trig functions so its easier to do it this way.
-	 * prob takes 8-32K of mem to represent all this data.
-	 * @return all stations
-	 */
-	public ArrayList<Station> getAllStations() {
-		long before = System.currentTimeMillis();
-		
-		Cursor cursor = db.rawQuery("select id,name,lat,lon,zone_id from stops order by name", null);
-		int count = cursor.getCount();
-		ArrayList<Station> stations = new ArrayList<Station>(count);
-		cursor.moveToFirst();
-		
-		while(count > 0) {
-			count--;
-			stations.add(new Station(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3)));
-			cursor.moveToNext();
-		}
-		cursor.close();
-		
-		Log.d("DatebaseAdapter", String.format("getAllStations (%s ms)", System.currentTimeMillis() - before));
-		
-		Set<Integer> dupes = new HashSet<Integer>();
-		for(int i = 0; i < stations.size(); i++) {
-			Station a = stations.get(i);
-			for(int j = i+1; j < stations.size(); j++) {
-				Station b = stations.get(j);
-				if(b.getName().equals(a.getName())) {
-					dupes.add(a.getId());
-					dupes.add(b.getId());
-				}
-			}
-		}
-		if(!dupes.isEmpty()) {
-			StringBuilder b = new StringBuilder();
-			for(Iterator<Integer> i = dupes.iterator(); i.hasNext();) {
-				b.append(i.next()).append(" ");
-				if(i.hasNext()) {
-					b.append(" , ");
-				}
-			}
-			
-			long beforeRouteQuery = System.currentTimeMillis();
-			
-			Cursor nameCursor = db.rawQuery(String.format("select routes.long_name, stop_times.stop_id from stop_times join trips on (stop_times.trip_id=trips.id) join routes on (routes.id=trips.route_id) where stop_times.stop_id in (%s) group by stop_times.stop_id",b),null);
-			for(int i = 0; i < nameCursor.getCount(); i++) {
-				nameCursor.moveToNext();
-				String name = nameCursor.getString(0);
-				Integer stationId = nameCursor.getInt(1);
-				for(Station s : stations) {
-					if(s.getId().equals(stationId)) {
-						s.setDescriptiveName(s.getName() + " - " + name);
-					}
-				}
-			}
-			nameCursor.close();
-
-			Log.d("DatabaseAdapter", String.format("getAllStations / route query (%s ms)", System.currentTimeMillis() - beforeRouteQuery));
-		}
-		
-		Log.d("DatebaseAdapter", String.format("getAllStations (%s ms)", System.currentTimeMillis() - before));
-		return stations;
-	}
 	
 	public ArrayList<Station> getAllStationsLike(String name) {
 		Cursor cursor = null;
@@ -177,6 +113,44 @@ public class DatabaseAdapter {
 		return services;
 	}
 
+	
+	public ArrayList<Station> getStations() {
+	    Cursor cursor = db.rawQuery("select s.stop_id, s.trip_id from stop_times s group by s.stop_id",null);
+	    ArrayList<Station> stations = new ArrayList<Station>();
+	    Map<Integer,Integer> stopIdToTrips = new HashMap<Integer,Integer>();
+	    for(int i = 0; i < cursor.getCount(); i++) {
+	      cursor.moveToNext();
+	      int stopId = cursor.getInt(0);
+	      int tripId = cursor.getInt(1);
+	      stopIdToTrips.put(stopId,tripId);
+	    }
+	    cursor.close();
+	    cursor = db.rawQuery("select r.long_name, t.id from trips t join routes r where r.id=t.route_id group by t.id",null);
+	    Map<Integer,String> tripIdToName = new HashMap<Integer,String>();
+	    for(int i = 0; i < cursor.getCount(); i++) {
+	      cursor.moveToNext();
+	      String name = cursor.getString(0);
+	      int tripId = cursor.getInt(1);
+	      tripIdToName.put(tripId, name);      
+	    }
+	    cursor.close();
+	    cursor = db.rawQuery("select id,name,lat,lon from stops",null);
+	    for(int i =0; i < cursor.getCount();i++) {
+	      cursor.moveToNext();
+	      int id = cursor.getInt(0);
+	      String name = cursor.getString(1);
+	      float lat = cursor.getFloat(2);
+	      float lng = cursor.getFloat(3);
+	      int trip = stopIdToTrips.get(id);
+	      String tripName = tripIdToName.get(trip);
+	      Station s = new Station(id,name,(double)lat,(double)lng);
+	      s.setDescriptiveName(name + " - " + tripName);
+	      stations.add(s);
+	    }
+	    cursor.close();
+	    return stations;
+	}
+	
 	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive) {
 		long before = System.currentTimeMillis();
 		
