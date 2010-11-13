@@ -8,25 +8,19 @@ public class Station {
 	
 	private String descriptiveName;
 	
-	private String altered;
-	
 	private Double latitude;
 	
 	private Double longitude;
-	
-	private Integer zoneId;
-	
-	public String getDescriptiveName() {
-		return descriptiveName;
-	}
 
-	public Station(Integer id, String name, Double latitude, Double longitude,
-			Integer zoneId) {
+	public Station(Integer id, String name, Double latitude, Double longitude) {
 		this.id = id;
 		setName(name);
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.zoneId = zoneId;
+	}
+	
+	public String getDescriptiveName() {
+		return descriptiveName;
 	}
 	
 	private void setName(String str) {
@@ -66,10 +60,6 @@ public class Station {
 
 	public String getName() {
 		return name;
-	}
-
-	public Integer getZoneId() {
-		return zoneId;
 	}
 	
 	@Override
