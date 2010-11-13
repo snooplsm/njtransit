@@ -1,4 +1,4 @@
-db.sqlite
+scheduler.sqlite
 .DS_Store
 scheduler/bin
 scheduler/gen/com/njtransit/R.java

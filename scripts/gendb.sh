@@ -7,7 +7,7 @@ if [ ! -d "scheduler" ]; then
   exit 1
 fi
 
-DB="db.sqlite"
+DB="scheduler.sqlite"
 
 if [ -f $DB ]; then
   rm $DB
