@@ -2,30 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="8dip"
+    android:paddingBottom="7dip"
+    style="@style/listItemStyle"
     android:gravity="fill_vertical">
      
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dip"
-        android:layout_weight="1"
-        android:layout_height="fill_parent">
-        <TextView
-            android:id="@+id/station_name"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:textColor="#333333"
-            android:textStyle="bold"
-        />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:id="@+id/station_distance"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textColor="#8F8F8F"
-        />
-    </LinearLayout>
+	<TextView
+	    android:id="@+id/station_name"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="2"
+	    android:textColor="#333333"
+	    android:textStyle="bold"
+	/>
+	<TextView
+		android:id="@+id/station_desc"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:singleLine="true"
+		android:ellipsize="marquee"
+	/>
+	<TextView
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1"
+	    android:id="@+id/station_distance"
+	    android:singleLine="true"
+	    android:ellipsize="marquee"
+	    android:textColor="#8F8F8F"
+	/>
 </LinearLayout>

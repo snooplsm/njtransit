@@ -3,3 +3,5 @@ scheduler.sqlite
 scheduler/bin
 scheduler/gen/com/njtransit/R.java
 scheduler/target
+scheduler/.classpath
+scheduler/.project

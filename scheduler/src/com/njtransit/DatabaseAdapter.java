@@ -115,6 +115,7 @@ public class DatabaseAdapter {
 
 	
 	public ArrayList<Station> getStations() {
+		Long nanoBefore = System.nanoTime();
 	    Cursor cursor = db.rawQuery("select s.stop_id, s.trip_id from stop_times s group by s.stop_id",null);
 	    ArrayList<Station> stations = new ArrayList<Station>();
 	    Map<Integer,Integer> stopIdToTrips = new HashMap<Integer,Integer>();
@@ -148,6 +149,24 @@ public class DatabaseAdapter {
 	      stations.add(s);
 	    }
 	    cursor.close();
+	    
+	    Set<Station> dupes = new HashSet<Station>();
+	    for(int i = 0; i < stations.size(); i++) {
+	    	Station station = stations.get(i);
+	    	for(int j = i-1; j>=0;j--) {
+	    		Station back = stations.get(j);
+	    		if(station.getName().equals(back.getName())) {
+	    			dupes.add(station);
+	    			dupes.add(back);
+	    		}
+	    	}
+	    }
+	    for(Station station : stations) {
+	    	if(!dupes.contains(station)) {
+	    		station.setDescriptiveName(null);
+	    	}
+	    }
+	    Long nanoAfter = System.nanoTime();
 	    return stations;
 	}
 	

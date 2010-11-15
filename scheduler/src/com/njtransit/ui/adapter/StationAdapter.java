@@ -75,16 +75,6 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 			List<Station> items, Session session) {
 		super(context, textViewResourceId, new ArrayList<Station>(items));
 		this.session = session;
-		setType(type);
-	}
-
-	public void setType(int type) {
-		this.type = type;
-		if (type == ALPHA) {
-			sort(ALPHA_SORT);
-		} else {
-			sort(NEARBY_SORT.setHome(session.getLastKnownLocation()));
-		}
 	}
 
 	@Override

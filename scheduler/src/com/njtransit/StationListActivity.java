@@ -14,10 +14,10 @@ import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 
 /**
- * Holds two tabs for selecting stations (in alphabetical order or by
- * proximity). This activity provides a means of selecting first a departure
- * station and then a destination station before forwarding control to the
- * StopListHome activity.
+ * List for display all the stations in a particular order.
+ * 
+ * @author rgravener
+ *
  */
 public class StationListActivity extends Activity implements OnJumpListener {
 

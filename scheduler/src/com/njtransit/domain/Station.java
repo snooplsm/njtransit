@@ -28,7 +28,11 @@ public class Station {
 	}
 	
 	public void setDescriptiveName(String str) {
-		this.descriptiveName = makePretty(str);
+		if(str==null) {
+			descriptiveName = null;
+		} else {
+			descriptiveName = makePretty(str);
+		}
 	}
 	
 	private String makePretty(String str) {
