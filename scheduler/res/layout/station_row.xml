@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:paddingBottom="7dip"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip"
+    android:paddingBottom="10dip"
+    android:orientation="vertical"
     style="@style/listItemStyle"
     android:gravity="fill_vertical">
      
@@ -10,24 +14,33 @@
 	    android:id="@+id/station_name"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_weight="2"
-	    android:textColor="#333333"
+	    android:layout_gravity="center_vertical"
+	    android:textColor="@color/station_name"
+	    android:textSize="7pt"
 	    android:textStyle="bold"
+	    android:text="Trenton Transit Center"
 	/>
+	
 	<TextView
 		android:id="@+id/station_desc"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
 		android:singleLine="true"
+		android:textSize="5pt"
 		android:ellipsize="marquee"
+		android:text="Northeast Corridor"
+		android:textColor="@color/black_start"
 	/>
 	<TextView
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_weight="1"
 	    android:id="@+id/station_distance"
+	    android:layout_gravity="center_vertical"
 	    android:singleLine="true"
+	    android:textSize="5pt"
 	    android:ellipsize="marquee"
-	    android:textColor="#8F8F8F"
+	    android:textColor="@color/dgrey_start"
+	    android:text="5.5 mi"
 	/>
 </LinearLayout>

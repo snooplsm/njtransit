@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class TransitDBHelper extends SQLiteOpenHelper {
 
@@ -45,15 +44,19 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 
 	public void createDataBase(String at) throws IOException {
 		if (!checkDataBase(at)) {
+			ProgressDialog d = ProgressDialog.show(ctx, "Installing...", "Unpackaging schedules database.");
 			try {
 				copyDataBase(at);
 			} catch (IOException e) {
 				throw new RuntimeException("Error copying database", e);
+			} finally {
+				d.cancel();
 			}
 		}
 	}
 
 	private void copyDataBase(String at) throws IOException {
+		long start = System.currentTimeMillis();
 		List<String> partions = new ArrayList<String>();
 		final String[] files = assets.list("database");
 		for (String f : files) {
@@ -87,6 +90,9 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 				out.close();
 			}
 		}
+		long end = System.currentTimeMillis();
+		Root.saveCopyDatabaseDuration(ctx, end-start);
+		Log.d(getClass().getSimpleName(), "copyDatabase(...) took " + Root.getCopyDatabaseDuration(ctx) +"ms");
 	}
 
 	public void openDataBase(String at) throws SQLException {		
@@ -104,17 +110,17 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 	private boolean checkDataBase(String at) {
 		SQLiteDatabase checkDB = null;
 		try {
+			File file = ctx.getDatabasePath(at);
 			int version = Root.getVersion(ctx);
 			int lastVersion = Root.getDatabaseVersion(ctx);
-			if(lastVersion<version) {
-				File file = ctx.getDatabasePath(at);
+			if(lastVersion<version) {				
 				if(file.exists()) {
 					file.delete();
 				}
 			}
 			//Editor e = preferences.edit().putInt("last-version", version);
-			checkDB = SQLiteDatabase.openDatabase(at, null,
-					SQLiteDatabase.OPEN_READWRITE);
+			checkDB = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null,
+					SQLiteDatabase.OPEN_READONLY);
 		} catch (SQLiteException e) {
 			// database does't exist yet. if not, that's okay. we will create
 			// one

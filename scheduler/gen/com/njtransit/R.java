@@ -11,59 +11,68 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int black_end=0x7f05000d;
-        public static final int black_start=0x7f05000c;
-        public static final int blue_badges_mayor=0x7f050011;
-        public static final int blue_end=0x7f050005;
+        public static final int black_end=0x7f05000e;
+        public static final int black_start=0x7f05000d;
+        public static final int blue_badges_mayor=0x7f050012;
+        public static final int blue_end=0x7f050006;
         /**  427BBA, 0f93b8 
          */
-        public static final int blue_start=0x7f050004;
-        public static final int color_score_list_adapter_highlight=0x7f050013;
-        public static final int color_score_mayor_section_background=0x7f050014;
-        public static final int dgrey_end=0x7f050009;
-        public static final int dgrey_start=0x7f050008;
-        public static final int grey_end=0x7f05000f;
-        public static final int grey_start=0x7f05000e;
-        public static final int item_grey_end=0x7f05000b;
-        public static final int item_grey_start=0x7f05000a;
-        public static final int lgrey_end=0x7f050007;
-        public static final int lgrey_start=0x7f050006;
+        public static final int blue_start=0x7f050005;
+        public static final int color_score_list_adapter_highlight=0x7f050014;
+        public static final int color_score_mayor_section_background=0x7f050015;
+        public static final int dgrey_end=0x7f05000a;
+        public static final int dgrey_start=0x7f050009;
+        public static final int grey_end=0x7f050010;
+        public static final int grey_start=0x7f05000f;
+        public static final int item_grey_end=0x7f05000c;
+        public static final int item_grey_start=0x7f05000b;
+        public static final int lgrey_end=0x7f050008;
+        public static final int lgrey_start=0x7f050007;
         public static final int pale_orange=0x7f050003;
         public static final int purple_end=0x7f050002;
         public static final int purple_start=0x7f050001;
-        public static final int red_light=0x7f050010;
-        public static final int vlgrey=0x7f050012;
+        public static final int red_light=0x7f050011;
+        public static final int station_name=0x7f050004;
+        public static final int user_details_activity_general=0x7f050016;
+        public static final int vlgrey=0x7f050013;
         public static final int white=0x7f050000;
     }
     public static final class drawable {
-        public static final int clear_favorites=0x7f020000;
-        public static final int divider=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int orange_gradient=0x7f020003;
-        public static final int places_tab=0x7f020004;
-        public static final int places_tab_selected=0x7f020005;
-        public static final int places_tab_unselected=0x7f020006;
-        public static final int signpost=0x7f020007;
-        public static final int thumb=0x7f020008;
+        public static final int arrow_white=0x7f020000;
+        public static final int clear_favorites=0x7f020001;
+        public static final int crown_small=0x7f020002;
+        public static final int divider=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int orange_gradient=0x7f020005;
+        public static final int places_tab=0x7f020006;
+        public static final int places_tab_selected=0x7f020007;
+        public static final int places_tab_unselected=0x7f020008;
+        public static final int signpost=0x7f020009;
+        public static final int thumb=0x7f02000a;
+        public static final int user_details_activity_general_selector=0x7f02000b;
     }
     public static final class id {
-        public static final int arrival=0x7f080001;
-        public static final int away=0x7f08000c;
+        public static final int arrival=0x7f080003;
+        public static final int arrivalText=0x7f080004;
+        public static final int away=0x7f080010;
         public static final int departure=0x7f080000;
-        public static final int duration=0x7f08000e;
-        public static final int get_schedule=0x7f080002;
-        public static final int grid=0x7f080003;
-        public static final int headerText=0x7f080004;
-        public static final int list=0x7f080008;
-        public static final int reverse_direction=0x7f08000f;
-        public static final int station_a=0x7f08000a;
-        public static final int station_b=0x7f08000b;
-        public static final int station_distance=0x7f080007;
-        public static final int station_name=0x7f080006;
-        public static final int station_view=0x7f080005;
-        public static final int time=0x7f08000d;
-        public static final int trip_direction=0x7f080010;
-        public static final int trip_headsign=0x7f080009;
+        public static final int departureText=0x7f080001;
+        public static final int duration=0x7f080012;
+        public static final int get_schedule=0x7f080005;
+        public static final int grid=0x7f080006;
+        public static final int headerText=0x7f080007;
+        public static final int list=0x7f08000c;
+        public static final int reverse_direction=0x7f080013;
+        public static final int station_a=0x7f08000e;
+        public static final int station_b=0x7f08000f;
+        public static final int station_desc=0x7f08000a;
+        public static final int station_distance=0x7f08000b;
+        public static final int station_name=0x7f080009;
+        public static final int station_view=0x7f080008;
+        public static final int time=0x7f080011;
+        public static final int trip_direction=0x7f080014;
+        public static final int trip_headsign=0x7f08000d;
+        public static final int userDetailsActivityGeneralMayorshipsChevron=0x7f080002;
     }
     public static final class layout {
         public static final int jumper=0x7f030000;
@@ -112,6 +121,9 @@ public final class R {
         public static final int TextViewStyleCheckinListItemLineAddress=0x7f070008;
         public static final int TextViewStyleCheckinListItemLineMessage=0x7f070007;
         public static final int TextViewStyleCheckinListItemLineTimestamp=0x7f070009;
+        public static final int TextViewStyleUserDetailsActivityGeneralTitle=0x7f07000b;
+        public static final int TextViewStyleUserDetailsActivityGeneralValue=0x7f07000c;
+        public static final int choose_station_button=0x7f07000a;
         public static final int listItemStyle=0x7f070005;
         public static final int listSeparatorTextViewStyle=0x7f070001;
         public static final int listViewStyle=0x7f070002;

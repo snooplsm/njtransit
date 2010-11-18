@@ -80,26 +80,16 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent) {
 		View v = getOrInflateView(convertView);
-//		v.setOnTouchListener(new OnTouchListener() {
-//			@Override
-//			public boolean onTouch(View v, MotionEvent event) {				
-//				if(event.getAction()==MotionEvent.ACTION_CANCEL) {
-//					v.setBackgroundColor(Color.WHITE);					
-//				} else {
-//					v.setBackgroundColor(Color.parseColor("#F4A83D"));
-//				}
-//				return true;
-//			}
-//		});
-		
 		Station s = getItem(pos);
 		if (s != null) {
 			TextView name = (TextView) v.findViewById(R.id.station_name);
+			TextView desc = (TextView) v.findViewById(R.id.station_desc);
 			if (name != null) {
-				if(s.getDescriptiveName()!=null) {
-					name.setText(s.getDescriptiveName());
+				name.setText(s.getName());
+				if(s.getDescriptiveName()==null) {
+					desc.setVisibility(View.GONE);
 				} else {
-					name.setText(s.getName());
+					desc.setText(s.getDescriptiveName());
 				}
 			}
 			TextView distance = (TextView) v

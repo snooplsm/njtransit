@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -115,58 +116,24 @@ public class DatabaseAdapter {
 
 	
 	public ArrayList<Station> getStations() {
-		Long nanoBefore = System.nanoTime();
-	    Cursor cursor = db.rawQuery("select s.stop_id, s.trip_id from stop_times s group by s.stop_id",null);
-	    ArrayList<Station> stations = new ArrayList<Station>();
-	    Map<Integer,Integer> stopIdToTrips = new HashMap<Integer,Integer>();
-	    for(int i = 0; i < cursor.getCount(); i++) {
-	      cursor.moveToNext();
-	      int stopId = cursor.getInt(0);
-	      int tripId = cursor.getInt(1);
-	      stopIdToTrips.put(stopId,tripId);
-	    }
-	    cursor.close();
-	    cursor = db.rawQuery("select r.long_name, t.id from trips t join routes r where r.id=t.route_id group by t.id",null);
-	    Map<Integer,String> tripIdToName = new HashMap<Integer,String>();
-	    for(int i = 0; i < cursor.getCount(); i++) {
-	      cursor.moveToNext();
-	      String name = cursor.getString(0);
-	      int tripId = cursor.getInt(1);
-	      tripIdToName.put(tripId, name);      
-	    }
-	    cursor.close();
-	    cursor = db.rawQuery("select id,name,lat,lon from stops",null);
+		Long start = System.currentTimeMillis();	    
+	    Cursor cursor = db.rawQuery("select id,name,lat,lon from stops",null);
+	    ArrayList<Station> stations = new ArrayList<Station>(cursor.getCount());
 	    for(int i =0; i < cursor.getCount();i++) {
 	      cursor.moveToNext();
 	      int id = cursor.getInt(0);
 	      String name = cursor.getString(1);
+	      //String descName = cursor.getString(2);
 	      float lat = cursor.getFloat(2);
 	      float lng = cursor.getFloat(3);
-	      int trip = stopIdToTrips.get(id);
-	      String tripName = tripIdToName.get(trip);
 	      Station s = new Station(id,name,(double)lat,(double)lng);
-	      s.setDescriptiveName(name + " - " + tripName);
+	      //s.setDescriptiveName(descName);
 	      stations.add(s);
 	    }
-	    cursor.close();
-	    
-	    Set<Station> dupes = new HashSet<Station>();
-	    for(int i = 0; i < stations.size(); i++) {
-	    	Station station = stations.get(i);
-	    	for(int j = i-1; j>=0;j--) {
-	    		Station back = stations.get(j);
-	    		if(station.getName().equals(back.getName())) {
-	    			dupes.add(station);
-	    			dupes.add(back);
-	    		}
-	    	}
-	    }
-	    for(Station station : stations) {
-	    	if(!dupes.contains(station)) {
-	    		station.setDescriptiveName(null);
-	    	}
-	    }
-	    Long nanoAfter = System.nanoTime();
+	    cursor.close();	    
+	    Long end = System.currentTimeMillis();
+	    Root.saveGetStationsDuration(context,end-start);
+	    Log.d(getClass().getSimpleName(),"getStations() took " + Root.getGetStationsDuration(context)+ "ms");
 	    return stations;
 	}
 	
@@ -504,7 +471,7 @@ public class DatabaseAdapter {
 	public DatabaseAdapter open() {
 		if(db!=null) {
 			return this;
-		}
+		}		
 		try {
 			helper = new TransitDBHelper(context);
 			File dbFile = context.getDatabasePath("database.sqlite");			
@@ -512,11 +479,12 @@ public class DatabaseAdapter {
 			if(moveOnRestart!=null) {
 				File file = new File(context.getFilesDir(), moveOnRestart);
 				if(file.exists()) {
-					//atPath = file.getAbsolutePath();
+					ProgressDialog d = ProgressDialog.show(context, "Installing", "Installing updated database");
 					boolean moved = file.renameTo(dbFile);
 					if(moved) {
 						Root.setMoveOnRestart(context, null);
 					}
+					d.cancel();
 				}
 			}
 			helper.createDataBase(dbFile.getName());

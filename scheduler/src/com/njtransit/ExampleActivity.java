@@ -9,6 +9,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.njtransit.domain.Session;
@@ -23,8 +25,9 @@ public class ExampleActivity extends Activity implements LocationListener  {
 	public static int DEPARTURE_REQUEST_CODE = 1;
 	public static int ARRIVAL_REQUEST_CODE = 2;
 	
-	private Button departure;
+	private View departure;
 	private Button arrival;
+	private TextView departureText;
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -32,7 +35,7 @@ public class ExampleActivity extends Activity implements LocationListener  {
 			Station station = session.getStation(data.getIntExtra("stationId",-1));
 			if(requestCode==DEPARTURE_REQUEST_CODE) {
 				session.setDepartureStation(station);
-				departure.setText(station.getName());
+				departureText.setText(station.getName());
 			} else {
 				session.setArrivalStation(station);
 				arrival.setText(station.getName());
@@ -59,20 +62,13 @@ public class ExampleActivity extends Activity implements LocationListener  {
 		if(session.getLastKnownLocation() == null) {
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
 		}
-		final Button btn = (Button) findViewById(R.id.departure);
+		final RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
 		departure = btn;
-		
+		departureText = (TextView)findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {	
 				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
 				startActivityForResult(intent, DEPARTURE_REQUEST_CODE);
-			}
-		});
-		arrival = (Button) findViewById(R.id.arrival);
-		arrival.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {	
-				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
-				startActivityForResult(intent, ARRIVAL_REQUEST_CODE);
 			}
 		});
 		
