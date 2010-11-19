@@ -117,7 +117,7 @@ public class DatabaseAdapter {
 	
 	public ArrayList<Station> getStations() {
 		Long start = System.currentTimeMillis();	    
-	    Cursor cursor = db.rawQuery("select id,name,lat,lon from stops",null);
+	    Cursor cursor = db.rawQuery("select id,name,lat,lon from stops order by name",null);
 	    ArrayList<Station> stations = new ArrayList<Station>(cursor.getCount());
 	    for(int i =0; i < cursor.getCount();i++) {
 	      cursor.moveToNext();
@@ -178,7 +178,7 @@ public class DatabaseAdapter {
 				b.append(services.get(k.getKey()).getId());
 			}
 			
-			String sql = String.format("select d.departure, a.arrival, d.trip_id from stop_times d join stop_times a on (d.stop_id=%s and a.stop_id=%s and d.trip_id=a.trip_id) where d.sequence<a.sequence and a.trip_id in (select id from trips where %s)",depart.getId(),arrive.getId(),b);
+			String sql = String.format("select d.departure, a.arrival, d.trip_id from stop_times d join stop_times a on (a.stop_id=%s) where d.stop_id=%s and d.trip_id=a.trip_id and a.trip_id in (select id from trips where %s) and d.sequence<a.sequence ",arrive.getId(),depart.getId(),b);
 			
 			c = db.rawQuery(sql,null);
 			int count = c.getCount();

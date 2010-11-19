@@ -8,7 +8,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +25,10 @@ public class ExampleActivity extends Activity implements LocationListener  {
 	public static int DEPARTURE_REQUEST_CODE = 1;
 	public static int ARRIVAL_REQUEST_CODE = 2;
 	
-	private View departure;
-	private Button arrival;
 	private TextView departureText;
+	private TextView arrivalText;
+	private View getSchedule;
+	private ImageView getScheduleImage;
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -38,9 +39,16 @@ public class ExampleActivity extends Activity implements LocationListener  {
 				departureText.setText(station.getName());
 			} else {
 				session.setArrivalStation(station);
-				arrival.setText(station.getName());
+				arrivalText.setText(station.getName());
 			}
-		}		
+		}	
+		if(session.getDepartureStation()!=null && session.getArrivalStation()!=null) {
+			getSchedule.setEnabled(true);
+			getScheduleImage.setVisibility(View.VISIBLE);
+		} else {
+			getScheduleImage.setVisibility(View.INVISIBLE);
+			getSchedule.setEnabled(false);
+		}
 	}
 
 	@Override
@@ -48,22 +56,20 @@ public class ExampleActivity extends Activity implements LocationListener  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.jumper);
 		DeviceInformation i = DeviceInformation.getDeviceInformatino(this);
-		String uuid = i.getUuid();
+		
 		if(session.getAdapter() == null) {
-			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_SHORT).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
 			session.setAdapter(a);
 			session.setStations(a.getStations());
 			session.setDepartureStation(session.getStation(148));
 			session.setArrivalStation(session.getStation(105));
-			//getApplicationContext().startService(new Intent(getApplicationContext(),UpdaterService.class));
 		}
 		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
 		if(session.getLastKnownLocation() == null) {
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
 		}
-		final RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
-		departure = btn;
+		RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
 		departureText = (TextView)findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {	
@@ -71,22 +77,29 @@ public class ExampleActivity extends Activity implements LocationListener  {
 				startActivityForResult(intent, DEPARTURE_REQUEST_CODE);
 			}
 		});
-		
-		Button getSchedule = (Button)findViewById(R.id.get_schedule);
+		RelativeLayout arrival = (RelativeLayout) findViewById(R.id.arrival);
+		arrivalText = (TextView)findViewById(R.id.arrivalText);
+		arrival.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
+				startActivityForResult(intent, ARRIVAL_REQUEST_CODE);
+			}
+		});
+				
+		getSchedule = (RelativeLayout)findViewById(R.id.get_schedule);
 		getSchedule.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-//				new Thread() {
-//					public void run() {
-//						final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
-//					}
-//				}.start();
+				session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
 				Intent intent = new Intent(getApplicationContext(), StopActivity.class);
 				startActivity(intent);
 			}
 			
 		});
+		getScheduleImage = (ImageView)findViewById(R.id.getScheduleChevron);
 	}
 	
 	/**

@@ -95,8 +95,8 @@ public class JumpDialog extends Dialog {
 
       final TextView c = new TextView(getContext());
       c.setText(""+opts[i]);
-      c.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 50);
-      c.setPadding(10, 0, 10, 0);
+      c.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 52);
+      c.setPadding(10, 10, 10, 10);
       c.setClickable(true);
       c.setGravity(Gravity.CENTER);
       c.setTextColor(

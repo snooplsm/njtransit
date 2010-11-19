@@ -36,10 +36,24 @@ public class Station {
 	}
 	
 	private String makePretty(String str) {
+		if(str.toLowerCase().contains("performing")) {
+			System.out.println(str);
+		}
 		char lastChar=' ';
 		StringBuilder sb = new StringBuilder(str);
+		int whitespaceDist = 0;
 		for(int i = 0; i < sb.length();i++) {
 			char nowChar = sb.charAt(i);
+			if(nowChar!=' ' && nowChar!='.') {
+				whitespaceDist+=1;
+			} else {
+				if(whitespaceDist==2) {
+					char b = sb.charAt(i-1);
+					char a = sb.charAt(i-2);
+					sb.setCharAt(i-1, Character.toUpperCase(b));
+					sb.setCharAt(i-2, Character.toUpperCase(a));
+				}
+			}
 			if(lastChar==' ' || lastChar=='/') {
 				sb.setCharAt(i, Character.toUpperCase(nowChar));
 			} else {
