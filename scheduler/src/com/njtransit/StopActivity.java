@@ -1,5 +1,6 @@
 package com.njtransit;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,12 +10,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,9 +27,8 @@ import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StopAdapter;
 
-public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 
-	private Session session;
+public class StopActivity extends SchedulerActivity implements Traversable<StopTimeRow> {
 
 	private StopListView stopTimes;
 	
@@ -55,12 +53,11 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		session = ((Scheduler)getApplication()).getSession();
 		setContentView(R.layout.stop_list_home);
 //		int departureId = savedInstanceState.getInt(DEPARTURE_ID);
 //		int arrivalId = savedInstanceState.getInt(ARRIVAL_ID);
-		Station departure = session.getDepartureStation();
-		Station arrival = session.getArrivalStation();
+		Station departure = getSchedulerContext().getDepartureStation();
+		Station arrival = getSchedulerContext().getArrivalStation();
 		this.departure = (TextView)findViewById(R.id.departureText);
 		this.arrival = (TextView)findViewById(R.id.arrivalText);
 		populateStationsHeader(departure,arrival);
@@ -85,13 +82,13 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 		}else {
 			departure = new Station(148,"Trenton Transit Center",72.5,72.5);
 			useMockData = true;
-			session.setDepartureStation(departure);
+			getSchedulerContext().setDepartureStation(departure);
 		}
 		if(arrive!=null) {
 			arrival = arrive;
 		} else {
 			arrival = new Station(105, "New York Penn Station", 72.5,72.5);
-			session.setArrivalStation(arrival);
+			getSchedulerContext().setArrivalStation(arrival);
 		}
 		if(useMockData) {
 			populateStationsHeader(departure, arrival);
@@ -104,7 +101,7 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 			@Override
 			protected Stop doInBackground(Void... params) {
 
-				final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(departure, arrival,useMockData);
+				final StopsQueryResult sqr = getSchedulerContext().getAdapter().getStopTimesAlternate(departure, arrival,useMockData);
 
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
@@ -190,8 +187,8 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 						@Override
 						public void run() {
 							try {
-								if(session.getDepartureStation()!=null && session.getArrivalStation()!=null) {
-								session.getAdapter().saveHistory(session.getDepartureStation().getId(), session.getArrivalStation().getId(), System.currentTimeMillis());
+								if(getSchedulerContext().getDepartureStation()!=null && getSchedulerContext().getArrivalStation()!=null) {
+									getSchedulerContext().getAdapter().saveHistory(getSchedulerContext().getDepartureStation().getId(), getSchedulerContext().getArrivalStation().getId(), System.currentTimeMillis());
 								}
 							} catch (Exception e) {
 								Log.e(getClass().getSimpleName(), "could not log saveHistory",e);
@@ -199,7 +196,7 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 						}
 					}.start();
 				} else {
-					String address = String.format("feedback_%s_%s@wmwm.us",session.getDepartureStation().getId(),session.getArrivalStation().getId());
+					String address = String.format("feedback_%s_%s@wmwm.us",getSchedulerContext().getDepartureStation().getId(),getSchedulerContext().getArrivalStation().getId());
 					String question = String.format("We were unable to find any results for your search criteria.  Keep in mind that this not a trip planning application and does not support connections.  Still, if you believe this is a bug please email %s and we will look into it.",address);
 					stopTimes.setVisibility(View.GONE);
 					errors.setVisibility(View.VISIBLE);
@@ -308,7 +305,7 @@ public class StopActivity extends Activity implements Traversable<StopTimeRow> {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()==1) {
-			session.reverseTrip();
+			getSchedulerContext().reverseTrip();
 			Intent intent = new Intent(this, StopActivity.class);
 			startActivity(intent);
 		}		

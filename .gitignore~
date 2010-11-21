@@ -1,5 +1,0 @@
-scheduler.sqlite
-.DS_Store
-scheduler/bin
-scheduler/gen/com/njtransit/R.java
-scheduler/target

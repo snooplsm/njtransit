@@ -10,6 +10,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
 
+/**
+ * Be sure to assign the adapter externally, this classes adapter requires external dependencies on 
+ * the {@link SchedulerApplication}
+ * @author dtangren
+ *
+ */
 public class StationListView extends ListView {
 
 	public static interface OnStationListener {
@@ -24,6 +30,8 @@ public class StationListView extends ListView {
 
 	public StationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+
+		setTextFilterEnabled(true);
 		setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view,

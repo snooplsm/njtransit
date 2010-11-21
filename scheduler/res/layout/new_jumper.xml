@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/jumper_root" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent" android:paddingBottom="20dip" android:paddingLeft="10dip" android:paddingRight="10dip"
+	android:layout_height="fill_parent">
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="A" android:gravity="center"
+			android:textSize="52dip" 
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="B" android:textSize="52dip"
+			android:gravity="center" 
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="C"
+			android:gravity="center" android:textSize="52dip"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="D" 
+			android:gravity="center" android:textSize="52dip"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="E"
+			android:gravity="center" android:textSize="52dip"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+	</LinearLayout>
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="F" 
+			android:gravity="center" android:textSize="52dip"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="G" 
+			android:gravity="center" android:textSize="52dip"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_weight="1" />
+		<TextView android:text="H" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="I" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="J" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="K" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="L" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="M" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="N" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="O" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="P" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="Q" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="R" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="S" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="T" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="U" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="V" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="W" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="X" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="Y" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<TextView android:text="Z" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+		<TextView android:text="#" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+	</LinearLayout>
+	
+	<!--<LinearLayout android:layout_width="fill_parent" android:layout_height="10dip"></LinearLayout>
+
+
+--></LinearLayout>

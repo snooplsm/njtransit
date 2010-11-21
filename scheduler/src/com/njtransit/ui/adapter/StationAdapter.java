@@ -18,7 +18,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.njtransit.R;
-import com.njtransit.Session;
+import com.njtransit.SchedulerApplication;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
 import com.njtransit.utils.Locations;
@@ -26,7 +26,7 @@ import com.njtransit.utils.Locations;
 public class StationAdapter extends ArrayAdapter<Station> implements
 		SectionIndexer, Filterable {
 
-	private Session session;
+	private SchedulerApplication app;
 
 	private int type;
 
@@ -72,9 +72,9 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 	}
 
 	public StationAdapter(Context context, int textViewResourceId, int type,
-			List<Station> items, Session session) {
+			List<Station> items, SchedulerApplication app) {
 		super(context, textViewResourceId, new ArrayList<Station>(items));
-		this.session = session;
+		this.app = app;
 	}
 
 	@Override
@@ -94,10 +94,10 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 			}
 			TextView distance = (TextView) v
 					.findViewById(R.id.station_distance);
-			if (distance != null && session.getLastKnownLocation() != null) {
+			if (distance != null && app.getLastKnownLocation() != null) {
 				distance.setText(Locations
-						.relativeDistanceFrom(session.getLastKnownLocation(),
-								session.getPreferences().getUnits()).to(s)
+						.relativeDistanceFrom(app.getLastKnownLocation(),
+								app.getPreferences().getUnits()).to(s)
 						.inWords());
 			} else {
 				distance.setVisibility(View.GONE);

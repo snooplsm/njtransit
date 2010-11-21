@@ -3,14 +3,16 @@ package com.njtransit;
 import java.util.HashSet;
 import java.util.Set;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
+import com.njtransit.JumpDialog;
+import com.njtransit.R;
+import com.njtransit.Scheduler;
+import com.njtransit.SchedulerActivity;
+import com.njtransit.SchedulerApplication;
+import com.njtransit.Session;
+import com.njtransit.StationListView;
 import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
@@ -22,22 +24,21 @@ import com.njtransit.ui.adapter.StationAdapter;
  * @author rgravener
  *
  */
-public class StationListActivity extends Activity implements OnJumpListener {
+public class StationListActivity extends SchedulerActivity implements OnJumpListener {
 
-	private StationListView stations;
-
-	private Set<Character> stationLetters = new HashSet<Character>();
+	private final Set<Character> stationLetters = new HashSet<Character>();
 	
-	private Session session;
+	private StationListView stations;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		session = ((Scheduler)getApplication()).getSession();
 		setContentView(R.layout.station_list_home);
+		final SchedulerApplication app = this.getSchedulerContext();
 		stations = (StationListView) findViewById(R.id.station_view);
+		stations.setAdapter(new StationAdapter(this, R.layout.station_row,
+				StationAdapter.ALPHA, app.getStations(), app));
 		stations.setOnStationListener(new OnStationListener() {
-
 			@Override
 			public void onStationSelected(Station station) {
 				Intent i = new Intent();
@@ -46,11 +47,9 @@ public class StationListActivity extends Activity implements OnJumpListener {
 				finish();
 			}
 		});
-		stations.setAdapter(new StationAdapter(this, R.layout.station_row,
-				StationAdapter.ALPHA, session.getStations(), session));
+		stations.setAdapter(new StationAdapter(StationListActivity.this, R.layout.station_row,
+				StationAdapter.ALPHA, getSchedulerContext().getStations(), getSchedulerContext()));
 		stations.setTextFilterEnabled(true);
-		
-		
 		
 		new JumpDialog(this, this).only(getStationLetters())
 				.inRowsOf(5).show();
@@ -71,50 +70,11 @@ public class StationListActivity extends Activity implements OnJumpListener {
 	private Set<Character> getStationLetters() {
 		synchronized (this) {
 			if (stationLetters.isEmpty()) {
-				for (Station s : session.getStations()) {
+				for (Station s : getSchedulerContext().getStations()) {
 					stationLetters.add(s.getName().charAt(0));
 				}
 			}
 		}
 		return stationLetters;
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		// if(stations.getType()==StationAdapter.FAVORITES) {
-		// MenuItem clear =
-		// menu.add(Menu.NONE,1,Menu.FIRST,getString(R.string.clear_favorites));
-		// clear.setIcon(R.drawable.clear_favorites);
-		// }
-		return true;
-	}
-
-	// @Override
-	// public boolean onOptionsItemSelected(MenuItem item) {
-	// if(item.getItemId()==1) {
-	// new AsyncTask<Void, Void, Void>() {
-	//
-	// @Override
-	// protected void onPostExecute(Void result) {
-	// //getTabHost().setCurrentTab(0);
-	// }
-	//
-	// @Override
-	// protected void onPreExecute() {
-	// Toast.makeText(getApplicationContext(), "Clearing Favorites",
-	// Toast.LENGTH_SHORT).show();
-	// }
-	//
-	// @Override
-	// protected Void doInBackground(Void... params) {
-	// session.getAdapter().deleteFavorites();
-	// return null;
-	// }
-	//
-	// }.execute();
-	// }
-	// return super.onOptionsItemSelected(item);
-	// }
-
 }
