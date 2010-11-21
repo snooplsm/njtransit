@@ -5,14 +5,10 @@ import java.util.Set;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.Window;
 
-import com.njtransit.JumpDialog;
-import com.njtransit.R;
-import com.njtransit.Scheduler;
-import com.njtransit.SchedulerActivity;
-import com.njtransit.SchedulerApplication;
-import com.njtransit.Session;
-import com.njtransit.StationListView;
 import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
@@ -30,9 +26,14 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	
 	private StationListView stations;
 	
+	private boolean canJump;
+	
+	private JumpDialog jumpDialog;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.station_list_home);
 		final SchedulerApplication app = this.getSchedulerContext();
 		stations = (StationListView) findViewById(R.id.station_view);
@@ -51,8 +52,11 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 				StationAdapter.ALPHA, getSchedulerContext().getStations(), getSchedulerContext()));
 		stations.setTextFilterEnabled(true);
 		
-		new JumpDialog(this, this).only(getStationLetters())
-				.inRowsOf(5).show();
+		if(stations.getCount()>20) {
+			canJump = true;
+			jumpDialog = new JumpDialog(this, this).only(getStationLetters());
+			jumpDialog.show();
+		}
 	}
 
 	@Override
@@ -76,5 +80,23 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 			}
 		}
 		return stationLetters;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		if(canJump) {
+			MenuItem jump = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.abc));
+			jump.setIcon(R.drawable.small_tiles);
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==1) {			
+			jumpDialog.show();
+		}		
+		return super.onOptionsItemSelected(item);
 	}
 }

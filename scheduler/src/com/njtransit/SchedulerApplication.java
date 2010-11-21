@@ -8,8 +8,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import android.app.Application;
+import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
@@ -17,12 +21,33 @@ import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
 
 /** Shared state management */
-public class SchedulerApplication extends Application {
+public class SchedulerApplication extends Application implements LocationListener  {
 
 	private Location lastKnownLocation;
 	private Station arrivalStation, departureStation;
 	private int stationOrderType = 1;
 	private Preferences preferences;
+	private DeviceInformation deviceInformation;
+	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		deviceInformation = DeviceInformation.getDeviceInformatino(this);
+
+		adapter = new DatabaseAdapter(getApplicationContext()).open();
+		Toast.makeText(getApplicationContext(), getString(R.string.disclaimer),
+				Toast.LENGTH_SHORT).show();
+		this.stations = adapter.getStations();
+		
+		setLastKnownLocation(getLocations().getLastKnownLocation(
+				LOCATION_PROVIDER));
+		if (getLastKnownLocation() == null) {
+			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
+					0, this);
+		}
+	}
 
 	public Preferences getPreferences() {
 		if(preferences==null) {
@@ -167,5 +192,28 @@ public class SchedulerApplication extends Application {
 		Station tmp = departureStation;
 		departureStation = arrivalStation;
 		arrivalStation = tmp;
+	}
+	
+	private LocationManager getLocations() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	}
+
+	@Override
+	public void onLocationChanged(Location l) {
+		setLastKnownLocation(l);
+		// getTabHost().setCurrentTab(getTabHost().getCurrentTab());
+		getLocations().removeUpdates(this);
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
 }

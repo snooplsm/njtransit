@@ -18,8 +18,8 @@ public final class R {
         /**  427BBA, 0f93b8 
          */
         public static final int blue_start=0x7f050006;
-        public static final int color_score_list_adapter_highlight=0x7f050015;
-        public static final int color_score_mayor_section_background=0x7f050016;
+        public static final int color_score_list_adapter_highlight=0x7f050016;
+        public static final int color_score_mayor_section_background=0x7f050017;
         public static final int dgrey_end=0x7f05000b;
         public static final int dgrey_start=0x7f05000a;
         public static final int get_stations=0x7f050004;
@@ -27,6 +27,7 @@ public final class R {
         public static final int grey_start=0x7f050010;
         public static final int item_grey_end=0x7f05000d;
         public static final int item_grey_start=0x7f05000c;
+        public static final int jumper_touch=0x7f050015;
         public static final int lgrey_end=0x7f050009;
         public static final int lgrey_start=0x7f050008;
         public static final int pale_orange=0x7f050003;
@@ -34,7 +35,7 @@ public final class R {
         public static final int purple_start=0x7f050001;
         public static final int red_light=0x7f050012;
         public static final int station_name=0x7f050005;
-        public static final int user_details_activity_general=0x7f050017;
+        public static final int user_details_activity_general=0x7f050018;
         public static final int vlgrey=0x7f050014;
         public static final int white=0x7f050000;
     }
@@ -98,6 +99,7 @@ public final class R {
         public static final int trip_row=0x7f030010;
     }
     public static final class string {
+        public static final int abc=0x7f06000b;
         public static final int adeparting_from=0x7f060006;
         public static final int app_name=0x7f060002;
         public static final int app_name_full=0x7f060003;
@@ -107,8 +109,8 @@ public final class R {
         public static final int hour_short=0x7f060009;
         public static final int minute_short=0x7f060008;
         public static final int reverse=0x7f06000a;
-        public static final int search_hint=0x7f06000c;
-        public static final int second_short=0x7f06000b;
+        public static final int search_hint=0x7f06000d;
+        public static final int second_short=0x7f06000c;
         public static final int update_threshold=0x7f060000;
         public static final int update_url=0x7f060001;
     }
