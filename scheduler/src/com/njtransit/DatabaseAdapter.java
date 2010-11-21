@@ -23,7 +23,6 @@ import android.util.Log;
 import com.njtransit.domain.AlternateService;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Service;
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.domain.Trip;
@@ -137,8 +136,44 @@ public class DatabaseAdapter {
 	    return stations;
 	}
 	
-	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive) {
+	IService both = new IService() {
+
+		@Override
+		public int getId() {
+			return 1;
+		}
+
+		@Override
+		public boolean isToday() {
+			return true;
+		}
+
+		@Override
+		public boolean isTomorrow() {
+			return true;
+		}
+		
+	};
+	
+	
+	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive, boolean useMockData) {
 		long before = System.currentTimeMillis();
+		if(useMockData) {
+			Map<Integer, IService> tripToService = new HashMap<Integer,IService>();
+			tripToService.put(both.getId(), both);
+			Long end = System.currentTimeMillis();
+			List<Stop> stops = new ArrayList<Stop>();
+			Calendar now = Calendar.getInstance();
+			now.add(Calendar.MINUTE, 5);
+			Calendar later = Calendar.getInstance();
+			later.setTimeInMillis(now.getTimeInMillis());
+			later.add(Calendar.HOUR, 1);
+			Stop st = new Stop(1,now,later);
+			//stops.add(st);
+			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,before,end,tripToService,stops);
+			return sqr;
+		}
+		
 		
 		try {
 			Calendar cal = Calendar.getInstance();

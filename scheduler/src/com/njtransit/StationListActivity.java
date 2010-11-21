@@ -7,11 +7,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
+import com.njtransit.ui.adapter.StationAdapter;
 
 /**
  * List for display all the stations in a particular order.
@@ -25,11 +28,12 @@ public class StationListActivity extends Activity implements OnJumpListener {
 
 	private Set<Character> stationLetters = new HashSet<Character>();
 	
-	private Session session = Session.get();
+	private Session session;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		session = ((Scheduler)getApplication()).getSession();
 		setContentView(R.layout.station_list_home);
 		stations = (StationListView) findViewById(R.id.station_view);
 		stations.setOnStationListener(new OnStationListener() {
@@ -42,6 +46,9 @@ public class StationListActivity extends Activity implements OnJumpListener {
 				finish();
 			}
 		});
+		stations.setAdapter(new StationAdapter(this, R.layout.station_row,
+				StationAdapter.ALPHA, session.getStations(), session));
+		stations.setTextFilterEnabled(true);
 		
 		
 		

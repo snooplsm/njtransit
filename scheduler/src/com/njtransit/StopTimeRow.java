@@ -55,7 +55,6 @@ public class StopTimeRow extends LinearLayout {
 				if (mins <= 61) {
 					away.setTextColor(getResources()
 							.getColor(R.color.red_light));
-					// away.postInvalidate();
 				}
 				newVal = TimeUtil.getUnitTime(diff, getContext());
 			} else {

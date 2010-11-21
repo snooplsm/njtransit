@@ -44,13 +44,13 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 
 	public void createDataBase(String at) throws IOException {
 		if (!checkDataBase(at)) {
-			ProgressDialog d = ProgressDialog.show(ctx, "Installing...", "Unpackaging schedules database.");
+			//ProgressDialog d = ProgressDialog.show(ctx, "Installing...", "Unpackaging schedules database.");
 			try {
 				copyDataBase(at);
 			} catch (IOException e) {
 				throw new RuntimeException("Error copying database", e);
 			} finally {
-				d.cancel();
+			//	d.cancel();
 			}
 		}
 	}

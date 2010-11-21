@@ -39,6 +39,11 @@
 			<artifactId>sdk-android</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google</groupId>
+			<artifactId>analytics</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>

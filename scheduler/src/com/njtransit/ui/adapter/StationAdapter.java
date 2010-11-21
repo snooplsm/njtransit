@@ -18,7 +18,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.njtransit.R;
-import com.njtransit.domain.Session;
+import com.njtransit.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
 import com.njtransit.utils.Locations;
