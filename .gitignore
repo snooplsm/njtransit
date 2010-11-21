@@ -1,3 +1,5 @@
+.project
+.classpath
 scheduler.sqlite
 .DS_Store
 scheduler/bin
