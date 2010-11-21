@@ -6,17 +6,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
 
+/**
+ * Be sure to assign the adapter externally, this classes adapter requires external dependencies on 
+ * the {@link SchedulerApplication}
+ * @author dtangren
+ *
+ */
 public class StationListView extends ListView {
 
 	public static interface OnStationListener {
 		void onStationSelected(Station station);
 	}
-
-	private Session session = Session.get();
 	
 	private OnStationListener listener;
 	
@@ -24,21 +27,8 @@ public class StationListView extends ListView {
 		this.listener = listener;
 	}
 
-//	/** filter the current list down to stations that match name */
-//	public StationListView filter(String name) {
-//		getStationAdapter().clear();
-//		ArrayList<Station> stations = session.getAdapter().getAllStationsLike(
-//				name);
-//		for (Station s : stations) {
-//			getStationAdapter().add(s);
-//		}
-//		return this;
-//	}
-
 	public StationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		setAdapter(new StationAdapter(context, R.layout.station_row,
-				StationAdapter.ALPHA, session.getStations(), session));
 		setTextFilterEnabled(true);
 		setOnItemClickListener(new OnItemClickListener() {
 			@Override

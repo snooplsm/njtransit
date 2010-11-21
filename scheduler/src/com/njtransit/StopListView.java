@@ -18,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.njtransit.domain.IService;
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
@@ -26,8 +25,6 @@ import com.njtransit.ui.adapter.StopAdapter;
 
 /** List of StopTimeRows */
 public class StopListView extends ListView implements Traversable<StopTimeRow> {
-
-	private Session session = Session.get();
 
 	private TimerTask updaterThread = null;
 
@@ -47,17 +44,20 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 		setSmoothScrollbarEnabled(true);
 
 		setAdapter(new StopAdapter(this, getContext(), stops));
-
+	}
+	
+	/** in order to start the timer, provide the view the the applications context */
+	public StopListView startTimer(final SchedulerApplication app) {
 		new AsyncTask<Void, Void, Stop>() {
 
 			ProgressDialog progress = null;
 
 			@Override
 			protected Stop doInBackground(Void... params) {
-				final Station arrive = session.getArrivalStation();
-				final Station departure = session.getDepartureStation();
+				final Station arrive = app.getArrivalStation();
+				final Station departure = app.getDepartureStation();
 
-				final StopsQueryResult sqr = session.getAdapter().getStopTimesAlternate(departure, arrive);
+				final StopsQueryResult sqr = app.getAdapter().getStopTimesAlternate(departure, arrive);
 
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
@@ -139,12 +139,13 @@ public class StopListView extends ListView implements Traversable<StopTimeRow> {
 				new Thread() {
 					@Override
 					public void run() {
-						session.getAdapter().saveHistory(session.getDepartureStation().getId(), session.getArrivalStation().getId(), started);
+						app.getAdapter().saveHistory(app.getDepartureStation().getId(), app.getArrivalStation().getId(), started);
 					}
 				}.start();
 			}
 
 		}.execute();
+		return this;
 	}
 
 	/**

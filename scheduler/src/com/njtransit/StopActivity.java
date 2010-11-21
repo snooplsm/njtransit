@@ -1,17 +1,13 @@
 package com.njtransit;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 
-public class StopActivity extends Activity {
-
-	private Session session = Session.get();
+public class StopActivity extends SchedulerActivity {
 
 	private StopListView stopTimes;
 
@@ -20,8 +16,8 @@ public class StopActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_list_home);
 		setTitle(renderTitle(
-				session.getDepartureStation(), session.getArrivalStation()));
-		stopTimes = (StopListView) findViewById(R.id.list);
+				getSchedulerContext().getDepartureStation(), getSchedulerContext().getArrivalStation()));
+		(stopTimes = (StopListView) findViewById(R.id.list)).startTimer(getSchedulerContext());
 	}
 
 	protected void onPause() {
@@ -49,7 +45,7 @@ public class StopActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()==1) {
-			session.reverseTrip();
+			getSchedulerContext().reverseTrip();
 			Intent intent = new Intent(this, StopActivity.class);
 			startActivity(intent);
 		}		

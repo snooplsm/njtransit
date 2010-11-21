@@ -23,7 +23,6 @@ import android.util.Log;
 import com.njtransit.domain.AlternateService;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Service;
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.domain.Trip;
@@ -446,7 +445,7 @@ public class DatabaseAdapter {
 		localDb.endTransaction();
 	}
 
-	public ArrayList<Station> getMostVisitedStations(Session session, Long now) {
+	public ArrayList<Station> getMostVisitedStations(SchedulerApplication app, Long now) {
 		String query = "select station_depart, station_arrive from trip_summary order by total desc";
 		Cursor cursor = localDb.rawQuery(query, null);
 		ArrayList<Station> station = new ArrayList<Station>();
@@ -454,8 +453,8 @@ public class DatabaseAdapter {
 		for(int i = 0; i < cursor.getCount(); i++) {
 			int depart = cursor.getInt(0);
 			int arrive = cursor.getInt(1);
-			Station departS = session.getStation(depart);
-			Station arriveS = session.getStation(arrive);
+			Station departS = app.getStation(depart);
+			Station arriveS = app.getStation(arrive);
 			if(!station.contains(departS)) {
 				station.add(departS);
 			}

@@ -1,6 +1,5 @@
 package com.njtransit;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -13,36 +12,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.njtransit.domain.Session;
 import com.njtransit.domain.Station;
 
-public class ExampleActivity extends Activity implements LocationListener  {
-
-	private Session session = Session.get();	
+public class ExampleActivity extends SchedulerActivity implements LocationListener  {
 	
 	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 
-	public static int DEPARTURE_REQUEST_CODE = 1;
-	public static int ARRIVAL_REQUEST_CODE = 2;
+	public static int DEPARTURE_REQUEST_CODE = 1, ARRIVAL_REQUEST_CODE = 2;
 	
-	private TextView departureText;
-	private TextView arrivalText;
+	private TextView departureText, arrivalText;
 	private View getSchedule;
 	private ImageView getScheduleImage;
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode==RESULT_OK) {
-			Station station = session.getStation(data.getIntExtra("stationId",-1));
+			Station station = getSchedulerContext().getStation(data.getIntExtra("stationId",-1));
 			if(requestCode==DEPARTURE_REQUEST_CODE) {
-				session.setDepartureStation(station);
+				getSchedulerContext().setDepartureStation(station);
 				departureText.setText(station.getName());
 			} else {
-				session.setArrivalStation(station);
+				getSchedulerContext().setArrivalStation(station);
 				arrivalText.setText(station.getName());
 			}
 		}	
-		if(session.getDepartureStation()!=null && session.getArrivalStation()!=null) {
+		if(getSchedulerContext().getDepartureStation()!=null && getSchedulerContext().getArrivalStation()!=null) {
 			getSchedule.setEnabled(true);
 			getScheduleImage.setVisibility(View.VISIBLE);
 		} else {
@@ -55,18 +49,19 @@ public class ExampleActivity extends Activity implements LocationListener  {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.jumper);
-		DeviceInformation i = DeviceInformation.getDeviceInformatino(this);
 		
-		if(session.getAdapter() == null) {
-			Toast.makeText(getApplicationContext(), getString(R.string.disclaimer), Toast.LENGTH_SHORT).show();
+		final SchedulerApplication app = getSchedulerContext();
+		
+		if(app.getAdapter() == null) {
+			Toast.makeText(app, getString(R.string.disclaimer), Toast.LENGTH_SHORT).show();
 			DatabaseAdapter a = new DatabaseAdapter(this).open();
-			session.setAdapter(a);
-			session.setStations(a.getStations());
-			session.setDepartureStation(session.getStation(148));
-			session.setArrivalStation(session.getStation(105));
+			app.setAdapter(a);
+			app.setStations(a.getStations());
+			app.setDepartureStation(app.getStation(148));
+			app.setArrivalStation(app.getStation(105));
 		}
-		session.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
-		if(session.getLastKnownLocation() == null) {
+		app.setLastKnownLocation(getLocations().getLastKnownLocation(LOCATION_PROVIDER));
+		if(app.getLastKnownLocation() == null) {
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000, 0, this);
 		}
 		RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
@@ -93,7 +88,7 @@ public class ExampleActivity extends Activity implements LocationListener  {
 
 			@Override
 			public void onClick(View arg0) {
-				session.getAdapter().getStopTimesAlternate(session.getDepartureStation(), session.getArrivalStation());
+				app.getAdapter().getStopTimesAlternate(app.getDepartureStation(), app.getArrivalStation());
 				Intent intent = new Intent(getApplicationContext(), StopActivity.class);
 				startActivity(intent);
 			}
@@ -102,23 +97,13 @@ public class ExampleActivity extends Activity implements LocationListener  {
 		getScheduleImage = (ImageView)findViewById(R.id.getScheduleChevron);
 	}
 	
-	/**
-	 * Expose for testing purposes.
-	 * 
-	 * @return
-	 */
-	public Session getSession() {
-		return session;
-	}
-	
 	private LocationManager getLocations() {
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 	
 	@Override
 	public void onLocationChanged(Location l) {
-		session.setLastKnownLocation(l);
-		//getTabHost().setCurrentTab(getTabHost().getCurrentTab());
+		getSchedulerContext().setLastKnownLocation(l);
 		getLocations().removeUpdates(this);
 	}
 	

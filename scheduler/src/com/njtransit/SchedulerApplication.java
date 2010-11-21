@@ -1,4 +1,4 @@
-package com.njtransit.domain;
+package com.njtransit;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,29 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import android.app.Application;
 import android.location.Location;
 import android.location.LocationManager;
 
-import com.njtransit.DatabaseAdapter;
+import com.njtransit.domain.IService;
+import com.njtransit.domain.Preferences;
+import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
 
-public class Session  {
-
-	private Session() {
-	}
-
-	private static Session instance;
-
-	public static Session get() {
-		if (instance == null) {
-			instance = new Session();
-		}
-		return instance;
-	}
+/** Shared state management */
+public class SchedulerApplication extends Application {
 
 	private Location lastKnownLocation;
-	private Station arrivalStation;
-	private Station departureStation;
+	private Station arrivalStation, departureStation;
 	private int stationOrderType = 1;
 	private Preferences preferences;
 
@@ -172,11 +163,9 @@ public class Session  {
 		return null;
 	}
 
-
 	public void reverseTrip() {
 		Station tmp = departureStation;
 		departureStation = arrivalStation;
 		arrivalStation = tmp;
 	}
-
 }
