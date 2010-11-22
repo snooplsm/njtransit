@@ -3,6 +3,8 @@ package com.njtransit;
 import java.util.Collection;
 import java.util.Collections;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -31,6 +33,8 @@ public class JumpDialog extends Dialog {
 	private final OnJumpListener listener;
 
 	private boolean alpha;
+	
+	GoogleAnalyticsTracker tracker;
 
 	public JumpDialog(Context ctx, final OnJumpListener listener) {
 		super(ctx);
@@ -46,6 +50,7 @@ public class JumpDialog extends Dialog {
 		ColorDrawable cd = new ColorDrawable(0);
 		cd.setAlpha(230);
 		getWindow().setBackgroundDrawable(cd);
+		tracker = GoogleAnalyticsTracker.getInstance();
 	}
 
 	@Override
@@ -60,7 +65,9 @@ public class JumpDialog extends Dialog {
 					text.setClickable(true);
 					text.setTextColor(Color.WHITE);
 					text.setOnClickListener(new View.OnClickListener() {
+						
 						public void onClick(View v) {
+							tracker.trackEvent("jumps", "Button", c+"" , (int)c);
 							if(alpha && c=='#') {
 								JumpDialog.this.dismiss();
 								JumpDialog.this.setContentView(getLayoutInflater().inflate(R.layout.new_jumper_number, null));
@@ -101,5 +108,11 @@ public class JumpDialog extends Dialog {
 	public JumpDialog only(Collection<Character> subset) {
 		this.subset = subset;
 		return this;
+	}
+
+	@Override
+	public void onBackPressed() {		
+		tracker.trackEvent("jump-cancelled", "Button", "back" , 0);
+		super.onBackPressed();
 	}
 }

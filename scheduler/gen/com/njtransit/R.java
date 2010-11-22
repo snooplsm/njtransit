@@ -106,10 +106,11 @@ public final class R {
         public static final int clear_favorites=0x7f060007;
         public static final int departure_station=0x7f060005;
         public static final int disclaimer=0x7f060004;
+        public static final int google_ua=0x7f06000d;
         public static final int hour_short=0x7f060009;
         public static final int minute_short=0x7f060008;
         public static final int reverse=0x7f06000a;
-        public static final int search_hint=0x7f06000d;
+        public static final int search_hint=0x7f06000e;
         public static final int second_short=0x7f06000c;
         public static final int update_threshold=0x7f060000;
         public static final int update_url=0x7f060001;

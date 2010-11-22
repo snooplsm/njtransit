@@ -1,7 +1,6 @@
 package com.njtransit;
 
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -31,8 +30,6 @@ import com.njtransit.ui.adapter.StopAdapter;
 public class StopActivity extends SchedulerActivity implements Traversable<StopTimeRow> {
 
 	private StopListView stopTimes;
-	
-	private SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 	private TimerTask updaterThread = null;
 
@@ -64,6 +61,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		stopTimes = (StopListView) findViewById(R.id.list);
 		errors = (TextView) findViewById(R.id.errors);
 		findAndShowStops(departure,arrival);
+		tracker.trackPageView("/"+getClass().getSimpleName()+"/"+departure.getName()+"_to_"+arrival.getName());
 	}
 	
 	private void populateStationsHeader(Station departure, Station arrival) {
@@ -94,12 +92,12 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 			populateStationsHeader(departure, arrival);
 			//stations.setText(renderTitle(departure,arrival));
 		}
-		new AsyncTask<Void, Void, Stop>() {
+		new AsyncTask<Void, Void, StopResult>() {
 
 			ProgressDialog progress = null;
 
 			@Override
-			protected Stop doInBackground(Void... params) {
+			protected StopResult doInBackground(Void... params) {
 
 				final StopsQueryResult sqr = getSchedulerContext().getAdapter().getStopTimesAlternate(departure, arrival,useMockData);
 
@@ -116,7 +114,6 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
 					relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
 					if (service.isToday()) {	
-						String time = DF.format(relativeTime.getTime());
 						Long diff =  now - relativeTime.getTimeInMillis();
 						
 						if (diff > 0 && diff < now
@@ -128,7 +125,6 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					} 
 					if (service.isTomorrow()) {
 						relativeTime.add(Calendar.DAY_OF_YEAR, 1);
-						String time = DF.format(relativeTime.getTime());
 						Long diff =  now - relativeTime.getTimeInMillis();
 						
 						if (diff > 0 && diff < now
@@ -155,7 +151,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 				
 				stops.addAll(today);
 
-				return closest;
+				return new StopResult(sqr,closest);
 			}
 
 			@Override
@@ -166,8 +162,9 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 
 			@SuppressWarnings("unchecked")
 			@Override
-			protected void onPostExecute(Stop closest) {
+			protected void onPostExecute(StopResult result) {
 				progress.dismiss();
+				Stop closest = result.getClosest();				
 				if(!stops.isEmpty()) {
 					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,stops);
 					stopTimes.setAdapter(stopAdapter);
@@ -201,9 +198,10 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					stopTimes.setVisibility(View.GONE);
 					errors.setVisibility(View.VISIBLE);
 					errors.setText(question);
-				}
+				}	
+				tracker.trackEvent("stop_times", "query", stops.size() +" stops for " + departure.getName() + " to " + arrival.getName() + " in " + result.getStopQueryResult().getQueryDuration(), 0);
 			}
-
+			
 		}.execute();
 	}
 	
@@ -310,9 +308,5 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 			startActivity(intent);
 		}		
 		return super.onOptionsItemSelected(item);
-	}
-
-	private String renderTitle(Station departing, Station arriving) {
-		return String.format("%s to %s", departing, arriving);
 	}
 }

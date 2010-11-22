@@ -7,23 +7,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.njtransit.R;
-import com.njtransit.SchedulerActivity;
-import com.njtransit.SchedulerApplication;
-import com.njtransit.Session;
-import com.njtransit.StationListActivity;
-import com.njtransit.StopActivity;
 import com.njtransit.domain.Station;
 
-public class ExampleActivity extends SchedulerActivity {
+public class MainActivity extends SchedulerActivity {
 	
 	public static int DEPARTURE_REQUEST_CODE = 1, ARRIVAL_REQUEST_CODE = 2;
 	
 	private TextView departureText, arrivalText;
 	private View getSchedule;
 	private ImageView getScheduleImage;
-	
-	private Session session;
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -32,9 +24,11 @@ public class ExampleActivity extends SchedulerActivity {
 			if(requestCode==DEPARTURE_REQUEST_CODE) {
 				getSchedulerContext().setDepartureStation(station);
 				departureText.setText(station.getName());
+				tracker.trackEvent("station-depart", "selected", station.getName(), station.getId());
 			} else {
 				getSchedulerContext().setArrivalStation(station);
 				arrivalText.setText(station.getName());
+				tracker.trackEvent("station-arrive", "selected", station.getName(), station.getId());
 			}
 		}	
 		if(getSchedulerContext().getDepartureStation()!=null && getSchedulerContext().getArrivalStation()!=null) {
@@ -50,13 +44,12 @@ public class ExampleActivity extends SchedulerActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.jumper);
-		
-		final SchedulerApplication app = getSchedulerContext();
 
 		RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
 		departureText = (TextView)findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {	
+				tracker.trackEvent("departure-clicked", "button", "clicked", 0);
 				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
 				startActivityForResult(intent, DEPARTURE_REQUEST_CODE);
 			}
@@ -67,6 +60,7 @@ public class ExampleActivity extends SchedulerActivity {
 			
 			@Override
 			public void onClick(View v) {
+				tracker.trackEvent("arrival-clicked", "button", "clicked", 1);
 				Intent intent = new Intent(getApplicationContext(), StationListActivity.class);
 				startActivityForResult(intent, ARRIVAL_REQUEST_CODE);
 			}
@@ -77,12 +71,15 @@ public class ExampleActivity extends SchedulerActivity {
 
 			@Override
 			public void onClick(View arg0) {
+				SchedulerApplication sc = getSchedulerContext();
+				tracker.trackEvent("get-schedule-clicked", "button", sc.getDepartureStation().getName() + " to " + sc.getArrivalStation().getName(), 2);
 				Intent intent = new Intent(getApplicationContext(), StopActivity.class);
 				startActivity(intent);
 			}
 			
 		});
 		getScheduleImage = (ImageView)findViewById(R.id.getScheduleChevron);
+		tracker.trackPageView("/main");
 	}
 	
 }

@@ -28,6 +28,10 @@ public class SchedulerApplication extends Application implements LocationListene
 	private int stationOrderType = 1;
 	private Preferences preferences;
 	private DeviceInformation deviceInformation;
+	public DeviceInformation getDeviceInformation() {
+		return deviceInformation;
+	}
+
 	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 
 	@Override

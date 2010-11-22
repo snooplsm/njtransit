@@ -50,8 +50,6 @@ public class DeviceInformation {
 	public int getVersion() {
 		return version;
 	}
-
-	private static DeviceInformation instance;
 	
 	public static DeviceInformation getDeviceInformatino(Context ctx) {
 		DeviceInformation d = new DeviceInformation();

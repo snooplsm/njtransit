@@ -2,13 +2,11 @@ package com.njtransit.ui.adapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import android.content.Context;
-import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 import com.njtransit.R;
 import com.njtransit.SchedulerApplication;
 import com.njtransit.domain.Station;
-import com.njtransit.utils.Distance;
 import com.njtransit.utils.Locations;
 
 public class StationAdapter extends ArrayAdapter<Station> implements
@@ -28,50 +25,13 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 
 	private SchedulerApplication app;
 
-	private int type;
-
 	private HashMap<Integer, Character> posToCharacter;
 
 	private HashMap<Character, Integer> characterToPos;
 
 	private Character[] sections;
 
-	public static final int ALPHA = 0, NEARBY = 1, FAVORITES = 2;
-
-	private static final Comparator<Station> ALPHA_SORT = new Comparator<Station>() {
-		@Override
-		public int compare(Station a, Station b) {
-			return a.getName().compareToIgnoreCase(b.getName());
-		}
-	};
-
-	private static final NearbyComparator NEARBY_SORT = new NearbyComparator();
-
-	private static class NearbyComparator implements Comparator<Station> {
-
-		private Location home;
-
-		public NearbyComparator() {
-		}
-
-		public NearbyComparator setHome(Location l) {
-			this.home = l;
-			return this;
-		}
-
-		@Override
-		public int compare(Station a, Station b) {
-			if (home == null) {
-				return a.getName().compareToIgnoreCase(b.getName());
-			}
-			Double dist = Distance.greatCircle(home.getLatitude(),
-					home.getLongitude(), a.getLatitude(), a.getLongitude());
-			return dist.compareTo(Distance.greatCircle(home.getLatitude(),
-					home.getLongitude(), b.getLatitude(), b.getLongitude()));
-		}
-	}
-
-	public StationAdapter(Context context, int textViewResourceId, int type,
+	public StationAdapter(Context context, int textViewResourceId,
 			List<Station> items, SchedulerApplication app) {
 		super(context, textViewResourceId, new ArrayList<Station>(items));
 		this.app = app;
@@ -127,9 +87,6 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 
 	@Override
 	public Object[] getSections() {
-		if (type == NEARBY) {
-			return null;
-		}
 		calculateSections();
 		return sections;
 	}
