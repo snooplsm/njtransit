@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,18 +23,25 @@ public class MainActivity extends SchedulerActivity {
 		if(resultCode==RESULT_OK) {
 			Station station = getSchedulerContext().getStation(data.getIntExtra("stationId",-1));
 			if(requestCode==DEPARTURE_REQUEST_CODE) {
-				getSchedulerContext().setDepartureStation(station);
-				departureText.setText(station.getName());
+				getSchedulerContext().setDepartureStation(station);				
 				tracker.trackEvent("station-depart", "selected", station.getName(), station.getId());
 			} else {
-				getSchedulerContext().setArrivalStation(station);
-				arrivalText.setText(station.getName());
+				getSchedulerContext().setArrivalStation(station);				
 				tracker.trackEvent("station-arrive", "selected", station.getName(), station.getId());
 			}
 		}	
-		if(getSchedulerContext().getDepartureStation()!=null && getSchedulerContext().getArrivalStation()!=null) {
+		Station departure = getSchedulerContext().getDepartureStation();
+		Station arrival = getSchedulerContext().getArrivalStation();
+		if(departure!=null) {
+			departureText.setText(departure.getName());
+		}
+		if(arrival!=null) {
+			arrivalText.setText(arrival.getName());
+		}
+		if(departure!=null && arrival!=null) {
 			getSchedule.setEnabled(true);
 			getScheduleImage.setVisibility(View.VISIBLE);
+			
 		} else {
 			getScheduleImage.setVisibility(View.INVISIBLE);
 			getSchedule.setEnabled(false);
@@ -78,8 +86,15 @@ public class MainActivity extends SchedulerActivity {
 			}
 			
 		});
-		getScheduleImage = (ImageView)findViewById(R.id.getScheduleChevron);
+		getScheduleImage = (ImageView)findViewById(R.id.getScheduleChevron);		
 		tracker.trackPageView("/main");
+		
+	}
+
+	@Override
+	public void onAttachedToWindow() {
+		onActivityResult(-1, Activity.RESULT_CANCELED, null);
+		super.onAttachedToWindow();
 	}
 	
 }

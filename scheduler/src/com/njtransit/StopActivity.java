@@ -71,24 +71,6 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	    ad.setAdListener(new SimpleAdListener() {
 
 			@Override
-			public void onFailedToReceiveAd(AdView arg0) {
-				// TODO Auto-generated method stub
-				super.onFailedToReceiveAd(arg0);
-			}
-
-			@Override
-			public void onFailedToReceiveRefreshedAd(AdView arg0) {
-				// TODO Auto-generated method stub
-				super.onFailedToReceiveRefreshedAd(arg0);
-			}
-
-			@Override
-			public void onReceiveRefreshedAd(AdView arg0) {
-				// TODO Auto-generated method stub
-				super.onReceiveRefreshedAd(arg0);
-			}
-
-			@Override
 			public void onReceiveAd(AdView arg0) {			
 				super.onReceiveAd(arg0);
 				ad.setVisibility(View.VISIBLE);

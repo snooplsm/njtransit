@@ -87,15 +87,16 @@ containing a value of this type.
         public static final int clear_favorites=0x7f020001;
         public static final int crown_small=0x7f020002;
         public static final int divider=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int orange_gradient=0x7f020005;
-        public static final int places_tab=0x7f020006;
-        public static final int places_tab_selected=0x7f020007;
-        public static final int places_tab_unselected=0x7f020008;
-        public static final int signpost=0x7f020009;
-        public static final int small_tiles=0x7f02000a;
-        public static final int thumb=0x7f02000b;
-        public static final int user_details_activity_general_selector=0x7f02000c;
+        public static final int get_schedule=0x7f020004;
+        public static final int icon=0x7f020005;
+        public static final int orange_gradient=0x7f020006;
+        public static final int places_tab=0x7f020007;
+        public static final int places_tab_selected=0x7f020008;
+        public static final int places_tab_unselected=0x7f020009;
+        public static final int signpost=0x7f02000a;
+        public static final int small_tiles=0x7f02000b;
+        public static final int thumb=0x7f02000c;
+        public static final int user_details_activity_general_selector=0x7f02000d;
     }
     public static final class id {
         public static final int ad=0x7f080010;

@@ -57,8 +57,9 @@
 
 		</RelativeLayout>
 		<RelativeLayout android:id="@+id/get_schedule" android:layout_alignParentBottom="true"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:background="@color/get_stations"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:focusable="true"
+			android:background="@drawable/get_schedule"
 			android:padding="3dip">
 			<TextView android:text="Get Schedule"
 				android:textSize="30dip"

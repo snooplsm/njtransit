@@ -156,11 +156,11 @@
 				<artifactId>njtransit-rail</artifactId>
 				<url>http://wmwm.us/njtransit</url>
 				<name>NJTransit Rail</name>
-				<androidManifestTarget>../schedule-providers/njtransit-rail/AndroidManifest.xml</androidManifestTarget>
-				<resourceOverlayDirectory>../schedule-providers/njtransit-rail/res</resourceOverlayDirectory>
-				<assetsDirectory>../schedule-providers/njtransit-rail/assets</assetsDirectory>
-				<resourceOutputDirectory>../schedule-providers/njtransit-rail</resourceOutputDirectory>
-				<packageName>com.njtransit.rail</packageName>
+				<androidManifestTarget>../providers/njtransit-rail/AndroidManifest.xml</androidManifestTarget>
+				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
+				<assetsDirectory>../providers/njtransit-rail/assets</assetsDirectory>
+				<resourceOutputDirectory>../providers/njtransit-rail</resourceOutputDirectory>
+				<packageName>com.njtransit</packageName>
 			</properties>
 		</profile>
 	</profiles>
