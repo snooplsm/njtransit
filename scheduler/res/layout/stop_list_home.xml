@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/com.njtransit"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	
-	<TextView android:id="@+id/departureText" android:layout_height="wrap_content" android:layout_width="fill_parent" android:textStyle="bold" android:textSize="15dip" />
-	<TextView android:id="@+id/arrivalText" android:layout_height="wrap_content" android:layout_width="fill_parent" android:textStyle="bold" android:textSize="15dip" />
-	
-	<com.njtransit.StopListView
-		android:layout_height="fill_parent" android:id="@+id/list"
-		android:layout_width="fill_parent" />
-		
-	<TextView padding="10dip" android:autoLink="email" android:id="@+id/errors" android:layout_height="wrap_content" android:visibility="gone" android:layout_width="fill_parent"/>
-	
+
+	<TextView android:id="@+id/departureText"
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:textStyle="bold" android:textSize="15dip" />
+
+	<TextView android:id="@+id/arrivalText" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:textStyle="bold"
+		android:textSize="15dip" />
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<com.njtransit.StopListView
+			android:layout_height="fill_parent" android:id="@+id/list"
+			android:layout_width="fill_parent" />
+		<TextView padding="10dip" android:autoLink="email"
+			android:id="@+id/errors" android:layout_height="wrap_content"
+			android:layout_below="@id/list"
+			android:visibility="gone" android:layout_width="fill_parent" />
+		<com.admob.android.ads.AdView android:id="@+id/ad"
+			android:visibility="gone" android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true" app:backgroundColor="#000000"
+			app:primaryTextColor="#FFFFFF" app:secondaryTextColor="#CCCCCC"
+			app:keywords="NJTransit transportation train bus taxi" />
+	</RelativeLayout>
+
 </LinearLayout>

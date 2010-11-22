@@ -15,6 +15,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.admob.android.ads.AdManager;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
 import com.njtransit.domain.Station;
@@ -51,6 +52,7 @@ public class SchedulerApplication extends Application implements LocationListene
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
 					0, this);
 		}
+		AdManager.setAllowUseOfLocation(true);
 	}
 
 	public Preferences getPreferences() {

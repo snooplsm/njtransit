@@ -20,6 +20,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.admob.android.ads.AdManager;
+import com.admob.android.ads.AdView;
+import com.admob.android.ads.SimpleAdListener;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
@@ -47,6 +50,8 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	public static final String DEPARTURE_ID = "departure-id";
 	public static final String ARRIVAL_ID = "arrival-id";
 	
+	private AdView ad;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,12 +61,39 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		Station departure = getSchedulerContext().getDepartureStation();
 		Station arrival = getSchedulerContext().getArrivalStation();
 		this.departure = (TextView)findViewById(R.id.departureText);
-		this.arrival = (TextView)findViewById(R.id.arrivalText);
-		populateStationsHeader(departure,arrival);
+		this.arrival = (TextView)findViewById(R.id.arrivalText);				
 		stopTimes = (StopListView) findViewById(R.id.list);
 		errors = (TextView) findViewById(R.id.errors);
 		findAndShowStops(departure,arrival);
-		tracker.trackPageView("/"+getClass().getSimpleName()+"/"+departure.getName()+"_to_"+arrival.getName());
+		AdManager.setTestDevices(new String[] {AdManager.TEST_EMULATOR});
+	    ad = (AdView) findViewById(R.id.ad);
+	    ad.setAdListener(new SimpleAdListener() {
+
+			@Override
+			public void onFailedToReceiveAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				super.onFailedToReceiveAd(arg0);
+			}
+
+			@Override
+			public void onFailedToReceiveRefreshedAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				super.onFailedToReceiveRefreshedAd(arg0);
+			}
+
+			@Override
+			public void onReceiveRefreshedAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				super.onReceiveRefreshedAd(arg0);
+			}
+
+			@Override
+			public void onReceiveAd(AdView arg0) {			
+				super.onReceiveAd(arg0);
+				ad.setVisibility(View.VISIBLE);
+			}
+	    	
+	    });		
 	}
 	
 	private void populateStationsHeader(Station departure, Station arrival) {
@@ -156,6 +188,8 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 
 			@Override
 			protected void onPreExecute() {
+				tracker.trackPageView("/"+getClass().getSimpleName()+"/"+departure.getName()+"_to_"+arrival.getName());
+				populateStationsHeader(departure,arrival);
 				progress = ProgressDialog.show(StopActivity.this, "Please wait",
 						"Loading schedule ...", true);
 			}

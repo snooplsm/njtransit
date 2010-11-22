@@ -6,12 +6,7 @@
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
 		android:theme="@style/OrangeTheme" android:debuggable="true"
 		android:name="com.njtransit.SchedulerApplication">
-		<receiver android:name="com.google.android.apps.analytics.AnalyticsReceiver"
-			android:exported="true">
-			<intent-filter>
-				<action android:name="com.android.vending.INSTALL_REFERRER" />
-			</intent-filter>
-		</receiver>
+		
 		<activity android:name=".StationListActivity" android:label="@string/app_name"
 			android:screenOrientation="portrait" android:theme="@android:style/Theme.Light">
 			<intent-filter>
@@ -37,6 +32,21 @@
 		</activity>
 		<activity android:name="Prefs" android:screenOrientation="portrait" />
 		<service android:name=".service.UpdaterService"></service>
+
+
+		<meta-data android:value="a14cbf2b9d15c90" android:name="ADMOB_PUBLISHER_ID" />
+		<meta-data android:value="true" android:name="ADMOB_ALLOW_LOCATION_FOR_ADS" />
+
+		<activity android:name="com.admob.android.ads.AdMobActivity"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+			android:configChanges="orientation|keyboard|keyboardHidden" />
+		<receiver android:name="com.admob.android.ads.analytics.InstallReceiver"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+			</intent-filter>
+		</receiver>
+
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
