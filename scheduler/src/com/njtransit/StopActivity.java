@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -55,9 +56,9 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.stop_list_home);
-//		int departureId = savedInstanceState.getInt(DEPARTURE_ID);
-//		int arrivalId = savedInstanceState.getInt(ARRIVAL_ID);
+
 		Station departure = getSchedulerContext().getDepartureStation();
 		Station arrival = getSchedulerContext().getArrivalStation();
 		this.departure = (TextView)findViewById(R.id.departureText);
@@ -227,8 +228,9 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 						}
 					}.start();
 				} else {
-					String address = String.format("feedback_%s_%s@wmwm.us",getSchedulerContext().getDepartureStation().getId(),getSchedulerContext().getArrivalStation().getId());
-					String question = String.format("We were unable to find any results for your search criteria.  Keep in mind that this not a trip planning application and does not support connections.  Still, if you believe this is a bug please email %s and we will look into it.",address);
+					String address = String.format("feedback_%s_%s_%s",getSchedulerContext().getDepartureStation().getId(),getSchedulerContext().getArrivalStation().getId(), getString(R.string.email_address));
+					String appName = getString(R.string.app_name_full);
+					String question = String.format("We are unable to find results for your search criteria. Please note that %s does not support connections.  To provide additional feedback, please email %s.",appName, address);
 					stopTimes.setVisibility(View.GONE);
 					errors.setVisibility(View.VISIBLE);
 					errors.setText(question);
@@ -324,13 +326,21 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		}
 	}
 	
-	
+	@Override
+	public void onBackPressed() {
+		
+		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		startActivity(intent);
+		
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		MenuItem reverse = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.reverse));
-		reverse.setIcon(R.drawable.signpost);
+		if(stops.size()>0) {
+			MenuItem reverse = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.reverse));
+			reverse.setIcon(R.drawable.signpost);
+		}
 		return true;
 	}
 

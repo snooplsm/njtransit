@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<CheckBox android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="Select stations on launch" />
+
+	<CheckBox android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:enabled="false"
+		android:text="Get schedule on launch" />
+
+	<RelativeLayout android:id="@+id/departure"
+		android:layout_width="fill_parent" android:layout_height="40dip"
+		android:layout_weight="1" android:focusable="true" android:padding="3dip"
+		android:background="@drawable/user_details_activity_general_selector">
+
+		<TextView android:id="@+id/departureText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textSize="25dip"
+			android:gravity="center_vertical" android:text="Travel Start Station"
+			android:layout_alignParentLeft="true" android:paddingLeft="2dip"
+			android:paddingTop="3dip"
+			android:textAppearance="@style/TextViewStyleUserDetailsActivityGeneralTitle" />
+
+		<ImageView android:layout_width="9dip"
+			android:layout_height="13dip" android:src="@drawable/arrow_white"
+			android:scaleType="fitCenter" android:layout_marginLeft="3dip"
+			android:layout_marginRight="3dip" android:layout_centerVertical="true"
+			android:layout_alignParentRight="true" />
+
+	</RelativeLayout>
+
+	<RelativeLayout android:id="@+id/departure_range"
+		android:layout_width="fill_parent" android:layout_height="40dip"
+		android:layout_weight="1" android:focusable="true" android:padding="3dip"
+		android:background="@drawable/user_details_activity_general_selector">
+
+		<TextView android:id="@+id/departureText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textSize="25dip"
+			android:gravity="center_vertical" android:text="Travel Start Time Range"
+			android:layout_alignParentLeft="true" android:paddingLeft="2dip"
+			android:paddingTop="3dip"
+			android:textAppearance="@style/TextViewStyleUserDetailsActivityGeneralTitle" />
+
+		<ImageView android:layout_width="9dip"
+			android:layout_height="13dip" android:src="@drawable/arrow_white"
+			android:scaleType="fitCenter" android:layout_marginLeft="3dip"
+			android:layout_marginRight="3dip" android:layout_centerVertical="true"
+			android:layout_alignParentRight="true" />
+
+	</RelativeLayout>
+</LinearLayout>

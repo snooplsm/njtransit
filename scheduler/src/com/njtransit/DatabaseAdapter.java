@@ -169,7 +169,7 @@ public class DatabaseAdapter {
 			later.setTimeInMillis(now.getTimeInMillis());
 			later.add(Calendar.HOUR, 1);
 			Stop st = new Stop(1,now,later);
-			stops.add(st);
+			//stops.add(st);
 			StopsQueryResult sqr = new StopsQueryResult(depart,arrive,before,end,tripToService,stops);
 			return sqr;
 		}

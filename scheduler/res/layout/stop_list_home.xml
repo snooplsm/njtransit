@@ -19,6 +19,8 @@
 			android:layout_width="fill_parent" />
 		<TextView padding="10dip" android:autoLink="email"
 			android:id="@+id/errors" android:layout_height="wrap_content"
+			android:textSize="15dip"
+			android:padding="15dip"
 			android:layout_below="@id/list"
 			android:visibility="gone" android:layout_width="fill_parent" />
 		<com.admob.android.ads.AdView android:id="@+id/ad"
