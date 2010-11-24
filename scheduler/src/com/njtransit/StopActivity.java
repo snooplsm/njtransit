@@ -145,9 +145,9 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 								.get(stop.getTripId());
 						if(service.isDate(sqr.getDepartureDate())) {
 							stops.add(stop);
-						}
-						Collections.sort(stops,comparator);
+						}						
 					}
+					Collections.sort(stops,comparator);
 				} else {
 					for (Stop stop : sqr.getStops()) {
 						IService service = sqr.getTripToService()
