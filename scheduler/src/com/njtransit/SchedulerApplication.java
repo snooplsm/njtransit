@@ -1,6 +1,7 @@
 package com.njtransit;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -26,81 +27,20 @@ public class SchedulerApplication extends Application implements LocationListene
 
 	private Location lastKnownLocation;
 	private Station arrivalStation, departureStation;
+	private Calendar departureDate;
 	private int stationOrderType = 1;
+
 	private Preferences preferences;
+
 	private DeviceInformation deviceInformation;
-	public DeviceInformation getDeviceInformation() {
-		return deviceInformation;
-	}
-
 	private static String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
-
-	@Override
-	public void onCreate() {
-		super.onCreate();
-
-		deviceInformation = DeviceInformation.getDeviceInformatino(this);
-
-		adapter = new DatabaseAdapter(getApplicationContext()).open();
-		Toast.makeText(getApplicationContext(), getString(R.string.disclaimer),
-				Toast.LENGTH_SHORT).show();
-		this.stations = adapter.getStations();
-		
-		setLastKnownLocation(getLocations().getLastKnownLocation(
-				LOCATION_PROVIDER));
-		if (getLastKnownLocation() == null) {
-			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
-					0, this);
-		}
-		AdManager.setAllowUseOfLocation(true);
-	}
-
-	public Preferences getPreferences() {
-		if(preferences==null) {
-			preferences = new Preferences();
-		}
-		return preferences;
-	}
-
-	public void setPreferences(Preferences preferences) {
-		this.preferences = preferences;
-	}
-
-	public int getStationOrderType() {
-		return stationOrderType;
-	}
-
-	public void setStationOrderType(int stationOrderType) {
-		this.stationOrderType = stationOrderType;
-	}
-
 	private List<Station> stations;
-	
 	private Map<Integer, IService> services;
-	
-	public Map<Integer, IService> getServices() {
-		return services;
-	}
-
-	public void setServices(List<IService> services) {
-		this.services = new HashMap<Integer,IService>();
-		for(IService s : services) {
-			this.services.put(s.getId(), s);
-		}
-	}
 
 	@SuppressWarnings("unused")
 	private LocationManager locationManager;
-	
-	private DatabaseAdapter adapter;
-	
-	public DatabaseAdapter getAdapter() {
-		return adapter;
-	}
 
-	public void setAdapter(DatabaseAdapter adapter) {
-		this.adapter = adapter;
-	}
+	private DatabaseAdapter adapter;
 
 	/**
 	 * 
@@ -114,7 +54,7 @@ public class SchedulerApplication extends Application implements LocationListene
 		}
 		return s;
 	}
-	
+
 	/**
 	 * This is a weak algorithm, if performance is a concern we should address it.
 	 * 
@@ -153,36 +93,43 @@ public class SchedulerApplication extends Application implements LocationListene
 		return inverted;
 	}
 
-	public List<Station> getStations() {
-		return stations;
+	public DatabaseAdapter getAdapter() {
+		return adapter;
 	}
 
-	public void setStations(ArrayList<Station> stations) {
-		this.stations = stations;
+	public Station getArrivalStation() {
+		return arrivalStation;
+	}
+
+	public Calendar getDepartureDate() {
+		return departureDate;
+	}
+	
+	public Station getDepartureStation() {
+		return departureStation;
+	}
+	
+	public DeviceInformation getDeviceInformation() {
+		return deviceInformation;
 	}
 
 	public Location getLastKnownLocation() {
 		return lastKnownLocation;
 	}
 
-	public void setLastKnownLocation(Location lastKnownLocation) {
-		this.lastKnownLocation = lastKnownLocation;
+	private LocationManager getLocations() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 	
-	public Station getArrivalStation() {
-		return arrivalStation;
+	public Preferences getPreferences() {
+		if(preferences==null) {
+			preferences = new Preferences();
+		}
+		return preferences;
 	}
-
-	public void setArrivalStation(Station arrivalStation) {
-		this.arrivalStation = arrivalStation;
-	}
-
-	public Station getDepartureStation() {
-		return departureStation;
-	}
-
-	public void setDepartureStation(Station departureStation) {
-		this.departureStation = departureStation;
+	
+	public Map<Integer, IService> getServices() {
+		return services;
 	}
 
 	public Station getStation(Integer id) {
@@ -194,14 +141,45 @@ public class SchedulerApplication extends Application implements LocationListene
 		return null;
 	}
 
-	public void reverseTrip() {
-		Station tmp = departureStation;
-		departureStation = arrivalStation;
-		arrivalStation = tmp;
+	public int getStationOrderType() {
+		return stationOrderType;
 	}
 	
-	private LocationManager getLocations() {
-		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	public List<Station> getStations() {
+		return stations;
+	}
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		deviceInformation = DeviceInformation.getDeviceInformatino(this);
+
+		adapter = new DatabaseAdapter(getApplicationContext()).open();
+		Toast.makeText(getApplicationContext(), getString(R.string.disclaimer),
+				Toast.LENGTH_SHORT).show();
+		this.stations = adapter.getStations();
+		
+		setLastKnownLocation(getLocations().getLastKnownLocation(
+				LOCATION_PROVIDER));
+		if (getLastKnownLocation() == null) {
+			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
+					0, this);
+		}
+		if(Root.getScheduleEndDate(getApplicationContext())<0) {
+			long max = adapter.getMaxCalendarDate();
+			Root.saveScheduleEndDate(getApplicationContext(), max);
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND,0);
+		cal.set(Calendar.MILLISECOND, 0);
+		if(cal.getTimeInMillis()>Root.getScheduleEndDate(getApplicationContext())) {
+			//Toast.makeText(getApplicationContext(), "Your sched, duration)
+		}
+		AdManager.setAllowUseOfLocation(true);
+		
 	}
 
 	@Override
@@ -218,8 +196,53 @@ public class SchedulerApplication extends Application implements LocationListene
 	@Override
 	public void onProviderEnabled(String provider) {
 	}
-
+	
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
+	}
+
+	public void reverseTrip() {
+		Station tmp = departureStation;
+		departureStation = arrivalStation;
+		arrivalStation = tmp;
+	}
+
+	public void setAdapter(DatabaseAdapter adapter) {
+		this.adapter = adapter;
+	}
+
+	public void setArrivalStation(Station arrivalStation) {
+		this.arrivalStation = arrivalStation;
+	}
+
+	public void setDepartureDate(Calendar departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public void setDepartureStation(Station departureStation) {
+		this.departureStation = departureStation;
+	}
+	
+	public void setLastKnownLocation(Location lastKnownLocation) {
+		this.lastKnownLocation = lastKnownLocation;
+	}
+
+	public void setPreferences(Preferences preferences) {
+		this.preferences = preferences;
+	}
+
+	public void setServices(List<IService> services) {
+		this.services = new HashMap<Integer,IService>();
+		for(IService s : services) {
+			this.services.put(s.getId(), s);
+		}
+	}
+
+	public void setStationOrderType(int stationOrderType) {
+		this.stationOrderType = stationOrderType;
+	}
+
+	public void setStations(ArrayList<Station> stations) {
+		this.stations = stations;
 	}
 }

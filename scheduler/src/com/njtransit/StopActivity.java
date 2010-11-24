@@ -46,6 +46,10 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	
 	private Timer timer;
 	
+	ProgressDialog progress = null;
+	
+	private boolean needProgress;
+	
 	private List<Stop> stops = new ArrayList<Stop>();
 
 	public static final String DEPARTURE_ID = "departure-id";
@@ -79,6 +83,15 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	    });		
 	}
 	
+	Comparator<Stop> comparator = new Comparator<Stop>() {
+
+		@Override
+		public int compare(Stop o1, Stop o2) {
+			return o1.getDepart().compareTo(o2.getDepart());
+		}
+		
+	};
+	
 	private void populateStationsHeader(Station departure, Station arrival) {
 		this.departure.setText(departure.getName());
 		this.arrival.setText(arrival.getName());
@@ -109,62 +122,77 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		}
 		new AsyncTask<Void, Void, StopResult>() {
 
-			ProgressDialog progress = null;
-
 			@Override
 			protected StopResult doInBackground(Void... params) {
 
-				final StopsQueryResult sqr = getSchedulerContext().getAdapter().getStopTimesAlternate(departure, arrival,useMockData);
-
+				final StopsQueryResult sqr ;
+				if(getSchedulerContext().getDepartureDate()!=null) {
+					sqr = getSchedulerContext().getAdapter().getStopTimesAlternate(departure, arrival,useMockData,getSchedulerContext().getDepartureDate());
+				} else {
+					sqr = getSchedulerContext().getAdapter().getStopTimesAlternate(departure, arrival,useMockData);
+				}
+				
 				final ArrayList<Stop> today = new ArrayList<Stop>();
 				final ArrayList<Stop> tomorrow = new ArrayList<Stop>();
 				final Long now = System.currentTimeMillis();
+				final Calendar day = Calendar.getInstance();
 				
 				Stop closest = null;
 				Long closestDiff = Long.MAX_VALUE;
-				for (Stop stop : sqr.getStops()) {
-					IService service = sqr.getTripToService()
-							.get(stop.getTripId());
-					Calendar relativeTime = Calendar.getInstance();
-					relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
-					relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
-					if (service.isToday()) {	
-						Long diff =  now - relativeTime.getTimeInMillis();
-						
-						if (diff > 0 && diff < now
-								&& diff < closestDiff) {
-							closest = stop;
-							closestDiff = diff;
+				if(!(day.get(Calendar.YEAR)==sqr.getDepartureDate().get(Calendar.YEAR) && day.get(Calendar.DAY_OF_YEAR)==sqr.getDepartureDate().get(Calendar.DAY_OF_YEAR))) {
+					for(Stop stop :sqr.getStops()) {
+						IService service = sqr.getTripToService()
+								.get(stop.getTripId());
+						if(service.isDate(sqr.getDepartureDate())) {
+							stops.add(stop);
 						}
-						today.add(stop);
-					} 
-					if (service.isTomorrow()) {
-						relativeTime.add(Calendar.DAY_OF_YEAR, 1);
-						Long diff =  now - relativeTime.getTimeInMillis();
-						
-						if (diff > 0 && diff < now
-								&& diff < closestDiff) {
-							closest = stop;
-							closestDiff = diff;
-						}
-						tomorrow.add(stop);
+						Collections.sort(stops,comparator);
 					}
+				} else {
+					for (Stop stop : sqr.getStops()) {
+						IService service = sqr.getTripToService()
+								.get(stop.getTripId());
+						Calendar relativeTime = Calendar.getInstance();
+						relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
+						relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
+						if(relativeTime.get(Calendar.HOUR)==4 && relativeTime.get(Calendar.MINUTE)==54) {
+							int k = 5;
+							k+=5;
+						}					
+						if (service.isToday()) {	
+							Long diff =  now - relativeTime.getTimeInMillis();
+							
+							if (diff > 0 && diff < now
+									&& diff < closestDiff) {
+								closest = stop;
+								closestDiff = diff;
+							}
+							if(diff<5400001) {
+								today.add(stop);
+							}
+						} 
+						if (service.isTomorrow()) {
+							relativeTime.add(Calendar.DAY_OF_YEAR, 1);
+							Long diff =  now - relativeTime.getTimeInMillis();
+							if (diff > 0 && diff < now
+									&& diff < closestDiff) {
+								closest = stop;
+								closestDiff = diff;
+							}
+							if(stop.getDepart().get(Calendar.HOUR_OF_DAY)<6) {
+								tomorrow.add(stop);
+							}
+						}
+						
+					}					
+					Collections.sort(today,comparator);
+					Collections.sort(tomorrow,comparator);
+					today.addAll(tomorrow);
+
 					
+					stops.addAll(today);
 				}
-				Comparator<Stop> comparator = new Comparator<Stop>() {
 
-					@Override
-					public int compare(Stop o1, Stop o2) {
-						return o1.getDepart().compareTo(o2.getDepart());
-					}
-					
-				};
-				Collections.sort(today,comparator);
-				Collections.sort(tomorrow,comparator);
-				today.addAll(tomorrow);
-
-				
-				stops.addAll(today);
 
 				return new StopResult(sqr,closest);
 			}
@@ -175,12 +203,21 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 				populateStationsHeader(departure,arrival);
 				progress = ProgressDialog.show(StopActivity.this, "Please wait",
 						"Loading schedule ...", true);
+				needProgress = true;
+			}
+
+			@Override
+			protected void onCancelled() {
+				progress.cancel();
 			}
 
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void onPostExecute(StopResult result) {
-				progress.dismiss();
+				if(progress.isShowing()) {
+					needProgress = false;
+					progress.dismiss();
+				}
 				Stop closest = result.getClosest();				
 				if(!stops.isEmpty()) {
 					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,stops);
@@ -288,6 +325,11 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 				Log.w("error", "onPause",e);
 			}
 		}
+		if(progress!=null) {
+			if(progress.isShowing()) {
+				progress.dismiss();
+			}
+		}
 	}
 
 	protected void onResume() {
@@ -305,6 +347,9 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 			}catch (Exception e) {
 				Log.e(getClass().getSimpleName(), "onResume",e);
 			}
+		}
+		if(needProgress) {
+			progress.show();
 		}
 	}
 	
@@ -329,6 +374,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()==1) {
+			tracker.trackEvent("menu-click", "MenuButton", item.getTitle().toString(), item.getItemId());
 			getSchedulerContext().reverseTrip();
 			Intent intent = new Intent(this, StopActivity.class);
 			startActivity(intent);

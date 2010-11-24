@@ -102,5 +102,32 @@ public class Service implements IService, Comparable<Service> {
 	public int compareTo(Service another) {
 		return Integer.valueOf(id).compareTo(another.id);
 	}
+
+	@Override
+	public boolean isDate(Calendar cal) {
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+		if(Calendar.MONDAY==dayOfWeek) {
+			return isMonday();
+		}
+		if(Calendar.TUESDAY==dayOfWeek) {
+			return isTuesday();
+		}
+		if(Calendar.WEDNESDAY==dayOfWeek) {
+			return isWednesday();
+		}
+		if(Calendar.THURSDAY==dayOfWeek) {
+			return isThursday();
+		}
+		if(Calendar.FRIDAY==dayOfWeek) {
+			return isFriday();
+		}
+		if(Calendar.SATURDAY==dayOfWeek) {
+			return isSaturday();
+		}
+		if(Calendar.SUNDAY==dayOfWeek) {
+			return isSunday();
+		}
+		return false;		
+	}
 	
 }

@@ -69,8 +69,12 @@ public class JumpDialog extends Dialog {
 						public void onClick(View v) {
 							tracker.trackEvent("jumps", "Button", c+"" , (int)c);
 							if(alpha && c=='#') {
+								LayoutParams lp = new LayoutParams();
+								Display display = getWindow().getWindowManager().getDefaultDisplay();
+								lp.width = display.getWidth();
+								lp.height = display.getHeight();
 								JumpDialog.this.dismiss();
-								JumpDialog.this.setContentView(getLayoutInflater().inflate(R.layout.new_jumper_number, null));
+								JumpDialog.this.setContentView(getLayoutInflater().inflate(R.layout.new_jumper_number, null),lp);
 								alpha = !alpha;
 								JumpDialog.this.show();
 								return;
@@ -79,8 +83,12 @@ public class JumpDialog extends Dialog {
 								JumpDialog.this.dismiss();
 							}
 							if(!alpha && c=='A') {
+								LayoutParams lp = new LayoutParams();
+								Display display = getWindow().getWindowManager().getDefaultDisplay();
+								lp.width = display.getWidth();
+								lp.height = display.getHeight();
 								JumpDialog.this.dismiss();
-								JumpDialog.this.setContentView(getLayoutInflater().inflate(R.layout.new_jumper,null));
+								JumpDialog.this.setContentView(getLayoutInflater().inflate(R.layout.new_jumper,null),lp);
 								JumpDialog.this.show();
 								alpha = !alpha;
 								return;

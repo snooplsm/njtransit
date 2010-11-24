@@ -63,4 +63,18 @@ public class AlternateService implements IService {
 		return b.toString();
 	}
 
+	@Override
+	public boolean isDate(Calendar cal) {
+		Calendar now = cal;
+		int today = now.get(Calendar.DAY_OF_YEAR);
+		int year = now.get(Calendar.YEAR);
+		for (Calendar c : dates) {
+			if (today == c.get(Calendar.DAY_OF_YEAR)
+					&& year == c.get(Calendar.YEAR)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

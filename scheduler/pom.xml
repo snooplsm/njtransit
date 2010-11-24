@@ -94,6 +94,31 @@
 					</sources>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>signing</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<phase>package</phase>
+						<inherited>true</inherited>
+						<configuration>
+							<archiveDirectory></archiveDirectory>
+							<includes>
+								<include>target/*.apk</include>
+							</includes>
+							<keystore>${keystore}</keystore>
+							<storepass>${storepass}</storepass>
+							<keypass>${keypass}</keypass>
+							<alias>key-alias</alias>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!--
 				<plugin> <groupId>com.gent</groupId>
 				<artifactId>maven-scheduler-plugin</artifactId>
@@ -131,6 +156,9 @@
 					<zipalign>
 						<verbose>true</verbose>
 					</zipalign>
+					<sign>
+						<debug>false</debug>
+					</sign>
 					<genDirectory>gen</genDirectory>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>

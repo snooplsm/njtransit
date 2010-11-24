@@ -152,18 +152,49 @@ public class DatabaseAdapter {
 		public boolean isTomorrow() {
 			return true;
 		}
+
+		@Override
+		public boolean isDate(Calendar cal) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 		
 	};
 	
+	public long getMaxCalendarDate() {
+		Cursor c = db.rawQuery("select max(calendar_date) from calendar_dates", null);
+		try {
+			if(c.getCount()==1) {
+				c.moveToNext();
+				String date = c.getString(0);
+				Date _date = DF.parse(date);
+				return _date.getTime();
+			}
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			if(c!=null) {
+				c.close();
+			}
+		}
+		return Long.MAX_VALUE;
+	}
 	
-	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive, boolean useMockData) {
+	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive, boolean useMockData, Calendar... departDate) {
 		long before = System.currentTimeMillis();
 		if(useMockData) {
 			Map<Integer, IService> tripToService = new HashMap<Integer,IService>();
 			tripToService.put(both.getId(), both);
 			Long end = System.currentTimeMillis();
 			List<Stop> stops = new ArrayList<Stop>();
-			Calendar now = Calendar.getInstance();
+			final Calendar now;
+			if(departDate.length>0) {
+				now = departDate[0];
+			} else {
+				now = Calendar.getInstance();
+			}
 			now.add(Calendar.MINUTE, 5);
 			Calendar later = Calendar.getInstance();
 			later.setTimeInMillis(now.getTimeInMillis());
@@ -176,7 +207,12 @@ public class DatabaseAdapter {
 		
 		
 		try {
-			Calendar cal = Calendar.getInstance();
+			final Calendar cal;
+			if(departDate.length>0) {
+				 cal = departDate[0];
+			} else {
+				cal = Calendar.getInstance();
+			}
 			int year = cal.get(Calendar.YEAR);
 			int month = cal.get(Calendar.MONTH)+1;
 			int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -186,6 +222,7 @@ public class DatabaseAdapter {
 			int month2 = cal.get(Calendar.MONTH)+1;
 			int day2 = cal.get(Calendar.DAY_OF_MONTH);
 			String tomorrow = year2+""+(month2<10 ? "0"+month2 : month2)+""+(day2 < 10 ? ("0"+day2) : day2);
+			cal.add(Calendar.DAY_OF_MONTH, -1);
 			Cursor c = db.rawQuery("select service_id, calendar_date from calendar_dates where calendar_date in ('"+today+"', '"+tomorrow+"') ",null);
 			
 			Map<Integer, IService> services = new HashMap<Integer,IService>(c.getCount());
@@ -219,7 +256,7 @@ public class DatabaseAdapter {
 			int count = c.getCount();
 			
 			List<Stop> times = new ArrayList<Stop>(count);
-			Calendar now = Calendar.getInstance();
+			Calendar now = cal;
 			Set<Integer> tripIds = new HashSet<Integer>();
 			for(int i = 0; i < count; i++) {
 				c.moveToNext();
@@ -263,7 +300,7 @@ public class DatabaseAdapter {
 			c.close();
 			Log.d("DatabaseAdapter", String.format("getStopTimesAlternate (%s ms)", (System.currentTimeMillis() - before)));
 			
-			return new StopsQueryResult(depart, arrive, 0L, 1L, getTrips(services, tripIds), times);
+			return new StopsQueryResult(cal,depart, arrive, 0L, 1L, getTrips(services, tripIds), times);
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);

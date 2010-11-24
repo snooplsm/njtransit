@@ -88,4 +88,15 @@ public class Root {
 		SharedPreferences prefs = getProperties(ctx);
 		return prefs.getLong("get-stations-duration", -1);
 	}
+	
+	public static long getScheduleEndDate(Context ctx) {
+		SharedPreferences prefs = getProperties(ctx);
+		return prefs.getLong("schedule-end-date", -1);
+	}
+	
+	public static void saveScheduleEndDate(Context ctx, long end) {
+		SharedPreferences prefs = getProperties(ctx);
+		Editor e = prefs.edit().putLong("schedule-end-date", end);
+		e.commit();
+	}
 }
