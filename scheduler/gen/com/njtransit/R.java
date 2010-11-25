@@ -100,31 +100,34 @@ containing a value of this type.
         public static final int user_details_activity_general_selector=0x7f02000e;
     }
     public static final class id {
-        public static final int ad=0x7f080010;
+        public static final int ad=0x7f080012;
         public static final int arrival=0x7f080002;
         public static final int arrivalText=0x7f080003;
-        public static final int away=0x7f080016;
+        public static final int away=0x7f080019;
         public static final int departure=0x7f080000;
+        public static final int departureDate=0x7f080007;
         public static final int departureText=0x7f080001;
-        public static final int departure_range=0x7f080008;
-        public static final int duration=0x7f080015;
-        public static final int errors=0x7f08000f;
-        public static final int getScheduleChevron=0x7f080005;
+        public static final int departure_range=0x7f08000a;
+        public static final int duration=0x7f080018;
+        public static final int errors=0x7f080011;
+        public static final int getScheduleChevron=0x7f080006;
         public static final int get_schedule=0x7f080004;
-        public static final int grid=0x7f080006;
-        public static final int headerText=0x7f080009;
-        public static final int jumper_root=0x7f080007;
-        public static final int list=0x7f08000e;
-        public static final int reverse_direction=0x7f080017;
-        public static final int station_a=0x7f080012;
-        public static final int station_b=0x7f080013;
-        public static final int station_desc=0x7f08000c;
-        public static final int station_distance=0x7f08000d;
-        public static final int station_name=0x7f08000b;
-        public static final int station_view=0x7f08000a;
-        public static final int time=0x7f080014;
-        public static final int trip_direction=0x7f080018;
-        public static final int trip_headsign=0x7f080011;
+        public static final int get_schedule_text=0x7f080005;
+        public static final int grid=0x7f080008;
+        public static final int headerText=0x7f08000b;
+        public static final int jumper_root=0x7f080009;
+        public static final int list=0x7f080010;
+        public static final int reverse_direction=0x7f08001a;
+        public static final int station_a=0x7f080014;
+        public static final int station_b=0x7f080015;
+        public static final int station_desc=0x7f08000e;
+        public static final int station_distance=0x7f08000f;
+        public static final int station_name=0x7f08000d;
+        public static final int station_view=0x7f08000c;
+        public static final int time=0x7f080016;
+        public static final int time_descriptor=0x7f080017;
+        public static final int trip_direction=0x7f08001b;
+        public static final int trip_headsign=0x7f080013;
     }
     public static final class layout {
         public static final int jumper=0x7f030000;

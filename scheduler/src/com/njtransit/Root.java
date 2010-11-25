@@ -99,4 +99,15 @@ public class Root {
 		Editor e = prefs.edit().putLong("schedule-end-date", end);
 		e.commit();
 	}
+	
+	public static long getScheduleStartDate(Context ctx) {
+		SharedPreferences prefs = getProperties(ctx);
+		return prefs.getLong("schedule-start-date", -1);
+	}
+	
+	public static void saveScheduleStartDate(Context ctx, long start) {
+		SharedPreferences prefs = getProperties(ctx);
+		Editor e = prefs.edit().putLong("schedule-start-date", start);
+		e.commit();
+	}
 }

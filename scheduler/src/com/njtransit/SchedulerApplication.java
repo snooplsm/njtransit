@@ -170,6 +170,10 @@ public class SchedulerApplication extends Application implements LocationListene
 			long max = adapter.getMaxCalendarDate();
 			Root.saveScheduleEndDate(getApplicationContext(), max);
 		}
+		if(Root.getScheduleStartDate(getApplicationContext())<0) {
+			long min = adapter.getMinCalendarDate();
+			Root.saveScheduleStartDate(getApplicationContext(), min);
+		}
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR, 0);
 		cal.set(Calendar.MINUTE, 0);
@@ -177,8 +181,9 @@ public class SchedulerApplication extends Application implements LocationListene
 		cal.set(Calendar.MILLISECOND, 0);
 		if(cal.getTimeInMillis()>Root.getScheduleEndDate(getApplicationContext())) {
 			//Toast.makeText(getApplicationContext(), "Your sched, duration)
-		}
+		}		
 		AdManager.setAllowUseOfLocation(true);
+		AdManager.setTestDevices(new String[] {"0A3A55190402402C"});
 		
 	}
 

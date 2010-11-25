@@ -32,6 +32,7 @@ public class DatabaseAdapter {
 	public static String[] DAYS = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
 	private static SimpleDateFormat DF = new SimpleDateFormat("yyyyMMdd");
 	private static SimpleDateFormat DTF = new SimpleDateFormat("HH:mm:ss");
+	private static SimpleDateFormat YDTF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private Context context;
 
@@ -182,6 +183,26 @@ public class DatabaseAdapter {
 		return Long.MAX_VALUE;
 	}
 	
+	public long getMinCalendarDate() {
+		Cursor c = db.rawQuery("select min(calendar_date) from calendar_dates",null);
+		try {
+			if(c.getCount()==1) {
+				c.moveToNext();
+				String date = c.getString(0);
+				Date _date = DF.parse(date);
+				return _date.getTime();
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			if(c!=null) {
+				c.close();
+			}
+		}
+		return Long.MIN_VALUE;
+	}
+	
 	public StopsQueryResult getStopTimesAlternate(Station depart, Station arrive, boolean useMockData, Calendar... departDate) {
 		long before = System.currentTimeMillis();
 		if(useMockData) {
@@ -264,12 +285,9 @@ public class DatabaseAdapter {
 				Date arrival = DTF.parse(c.getString(1));
 				Calendar temp = Calendar.getInstance();
 				Calendar dc = Calendar.getInstance();
-				if(c.getInt(2)==2191) {
-					System.out.println("ok");
-				}
 				temp.setTime(departure);
-				dc.set(Calendar.YEAR, now.get(Calendar.YEAR));
-				dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+				//dc.set(Calendar.YEAR, now.get(Calendar.YEAR));
+				//dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
 				int hour = temp.get(Calendar.HOUR_OF_DAY);
 				int minute = temp.get(Calendar.MINUTE);
 				dc.set(Calendar.HOUR_OF_DAY, hour);
@@ -278,21 +296,18 @@ public class DatabaseAdapter {
 				Calendar ac = Calendar.getInstance();
 				//ac.setTimeInMillis(s.getValue().arrival);
 				temp.setTime(arrival);
-				ac.set(Calendar.YEAR, now.get(Calendar.YEAR));
-				ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+				//ac.set(Calendar.YEAR, now.get(Calendar.YEAR));
+				//ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
 				hour = temp.get(Calendar.HOUR_OF_DAY);
 				minute = temp.get(Calendar.MINUTE);
 				ac.set(Calendar.HOUR_OF_DAY, temp.get(Calendar.HOUR_OF_DAY));
 				ac.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));			
 				ac.set(Calendar.SECOND, 0);
-				if(ac.get(Calendar.DAY_OF_YEAR)!=dc.get(Calendar.DAY_OF_YEAR)) {
-					ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
-					dc.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR));
+				if(dc.getTimeInMillis()>ac.getTimeInMillis()) {
+					ac.add(Calendar.DAY_OF_YEAR, 1);
 				}
-				if(ac.get(Calendar.HOUR_OF_DAY)<dc.get(Calendar.HOUR_OF_DAY)) {
-					ac.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR)+1);
-				}
-				
+				String _d = YDTF.format(dc.getTime());
+				String _a = YDTF.format(ac.getTime());
 				Stop stop = new Stop(c.getInt(2),dc,ac);
 				tripIds.add(stop.getTripId());
 				times.add(stop);
@@ -583,4 +598,6 @@ public class DatabaseAdapter {
 		localDb.setTransactionSuccessful();
 		localDb.endTransaction();	
 	}
+
+
 }

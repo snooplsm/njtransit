@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.admob.android.ads.AdManager;
@@ -54,6 +57,8 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 
 	public static final String DEPARTURE_ID = "departure-id";
 	public static final String ARRIVAL_ID = "arrival-id";
+	
+	private Map<TextView,Integer> minutesAway = new HashMap<TextView,Integer>();
 	
 	private AdView ad;
 	
@@ -149,10 +154,12 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					}
 					Collections.sort(stops,comparator);
 				} else {
+					Calendar relativeTime = Calendar.getInstance();
+					Calendar tomorrowDate = Calendar.getInstance();
+					tomorrowDate.add(Calendar.DAY_OF_YEAR, 1);
 					for (Stop stop : sqr.getStops()) {
 						IService service = sqr.getTripToService()
 								.get(stop.getTripId());
-						Calendar relativeTime = Calendar.getInstance();
 						relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
 						relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
 						if(relativeTime.get(Calendar.HOUR)==4 && relativeTime.get(Calendar.MINUTE)==54) {
@@ -171,8 +178,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 								today.add(stop);
 							}
 						} 
-						if (service.isTomorrow()) {
-							relativeTime.add(Calendar.DAY_OF_YEAR, 1);
+						if (service.isTomorrow()) {							
 							Long diff =  now - relativeTime.getTimeInMillis();
 							if (diff > 0 && diff < now
 									&& diff < closestDiff) {
@@ -180,7 +186,21 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 								closestDiff = diff;
 							}
 							if(stop.getDepart().get(Calendar.HOUR_OF_DAY)<6) {
-								tomorrow.add(stop);
+								Calendar tom = Calendar.getInstance();
+								tom.setTimeInMillis(tomorrowDate.getTimeInMillis());
+								Calendar newDepart = Calendar.getInstance();
+								newDepart.setTimeInMillis(stop.getDepart().getTimeInMillis());
+								Calendar newArrive = Calendar.getInstance();
+								newArrive.setTimeInMillis(stop.getArrive().getTimeInMillis());
+								newDepart.set(Calendar.YEAR,tom.get(Calendar.YEAR));
+								newDepart.set(Calendar.DAY_OF_YEAR, tom.get(Calendar.DAY_OF_YEAR));
+								newArrive.set(Calendar.YEAR,tom.get(Calendar.YEAR));
+								newArrive.set(Calendar.DAY_OF_YEAR, tom.get(Calendar.DAY_OF_YEAR));
+								if(stop.getDepart().get(Calendar.DAY_OF_YEAR) < stop.getArrive().get(Calendar.DAY_OF_YEAR)) {
+									newArrive.add(Calendar.DAY_OF_YEAR, 1);
+								}
+								Stop newStop = new Stop(stop.getTripId(), newDepart, newArrive);
+								tomorrow.add(newStop);
 							}
 						}
 						
@@ -220,7 +240,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 				}
 				Stop closest = result.getClosest();				
 				if(!stops.isEmpty()) {
-					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,stops);
+					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,result.getStopQueryResult().getTripToService(), stops);
 					stopTimes.setAdapter(stopAdapter);
 					if (closest != null) {
 						stopTimes.setSelectionFromTop(
@@ -233,7 +253,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					c.clear(Calendar.MILLISECOND);
 					c.clear(Calendar.SECOND);
 					c.set(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
-					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
+					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 5000);
 					new Thread() {
 						@Override
 						public void run() {
@@ -286,28 +306,42 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 			
 			@Override
 			public void run() {
-				changed = false;
-				Fn<StopTimeRow> updateAway = new Fn<StopTimeRow>() {					
-					public void apply(final StopTimeRow r) {
-						String away = null;
-							if((away = r.getAway(stopTimes))!=null) {
-								changed = true;
-								final String awy = away;
-								r.post(new Runnable() {
+				minutesAway.clear();
+				
+				for(int i = 0; i < stopTimes.getChildCount(); i++) {
+					final Integer away;
+					LinearLayout row = (LinearLayout)stopTimes.getChildAt(i);
+					TextView minutesAway = (TextView) row.findViewById(R.id.away);
+					Stop stop = (Stop)stopTimes.getItemAtPosition(row.getId());
+					long awayTimeInMinutes = StopAdapter.awayTimeInMinutes(stop);
+					Calendar tomorrow = Calendar.getInstance();
+					int hourOfDay = tomorrow.get(Calendar.HOUR_OF_DAY);
+					if(awayTimeInMinutes>=0 && (awayTimeInMinutes<=100 || ((hourOfDay<4 || hourOfDay>18) && awayTimeInMinutes<=200))) {
+						//minutesAway.setVisibility(View.VISIBLE);
+						//minutesAway.setText(String.format("departs in %s minutes",awayTimeInMinutes));
+						away = (int)awayTimeInMinutes;
+					} else {
+						away = null;
+						//minutesAway.setVisibility(View.GONE);
+					}
+					StopActivity.this.minutesAway.put(minutesAway, away);
+				}
+				if(minutesAway.isEmpty()) {
+					return;
+				}
+				StopActivity.this.runOnUiThread(new Runnable() {
 
-									@Override
-									public void run() {
-										r.setAway(awy);
-									}
-									
-								});
+					@Override
+					public void run() {
+						for(Map.Entry<TextView, Integer> e : minutesAway.entrySet()) {
+							e.getKey().setVisibility(e.getValue()==null ? View.GONE : View.VISIBLE);
+							if(e.getValue()!=null) {
+								e.getKey().setText(String.format("departs in %s minutes",e.getValue()));
 							}
 						}
-					};
-				foreach(updateAway);
-				if(changed) {
-					stopTimes.postInvalidate();
-				}
+						stopTimes.postInvalidate();
+					}
+				});
 			}			
 		};
 		return updaterThread;

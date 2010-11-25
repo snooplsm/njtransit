@@ -1,5 +1,6 @@
 package com.njtransit;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.njtransit.domain.Station;
 
@@ -28,6 +30,11 @@ public class MainActivity extends SchedulerActivity {
 	private ImageView getScheduleImage;
 	private DatePickerDialog datePickDialog;
 	private boolean needDatePickDialog;
+	private Calendar minDate;
+	private Calendar maxDate;
+	private TextView departureDateText;
+
+	private SimpleDateFormat DF = new SimpleDateFormat("M/d/yy");
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -59,6 +66,21 @@ public class MainActivity extends SchedulerActivity {
 		} else {
 			getScheduleImage.setVisibility(View.INVISIBLE);
 			getSchedule.setEnabled(false);
+		}
+		Calendar now = Calendar.getInstance();
+		Calendar dept = getSchedulerContext().getDepartureDate();
+		if(dept!=null) {
+			int year = dept.get(Calendar.YEAR);
+			int monthOfYear = dept.get(Calendar.MONTH);
+			int dayOfMonth = dept.get(Calendar.DAY_OF_MONTH);
+			if(!(now.get(Calendar.YEAR)==year && now.get(Calendar.MONTH)==monthOfYear && now.get(Calendar.DAY_OF_MONTH)==dayOfMonth)) {
+				departureDateText.setVisibility(View.VISIBLE);
+				departureDateText.setText(DF.format(dept.getTime()));
+			} else {
+				departureDateText.setVisibility(View.GONE);
+			}
+		} else {
+			departureDateText.setVisibility(View.GONE);
 		}
 	}
 
@@ -106,8 +128,14 @@ public class MainActivity extends SchedulerActivity {
 
 		});
 		getScheduleImage = (ImageView) findViewById(R.id.getScheduleChevron);
-		tracker.trackPageView("/main");
-
+		departureDateText = (TextView)findViewById(R.id.departureDate);
+		tracker.trackPageView("/"+getClass().getSimpleName());
+		minDate = Calendar.getInstance();
+		maxDate = Calendar.getInstance();
+		minDate.setTimeInMillis(Root
+				.getScheduleStartDate(getApplicationContext()));
+		maxDate.setTimeInMillis(Root
+				.getScheduleEndDate(getApplicationContext()));
 	}
 
 	@Override
@@ -134,26 +162,47 @@ public class MainActivity extends SchedulerActivity {
 	private void showDatePicker() {
 		final Calendar cal;
 		Calendar departureDate = getSchedulerContext().getDepartureDate();
-		if(departureDate!=null) {
+		if (departureDate != null) {
 			cal = departureDate;
 		} else {
 			cal = Calendar.getInstance();
 		}
-		datePickDialog = new DatePickerDialog(this,
-				new OnDateSetListener() {
+		datePickDialog = new DatePickerDialog(this, new OnDateSetListener() {
 
-					@Override
-					public void onDateSet(DatePicker view, int year,
-							int monthOfYear, int dayOfMonth) {
-						cal.set(Calendar.YEAR, year);
-						cal.set(Calendar.MONTH, monthOfYear);
-						cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-						getSchedulerContext().setDepartureDate(cal);
-						needDatePickDialog = false;
-					}
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				cal.set(Calendar.YEAR, year);
+				cal.set(Calendar.MONTH, monthOfYear);
+				cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);	
+				getSchedulerContext().setDepartureDate(cal);				
+				onActivityResult(-1, Activity.RESULT_CANCELED, null);
+				//if(now.)
+				
+				needDatePickDialog = false;
+			}
 
-				}, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal
-						.get(Calendar.DAY_OF_MONTH));
+		}, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal
+				.get(Calendar.DAY_OF_MONTH)) {
+
+			@Override
+			public void onDateChanged(DatePicker view, int year, int month,
+					int day) {
+				Calendar newDate = Calendar.getInstance();
+				newDate.set(Calendar.YEAR, year);
+				newDate.set(Calendar.MONTH, month);
+				newDate.set(Calendar.DAY_OF_MONTH, day);
+				
+				if (newDate.getTimeInMillis()<minDate.getTimeInMillis()) {
+					Toast.makeText(getApplicationContext(), "Date was out of schedule range, reset.", Toast.LENGTH_LONG).show();
+					updateDate(minDate.get(Calendar.YEAR), minDate.get(Calendar.MONDAY), minDate.get(Calendar.DAY_OF_MONTH));
+				} else if (newDate.getTimeInMillis()>maxDate.getTimeInMillis()) {
+					Toast.makeText(getApplicationContext(), "Date was out of schedule range, reset.", Toast.LENGTH_LONG).show();
+					updateDate(maxDate.get(Calendar.YEAR), maxDate.get(Calendar.MONDAY), maxDate.get(Calendar.DAY_OF_MONTH));
+				}
+			}
+
+		};
 		datePickDialog.setOnDismissListener(new OnDismissListener() {
 
 			@Override
@@ -169,14 +218,14 @@ public class MainActivity extends SchedulerActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if(datePickDialog!=null) {
+		if (datePickDialog != null) {
 			datePickDialog.dismiss();
 		}
 	}
 
 	@Override
 	protected void onResume() {
-		super.onResume();		
+		super.onResume();
 		if (needDatePickDialog) {
 			datePickDialog.show();
 		}

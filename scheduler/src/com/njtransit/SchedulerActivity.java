@@ -1,10 +1,9 @@
 package com.njtransit;
 
-import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.os.Bundle;
+
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 /**
  * Base activity with Typed access to {@link SchedulerApplication}
@@ -23,9 +22,7 @@ public class SchedulerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		tracker = GoogleAnalyticsTracker.getInstance();		
 		tracker.start(getString(R.string.google_ua), this);
-		if(!ActivityManager.isUserAMonkey()) {
-			tracker.setDispatchPeriod(60);
-		}
+		tracker.setDispatchPeriod(60);
 	}
 
 	@Override
