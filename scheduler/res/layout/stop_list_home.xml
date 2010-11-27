@@ -4,13 +4,31 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<TextView android:id="@+id/departureText"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:textStyle="bold" android:textSize="15dip" />
+	<RelativeLayout android:id="@+id/departure"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:padding="2dip"
+		android:background="@drawable/user_details_activity_general_selector">
 
-	<TextView android:id="@+id/arrivalText" android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:textStyle="bold"
-		android:textSize="15dip" />
+		<TextView android:id="@+id/departureText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:textSize="15dip"
+			android:gravity="center_vertical" android:text="Departure Station"
+			android:layout_alignParentLeft="true" android:paddingLeft="2dip"
+			android:paddingTop="3dip"
+			android:textAppearance="@style/TextViewStyleUserDetailsActivityGeneralTitle" />
+			
+		<TextView android:id="@+id/arrivalText"
+			android:layout_below="@id/departureText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:textSize="15dip"
+			android:gravity="center_vertical" android:text="Departure Station"
+			android:layout_alignParentLeft="true" android:paddingLeft="2dip"
+			android:paddingTop="3dip"
+			android:textAppearance="@style/TextViewStyleUserDetailsActivityGeneralTitle" />
+			
+		<TextView android:text="to" android:layout_width="20dip" android:layout_height="20dip" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>	
+
+	</RelativeLayout>
 
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
@@ -19,10 +37,9 @@
 			android:layout_width="fill_parent" />
 		<TextView padding="10dip" android:autoLink="email"
 			android:id="@+id/errors" android:layout_height="wrap_content"
-			android:textSize="15dip"
-			android:padding="15dip"
-			android:layout_below="@id/list"
-			android:visibility="gone" android:layout_width="fill_parent" />
+			android:textSize="15dip" android:padding="15dip"
+			android:layout_below="@id/list" android:visibility="gone"
+			android:layout_width="fill_parent" />
 		<com.admob.android.ads.AdView android:id="@+id/ad"
 			android:visibility="gone" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"

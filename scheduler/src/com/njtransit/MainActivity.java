@@ -144,6 +144,8 @@ public class MainActivity extends SchedulerActivity {
 		tracker.trackEvent("menu-click", "MenuButton", "click", 1);
 		MenuItem cal = menu.add(Menu.NONE, 1, Menu.FIRST,
 				getString(R.string.date_pick));
+		MenuItem reverse = menu.add(Menu.NONE,2,2,getString(R.string.reverse));
+		reverse.setIcon(R.drawable.signpost);
 		cal.setIcon(R.drawable.clock);
 		return true;
 	}
@@ -153,8 +155,12 @@ public class MainActivity extends SchedulerActivity {
 		if (item.getItemId() == 1) {
 			tracker.trackEvent("menu-click", "MenuButton", item.getTitle()
 					.toString(), item.getItemId());
-			getSchedulerContext().reverseTrip();
 			showDatePicker();
+		}
+		if(item.getItemId()==2) {
+			tracker.trackEvent("menu-click","MenuButton", item.getTitle().toString(), item.getItemId());
+			getSchedulerContext().reverseTrip();
+			onActivityResult(-1, Activity.RESULT_CANCELED, null);
 		}
 		return super.onOptionsItemSelected(item);
 	}

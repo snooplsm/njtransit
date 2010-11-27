@@ -74,8 +74,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		this.arrival = (TextView)findViewById(R.id.arrivalText);				
 		stopTimes = (StopListView) findViewById(R.id.list);
 		errors = (TextView) findViewById(R.id.errors);
-		findAndShowStops(departure,arrival);
-		AdManager.setTestDevices(new String[] {AdManager.TEST_EMULATOR});
+		findAndShowStops(departure,arrival);		
 	    ad = (AdView) findViewById(R.id.ad);
 	    ad.setAdListener(new SimpleAdListener() {
 

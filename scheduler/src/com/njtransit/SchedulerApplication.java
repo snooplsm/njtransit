@@ -183,7 +183,7 @@ public class SchedulerApplication extends Application implements LocationListene
 			//Toast.makeText(getApplicationContext(), "Your sched, duration)
 		}		
 		AdManager.setAllowUseOfLocation(true);
-		AdManager.setTestDevices(new String[] {"0A3A55190402402C"});
+		AdManager.setTestDevices(new String[] {"0A3A55190402402C",AdManager.TEST_EMULATOR});
 		
 	}
 
