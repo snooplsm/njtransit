@@ -179,7 +179,6 @@ public class MyMojo extends AbstractMojo {
 				} else {
 					FileInputStream fin = null;
 					BufferedInputStream bis = null;
-					DataInputStream dis = null;
 					try {
 						fin = new FileInputStream(file);
 						bis = new BufferedInputStream(fin);
@@ -196,6 +195,7 @@ public class MyMojo extends AbstractMojo {
 							} else {
 								b.append(line);
 							}
+							b.append("\n");
 						}
 						if(changed) {
 							FileOutputStream fos = null;
