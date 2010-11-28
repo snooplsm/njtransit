@@ -7,3 +7,4 @@ scheduler/gen/com/njtransit/R.java
 scheduler/target
 scheduler/.classpath
 scheduler/.project
+mp-maven-plugin/target
