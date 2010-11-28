@@ -31,7 +31,7 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StopAdapter;
-import com.scheduler.njtransit.R;
+import com.scheduler.R;
 
 
 public class StopActivity extends SchedulerActivity {

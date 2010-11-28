@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import android.app.Application;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -22,7 +21,7 @@ import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
-import com.scheduler.njtransit.R;
+import com.scheduler.R;
 
 /** Shared state management */
 public class SchedulerApplication extends Application implements

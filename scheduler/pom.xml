@@ -28,12 +28,11 @@
 			<version>${android.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-			<scope>provided</scope>
-		</dependency> -->
+		<!--
+			<dependency> <groupId>org.json</groupId>
+			<artifactId>json</artifactId> <version>20090211</version>
+			<scope>provided</scope> </dependency>
+		-->
 		<dependency>
 			<groupId>com.admob</groupId>
 			<artifactId>sdk-android</artifactId>
@@ -76,7 +75,8 @@
 					<excludes>
 						<exclude>com.google.android:android</exclude>
 						<!--<exclude>org.json:json</exclude>
-						--><exclude>org.apache.httpcomponents:httpclient</exclude>
+						-->
+						<exclude>org.apache.httpcomponents:httpclient</exclude>
 						<exclude>org.apache.httpcomponents:httpcore</exclude>
 						<exclude>xerces:xmlParserAPIs</exclude>
 						<exclude>xpp3:xpp3</exclude>
@@ -119,15 +119,26 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--
-				<plugin> <groupId>com.gent</groupId>
-				<artifactId>maven-scheduler-plugin</artifactId>
-				<version>1.0-SNAPSHOT</version> <configuration>
-				<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
-				<packageName>${packageName}</packageName> </configuration>
-				<executions> <execution> <phase>compile</phase> <goals>
-				<goal>touch</goal> </goals> </execution> </executions> </plugin>
+
+			<plugin>
+				<groupId>com.gent.mp</groupId>
+				<artifactId>mp-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<configuration>
+					<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
+					<packageName>${packageName}</packageName>
+				</configuration><!--
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>touch</goal>
+						</goals>
+					</execution>
+				</executions>
 			-->
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

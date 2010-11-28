@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.scheduler.njtransit;
+package com.scheduler;
 
 public final class R {
     public static final class attr {
@@ -206,11 +206,11 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_backgroundColor com.scheduler.njtransit:backgroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_keywords com.scheduler.njtransit:keywords}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_primaryTextColor com.scheduler.njtransit:primaryTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_refreshInterval com.scheduler.njtransit:refreshInterval}</code></td><td></td></tr>
-           <tr><td><code>{@link #com_admob_android_ads_AdView_secondaryTextColor com.scheduler.njtransit:secondaryTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_backgroundColor com.scheduler:backgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_keywords com.scheduler:keywords}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_primaryTextColor com.scheduler:primaryTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_refreshInterval com.scheduler:refreshInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_secondaryTextColor com.scheduler:secondaryTextColor}</code></td><td></td></tr>
            </table>
            @see #com_admob_android_ads_AdView_backgroundColor
            @see #com_admob_android_ads_AdView_keywords
@@ -223,7 +223,7 @@ containing a value of this type.
             0x7f010004
         };
         /**
-          <p>This symbol is the offset where the {@link com.scheduler.njtransit.R.attr#backgroundColor}
+          <p>This symbol is the offset where the {@link com.scheduler.R.attr#backgroundColor}
           attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
 
 
@@ -238,7 +238,7 @@ containing a value of this type.
         */
         public static final int com_admob_android_ads_AdView_backgroundColor = 0;
         /**
-          <p>This symbol is the offset where the {@link com.scheduler.njtransit.R.attr#keywords}
+          <p>This symbol is the offset where the {@link com.scheduler.R.attr#keywords}
           attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
 
 
@@ -252,7 +252,7 @@ containing a value of this type.
         */
         public static final int com_admob_android_ads_AdView_keywords = 3;
         /**
-          <p>This symbol is the offset where the {@link com.scheduler.njtransit.R.attr#primaryTextColor}
+          <p>This symbol is the offset where the {@link com.scheduler.R.attr#primaryTextColor}
           attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
 
 
@@ -267,7 +267,7 @@ containing a value of this type.
         */
         public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.scheduler.njtransit.R.attr#refreshInterval}
+          <p>This symbol is the offset where the {@link com.scheduler.R.attr#refreshInterval}
           attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
 
 
@@ -281,7 +281,7 @@ containing a value of this type.
         */
         public static final int com_admob_android_ads_AdView_refreshInterval = 4;
         /**
-          <p>This symbol is the offset where the {@link com.scheduler.njtransit.R.attr#secondaryTextColor}
+          <p>This symbol is the offset where the {@link com.scheduler.R.attr#secondaryTextColor}
           attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
 
 

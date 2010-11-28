@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.scheduler.njtransit.R;
+import com.scheduler.R;
 
 /**
  * Simple Dialog intended for alpha/numeric index selection

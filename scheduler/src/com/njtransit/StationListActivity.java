@@ -13,7 +13,7 @@ import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
-import com.scheduler.njtransit.R;
+import com.scheduler.R;
 
 /**
  * List for display all the stations in a particular order.
