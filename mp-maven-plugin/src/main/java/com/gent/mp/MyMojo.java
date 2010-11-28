@@ -19,7 +19,6 @@ package com.gent.mp;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -38,6 +37,12 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -129,6 +134,24 @@ public class MyMojo extends AbstractMojo {
 
 		renamePackages();
 
+		TransformerFactory tFactory =
+		    TransformerFactory.newInstance();
+		  Transformer transformer = null;
+		try {
+			transformer = tFactory.newTransformer();
+		} catch (TransformerConfigurationException e1) {
+			throw new RuntimeException(e1);
+		}
+
+		  DOMSource source = new DOMSource(doc);
+		  StreamResult result = new StreamResult(androidManifest);
+		  try {
+			transformer.transform(source, result);
+		} catch (TransformerException e1) {
+			throw new RuntimeException(e1);
+		} 
+
+		
 		File f = outputDirectory;
 
 		if (!f.exists()) {
@@ -230,7 +253,6 @@ public class MyMojo extends AbstractMojo {
 				}
 			}
 		}
-
 	}
 
 	private void setPackageName(Element element) {
