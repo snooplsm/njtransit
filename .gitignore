@@ -8,3 +8,4 @@ scheduler/target
 scheduler/.classpath
 scheduler/.project
 mp-maven-plugin/target
+maven-android-plugin/target
