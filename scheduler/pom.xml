@@ -17,8 +17,8 @@
 		<assetsDirectory>${project.basedir}/assets}</assetsDirectory>
 		<resourceOverlayDirectory></resourceOverlayDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<android.version>2.2.1</android.version>
-		<android.platform>8</android.platform>
+		<android.version>2.1.2</android.version>
+		<android.platform>7</android.platform>
 		<resourceOutputDirectory>${project.build.outputDirectory}</resourceOutputDirectory>
 	</properties>
 	<dependencies>
@@ -28,12 +28,12 @@
 			<version>${android.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20090211</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.admob</groupId>
 			<artifactId>sdk-android</artifactId>
@@ -75,8 +75,8 @@
 					</classpathContainers>
 					<excludes>
 						<exclude>com.google.android:android</exclude>
-						<exclude>org.json:json</exclude>
-						<exclude>org.apache.httpcomponents:httpclient</exclude>
+						<!--<exclude>org.json:json</exclude>
+						--><exclude>org.apache.httpcomponents:httpclient</exclude>
 						<exclude>org.apache.httpcomponents:httpcore</exclude>
 						<exclude>xerces:xmlParserAPIs</exclude>
 						<exclude>xpp3:xpp3</exclude>
@@ -188,7 +188,7 @@
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
 				<assetsDirectory>../providers/njtransit-rail/assets</assetsDirectory>
 				<resourceOutputDirectory>../providers/njtransit-rail</resourceOutputDirectory>
-				<packageName>com.njtransit</packageName>
+				<packageName>com.scheduler.njtransit</packageName>
 			</properties>
 		</profile>
 	</profiles>

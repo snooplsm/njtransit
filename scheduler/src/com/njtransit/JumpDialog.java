@@ -3,8 +3,6 @@ package com.njtransit;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -17,6 +15,9 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+import com.scheduler.njtransit.R;
 
 /**
  * Simple Dialog intended for alpha/numeric index selection

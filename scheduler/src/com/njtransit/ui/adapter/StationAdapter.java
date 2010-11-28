@@ -15,10 +15,10 @@ import android.widget.Filterable;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import com.njtransit.R;
 import com.njtransit.SchedulerApplication;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Locations;
+import com.scheduler.njtransit.R;
 
 public class StationAdapter extends ArrayAdapter<Station> implements
 		SectionIndexer, Filterable {

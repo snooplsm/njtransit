@@ -24,7 +24,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.admob.android.ads.AdManager;
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.SimpleAdListener;
 import com.njtransit.domain.IService;
@@ -32,9 +31,10 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StopAdapter;
+import com.scheduler.njtransit.R;
 
 
-public class StopActivity extends SchedulerActivity implements Traversable<StopTimeRow> {
+public class StopActivity extends SchedulerActivity {
 
 	private StopListView stopTimes;
 	
@@ -148,6 +148,17 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 						IService service = sqr.getTripToService()
 								.get(stop.getTripId());
 						if(service.isDate(sqr.getDepartureDate())) {
+							Calendar newDepart = Calendar.getInstance();
+							newDepart.setTimeInMillis(stop.getDepart().getTimeInMillis());
+							Calendar newArrive = Calendar.getInstance();
+							newArrive.setTimeInMillis(stop.getArrive().getTimeInMillis());
+							newDepart.set(Calendar.YEAR,sqr.getDepartureDate().get(Calendar.YEAR));
+							newDepart.set(Calendar.DAY_OF_YEAR, sqr.getDepartureDate().get(Calendar.DAY_OF_YEAR));
+							newArrive.set(Calendar.YEAR,sqr.getDepartureDate().get(Calendar.YEAR));
+							newArrive.set(Calendar.DAY_OF_YEAR, sqr.getDepartureDate().get(Calendar.DAY_OF_YEAR));
+							if(stop.getDepart().get(Calendar.DAY_OF_YEAR) < stop.getArrive().get(Calendar.DAY_OF_YEAR)) {
+								newArrive.add(Calendar.DAY_OF_YEAR, 1);
+							}
 							stops.add(stop);
 						}						
 					}
@@ -159,31 +170,33 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					for (Stop stop : sqr.getStops()) {
 						IService service = sqr.getTripToService()
 								.get(stop.getTripId());
-						relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
-						relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));
-						if(relativeTime.get(Calendar.HOUR)==4 && relativeTime.get(Calendar.MINUTE)==54) {
-							int k = 5;
-							k+=5;
-						}					
+						//relativeTime.set(Calendar.HOUR_OF_DAY,stop.getDepart().get(Calendar.HOUR_OF_DAY));
+						//relativeTime.set(Calendar.MINUTE, stop.getDepart().get(Calendar.MINUTE));			
 						if (service.isToday()) {	
-							Long diff =  now - relativeTime.getTimeInMillis();
-							
-							if (diff > 0 && diff < now
-									&& diff < closestDiff) {
-								closest = stop;
-								closestDiff = diff;
+							Calendar newDepart = Calendar.getInstance();
+							newDepart.setTimeInMillis(stop.getDepart().getTimeInMillis());
+							Calendar newArrive = Calendar.getInstance();
+							newArrive.setTimeInMillis(stop.getArrive().getTimeInMillis());
+							newDepart.set(Calendar.YEAR,relativeTime.get(Calendar.YEAR));
+							newDepart.set(Calendar.DAY_OF_YEAR, relativeTime.get(Calendar.DAY_OF_YEAR));
+							newArrive.set(Calendar.YEAR,relativeTime.get(Calendar.YEAR));
+							newArrive.set(Calendar.DAY_OF_YEAR, relativeTime.get(Calendar.DAY_OF_YEAR));
+							if(stop.getDepart().get(Calendar.DAY_OF_YEAR) < stop.getArrive().get(Calendar.DAY_OF_YEAR)) {
+								newArrive.add(Calendar.DAY_OF_YEAR, 1);
 							}
-							if(diff<5400001) {
-								today.add(stop);
+							Long diff =  newDepart.getTimeInMillis() - relativeTime.getTimeInMillis();
+							
+							if(diff>-5400001) {
+								Stop newStop = new Stop(stop.getTripId(),newDepart,newArrive); 
+								if (diff > 0
+										&& diff < closestDiff) {
+									closest = newStop;
+									closestDiff = diff;
+								}
+								today.add(newStop);
 							}
 						} 
 						if (service.isTomorrow()) {							
-							Long diff =  now - relativeTime.getTimeInMillis();
-							if (diff > 0 && diff < now
-									&& diff < closestDiff) {
-								closest = stop;
-								closestDiff = diff;
-							}
 							if(stop.getDepart().get(Calendar.HOUR_OF_DAY)<6) {
 								Calendar tom = Calendar.getInstance();
 								tom.setTimeInMillis(tomorrowDate.getTimeInMillis());
@@ -199,6 +212,12 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 									newArrive.add(Calendar.DAY_OF_YEAR, 1);
 								}
 								Stop newStop = new Stop(stop.getTripId(), newDepart, newArrive);
+								Long diff =  newDepart.getTimeInMillis() - relativeTime.getTimeInMillis();
+								if (diff > 0 
+										&& diff < closestDiff) {
+									closest = stop;
+									closestDiff = diff;
+								}
 								tomorrow.add(newStop);
 							}
 						}
@@ -210,6 +229,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 
 					
 					stops.addAll(today);
+					stops.isEmpty();
 				}
 
 
@@ -239,7 +259,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 				}
 				Stop closest = result.getClosest();				
 				if(!stops.isEmpty()) {
-					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,result.getStopQueryResult().getTripToService(), stops);
+					StopAdapter stopAdapter = new StopAdapter(StopActivity.this,result.getStopQueryResult().getDepartureDate(),result.getStopQueryResult().getTripToService(), stops);
 					stopTimes.setAdapter(stopAdapter);
 					if (closest != null) {
 						stopTimes.setSelectionFromTop(
@@ -252,7 +272,7 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 					c.clear(Calendar.MILLISECOND);
 					c.clear(Calendar.SECOND);
 					c.set(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
-					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 5000);
+					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
 					new Thread() {
 						@Override
 						public void run() {
@@ -279,29 +299,8 @@ public class StopActivity extends SchedulerActivity implements Traversable<StopT
 		}.execute();
 	}
 	
-
-	/**
-	 * Refactored this so that it uses StopAdapter's cache.  ListViews only need to display 10 items at a time, so on first go around we only need to iterate over whats been displayed.
-	 */
-	@Override
-	public void foreach(Fn<StopTimeRow> f) {
-		for(int i = 0;i<stopTimes.getChildCount(); i++) {
-		//for(StopTimeRow str : stopTimes.getChildCount()) {
-			try {
-				Object o = stopTimes.getChildAt(i);
-				if(o instanceof StopTimeRow) {
-					StopTimeRow row = (StopTimeRow)o;
-				}
-			} catch (Exception e) {
-				//don't care
-			}
-		} 
-	}
-	
 	private TimerTask newUpdaterThread() {
 		updaterThread = new TimerTask() {
-
-			boolean changed;
 			
 			@Override
 			public void run() {

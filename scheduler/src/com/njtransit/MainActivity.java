@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.njtransit.domain.Station;
+import com.scheduler.njtransit.R;
 
 public class MainActivity extends SchedulerActivity {
 

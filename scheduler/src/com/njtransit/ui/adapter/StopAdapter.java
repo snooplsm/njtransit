@@ -13,18 +13,25 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.njtransit.R;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Stop;
+import com.scheduler.njtransit.R;
 
 public class StopAdapter extends ArrayAdapter<Stop> {
 
-	DateFormat f = new SimpleDateFormat("hh:mm aa");
-	private Map<Integer,IService> services;
+	static DateFormat f = new SimpleDateFormat("hh:mm aa");
 	
-	public StopAdapter(Context context, Map<Integer,IService> services, List<Stop> objects) {
+	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+	
+	private Map<Integer,IService> services;
+	private Calendar departDate;
+	private Calendar today;
+	
+	public StopAdapter(Context context, Calendar departDate, Map<Integer,IService> services, List<Stop> objects) {
 		super(context, 1, objects);
 		this.services = services;
+		this.departDate = departDate;
+		today = Calendar.getInstance();
 	}
 
 	@Override
@@ -40,23 +47,40 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		time.setText(format(stop));
 		duration.setText(duration(stop));
 		int awayTimeInMinutes = awayTimeInMinutes(stop);
-		Calendar tomorrow = Calendar.getInstance();
-		int hourOfDay = tomorrow.get(Calendar.HOUR_OF_DAY);
-		tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+		Calendar _departDate = Calendar.getInstance();
+		_departDate.setTimeInMillis(departDate.getTimeInMillis());
+		int hourOfDay = _departDate.get(Calendar.HOUR_OF_DAY);
+		int scheduleDepartDay = _departDate.get(Calendar.DAY_OF_YEAR);
+		int scheduleDepartYear = _departDate.get(Calendar.YEAR);
+		Calendar nextDay = Calendar.getInstance();
+		nextDay.setTimeInMillis(_departDate.getTimeInMillis());
+		nextDay.add(Calendar.DAY_OF_YEAR, 1);
 		Calendar depart = stop.getDepart();
 		int departYear = depart.get(Calendar.YEAR);
 		int departDay = depart.get(Calendar.DAY_OF_YEAR);
-		int tomorrowYear = tomorrow.get(Calendar.YEAR);
-		int tomorrowDay = tomorrow.get(Calendar.DAY_OF_YEAR);
-		if(services.get(stop.getTripId()).isTomorrow() && departYear==tomorrowYear && departDay == tomorrowDay) {
-			timeDesc.setText("next day");
+		int nextDayYear = nextDay.get(Calendar.YEAR);
+		int nextDayDay = nextDay.get(Calendar.DAY_OF_YEAR);
+		int todayDayDay = today.get(Calendar.DAY_OF_YEAR);
+		int todayDayYear = today.get(Calendar.YEAR);
+		
+		if(scheduleDepartDay!=todayDayDay || scheduleDepartYear!=todayDayYear) {
+			timeDesc.setText(dateFormat.format(depart.getTime()));
 			timeDesc.setVisibility(View.VISIBLE);
-		}
-		if(awayTimeInMinutes>=0 && (awayTimeInMinutes<=100 || ((hourOfDay<4 || hourOfDay>18) && awayTimeInMinutes<=200))) {
-			minutesAway.setVisibility(View.VISIBLE);
-			minutesAway.setText(String.format("departs in %s minutes",awayTimeInMinutes));
-		} else {
 			minutesAway.setVisibility(View.GONE);
+		} else {
+			if(departYear==nextDayYear && departDay == nextDayDay) {
+				timeDesc.setText("next day");
+				timeDesc.setVisibility(View.VISIBLE);
+				minutesAway.setVisibility(View.GONE);
+			} else {
+				timeDesc.setVisibility(View.GONE);
+			}
+			if(awayTimeInMinutes>=0 && (awayTimeInMinutes<=100 || ((hourOfDay<4 || hourOfDay>18) && awayTimeInMinutes<=200))) {
+				minutesAway.setVisibility(View.VISIBLE);
+				minutesAway.setText(String.format("departs in %s minutes",awayTimeInMinutes));
+			} else {
+				minutesAway.setVisibility(View.GONE);
+			}
 		}
 		return str;
 	}
