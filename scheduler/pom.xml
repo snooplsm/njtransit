@@ -17,8 +17,8 @@
 		<assetsDirectory>${project.basedir}/assets}</assetsDirectory>
 		<resourceOverlayDirectory></resourceOverlayDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<android.version>2.1.2</android.version>
-		<android.platform>7</android.platform>
+		<android.version>2.2.1</android.version>
+		<android.platform>8</android.platform>
 		<resourceOutputDirectory>${project.build.outputDirectory}</resourceOutputDirectory>
 	</properties>
 	<dependencies>
@@ -114,7 +114,7 @@
 							<keystore>${keystore}</keystore>
 							<storepass>${storepass}</storepass>
 							<keypass>${keypass}</keypass>
-							<alias>key-alias</alias>
+							<alias>android</alias>
 						</configuration>
 					</execution>
 				</executions>

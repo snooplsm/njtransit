@@ -2,17 +2,20 @@ package com.njtransit;
 
 import java.util.Date;
 
+import com.scheduler.R;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 public class Root {
 	public static int getVersion(Context ctx) {
 
 		try {
-			return ctx.getPackageManager().getPackageInfo(
-					Root.class.getPackage().getName(), 0).versionCode;
+			PackageInfo info = ctx.getPackageManager().getPackageInfo(R.class.getPackage().getName(), 0);
+			return info.versionCode;
 		} catch (NameNotFoundException e) {
 			throw new RuntimeException(e);
 		}

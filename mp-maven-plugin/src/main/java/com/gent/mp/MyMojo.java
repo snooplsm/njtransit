@@ -61,7 +61,7 @@ public class MyMojo extends AbstractMojo {
 	private static DateFormat VERSION_NAME_FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd");
 	private static DateFormat VERSION_CODE_FORMAT = new SimpleDateFormat(
-			"yyyyMMddHHmmss");
+			"yyyyDDDHH");
 
 	/**
 	 * Location of the file.
