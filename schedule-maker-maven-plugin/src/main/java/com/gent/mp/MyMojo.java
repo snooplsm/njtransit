@@ -43,6 +43,13 @@ public class MyMojo
      * @parameter expression="${project.build.directory}/gtfs"
      */
     private File workDir;
+    
+    /**
+     * Where to store split files
+     * @parameter expression="${project.build.directory}/partitions"
+     * @required
+     */
+    private File partitionsTarget;
 
     /**
      * Kilobytes for which we will split the sqlite file
@@ -53,7 +60,7 @@ public class MyMojo
         throws MojoExecutionException
     {
     	try {
-			DatabaseCreater.main(new String[]{"-workDir", workDir.getAbsolutePath(),"-split",splitKilobytes.toString(),"-gtfs",gtfsFile.getAbsolutePath()});
+			DatabaseCreater.main(new String[]{"-workDir", workDir.getAbsolutePath(),"-split",splitKilobytes.toString(),"-gtfs",gtfsFile.getAbsolutePath(),"-partitions",partitionsTarget.getAbsolutePath()});
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

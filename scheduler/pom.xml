@@ -14,7 +14,7 @@
 		<name>scheduler</name>
 		<androidManifestFile>AndroidManifest.xml</androidManifestFile>
 		<androidManifestTarget>AndroidManifest.xml</androidManifestTarget>
-		<assetsDirectory>${project.basedir}/assets}</assetsDirectory>
+		<assetsDirectory>${project.basedir}/assets</assetsDirectory>
 		<resourceOverlayDirectory></resourceOverlayDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.version>2.2.1</android.version>
@@ -137,6 +137,16 @@
 					</execution>
 				</executions>
 			-->
+			</plugin>
+			<plugin>
+				<groupId>com.gent.mp</groupId>
+				<artifactId>schedule-maker-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<configuration>
+					<gtfsFile>../providers/njtransit-rail/rail_data.zip</gtfsFile>
+					<partitionsTarget>assets/database</partitionsTarget>
+					<workDir>${project.build.outputDirectory}/workDir</workDir>
+				</configuration>
 			</plugin>
 
 			<plugin>

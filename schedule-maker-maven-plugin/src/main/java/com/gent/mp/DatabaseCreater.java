@@ -81,6 +81,8 @@ public class DatabaseCreater {
 	private int splitKiloBytes = 50;
 	private int splitBytes = 50 * 1024;
 	byte[] read = new byte[5 * 1024];
+	
+	private String partitionsTarget;
 
 	DatabaseCreater(String[] args) {
 		for (int i = 0; i < args.length; i += 2) {
@@ -107,6 +109,10 @@ public class DatabaseCreater {
 			if ("-split".equals(args[i])) {
 				splitKiloBytes = Integer.parseInt(args[i + 1]);
 				splitBytes = splitKiloBytes * 1024;
+				continue;
+			}
+			if("-partitions".equals(args[i])) {
+				partitionsTarget = args[i+1];
 				continue;
 			}
 		}
@@ -365,7 +371,12 @@ public class DatabaseCreater {
 	}
 
 	private void splitDatabase() {
-		File partitionFolder = new File(workDir, "target/partitions");
+		final File partitionFolder;
+		if(partitionsTarget!=null) {
+			partitionFolder = new File(partitionsTarget);
+		} else {
+			partitionFolder =new File(workDir, "target/partitions");
+		}
 		if (partitionFolder.exists()) {
 			partitionFolder.delete();
 		}
