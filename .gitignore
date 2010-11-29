@@ -9,3 +9,4 @@ scheduler/.classpath
 scheduler/.project
 mp-maven-plugin/target
 maven-android-plugin/target
+schedule-maker-maven-plugin/target
