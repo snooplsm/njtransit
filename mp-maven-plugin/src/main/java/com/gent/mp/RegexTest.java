@@ -16,6 +16,12 @@ public class RegexTest {
 		System.out.println(m.replaceAll("com.scheduler.njtransit.R"));		
 		System.out.println(importStatement.matches(rMatch));
 		System.out.println(rMatch.matches(importStatement));
+		
+		String mMatch = "http://schemas\\.android.com/apk/res/(com\\.scheduler)";
+		Pattern pm = Pattern.compile(mMatch);
+		importStatement = "xmlns:app=\"http://schemas.android.com/apk/res/com.scheduler\"";
+		Matcher mm = pm.matcher(importStatement);
+		System.out.println(mm.replaceAll("com.njtransit"));
 	}
 
 }

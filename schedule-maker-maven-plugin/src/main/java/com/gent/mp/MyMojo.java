@@ -40,7 +40,7 @@ public class MyMojo
     
     /**
      * Where we will process files
-     * @parameter expression="${project.build.directory}/gtfs"
+     * @parameter expression="${project.build.directory}"
      */
     private File workDir;
     
@@ -60,7 +60,7 @@ public class MyMojo
         throws MojoExecutionException
     {
     	try {
-			DatabaseCreater.main(new String[]{"-workDir", workDir.getAbsolutePath(),"-split",splitKilobytes.toString(),"-gtfs",gtfsFile.getAbsolutePath(),"-partitions",partitionsTarget.getAbsolutePath()});
+			DatabaseCreater.main(new String[]{"-workdir", workDir.getAbsolutePath(),"-split",splitKilobytes.toString(),"-gtfs",gtfsFile.getAbsolutePath(),"-partitions",partitionsTarget.getAbsolutePath()});
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

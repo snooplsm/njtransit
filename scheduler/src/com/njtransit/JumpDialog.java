@@ -16,15 +16,12 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.njtransit.R;
-
 /**
  * Simple Dialog intended for alpha/numeric index selection
  * 
  * @author dtangren
  */
-public class JumpDialog extends Dialog {
+public abstract class JumpDialog extends Dialog {
 
 	public static interface OnJumpListener {
 		void onJump(Character c);
@@ -65,7 +62,7 @@ public class JumpDialog extends Dialog {
 					text.setOnClickListener(new View.OnClickListener() {
 						
 						public void onClick(View v) {
-							((SchedulerActivity)getOwnerActivity()).trackEvent("jumps", "Button", c+"" , (int)c);
+							onLetterSelect(c);
 							if(alpha && c=='#') {
 								LayoutParams lp = new LayoutParams();
 								Display display = getWindow().getWindowManager().getDefaultDisplay();
@@ -110,6 +107,8 @@ public class JumpDialog extends Dialog {
 
 		}
 	}
+
+	protected abstract void onLetterSelect(char c);
 
 	public JumpDialog only(Collection<Character> subset) {
 		this.subset = subset;

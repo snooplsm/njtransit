@@ -61,7 +61,7 @@ public class MyMojo extends AbstractMojo {
 	private static DateFormat VERSION_NAME_FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd");
 	private static DateFormat VERSION_CODE_FORMAT = new SimpleDateFormat(
-			"yyyyDDDHH");
+			"yyyyMMddHH");
 
 	/**
 	 * Location of the file.
@@ -99,6 +99,12 @@ public class MyMojo extends AbstractMojo {
 	 */
 	private File sourceDirectory;
 
+	/**
+	 * @parameter expression="${project.basedir}/res"
+	 * @required
+	 */
+	private File resourceDirectory;
+	
 	public void execute() throws MojoExecutionException {
 		File androidManifest = androidManifestFile;
 
@@ -183,23 +189,29 @@ public class MyMojo extends AbstractMojo {
 
 			@Override
 			public boolean accept(File arg0) {
-				return arg0.isDirectory() || arg0.getName().endsWith(".java");
+				return arg0.isDirectory() || arg0.getName().endsWith(".java") || arg0.getName().endsWith(".xml");
 			}
 
 		};
 
 		String rMatch = _packageName + ".R";
 		rMatch = "("+rMatch.replaceAll("\\.", "\\\\.")+")";
+		String mMatch = "http://schemas.android.com/apk/res/"+_packageName;
+		rMatch = "("+rMatch.replaceAll("\\.","\\\\.")+")";
+		mMatch = "("+mMatch.replaceAll("\\.","\\\\.")+")";
 		Pattern p = Pattern.compile(rMatch);
+		Pattern m = Pattern.compile(mMatch);
+		String mNew = "http://schemas.android.com/apk/res/"+packageName;
 		String rNew = packageName + ".R";
 		Stack<File> files = new Stack<File>();
 		files.push(sourceDirectory);
+		files.push(resourceDirectory);
 		while (!files.isEmpty()) {
 			File currentFolder = files.pop();
 			for (File file : currentFolder.listFiles(javaFilter)) {
 				if (file.isDirectory()) {
 					files.push(file);
-				} else {
+				} else {					
 					FileInputStream fin = null;
 					BufferedInputStream bis = null;
 					try {
@@ -210,13 +222,25 @@ public class MyMojo extends AbstractMojo {
 						String line = null;
 						boolean changed = false;
 						while((line = br.readLine())!=null) {
-							Matcher matcher = p.matcher(line);
-							if(matcher.find()) {
-								String newString = matcher.replaceAll(rNew);
-								b.append(newString);
-								changed=true;
-							} else {
-								b.append(line);
+							if(file.getName().endsWith(".java")) {
+								Matcher matcher = p.matcher(line);							
+								if(matcher.find()) {
+									String newString = matcher.replaceAll(rNew);
+									b.append(newString);
+									changed=true;
+								} else {
+									b.append(line);
+								}
+							}
+							if(file.getName().endsWith(".xml")) {
+								Matcher matcher = m.matcher(line);							
+								if(matcher.find()) {
+									String newString = matcher.replaceAll(mNew);
+									b.append(newString);
+									changed=true;
+								} else {
+									b.append(line);
+								}
 							}
 							b.append("\n");
 						}

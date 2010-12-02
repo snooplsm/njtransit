@@ -62,5 +62,10 @@ public class DeviceInformation {
 		d.uuid = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
 		return d;
 	}
+
+	@Override
+	public String toString() {
+		return manufacturer+"/"+model+"/"+version+"/"+brand;
+	}
 	
 }

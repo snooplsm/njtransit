@@ -13,7 +13,6 @@ import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
-import com.njtransit.R;
 
 /**
  * List for display all the stations in a particular order.
@@ -53,7 +52,14 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 		trackPageView(getClass().getSimpleName());
 		if(stations.getCount()>20) {
 			canJump = true;
-			jumpDialog = new JumpDialog(this, this).only(getStationLetters());
+			jumpDialog = new JumpDialog(this, this) {
+
+				@Override
+				protected void onLetterSelect(char c) {
+					trackEvent("jumps", "Button", c+"" , (int)c);
+				}
+				
+			}.only(getStationLetters());
 			jumpDialog.show();
 			trackEvent("default-jump", "popUp", "jump", 0);
 		} else {

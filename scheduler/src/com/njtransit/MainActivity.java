@@ -131,6 +131,7 @@ public class MainActivity extends SchedulerActivity {
 		getScheduleImage = (ImageView) findViewById(R.id.getScheduleChevron);
 		departureDateText = (TextView)findViewById(R.id.departureDate);
 		trackPageView(getClass().getSimpleName());
+		trackPageView(getSchedulerContext().getDeviceInformation().toString());
 		minDate = Calendar.getInstance();
 		maxDate = Calendar.getInstance();
 		minDate.setTimeInMillis(Root

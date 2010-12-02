@@ -340,9 +340,14 @@ public class StopActivity extends SchedulerActivity {
 								e.getKey().setText(String.format("departs in %s minutes",e.getValue()));
 							}
 						}
-						stopTimes.postInvalidate();
+						stopTimes.invalidate();
 					}
 				});
+				Calendar cal = Calendar.getInstance();
+				cal.set(Calendar.SECOND, 0);
+				cal.set(Calendar.MILLISECOND, 0);
+				cal.add(Calendar.MINUTE, 1);
+				timer.schedule(updaterThread, cal.getTime());
 			}			
 		};
 		return updaterThread;
@@ -376,8 +381,10 @@ public class StopActivity extends SchedulerActivity {
 					timer = new Timer(false);
 					timer.schedule(newUpdaterThread(), 300);
 					Calendar c = Calendar.getInstance();
-					c.add(Calendar.MINUTE, c.get(Calendar.MINUTE)+1);
-					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(), 60000);
+					c.set(Calendar.SECOND, 0);
+					c.set(Calendar.MILLISECOND, 0);
+					c.add(Calendar.MINUTE, 1);
+					timer.schedule(newUpdaterThread(), c.getTime());
 				}
 			}catch (Exception e) {
 				Log.e(getClass().getSimpleName(), "onResume",e);

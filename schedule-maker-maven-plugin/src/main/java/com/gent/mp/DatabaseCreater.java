@@ -119,11 +119,11 @@ public class DatabaseCreater {
 	}
 
 	private void connectAndCreateGTFS() {
-		if (loginUrl == null || !gtfsUrl.toLowerCase().startsWith("http")) {
+		if ((loginUrl == null || !gtfsUrl.toLowerCase().startsWith("http"))) {
 			return;
 		} else {
 
-			HttpClient c = new HttpClient();
+			HttpClient c = new HttpClient();			
 
 			if (loginUrl != null) {
 				PostMethod m = new PostMethod(loginUrl);
@@ -156,38 +156,42 @@ public class DatabaseCreater {
 			if (workingDirectory.getParentFile() != null) {
 				workingDirectory.getParentFile().mkdirs();
 			}
-			g
-					.addRequestHeader(
-							"User-Agent",
-							"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-us) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
-			try {
-				c.executeMethod(g);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			} finally {
-				g.releaseConnection();
+			if(gtfsUrl.startsWith("http://")) {
+				g
+						.addRequestHeader(
+								"User-Agent",
+								"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-us) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
+				try {
+					c.executeMethod(g);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				} finally {
+					g.releaseConnection();
+				}
 			}
 			File gtfsZip = getGtfsFile();
-			FileOutputStream fos = null;
-			BufferedOutputStream bos = null;
-			try {
-				fos = new FileOutputStream(gtfsZip);
-				bos = new BufferedOutputStream(fos);
-				byte[] mybites = new byte[1024];
-				int read;
-				while ((read = g.getResponseBodyAsStream().read(mybites)) != -1) {
-					bos.write(mybites, 0, read);
-				}
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			} finally {
+			if(gtfsUrl.startsWith("http://")) {
+				FileOutputStream fos = null;
+				BufferedOutputStream bos = null;
 				try {
-					bos.close();
+					fos = new FileOutputStream(gtfsZip);
+					bos = new BufferedOutputStream(fos);
+					byte[] mybites = new byte[1024];
+					int read;
+					while ((read = g.getResponseBodyAsStream().read(mybites)) != -1) {
+						bos.write(mybites, 0, read);
+					}
 				} catch (Exception e) {
-				}
-				try {
-					fos.close();
-				} catch (Exception e) {
+					throw new RuntimeException(e);
+				} finally {
+					try {
+						bos.close();
+					} catch (Exception e) {
+					}
+					try {
+						fos.close();
+					} catch (Exception e) {
+					}
 				}
 			}
 		}
@@ -230,6 +234,7 @@ public class DatabaseCreater {
 		File extractFolder = new File(workDir, "gtfs");
 		if (extractFolder.exists()) {
 			extractFolder.delete();
+			System.out.println("what");
 		}
 		ZipInputStream zis = null;
 		try {
@@ -378,8 +383,10 @@ public class DatabaseCreater {
 			partitionFolder =new File(workDir, "target/partitions");
 		}
 		if (partitionFolder.exists()) {
-			partitionFolder.delete();
-		}
+			for(File file : partitionFolder.listFiles()) {
+				file.delete();
+			}
+		} 
 		partitionFolder.mkdirs();
 
 		char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
