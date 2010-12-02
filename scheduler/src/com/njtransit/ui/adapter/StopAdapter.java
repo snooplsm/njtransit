@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Stop;
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class StopAdapter extends ArrayAdapter<Stop> {
 

@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.njtransit.domain.Trip;
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class TripAdapter extends ArrayAdapter<Trip> {
 	private List<Trip> items;

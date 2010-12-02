@@ -566,12 +566,10 @@ public class DatabaseAdapter {
 			if(moveOnRestart!=null) {
 				File file = new File(context.getFilesDir(), moveOnRestart);
 				if(file.exists()) {
-					ProgressDialog d = ProgressDialog.show(context, "Installing", "Installing updated database");
 					boolean moved = file.renameTo(dbFile);
 					if(moved) {
 						Root.setMoveOnRestart(context, null);
 					}
-					d.cancel();
 				}
 			}
 			helper.createDataBase(dbFile.getName());

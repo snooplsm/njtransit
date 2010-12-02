@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.njtransit.domain.Stop;
 import com.njtransit.utils.TimeUtil;
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class StopTimeRow extends LinearLayout {
 

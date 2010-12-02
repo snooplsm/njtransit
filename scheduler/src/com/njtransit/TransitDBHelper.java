@@ -71,6 +71,9 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 			if (parent != null) {
 				parent.mkdirs();
 			}
+			if(!file.exists()) {
+				file.createNewFile();
+			}
 			out = new FileOutputStream(file);
 			byte[] buffer = new byte[1024];
 			for (String partition : partions) {
@@ -80,6 +83,7 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 				}
 				in.close();
 			}
+			Root.deleteScheduleDates(ctx);
 			Root.saveDatabaseVersion(ctx, Root.getVersion(ctx));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -94,9 +98,13 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 		Log.d(getClass().getSimpleName(), "copyDatabase(...) took " + Root.getCopyDatabaseDuration(ctx) +"ms");
 	}
 
-	public void openDataBase(String at) throws SQLException {		
-		db = SQLiteDatabase.openDatabase(ctx.getDatabasePath(at).getAbsolutePath(), null,
-				SQLiteDatabase.OPEN_READWRITE);
+	public void openDataBase(String at) throws SQLException {
+		if(db!=null && db.isOpen()) {
+			
+		} else {
+			db = SQLiteDatabase.openDatabase(ctx.getDatabasePath(at).getAbsolutePath(), null,
+					SQLiteDatabase.OPEN_READWRITE);
+		}
 	}
 
 	@Override
@@ -125,7 +133,7 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 			// one
 		} finally {
 			if (checkDB != null) {
-				checkDB.close();
+				this.db = checkDB;
 			}
 		}
 		return checkDB != null;

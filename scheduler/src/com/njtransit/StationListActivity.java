@@ -13,7 +13,7 @@ import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
 import com.njtransit.ui.adapter.StationAdapter;
-import com.scheduler.R;
+import com.njtransit.R;
 
 /**
  * List for display all the stations in a particular order.
@@ -50,14 +50,14 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 			}
 		});
 		stations.setTextFilterEnabled(true);
-		tracker.trackPageView("/"+getClass().getSimpleName());
+		trackPageView(getClass().getSimpleName());
 		if(stations.getCount()>20) {
 			canJump = true;
 			jumpDialog = new JumpDialog(this, this).only(getStationLetters());
 			jumpDialog.show();
-			tracker.trackEvent("default-jump", "popUp", "jump", 0);
+			trackEvent("default-jump", "popUp", "jump", 0);
 		} else {
-			tracker.trackEvent("no-jump", "none", "none", 1);
+			trackEvent("no-jump", "none", "none", 1);
 		}
 		
 	}
@@ -88,7 +88,7 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		tracker.trackEvent("menu-click", "MenuButton", "click", 0);
+		trackEvent("menu-click", "MenuButton", "click", 0);
 		if(canJump) {
 			MenuItem jump = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.abc));
 			jump.setIcon(R.drawable.small_tiles);
@@ -99,7 +99,7 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()==1) {	
-			tracker.trackEvent("user-jump", "MenuItem", "click", item.getItemId());
+			trackEvent("user-jump", "MenuItem", "click", item.getItemId());
 			jumpDialog.show();
 		}		
 		return super.onOptionsItemSelected(item);

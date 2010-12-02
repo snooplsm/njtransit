@@ -2,7 +2,7 @@ package com.njtransit;
 
 import java.util.Date;
 
-import com.scheduler.R;
+import com.njtransit.R;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,7 +14,7 @@ public class Root {
 	public static int getVersion(Context ctx) {
 
 		try {
-			PackageInfo info = ctx.getPackageManager().getPackageInfo(R.class.getPackage().getName(), 0);
+			PackageInfo info = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
 			return info.versionCode;
 		} catch (NameNotFoundException e) {
 			throw new RuntimeException(e);
@@ -112,5 +112,10 @@ public class Root {
 		SharedPreferences prefs = getProperties(ctx);
 		Editor e = prefs.edit().putLong("schedule-start-date", start);
 		e.commit();
+	}
+
+	public static void deleteScheduleDates(Context ctx) {
+		SharedPreferences prefs = getProperties(ctx);
+		prefs.edit().remove("schedule-start-date").remove("schedule-end-date").commit();		
 	}
 }

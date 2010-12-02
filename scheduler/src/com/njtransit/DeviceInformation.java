@@ -51,7 +51,7 @@ public class DeviceInformation {
 		return version;
 	}
 	
-	public static DeviceInformation getDeviceInformatino(Context ctx) {
+	public static DeviceInformation getDeviceInformation(Context ctx) {
 		DeviceInformation d = new DeviceInformation();
 		d.bootloader = Build.BOOTLOADER;
 		d.brand = Build.BRAND;		

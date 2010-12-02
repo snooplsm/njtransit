@@ -3,7 +3,7 @@ package com.njtransit.utils;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class TimeUtil {
 

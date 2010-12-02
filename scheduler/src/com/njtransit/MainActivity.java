@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.njtransit.domain.Station;
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class MainActivity extends SchedulerActivity {
 
@@ -44,11 +44,11 @@ public class MainActivity extends SchedulerActivity {
 					data.getIntExtra("stationId", -1));
 			if (requestCode == DEPARTURE_REQUEST_CODE) {
 				getSchedulerContext().setDepartureStation(station);
-				tracker.trackEvent("station-depart", "selected", station
+				trackEvent("station-depart", "selected", station
 						.getName(), station.getId());
 			} else {
 				getSchedulerContext().setArrivalStation(station);
-				tracker.trackEvent("station-arrive", "selected", station
+				trackEvent("station-arrive", "selected", station
 						.getName(), station.getId());
 			}
 		}
@@ -94,7 +94,7 @@ public class MainActivity extends SchedulerActivity {
 		departureText = (TextView) findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				tracker.trackEvent("departure-clicked", "button", "clicked", 0);
+				trackEvent("departure-clicked", "button", "clicked", 0);
 				Intent intent = new Intent(getApplicationContext(),
 						StationListActivity.class);
 				startActivityForResult(intent, DEPARTURE_REQUEST_CODE);
@@ -106,7 +106,7 @@ public class MainActivity extends SchedulerActivity {
 
 			@Override
 			public void onClick(View v) {
-				tracker.trackEvent("arrival-clicked", "button", "clicked", 1);
+				trackEvent("arrival-clicked", "button", "clicked", 1);
 				Intent intent = new Intent(getApplicationContext(),
 						StationListActivity.class);
 				startActivityForResult(intent, ARRIVAL_REQUEST_CODE);
@@ -119,7 +119,7 @@ public class MainActivity extends SchedulerActivity {
 			@Override
 			public void onClick(View arg0) {
 				SchedulerApplication sc = getSchedulerContext();
-				tracker.trackEvent("get-schedule-clicked", "button", sc
+				trackEvent("get-schedule-clicked", "button", sc
 						.getDepartureStation().getName()
 						+ " to " + sc.getArrivalStation().getName(), 2);
 				Intent intent = new Intent(getApplicationContext(),
@@ -130,7 +130,7 @@ public class MainActivity extends SchedulerActivity {
 		});
 		getScheduleImage = (ImageView) findViewById(R.id.getScheduleChevron);
 		departureDateText = (TextView)findViewById(R.id.departureDate);
-		tracker.trackPageView("/"+getClass().getSimpleName());
+		trackPageView(getClass().getSimpleName());
 		minDate = Calendar.getInstance();
 		maxDate = Calendar.getInstance();
 		minDate.setTimeInMillis(Root
@@ -140,9 +140,14 @@ public class MainActivity extends SchedulerActivity {
 	}
 
 	@Override
+	public void onBackPressed() {
+		finish();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		tracker.trackEvent("menu-click", "MenuButton", "click", 1);
+		trackEvent("menu-click", "MenuButton", "click", 1);
 		MenuItem cal = menu.add(Menu.NONE, 1, Menu.FIRST,
 				getString(R.string.date_pick));
 		MenuItem reverse = menu.add(Menu.NONE,2,2,getString(R.string.reverse));
@@ -154,12 +159,12 @@ public class MainActivity extends SchedulerActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == 1) {
-			tracker.trackEvent("menu-click", "MenuButton", item.getTitle()
+			trackEvent("menu-click", "MenuButton", item.getTitle()
 					.toString(), item.getItemId());
 			showDatePicker();
 		}
 		if(item.getItemId()==2) {
-			tracker.trackEvent("menu-click","MenuButton", item.getTitle().toString(), item.getItemId());
+			trackEvent("menu-click","MenuButton", item.getTitle().toString(), item.getItemId());
 			getSchedulerContext().reverseTrip();
 			onActivityResult(-1, Activity.RESULT_CANCELED, null);
 		}

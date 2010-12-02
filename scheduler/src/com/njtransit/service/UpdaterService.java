@@ -36,7 +36,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import com.njtransit.Root;
-import com.scheduler.R;
+import com.njtransit.R;
 
 public class UpdaterService extends Service {
 

@@ -8,7 +8,7 @@ public class SettingsActivity extends SchedulerActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		tracker.trackPageView("/"+SettingsActivity.class.getSimpleName());
+		trackPageView(SettingsActivity.class.getSimpleName());
 	}
 
 }

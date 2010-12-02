@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.scheduler.R;
+import com.njtransit.R;
 
 /**
  * Simple Dialog intended for alpha/numeric index selection
@@ -35,8 +35,6 @@ public class JumpDialog extends Dialog {
 
 	private boolean alpha;
 	
-	GoogleAnalyticsTracker tracker;
-
 	public JumpDialog(Context ctx, final OnJumpListener listener) {
 		super(ctx);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -50,8 +48,7 @@ public class JumpDialog extends Dialog {
 		setContentView(view, lp);
 		ColorDrawable cd = new ColorDrawable(0);
 		cd.setAlpha(230);
-		getWindow().setBackgroundDrawable(cd);
-		tracker = GoogleAnalyticsTracker.getInstance();
+		getWindow().setBackgroundDrawable(cd);		
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class JumpDialog extends Dialog {
 					text.setOnClickListener(new View.OnClickListener() {
 						
 						public void onClick(View v) {
-							tracker.trackEvent("jumps", "Button", c+"" , (int)c);
+							((SchedulerActivity)getOwnerActivity()).trackEvent("jumps", "Button", c+"" , (int)c);
 							if(alpha && c=='#') {
 								LayoutParams lp = new LayoutParams();
 								Display display = getWindow().getWindowManager().getDefaultDisplay();
@@ -121,7 +118,7 @@ public class JumpDialog extends Dialog {
 
 	@Override
 	public void onBackPressed() {		
-		tracker.trackEvent("jump-cancelled", "Button", "back" , 0);
+		((SchedulerActivity)getOwnerActivity()).trackEvent("jump-cancelled", "Button", "back" , 0);
 		super.onBackPressed();
 	}
 }

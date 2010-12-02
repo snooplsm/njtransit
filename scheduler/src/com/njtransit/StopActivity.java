@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,6 @@ import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.ui.adapter.StopAdapter;
-import com.scheduler.R;
 
 
 public class StopActivity extends SchedulerActivity {
@@ -52,6 +52,8 @@ public class StopActivity extends SchedulerActivity {
 	ProgressDialog progress = null;
 	
 	private boolean needProgress;
+	
+	private int refreshCount = 0;
 	
 	private List<Stop> stops = new ArrayList<Stop>();
 
@@ -238,7 +240,7 @@ public class StopActivity extends SchedulerActivity {
 
 			@Override
 			protected void onPreExecute() {
-				tracker.trackPageView("/"+getClass().getSimpleName()+"/"+departure.getName()+"_to_"+arrival.getName());
+				trackPageView(getClass().getSimpleName()+"/"+departure.getName()+"_to_"+arrival.getName());
 				populateStationsHeader(departure,arrival);
 				progress = ProgressDialog.show(StopActivity.this, "Please wait",
 						"Loading schedule ...", true);
@@ -293,7 +295,7 @@ public class StopActivity extends SchedulerActivity {
 					errors.setVisibility(View.VISIBLE);
 					errors.setText(question);
 				}	
-				tracker.trackEvent("stop_times", "query", stops.size() +" stops for " + departure.getName() + " to " + arrival.getName() + " in " + result.getStopQueryResult().getQueryDuration(), 0);
+				trackEvent("stop_times", "query", stops.size() +" stops for " + departure.getName() + " to " + arrival.getName() + " in " + result.getStopQueryResult().getQueryDuration(), 0);
 			}
 			
 		}.execute();
@@ -327,6 +329,7 @@ public class StopActivity extends SchedulerActivity {
 				if(minutesAway.isEmpty()) {
 					return;
 				}
+				trackEvent("stops", "refresh", new Date().toString() , ++refreshCount);
 				StopActivity.this.runOnUiThread(new Runnable() {
 
 					@Override
@@ -406,7 +409,7 @@ public class StopActivity extends SchedulerActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId()==1) {
-			tracker.trackEvent("menu-click", "MenuButton", item.getTitle().toString(), item.getItemId());
+			trackEvent("menu-click", "MenuButton", item.getTitle().toString(), item.getItemId());
 			getSchedulerContext().reverseTrip();
 			Intent intent = new Intent(this, StopActivity.class);
 			startActivity(intent);

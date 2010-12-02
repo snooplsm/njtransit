@@ -21,7 +21,7 @@ import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
-import com.scheduler.R;
+import com.njtransit.R;
 
 /** Shared state management */
 public class SchedulerApplication extends Application implements
@@ -156,13 +156,12 @@ public class SchedulerApplication extends Application implements
 	public List<Station> getStations() {
 		return stations;
 	}
-
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 
-		deviceInformation = DeviceInformation.getDeviceInformatino(this);
-
+		deviceInformation = DeviceInformation.getDeviceInformation(this);                    
 		adapter = new DatabaseAdapter(getApplicationContext()).open();
 
 		Toast.makeText(getApplicationContext(), getString(R.string.disclaimer),
@@ -195,6 +194,7 @@ public class SchedulerApplication extends Application implements
 		AdManager.setAllowUseOfLocation(true);
 		AdManager.setTestDevices(new String[] { "0A3A55190402402C",
 				AdManager.TEST_EMULATOR });
+		
 
 	}
 
@@ -261,4 +261,5 @@ public class SchedulerApplication extends Application implements
 	public void setStations(ArrayList<Station> stations) {
 		this.stations = stations;
 	}
+
 }

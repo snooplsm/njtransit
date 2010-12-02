@@ -143,9 +143,9 @@
 				<artifactId>schedule-maker-maven-plugin</artifactId>
 				<version>1.0-SNAPSHOT</version>
 				<configuration>
-					<gtfsFile>../providers/njtransit-rail/rail_data.zip</gtfsFile>
+					<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>
 					<partitionsTarget>assets/database</partitionsTarget>
-					<workDir>${project.build.outputDirectory}/workDir</workDir>
+					<workDir>${project.build.directory}/workDir</workDir>
 				</configuration>
 			</plugin>
 
