@@ -58,6 +58,12 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 				protected void onLetterSelect(char c) {
 					trackEvent("jumps", "Button", c+"" , (int)c);
 				}
+
+				@Override
+				public void onBackPressed() {
+					trackEvent("jump-cancelled", "Button", "back" , 0);
+					super.onBackPressed();
+				}
 				
 			}.only(getStationLetters());
 			jumpDialog.show();

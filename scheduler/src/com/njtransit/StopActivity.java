@@ -342,12 +342,7 @@ public class StopActivity extends SchedulerActivity {
 						}
 						stopTimes.invalidate();
 					}
-				});
-				Calendar cal = Calendar.getInstance();
-				cal.set(Calendar.SECOND, 0);
-				cal.set(Calendar.MILLISECOND, 0);
-				cal.add(Calendar.MINUTE, 1);
-				timer.schedule(updaterThread, cal.getTime());
+				});				
 			}			
 		};
 		return updaterThread;
@@ -376,8 +371,7 @@ public class StopActivity extends SchedulerActivity {
 		super.onResume();
 		if (stopTimes != null) {
 			try {
-				if (timer != null && needsReschedule) {
-			
+				if (timer != null && needsReschedule) {			
 					timer = new Timer(false);
 					timer.schedule(newUpdaterThread(), 300);
 					Calendar c = Calendar.getInstance();

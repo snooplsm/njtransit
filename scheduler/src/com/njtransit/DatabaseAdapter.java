@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010120122" android:versionName="2010-12-01" package="com.njtransit">
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010120200" android:versionName="2010-12-02" package="com.njtransit">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
-	<application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name_full" android:name="com.njtransit.SchedulerApplication" android:theme="@style/OrangeTheme">
+	<application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name_full" android:name="com.njtransit.SchedulerApplication" android:theme="@style/OrangeTheme">
 		
 		<activity android:configChanges="orientation" android:label="@string/app_name_full" android:name="com.njtransit.StationListActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Light">
 			<intent-filter>				

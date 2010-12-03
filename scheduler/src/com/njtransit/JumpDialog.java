@@ -115,9 +115,4 @@ public abstract class JumpDialog extends Dialog {
 		return this;
 	}
 
-	@Override
-	public void onBackPressed() {		
-		((SchedulerActivity)getOwnerActivity()).trackEvent("jump-cancelled", "Button", "back" , 0);
-		super.onBackPressed();
-	}
 }
