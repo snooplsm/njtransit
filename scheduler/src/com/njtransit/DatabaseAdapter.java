@@ -44,9 +44,12 @@ public class DatabaseAdapter {
 	private LocalStorageHelper localStorageHelper;
 
 	private Integer tempTableIndex = 0;
+	
+	private InstallDatabaseMeter installMeter;
 
-	public DatabaseAdapter(Context context) {
+	public DatabaseAdapter(Context context, InstallDatabaseMeter meter) {
 		this.context = context;
+		this.installMeter = meter;
 	}
 
 	public void closeDB() {
@@ -554,12 +557,24 @@ public class DatabaseAdapter {
 		return station;
 	}
 
+	public static interface InstallDatabaseMeter {
+		
+		void onBeforeCopy();
+		
+		void onPercentCopied(long copySize, float percent, long totalBytesCopied);
+		
+		void onSizeToBeCopiedCalculated(long copySize);
+		
+		void onFinishedCopying();
+		
+	}
+	
 	public DatabaseAdapter open() {
 		if(db!=null) {
 			return this;
 		}		
 		try {
-			helper = new TransitDBHelper(context);
+			helper = new TransitDBHelper(context, installMeter);
 			File dbFile = context.getDatabasePath("database.sqlite");			
 			String moveOnRestart = Root.getMoveOnRestart(context);
 			if(moveOnRestart!=null) {
@@ -576,6 +591,9 @@ public class DatabaseAdapter {
 			db = helper.getWritableDatabase();
 			localStorageHelper = new LocalStorageHelper(context);
 			localDb = localStorageHelper.getWritableDatabase();
+			if(installMeter!=null) {
+				installMeter.onFinishedCopying();
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

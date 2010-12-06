@@ -3,7 +3,7 @@
 	android:versionCode="2010120200" android:versionName="2010-12-02"
 	package="com.njtransit">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7" />
-	<application android:debuggable="false" android:icon="@drawable/icon"
+	<application android:debuggable="true" android:icon="@drawable/icon"
 		android:label="@string/app_name_full" android:name="com.njtransit.SchedulerApplication"
 		android:theme="@style/OrangeTheme">
 
