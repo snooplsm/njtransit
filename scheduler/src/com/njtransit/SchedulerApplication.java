@@ -125,7 +125,7 @@ public class SchedulerApplication extends Application implements
 		return lastKnownLocation;
 	}
 
-	private LocationManager getLocations() {
+	public LocationManager getLocations() {
 		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 
@@ -161,12 +161,7 @@ public class SchedulerApplication extends Application implements
 	public void onCreate() {
 		super.onCreate();
 
-		deviceInformation = DeviceInformation.getDeviceInformation(this);                    
-		adapter = new DatabaseAdapter(getApplicationContext()).open();
-
-		Toast.makeText(getApplicationContext(), getString(R.string.disclaimer),
-				Toast.LENGTH_SHORT).show();
-		this.stations = adapter.getStations();
+		deviceInformation = DeviceInformation.getDeviceInformation(this);                    		
 
 		setLastKnownLocation(getLocations().getLastKnownLocation(
 				LOCATION_PROVIDER));
@@ -174,28 +169,6 @@ public class SchedulerApplication extends Application implements
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
 					0, this);
 		}
-		if (Root.getScheduleEndDate(getApplicationContext()) < 0) {
-			long max = adapter.getMaxCalendarDate();
-			Root.saveScheduleEndDate(getApplicationContext(), max);
-		}
-		if (Root.getScheduleStartDate(getApplicationContext()) < 0) {
-			long min = adapter.getMinCalendarDate();
-			Root.saveScheduleStartDate(getApplicationContext(), min);
-		}
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
-		if (cal.getTimeInMillis() > Root
-				.getScheduleEndDate(getApplicationContext())) {
-			// Toast.makeText(getApplicationContext(), "Your sched, duration)
-		}
-		AdManager.setAllowUseOfLocation(true);
-		AdManager.setTestDevices(new String[] { "0A3A55190402402C",
-				AdManager.TEST_EMULATOR });
-		
-
 	}
 
 	@Override
