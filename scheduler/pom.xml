@@ -206,7 +206,7 @@
 				<url>http://wmwm.us/njtransit</url>
 				<name>NJTransit Rail</name>
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
-				<assetsDirectory>../providers/njtransit-rail/assets</assetsDirectory>
+				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>				
 				<packageName>com.njtransit</packageName>
 			</properties>
 		</profile>
