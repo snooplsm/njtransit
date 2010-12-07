@@ -53,8 +53,12 @@ public class DatabaseAdapter {
 	}
 
 	public void closeDB() {
-		helper.close();
-		localStorageHelper.close();
+		if(helper!=null) {
+			helper.close();
+		}
+		if(localStorageHelper!=null) {
+			localStorageHelper.close();
+		}
 	}
 
 	public int countStations() {

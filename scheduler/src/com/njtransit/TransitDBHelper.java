@@ -109,7 +109,6 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 					percent = Math.min(1, percent);
 					installMeter.onPercentCopied(totalSize, percent,
 							totalBytesCopied);
-					Thread.sleep(100);
 				} catch (Exception e) {
 					Log.e(getClass().getSimpleName(),
 							"onPercentCopied Exception", e);

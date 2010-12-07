@@ -14,14 +14,11 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.admob.android.ads.AdManager;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
-import com.njtransit.R;
 
 /** Shared state management */
 public class SchedulerApplication extends Application implements

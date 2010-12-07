@@ -15,6 +15,7 @@
 		<androidManifestFile>AndroidManifest.xml</androidManifestFile>
 		<androidManifestTarget>AndroidManifest.xml</androidManifestTarget>
 		<assetsDirectory>${project.basedir}/assets</assetsDirectory>
+		<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>
 		<resourceOverlayDirectory></resourceOverlayDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.version>2.2.1</android.version>
@@ -143,7 +144,7 @@
 				<artifactId>schedule-maker-maven-plugin</artifactId>
 				<version>1.0-SNAPSHOT</version>
 				<configuration>
-					<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>
+					<gtfsFile>${gtfsFile}</gtfsFile>
 					<partitionsTarget>assets/database</partitionsTarget>
 					<workDir>${project.build.directory}/workDir</workDir>
 				</configuration>
@@ -208,6 +209,17 @@
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
 				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>				
 				<packageName>com.njtransit</packageName>
+			</properties>
+		</profile>
+		<profile>
+			<id>njtransit-bus</id>
+			<properties>
+				<artifactId>njtransit-bus</artifactId>
+				<url>http://wmwm.us/njtransit-bus</url>
+				<name>NJTransit Bus</name>
+				<resourceOverlayDirectory>../providers/njtransit-bus/res</resourceOverlayDirectory>
+				<gtfsFile>../providers/njtransit-bus/bus_data</gtfsFile>				
+				<packageName>com.njtransit.bus</packageName>
 			</properties>
 		</profile>
 	</profiles>

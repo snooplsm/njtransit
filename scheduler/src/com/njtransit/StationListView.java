@@ -30,7 +30,6 @@ public class StationListView extends ListView {
 	public StationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 
-		setTextFilterEnabled(true);
 		setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view,
