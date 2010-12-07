@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -106,10 +105,11 @@ public class TransitDBHelper extends SQLiteOpenHelper {
 				}
 				in.close();
 				try {
-					float percent = totalSize / totalBytesCopied;
+					float percent = totalBytesCopied / (float)totalSize;
 					percent = Math.min(1, percent);
 					installMeter.onPercentCopied(totalSize, percent,
 							totalBytesCopied);
+					Thread.sleep(100);
 				} catch (Exception e) {
 					Log.e(getClass().getSimpleName(),
 							"onPercentCopied Exception", e);

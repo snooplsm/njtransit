@@ -47,10 +47,10 @@ public class SplashScreenActivity extends SchedulerActivity {
 				final InstallDatabaseMeter meter = new InstallDatabaseMeter() {
 
 					private DecimalFormat df = new DecimalFormat("##%");
-
+					
 					@Override
 					public void onBeforeCopy() {
-						publishProgress(new Pair(progressText,"Copying Database"));
+						publishProgress(new Pair(progressText,"Building Schedules..."));
 					}
 
 					@Override
@@ -61,8 +61,9 @@ public class SplashScreenActivity extends SchedulerActivity {
 
 					@Override
 					public void onPercentCopied(long copySize, final float percent,
-							long totalBytesCopied) {
+							long totalBytesCopied) {					
 						publishProgress(new Pair(progressPercent,df.format(percent)));
+						
 
 					}
 
