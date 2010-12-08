@@ -395,14 +395,6 @@ public class StopActivity extends SchedulerActivity {
 			progress.show();
 		}
 	}
-	
-	@Override
-	public void onBackPressed() {
-		
-		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-		startActivity(intent);
-		
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
