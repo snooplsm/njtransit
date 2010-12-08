@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.njtransit.R;
+import com.njtransit.rail.R;
 
 /**
  * Base activity with Typed access to {@link SchedulerApplication}

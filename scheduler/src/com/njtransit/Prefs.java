@@ -3,7 +3,7 @@ package com.njtransit;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import com.njtransit.R;
+import com.njtransit.rail.R;
 
 /** Activity used for viewing and modifying user preferences */
 public class Prefs extends PreferenceActivity {

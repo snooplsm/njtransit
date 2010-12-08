@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Stop;
-import com.njtransit.R;
+import com.njtransit.rail.R;
 
 public class StopAdapter extends ArrayAdapter<Stop> {
 

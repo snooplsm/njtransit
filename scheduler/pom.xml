@@ -208,7 +208,7 @@
 				<name>NJTransit Rail</name>
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
 				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>				
-				<packageName>com.njtransit</packageName>
+				<packageName>com.njtransit.rail</packageName>
 			</properties>
 		</profile>
 		<profile>

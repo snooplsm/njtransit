@@ -2,8 +2,6 @@ package com.njtransit;
 
 import java.util.Date;
 
-import com.njtransit.R;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

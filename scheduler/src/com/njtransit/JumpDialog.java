@@ -16,6 +16,8 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.njtransit.rail.R;
+
 /**
  * Simple Dialog intended for alpha/numeric index selection
  * 

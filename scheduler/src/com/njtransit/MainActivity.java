@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.njtransit.domain.Station;
-import com.njtransit.R;
+import com.njtransit.rail.R;
 
 public class MainActivity extends SchedulerActivity {
 
@@ -142,6 +142,7 @@ public class MainActivity extends SchedulerActivity {
 
 	@Override
 	public void onBackPressed() {
+		super.onBackPressed();
 		finish();
 	}
 

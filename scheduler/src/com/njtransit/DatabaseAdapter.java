@@ -321,7 +321,7 @@ public class DatabaseAdapter {
 			c.close();
 			Log.d("DatabaseAdapter", String.format("getStopTimesAlternate (%s ms)", (System.currentTimeMillis() - before)));
 			
-			return new StopsQueryResult(cal,depart, arrive, 0L, 1L, getTrips(services, tripIds), times);
+			return new StopsQueryResult(cal,depart, arrive, before, System.currentTimeMillis(), getTrips(services, tripIds), times);
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);

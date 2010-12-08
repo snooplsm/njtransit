@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.njtransit.SchedulerApplication;
 import com.njtransit.domain.Station;
+import com.njtransit.rail.R;
 import com.njtransit.utils.Locations;
-import com.njtransit.R;
 
 public class StationAdapter extends ArrayAdapter<Station> implements
 		SectionIndexer, Filterable {

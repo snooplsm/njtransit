@@ -12,6 +12,7 @@ import android.view.Window;
 import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
+import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StationAdapter;
 
 /**

@@ -38,8 +38,8 @@ public class StopsQueryResult {
 		return departureDate;
 	}
 
-	public Double getQueryDuration() {
-		return (queryEnd - queryStart) / 1000.0;
+	public Long getQueryDuration() {
+		return queryEnd - queryStart;
 	}
 
 	public Station getDepart() {

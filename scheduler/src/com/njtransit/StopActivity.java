@@ -31,6 +31,7 @@ import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
+import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
 
 
@@ -84,6 +85,12 @@ public class StopActivity extends SchedulerActivity {
 			public void onReceiveAd(AdView arg0) {			
 				super.onReceiveAd(arg0);
 				ad.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onFailedToReceiveAd(AdView arg0) {
+				// TODO Auto-generated method stub
+				super.onFailedToReceiveAd(arg0);
 			}
 	    	
 	    });		
