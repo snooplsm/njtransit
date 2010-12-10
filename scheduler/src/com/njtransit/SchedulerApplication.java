@@ -138,7 +138,7 @@ public class SchedulerApplication extends Application implements
 	}
 
 	public Station getStation(Integer id) {
-		for (Station s : stations) {
+		for (Station s : getStations()) {
 			if (s.getId().equals(id)) {
 				return s;
 			}

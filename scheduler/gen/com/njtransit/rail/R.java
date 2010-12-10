@@ -59,7 +59,6 @@ containing a value of this type.
         public static final int blue_badges_mayor=0x7f050013;
         public static final int blue_end=0x7f050007;
         /**  427BBA, 0f93b8 
- 427BBA, 0f93b8 
          */
         public static final int blue_start=0x7f050006;
         public static final int color_score_list_adapter_highlight=0x7f050016;
@@ -184,14 +183,6 @@ containing a value of this type.
 	</style>
 
 	
-
-	<style name="OrangeTheme">
-		<item name="android:background">#F47920</item>
-		<item name="android:textColor">#00FF00</item>
-		<item name="android:typeface">monospace</item>
-	</style>
-
-	
          */
         public static final int OrangeTheme=0x7f070000;
         public static final int TextViewStationListHeader=0x7f070006;
@@ -205,7 +196,6 @@ containing a value of this type.
         public static final int listSeparatorTextViewStyle=0x7f070001;
         public static final int listViewStyle=0x7f070002;
         /**   Manually specified 
-  Manually specified 
          */
         public static final int secondaryTextStyle=0x7f070004;
         public static final int tabHostStyle=0x7f070003;

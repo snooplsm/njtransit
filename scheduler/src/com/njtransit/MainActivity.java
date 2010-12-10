@@ -89,7 +89,9 @@ public class MainActivity extends SchedulerActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.jumper);
-
+		if(savedInstanceState!=null) {
+			return;
+		}
 		RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
 		departureText = (TextView) findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {

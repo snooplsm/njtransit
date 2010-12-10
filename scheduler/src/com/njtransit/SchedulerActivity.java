@@ -1,6 +1,7 @@
 package com.njtransit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
@@ -22,6 +23,14 @@ public class SchedulerActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(!SplashScreenActivity.class.isAssignableFrom(getClass()) && (savedInstanceState!=null || getSchedulerContext().getAdapter()==null || getSchedulerContext().getStations()==null)) {
+			Intent intent = new Intent(this,
+					SplashScreenActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+			return;
+		}
 		tracker = GoogleAnalyticsTracker.getInstance();
 		try {
 			tracker.setProductVersion(getPackageName(), getPackageManager()
@@ -36,7 +45,9 @@ public class SchedulerActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		tracker.stop();
+		if(tracker!=null) {
+			tracker.stop();
+		}
 	}
 
 	protected void trackPageView(String url) {

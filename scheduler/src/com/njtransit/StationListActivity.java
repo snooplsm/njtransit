@@ -33,9 +33,12 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.station_list_home);
+		if(savedInstanceState!=null) {
+			return;
+		}
 		final SchedulerApplication app = this.getSchedulerContext();
 		stations = (StationListView) findViewById(R.id.station_view);
 		stations.setAdapter(new StationAdapter(this, R.layout.station_row,
