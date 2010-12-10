@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010120919" android:versionName="2010-12-09" package="com.njtransit.rail">
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010120920" android:versionName="2010-12-09" package="com.njtransit.rail">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
 	<application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name_full" android:name="com.njtransit.SchedulerApplication" android:theme="@style/OrangeTheme">
 

@@ -9,7 +9,6 @@ public class DeviceInformation {
 	private DeviceInformation() {}
 
 	private String board;
-	private String bootloader;
 	private String brand;
 	private String manufacturer;
 	private String model;
@@ -18,11 +17,7 @@ public class DeviceInformation {
 	public String getBoard() {
 		return board;
 	}
-
-	public String getBootloader() {
-		return bootloader;
-	}
-
+	
 	public String getBrand() {
 		return brand;
 	}
@@ -53,7 +48,6 @@ public class DeviceInformation {
 	
 	public static DeviceInformation getDeviceInformation(Context ctx) {
 		DeviceInformation d = new DeviceInformation();
-		d.bootloader = Build.BOOTLOADER;
 		d.brand = Build.BRAND;		
 		d.manufacturer = Build.MANUFACTURER;
 		d.model = Build.MODEL;
