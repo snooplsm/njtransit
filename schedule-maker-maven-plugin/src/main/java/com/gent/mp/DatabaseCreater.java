@@ -767,6 +767,8 @@ public class DatabaseCreater {
 						if(stopName.equals("TRENTON TRANSIT CENTER")) {
 							stopName = stopName + " - RIVERLINE";
 						}
+					}else {
+						stopName = getAlternate(stopName);
 					}
 					o.add(stopName);
 					int tripId = stopIdToTrips.get(stopId);
@@ -797,4 +799,23 @@ public class DatabaseCreater {
 		splitDatabase();
 	}
 
+	private static Map<String, String> alternates = new HashMap<String, String>();
+
+	static {
+
+		// NJTRANSIT
+		alternates.put("FRANK R LAUTENBERG SECAUCUS LOWER LEVEL",
+				"SEACAUCUS LOWER LEVEL");
+		alternates.put("FRANK R LAUTENBERG SECAUCUS UPPER LEVEL",
+				"SEACAUCUS UPPER LEVEL");
+
+	}
+
+	private static String getAlternate(String name) {
+		String alternate = alternates.get(name.toUpperCase());
+		if (alternate != null) {
+			return alternate;
+		}
+		return name;
+	}
 }
