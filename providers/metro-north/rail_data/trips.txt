@@ -1,0 +1,1063 @@
+route_id, service_id, trip_id, trip_headsign, shape_id
+3, weekday, 1213, New Haven_Inbound, 5
+3, weekday, 1217, New Haven_Inbound, 5
+3, weekday, 1225, New Haven_Inbound, 5
+3, weekday, 1229, New Haven_Inbound, 5
+3, weekday, 1231, New Haven_Inbound, 5
+3, weekday, 1233, New Haven_Inbound, 5
+3, weekday, 1235, New Haven_Inbound, 5
+3, weekday, 1237, New Haven_Inbound, 5
+3, weekday, 1239, New Haven_Inbound, 5
+3, weekday, 1241, New Haven_Inbound, 5
+3, weekday, 1244, New Haven_Outbound, 6
+3, weekday, 1245, New Haven_Inbound, 5
+3, weekday, 1246, New Haven_Outbound, 6
+3, weekday, 1248, New Haven_Outbound, 6
+3, weekday, 1254, New Haven_Outbound, 6
+3, weekday, 1256, New Haven_Outbound, 6
+3, weekday, 1260, New Haven_Outbound, 6
+3, weekday, 1268, New Haven_Outbound, 6
+3, weekday, 1270, New Haven_Outbound, 6
+3, weekday, 1272, New Haven_Outbound, 6
+3, weekday, 1275, New Haven_Inbound, 5
+3, weekday, 1278, New Haven_Outbound, 6
+3, weekday, 1279, New Haven_Inbound, 5
+3, weekday, 1300, New Haven_Outbound, 6
+3, weekday, 1301, New Haven_Inbound, 5
+3, weekday, 1302, New Haven_Outbound, 6
+3, weekday, 1303, New Haven_Inbound, 5
+3, weekday, 1304, New Haven_Outbound, 6
+3, weekday, 1305, New Haven_Inbound, 5
+3, weekday, 1306, New Haven_Outbound, 6
+3, weekday, 1307, New Haven_Inbound, 5
+3, weekday, 1308, New Haven_Outbound, 6
+3, weekday, 1309, New Haven_Inbound, 5
+3, weekday, 1311, New Haven_Inbound, 5
+3, weekday, 1312, New Haven_Outbound, 6
+3, weekday, 1313, New Haven_Inbound, 5
+3, weekday, 1314, New Haven_Outbound, 6
+3, weekday, 1315, New Haven_Inbound, 5
+3, weekday, 1316, New Haven_Outbound, 6
+3, weekday, 1318, New Haven_Outbound, 6
+3, weekday, 1319, New Haven_Inbound, 5
+3, weekday, 1320, New Haven_Outbound, 6
+3, weekday, 1321, New Haven_Inbound, 5
+3, weekday, 1322, New Haven_Outbound, 6
+3, weekday, 1323, New Haven_Inbound, 5
+3, weekday, 1324, New Haven_Outbound, 6
+3, weekday, 1325, New Haven_Inbound, 5
+3, weekday, 1326, New Haven_Outbound, 6
+3, weekday, 1327, New Haven_Inbound, 5
+3, weekday, 1328, New Haven_Outbound, 6
+3, weekday, 1330, New Haven_Outbound, 6
+3, weekday, 1331, New Haven_Inbound, 5
+3, weekday, 1332, New Haven_Outbound, 6
+3, weekday, 1333, New Haven_Inbound, 5
+3, weekday, 1334, New Haven_Outbound, 6
+3, weekday, 1336, New Haven_Outbound, 6
+3, weekday, 1338, New Haven_Outbound, 6
+3, weekday, 1340, New Haven_Outbound, 6
+3, weekday, 1342, New Haven_Outbound, 6
+3, weekday, 1345, New Haven_Inbound, 5
+3, weekday, 1347, New Haven_Inbound, 5
+3, weekday, 1349, New Haven_Inbound, 5
+3, weekday, 1351, New Haven_Inbound, 5
+3, weekday, 1352, New Haven_Outbound, 6
+3, weekday, 1353, New Haven_Inbound, 5
+3, weekday, 1355, New Haven_Inbound, 5
+3, weekday, 1357, New Haven_Inbound, 5
+3, weekday, 1358, New Haven_Outbound, 6
+3, weekday, 1359, New Haven_Inbound, 5
+3, weekday, 1360, New Haven_Outbound, 6
+3, weekday, 1361, New Haven_Inbound, 5
+3, weekday, 1362, New Haven_Outbound, 6
+3, weekday, 1363, New Haven_Inbound, 5
+3, weekday, 1364, New Haven_Outbound, 6
+3, weekday, 1365, New Haven_Inbound, 5
+3, weekday, 1367, New Haven_Inbound, 5
+3, weekday, 1368, New Haven_Outbound, 6
+3, weekday, 1369, New Haven_Inbound, 5
+3, weekday, 1370, New Haven_Outbound, 6
+3, weekday, 1371, New Haven_Inbound, 5
+3, weekday, 1373, New Haven_Inbound, 5
+3, weekday, 1374, New Haven_Outbound, 6
+3, weekday, 1375, New Haven_Inbound, 5
+3, weekday, 1376, New Haven_Outbound, 6
+3, weekday, 1378, New Haven_Outbound, 6
+3, weekday, 1379, New Haven_Inbound, 5
+3, weekday, 1381, New Haven_Inbound, 5
+3, weekday, 1382, New Haven_Outbound, 6
+3, weekday, 1383, New Haven_Inbound, 5
+3, weekday, 1384, New Haven_Outbound, 6
+3, weekday, 1385, New Haven_Inbound, 5
+3, weekday, 1386, New Haven_Outbound, 6
+3, weekday, 1387, New Haven_Inbound, 5
+3, weekday, 1388, New Haven_Outbound, 6
+3, weekday, 1389, New Haven_Inbound, 5
+3, weekday, 1390, New Haven_Outbound, 6
+3, weekday, 1391, New Haven_Inbound, 5
+3, weekday, 1392, New Haven_Outbound, 6
+3, weekday, 1393, New Haven_Inbound, 5
+3, weekday, 1394, New Haven_Outbound, 6
+3, weekday, 1395, New Haven_Inbound, 5
+3, weekday, 1396, New Haven_Outbound, 6
+3, weekday, 1398, New Haven_Outbound, 6
+3, weekday, 1399, New Haven_Inbound, 5
+3, weekday, 1404, New Haven_Outbound, 6
+3, weekday, 1407, New Haven_Inbound, 5
+3, weekday, 1408, New Haven_Outbound, 6
+3, weekday, 1409, New Haven_Inbound, 5
+3, weekday, 1410, New Haven_Outbound, 6
+3, weekday, 1412, New Haven_Outbound, 6
+3, weekday, 1417, New Haven_Inbound, 5
+3, weekday, 1419, New Haven_Inbound, 5
+3, weekday, 1427, New Haven_Inbound, 5
+3, weekday, 1429, New Haven_Inbound, 5
+3, weekday, 1433, New Haven_Inbound, 5
+3, weekday, 1437, New Haven_Inbound, 5
+3, weekday, 1439, New Haven_Inbound, 5
+3, weekday, 1441, New Haven_Inbound, 5
+3, weekday, 1442, New Haven_Outbound, 6
+3, weekday, 1445, New Haven_Inbound, 5
+3, weekday, 1451, New Haven_Inbound, 5
+3, weekday, 1456, New Haven_Outbound, 6
+3, weekday, 1458, New Haven_Outbound, 6
+3, weekday, 1464, New Haven_Outbound, 6
+3, weekday, 1469, New Haven_Inbound, 5
+3, weekday, 1470, New Haven_Outbound, 6
+3, weekday, 1473, New Haven_Inbound, 5
+3, weekday, 1477, New Haven_Inbound, 5
+3, weekday, 1497, New Haven_Inbound, 5
+3, weekday, 1500, New Haven_Outbound, 6
+3, weekday, 1502, New Haven_Outbound, 6
+3, weekday, 1503, New Haven_Inbound, 5
+3, weekday, 1504, New Haven_Outbound, 6
+3, weekday, 1506, New Haven_Outbound, 6
+3, weekday, 1507, New Haven_Inbound, 5
+3, weekday, 1508, New Haven_Outbound, 6
+3, weekday, 1509, New Haven_Inbound, 5
+3, weekday, 1510, New Haven_Outbound, 6
+3, weekday, 1511, New Haven_Inbound, 5
+3, weekday, 1512, New Haven_Outbound, 6
+3, weekday, 1513, New Haven_Inbound, 5
+3, weekday, 1514, New Haven_Outbound, 6
+3, weekday, 1516, New Haven_Outbound, 6
+3, weekday, 1518, New Haven_Outbound, 6
+3, weekday, 1521, New Haven_Inbound, 5
+3, weekday, 1522, New Haven_Outbound, 6
+3, weekday, 1526, New Haven_Outbound, 6
+3, weekday, 1527, New Haven_Inbound, 5
+3, weekday, 1529, New Haven_Inbound, 5
+3, weekday, 1530, New Haven_Outbound, 6
+3, weekday, 1531, New Haven_Inbound, 5
+3, weekday, 1532, New Haven_Outbound, 6
+3, weekday, 1533, New Haven_Inbound, 5
+3, weekday, 1534, New Haven_Outbound, 6
+3, weekday, 1535, New Haven_Inbound, 5
+3, weekday, 1536, New Haven_Outbound, 6
+3, weekday, 1537, New Haven_Inbound, 5
+3, weekday, 1538, New Haven_Outbound, 6
+3, weekday, 1539, New Haven_Inbound, 5
+3, weekday, 1540, New Haven_Outbound, 6
+3, weekday, 1541, New Haven_Inbound, 5
+3, weekday, 1542, New Haven_Outbound, 6
+3, weekday, 1544, New Haven_Outbound, 6
+3, weekday, 1545, New Haven_Inbound, 5
+3, weekday, 1546, New Haven_Outbound, 6
+3, weekday, 1548, New Haven_Outbound, 6
+3, weekday, 1549, New Haven_Inbound, 5
+3, weekday, 1551, New Haven_Inbound, 5
+3, weekday, 1552, New Haven_Outbound, 6
+3, weekday, 1554, New Haven_Outbound, 6
+3, weekday, 1555, New Haven_Inbound, 5
+3, weekday, 1556, New Haven_Outbound, 6
+3, weekday, 1559, New Haven_Inbound, 5
+3, weekday, 1560, New Haven_Outbound, 6
+3, weekday, 1562, New Haven_Outbound, 6
+3, weekday, 1563, New Haven_Inbound, 5
+3, weekday, 1567, New Haven_Inbound, 5
+3, weekday, 1568, New Haven_Outbound, 6
+3, weekday, 1569, New Haven_Inbound, 5
+3, weekday, 1570, New Haven_Outbound, 6
+3, weekday, 1571, New Haven_Inbound, 5
+3, weekday, 1572, New Haven_Outbound, 6
+3, weekday, 1573, New Haven_Inbound, 5
+3, weekday, 1574, New Haven_Outbound, 6
+3, weekday, 1575, New Haven_Inbound, 5
+3, weekday, 1576, New Haven_Outbound, 6
+3, weekday, 1577, New Haven_Inbound, 5
+3, weekday, 1578, New Haven_Outbound, 6
+3, weekday, 1579, New Haven_Inbound, 5
+3, weekday, 1580, New Haven_Outbound, 6
+3, weekday, 1581, New Haven_Inbound, 5
+3, weekday, 1582, New Haven_Outbound, 6
+3, weekday, 1583, New Haven_Inbound, 5
+3, weekday, 1584, New Haven_Outbound, 6
+3, weekday, 1586, New Haven_Outbound, 6
+3, weekday, 1587, New Haven_Inbound, 5
+3, weekday, 1588, New Haven_Outbound, 6
+3, weekday, 1590, New Haven_Outbound, 6
+3, weekday, 1591, New Haven_Inbound, 5
+3, weekday, 1594, New Haven_Outbound, 6
+3, weekday, 1595, New Haven_Inbound, 5
+3, weekday, 1597, New Haven_Inbound, 5
+3, weekday, 1598, New Haven_Outbound, 6
+3, weekday, 1599, New Haven_Inbound, 5
+3, weekday, 1617, New Haven_Inbound, 5
+4, weekday, 1707, New Canaan_Inbound, 7
+4, weekday, 1710, New Canaan_Outbound, 8
+4, weekday, 1711, New Canaan_Inbound, 7
+4, weekday, 1712, New Canaan_Outbound, 8
+4, weekday, 1716, New Canaan_Outbound, 8
+4, weekday, 1718, New Canaan_Outbound, 8
+4, weekday, 1722, New Canaan_Outbound, 8
+4, weekday, 1723, New Canaan_Inbound, 7
+4, weekday, 1726, New Canaan_Outbound, 8
+4, weekday, 1730, New Canaan_Outbound, 8
+4, weekday, 1731, New Canaan_Inbound, 7
+4, weekday, 1734, New Canaan_Outbound, 8
+4, weekday, 1735, New Canaan_Inbound, 7
+4, weekday, 1738, New Canaan_Outbound, 8
+4, weekday, 1740, New Canaan_Outbound, 8
+4, weekday, 1741, New Canaan_Inbound, 7
+4, weekday, 1745, New Canaan_Inbound, 7
+4, weekday, 1750, New Canaan_Outbound, 8
+4, weekday, 1751, New Canaan_Inbound, 7
+4, weekday, 1752, New Canaan_Outbound, 8
+4, weekday, 1755, New Canaan_Inbound, 7
+4, weekday, 1758, New Canaan_Outbound, 8
+4, weekday, 1759, New Canaan_Inbound, 7
+4, weekday, 1763, New Canaan_Inbound, 7
+4, weekday, 1767, New Canaan_Inbound, 7
+4, weekday, 1770, New Canaan_Outbound, 8
+4, weekday, 1771, New Canaan_Inbound, 7
+4, weekday, 1774, New Canaan_Outbound, 8
+4, weekday, 1775, New Canaan_Inbound, 7
+4, weekday, 1777, New Canaan_Inbound, 7
+4, weekday, 1778, New Canaan_Outbound, 8
+4, weekday, 1782, New Canaan_Outbound, 8
+4, weekday, 1786, New Canaan_Outbound, 8
+4, weekday, 1787, New Canaan_Inbound, 7
+4, weekday, 1789, New Canaan_Inbound, 7
+4, weekday, 1790, New Canaan_Outbound, 8
+4, weekday, 1794, New Canaan_Outbound, 8
+4, weekday, 1795, New Canaan_Inbound, 7
+4, weekday, 1797, New Canaan_Inbound, 7
+4, weekday, 1798, New Canaan_Outbound, 8
+4, weekday, 1799, New Canaan_Inbound, 7
+5, weekday, 1811, Danbury_Inbound, 9
+5, weekday, 1819, Danbury_Inbound, 9
+5, weekday, 1833, Danbury_Inbound, 9
+5, weekday, 1837, Danbury_Inbound, 9
+5, weekday, 1838, Danbury_Outbound, 10
+5, weekday, 1841, Danbury_Inbound, 9
+5, weekday, 1844, Danbury_Outbound, 10
+5, weekday, 1848, Danbury_Outbound, 10
+5, weekday, 1860, Danbury_Outbound, 10
+5, weekday, 1868, Danbury_Outbound, 10
+5, weekday, 1874, Danbury_Outbound, 10
+5, weekday, 1881, Danbury_Inbound, 9
+5, weekday, 1882, Danbury_Outbound, 10
+5, weekday, 1890, Danbury_Outbound, 10
+5, weekday, 1895, Danbury_Inbound, 9
+5, weekday, 1897, Danbury_Inbound, 9
+6, weekday, 1906, Waterbury_Outbound, 12
+6, weekday, 1916, Waterbury_Outbound, 12
+6, weekday, 1923, Waterbury_Inbound, 11
+6, weekday, 1926, Waterbury_Outbound, 12
+6, weekday, 1934, Waterbury_Outbound, 12
+6, weekday, 1935, Waterbury_Inbound, 11
+6, weekday, 1946, Waterbury_Outbound, 12
+6, weekday, 1951, Waterbury_Inbound, 11
+6, weekday, 1963, Waterbury_Inbound, 11
+6, weekday, 1973, Waterbury_Inbound, 11
+6, weekday, 1974, Waterbury_Outbound, 12
+6, weekday, 1981, Waterbury_Inbound, 11
+6, weekday, 1986, Waterbury_Outbound, 12
+6, weekday, 1991, Waterbury_Inbound, 11
+6, weekday, 1997, Waterbury_Inbound, 11
+2, weekday, 300, Harlem_Inbound, 3
+2, weekday, 306, Harlem_Inbound, 3
+2, weekday, 308, Harlem_Inbound, 3
+2, weekday, 314, Harlem_Inbound, 3
+2, weekday, 316, Harlem_Inbound, 3
+2, weekday, 324, Harlem_Inbound, 3
+2, weekday, 330, Harlem_Inbound, 3
+2, weekday, 334, Harlem_Inbound, 3
+2, weekday, 336, Harlem_Inbound, 3
+2, weekday, 338, Harlem_Inbound, 3
+2, weekday, 351, Harlem_Outbound, 4
+3, fri, 3538, New Haven_Outbound, 6
+2, weekday, 357, Harlem_Outbound, 4
+2, weekday, 359, Harlem_Outbound, 4
+2, weekday, 363, Harlem_Outbound, 4
+2, weekday, 367, Harlem_Outbound, 4
+2, weekday, 371, Harlem_Outbound, 4
+2, weekday, 379, Harlem_Outbound, 4
+1, weekday, 416, Hudson_Inbound, 1
+1, weekday, 426, Hudson_Inbound, 1
+1, weekday, 430, Hudson_Inbound, 1
+1, weekday, 438, Hudson_Inbound, 1
+1, weekday, 440, Hudson_Inbound, 1
+1, weekday, 442, Hudson_Inbound, 1
+1, weekday, 446, Hudson_Inbound, 1
+1, weekday, 457, Hudson_Outbound, 2
+1, weekday, 461, Hudson_Outbound, 2
+1, weekday, 469, Hudson_Outbound, 2
+1, weekday, 483, Hudson_Outbound, 2
+1, weekday, 485, Hudson_Outbound, 2
+2, weekday, 500, Harlem_Inbound, 3
+2, weekday, 501, Harlem_Outbound, 4
+2, weekday, 502, Harlem_Inbound, 3
+2, weekday, 503, Harlem_Outbound, 4
+2, weekday, 504, Harlem_Inbound, 3
+2, weekday, 505, Harlem_Outbound, 4
+2, weekday, 506, Harlem_Inbound, 3
+2, weekday, 508, Harlem_Inbound, 3
+2, weekday, 509, Harlem_Outbound, 4
+2, weekday, 510, Harlem_Inbound, 3
+2, weekday, 511, Harlem_Outbound, 4
+2, weekday, 512, Harlem_Inbound, 3
+2, weekday, 513, Harlem_Outbound, 4
+2, weekday, 514, Harlem_Inbound, 3
+2, weekday, 515, Harlem_Outbound, 4
+2, weekday, 516, Harlem_Inbound, 3
+2, weekday, 517, Harlem_Outbound, 4
+2, weekday, 518, Harlem_Inbound, 3
+2, weekday, 519, Harlem_Outbound, 4
+2, weekday, 520, Harlem_Inbound, 3
+2, weekday, 521, Harlem_Outbound, 4
+2, weekday, 522, Harlem_Inbound, 3
+2, weekday, 523, Harlem_Outbound, 4
+2, weekday, 524, Harlem_Inbound, 3
+2, weekday, 525, Harlem_Outbound, 4
+2, weekday, 526, Harlem_Inbound, 3
+2, weekday, 527, Harlem_Outbound, 4
+2, weekday, 528, Harlem_Inbound, 3
+2, weekday, 529, Harlem_Outbound, 4
+2, weekday, 531, Harlem_Outbound, 4
+2, weekday, 532, Harlem_Inbound, 3
+2, weekday, 533, Harlem_Outbound, 4
+2, weekday, 534, Harlem_Inbound, 3
+2, weekday, 535, Harlem_Outbound, 4
+2, weekday, 536, Harlem_Inbound, 3
+2, weekday, 537, Harlem_Outbound, 4
+2, weekday, 538, Harlem_Inbound, 3
+2, weekday, 539, Harlem_Outbound, 4
+2, weekday, 540, Harlem_Inbound, 3
+2, weekday, 541, Harlem_Outbound, 4
+2, weekday, 542, Harlem_Inbound, 3
+2, weekday, 543, Harlem_Outbound, 4
+2, weekday, 544, Harlem_Inbound, 3
+2, weekday, 545, Harlem_Outbound, 4
+2, weekday, 547, Harlem_Outbound, 4
+2, weekday, 548, Harlem_Inbound, 3
+2, weekday, 549, Harlem_Outbound, 4
+2, weekday, 551, Harlem_Outbound, 4
+2, weekday, 552, Harlem_Inbound, 3
+2, weekday, 553, Harlem_Outbound, 4
+2, weekday, 554, Harlem_Inbound, 3
+2, weekday, 555, Harlem_Outbound, 4
+2, weekday, 556, Harlem_Inbound, 3
+2, weekday, 557, Harlem_Outbound, 4
+2, weekday, 558, Harlem_Inbound, 3
+2, weekday, 559, Harlem_Outbound, 4
+2, weekday, 560, Harlem_Inbound, 3
+2, weekday, 561, Harlem_Outbound, 4
+2, weekday, 562, Harlem_Inbound, 3
+2, weekday, 563, Harlem_Outbound, 4
+2, weekday, 564, Harlem_Inbound, 3
+2, weekday, 565, Harlem_Outbound, 4
+2, weekday, 566, Harlem_Inbound, 3
+2, weekday, 567, Harlem_Outbound, 4
+2, weekday, 568, Harlem_Inbound, 3
+2, weekday, 569, Harlem_Outbound, 4
+2, weekday, 572, Harlem_Inbound, 3
+2, weekday, 573, Harlem_Outbound, 4
+2, weekday, 574, Harlem_Inbound, 3
+2, weekday, 575, Harlem_Outbound, 4
+2, weekday, 576, Harlem_Inbound, 3
+2, weekday, 577, Harlem_Outbound, 4
+2, weekday, 578, Harlem_Inbound, 3
+2, weekday, 579, Harlem_Outbound, 4
+2, weekday, 580, Harlem_Inbound, 3
+2, weekday, 581, Harlem_Outbound, 4
+2, weekday, 582, Harlem_Inbound, 3
+2, weekday, 583, Harlem_Outbound, 4
+2, weekday, 584, Harlem_Inbound, 3
+2, weekday, 585, Harlem_Outbound, 4
+2, weekday, 586, Harlem_Inbound, 3
+2, weekday, 587, Harlem_Outbound, 4
+2, weekday, 588, Harlem_Inbound, 3
+2, weekday, 589, Harlem_Outbound, 4
+2, weekday, 590, Harlem_Inbound, 3
+2, weekday, 591, Harlem_Outbound, 4
+2, weekday, 593, Harlem_Outbound, 4
+2, weekday, 594, Harlem_Inbound, 3
+2, weekday, 595, Harlem_Outbound, 4
+2, weekday, 596, Harlem_Inbound, 3
+2, weekday, 597, Harlem_Outbound, 4
+2, weekday, 598, Harlem_Inbound, 3
+2, weekday, 599, Harlem_Outbound, 4
+2, weekday, 600, Harlem_Inbound, 3
+2, weekday, 601, Harlem_Outbound, 4
+2, weekday, 602, Harlem_Inbound, 3
+2, weekday, 603, Harlem_Outbound, 4
+2, weekday, 604, Harlem_Inbound, 3
+2, weekday, 605, Harlem_Outbound, 4
+2, weekday, 606, Harlem_Inbound, 3
+2, weekday, 607, Harlem_Outbound, 4
+2, weekday, 608, Harlem_Inbound, 3
+2, weekday, 609, Harlem_Outbound, 4
+2, weekday, 610, Harlem_Inbound, 3
+2, weekday, 611, Harlem_Outbound, 4
+2, weekday, 612, Harlem_Inbound, 3
+2, weekday, 613, Harlem_Outbound, 4
+2, weekday, 614, Harlem_Inbound, 3
+2, weekday, 615, Harlem_Outbound, 4
+2, weekday, 616, Harlem_Inbound, 3
+2, weekday, 617, Harlem_Outbound, 4
+2, weekday, 618, Harlem_Inbound, 3
+2, weekday, 619, Harlem_Outbound, 4
+3, weekend, 6201, New Haven_Inbound, 5
+3, sat, 6203, New Haven_Inbound, 5
+2, weekday, 622, Harlem_Inbound, 3
+2, weekday, 623, Harlem_Outbound, 4
+2, weekday, 624, Harlem_Inbound, 3
+2, weekday, 627, Harlem_Outbound, 4
+2, weekday, 628, Harlem_Inbound, 3
+2, weekday, 630, Harlem_Inbound, 3
+3, weekend, 6300, New Haven_Outbound, 6
+3, weekend, 6302, New Haven_Outbound, 6
+3, weekend, 6303, New Haven_Inbound, 5
+3, weekend, 6304, New Haven_Outbound, 6
+3, weekend, 6305, New Haven_Inbound, 5
+3, weekend, 6306, New Haven_Outbound, 6
+3, sat, 6307, New Haven_Inbound, 5
+3, sat, 6308, New Haven_Outbound, 6
+3, weekend, 6309, New Haven_Inbound, 5
+2, weekday, 631, Harlem_Outbound, 4
+3, weekend, 6310, New Haven_Outbound, 6
+3, sat, 6311, New Haven_Inbound, 5
+3, sat, 6312, New Haven_Outbound, 6
+3, weekend, 6313, New Haven_Inbound, 5
+3, weekend, 6314, New Haven_Outbound, 6
+3, sat, 6315, New Haven_Inbound, 5
+3, sat, 6316, New Haven_Outbound, 6
+3, weekend, 6317, New Haven_Inbound, 5
+3, weekend, 6318, New Haven_Outbound, 6
+3, sat, 6319, New Haven_Inbound, 5
+2, weekday, 632, Harlem_Inbound, 3
+3, sat, 6320, New Haven_Outbound, 6
+3, weekend, 6321, New Haven_Inbound, 5
+3, weekend, 6322, New Haven_Outbound, 6
+3, sat, 6323, New Haven_Inbound, 5
+3, sat, 6324, New Haven_Outbound, 6
+3, weekend, 6325, New Haven_Inbound, 5
+3, weekend, 6326, New Haven_Outbound, 6
+3, sat, 6327, New Haven_Inbound, 5
+3, sat, 6328, New Haven_Outbound, 6
+3, weekend, 6329, New Haven_Inbound, 5
+3, weekend, 6330, New Haven_Outbound, 6
+3, sat, 6331, New Haven_Inbound, 5
+3, sat, 6332, New Haven_Outbound, 6
+3, weekend, 6333, New Haven_Inbound, 5
+3, weekend, 6334, New Haven_Outbound, 6
+3, sat, 6335, New Haven_Inbound, 5
+3, sat, 6336, New Haven_Outbound, 6
+3, weekend, 6337, New Haven_Inbound, 5
+3, weekend, 6338, New Haven_Outbound, 6
+3, sat, 6339, New Haven_Inbound, 5
+2, weekday, 634, Harlem_Inbound, 3
+3, sat, 6340, New Haven_Outbound, 6
+3, weekend, 6341, New Haven_Inbound, 5
+3, weekend, 6342, New Haven_Outbound, 6
+3, sat, 6343, New Haven_Inbound, 5
+3, sat, 6344, New Haven_Outbound, 6
+3, weekend, 6345, New Haven_Inbound, 5
+3, weekend, 6346, New Haven_Outbound, 6
+3, sat, 6347, New Haven_Inbound, 5
+3, sat, 6348, New Haven_Outbound, 6
+3, weekend, 6349, New Haven_Inbound, 5
+2, weekday, 635, Harlem_Outbound, 4
+3, weekend, 6350, New Haven_Outbound, 6
+3, sat, 6351, New Haven_Inbound, 5
+3, sat, 6352, New Haven_Outbound, 6
+3, weekend, 6353, New Haven_Inbound, 5
+3, weekend, 6354, New Haven_Outbound, 6
+3, sat, 6355, New Haven_Inbound, 5
+3, sat, 6356, New Haven_Outbound, 6
+3, weekend, 6357, New Haven_Inbound, 5
+3, weekend, 6358, New Haven_Outbound, 6
+2, weekday, 636, Harlem_Inbound, 3
+3, weekend, 6361, New Haven_Inbound, 5
+3, weekend, 6362, New Haven_Outbound, 6
+3, weekend, 6365, New Haven_Inbound, 5
+3, weekend, 6366, New Haven_Outbound, 6
+3, weekend, 6369, New Haven_Inbound, 5
+3, weekend, 6370, New Haven_Outbound, 6
+3, sat, 6372, New Haven_Outbound, 6
+3, weekend, 6373, New Haven_Inbound, 5
+3, weekend, 6374, New Haven_Outbound, 6
+2, weekday, 638, Harlem_Inbound, 3
+2, weekday, 639, Harlem_Outbound, 4
+2, weekday, 640, Harlem_Inbound, 3
+2, weekday, 641, Harlem_Outbound, 4
+2, weekday, 643, Harlem_Outbound, 4
+2, weekday, 644, Harlem_Inbound, 3
+2, weekday, 645, Harlem_Outbound, 4
+2, weekday, 646, Harlem_Inbound, 3
+2, weekday, 648, Harlem_Inbound, 3
+2, weekday, 649, Harlem_Outbound, 4
+2, weekday, 650, Harlem_Inbound, 3
+3, weekend, 6500, New Haven_Outbound, 6
+3, weekend, 6502, New Haven_Outbound, 6
+3, weekend, 6503, New Haven_Inbound, 5
+3, weekend, 6504, New Haven_Outbound, 6
+3, weekend, 6505, New Haven_Inbound, 5
+3, weekend, 6506, New Haven_Outbound, 6
+3, weekend, 6509, New Haven_Inbound, 5
+2, weekday, 651, Harlem_Outbound, 4
+3, weekend, 6510, New Haven_Outbound, 6
+3, sat, 6511, New Haven_Inbound, 5
+3, weekend, 6513, New Haven_Inbound, 5
+3, weekend, 6514, New Haven_Outbound, 6
+3, weekend, 6515, New Haven_Inbound, 5
+3, weekend, 6517, New Haven_Inbound, 5
+3, weekend, 6518, New Haven_Outbound, 6
+3, weekend, 6519, New Haven_Inbound, 5
+2, weekday, 652, Harlem_Inbound, 3
+3, weekend, 6521, New Haven_Inbound, 5
+3, weekend, 6522, New Haven_Outbound, 6
+3, weekend, 6523, New Haven_Inbound, 5
+3, weekend, 6525, New Haven_Inbound, 5
+3, weekend, 6526, New Haven_Outbound, 6
+3, weekend, 6527, New Haven_Inbound, 5
+3, weekend, 6529, New Haven_Inbound, 5
+2, weekday, 653, Harlem_Outbound, 4
+3, weekend, 6530, New Haven_Outbound, 6
+3, weekend, 6533, New Haven_Inbound, 5
+3, weekend, 6534, New Haven_Outbound, 6
+3, weekend, 6537, New Haven_Inbound, 5
+3, weekend, 6538, New Haven_Outbound, 6
+3, weekend, 6541, New Haven_Inbound, 5
+3, weekend, 6542, New Haven_Outbound, 6
+3, weekend, 6544, New Haven_Outbound, 6
+3, weekend, 6545, New Haven_Inbound, 5
+3, weekend, 6546, New Haven_Outbound, 6
+3, weekend, 6547, New Haven_Inbound, 5
+3, weekend, 6548, New Haven_Outbound, 6
+3, weekend, 6549, New Haven_Inbound, 5
+2, weekday, 655, Harlem_Outbound, 4
+3, weekend, 6550, New Haven_Outbound, 6
+3, weekend, 6552, New Haven_Outbound, 6
+3, weekend, 6553, New Haven_Inbound, 5
+3, weekend, 6554, New Haven_Outbound, 6
+3, sat, 6556, New Haven_Outbound, 6
+3, weekend, 6557, New Haven_Inbound, 5
+3, weekend, 6558, New Haven_Outbound, 6
+2, weekday, 656, Harlem_Inbound, 3
+3, weekend, 6561, New Haven_Inbound, 5
+3, weekend, 6562, New Haven_Outbound, 6
+3, weekend, 6565, New Haven_Inbound, 5
+3, weekend, 6566, New Haven_Outbound, 6
+3, weekend, 6569, New Haven_Inbound, 5
+2, weekday, 657, Harlem_Outbound, 4
+3, weekend, 6570, New Haven_Outbound, 6
+3, weekend, 6573, New Haven_Inbound, 5
+3, weekend, 6574, New Haven_Outbound, 6
+2, weekday, 659, Harlem_Outbound, 4
+2, weekday, 660, Harlem_Inbound, 3
+2, weekday, 661, Harlem_Outbound, 4
+2, weekday, 663, Harlem_Outbound, 4
+2, weekday, 664, Harlem_Inbound, 3
+2, weekday, 665, Harlem_Outbound, 4
+2, weekday, 667, Harlem_Outbound, 4
+2, weekday, 668, Harlem_Inbound, 3
+2, weekday, 669, Harlem_Outbound, 4
+2, weekday, 670, Harlem_Inbound, 3
+4, weekend, 6704, New Canaan_Outbound, 8
+4, weekend, 6705, New Canaan_Inbound, 7
+4, weekend, 6706, New Canaan_Outbound, 8
+4, weekend, 6709, New Canaan_Inbound, 7
+2, weekday, 671, Harlem_Outbound, 4
+4, weekend, 6710, New Canaan_Outbound, 8
+4, weekend, 6713, New Canaan_Inbound, 7
+4, weekend, 6714, New Canaan_Outbound, 8
+4, weekend, 6717, New Canaan_Inbound, 7
+4, weekend, 6718, New Canaan_Outbound, 8
+4, weekend, 6721, New Canaan_Inbound, 7
+4, weekend, 6722, New Canaan_Outbound, 8
+4, weekend, 6725, New Canaan_Inbound, 7
+4, weekend, 6726, New Canaan_Outbound, 8
+4, weekend, 6729, New Canaan_Inbound, 7
+2, weekday, 673, Harlem_Outbound, 4
+4, weekend, 6730, New Canaan_Outbound, 8
+4, weekend, 6733, New Canaan_Inbound, 7
+4, weekend, 6734, New Canaan_Outbound, 8
+4, weekend, 6737, New Canaan_Inbound, 7
+4, weekend, 6738, New Canaan_Outbound, 8
+4, weekend, 6741, New Canaan_Inbound, 7
+4, weekend, 6742, New Canaan_Outbound, 8
+4, weekend, 6745, New Canaan_Inbound, 7
+4, weekend, 6746, New Canaan_Outbound, 8
+4, weekend, 6749, New Canaan_Inbound, 7
+2, weekday, 675, Harlem_Outbound, 4
+4, weekend, 6750, New Canaan_Outbound, 8
+4, weekend, 6753, New Canaan_Inbound, 7
+4, weekend, 6754, New Canaan_Outbound, 8
+4, weekend, 6757, New Canaan_Inbound, 7
+4, weekend, 6758, New Canaan_Outbound, 8
+2, weekday, 676, Harlem_Inbound, 3
+4, weekend, 6761, New Canaan_Inbound, 7
+4, weekend, 6762, New Canaan_Outbound, 8
+4, weekend, 6765, New Canaan_Inbound, 7
+4, weekend, 6766, New Canaan_Outbound, 8
+4, weekend, 6769, New Canaan_Inbound, 7
+2, weekday, 677, Harlem_Outbound, 4
+4, weekend, 6770, New Canaan_Outbound, 8
+4, weekend, 6773, New Canaan_Inbound, 7
+4, weekend, 6774, New Canaan_Outbound, 8
+2, weekday, 679, Harlem_Outbound, 4
+2, weekday, 680, Harlem_Inbound, 3
+2, weekday, 681, Harlem_Outbound, 4
+5, weekend, 6810, Danbury_Outbound, 10
+5, weekend, 6813, Danbury_Inbound, 9
+2, weekday, 682, Harlem_Inbound, 3
+5, weekend, 6822, Danbury_Outbound, 10
+5, weekend, 6825, Danbury_Inbound, 9
+5, weekend, 6834, Danbury_Outbound, 10
+5, weekend, 6837, Danbury_Inbound, 9
+2, weekday, 684, Harlem_Inbound, 3
+5, weekend, 6846, Danbury_Outbound, 10
+5, weekend, 6849, Danbury_Inbound, 9
+2, weekday, 685, Harlem_Outbound, 4
+2, weekday, 686, Harlem_Inbound, 3
+5, weekend, 6861, Danbury_Inbound, 9
+5, weekend, 6862, Danbury_Outbound, 10
+2, weekday, 687, Harlem_Outbound, 4
+5, weekend, 6873, Danbury_Inbound, 9
+2, weekday, 688, Harlem_Inbound, 3
+2, weekday, 689, Harlem_Outbound, 4
+2, weekday, 690, Harlem_Inbound, 3
+6, weekend, 6906, Waterbury_Outbound, 12
+2, weekday, 691, Harlem_Outbound, 4
+6, weekend, 6913, Waterbury_Inbound, 11
+6, weekend, 6918, Waterbury_Outbound, 12
+2, weekday, 692, Harlem_Inbound, 3
+6, weekend, 6923, Waterbury_Inbound, 11
+2, weekday, 693, Harlem_Outbound, 4
+6, weekend, 6930, Waterbury_Outbound, 12
+6, weekend, 6937, Waterbury_Inbound, 11
+2, weekday, 694, Harlem_Inbound, 3
+6, weekend, 6948, Waterbury_Outbound, 12
+6, weekend, 6949, Waterbury_Inbound, 11
+2, weekday, 695, Harlem_Outbound, 4
+2, weekday, 696, Harlem_Inbound, 3
+6, weekend, 6962, Waterbury_Outbound, 12
+6, weekend, 6965, Waterbury_Inbound, 11
+2, weekday, 698, Harlem_Inbound, 3
+2, weekday, 699, Harlem_Outbound, 4
+1, weekday, 700, Hudson_Inbound, 1
+1, weekday, 701, Hudson_Outbound, 2
+1, weekday, 702, Hudson_Inbound, 1
+1, weekday, 703, Hudson_Outbound, 2
+1, weekday, 704, Hudson_Inbound, 1
+1, weekday, 705, Hudson_Outbound, 2
+1, weekday, 706, Hudson_Inbound, 1
+1, weekday, 707, Hudson_Outbound, 2
+1, weekday, 708, Hudson_Inbound, 1
+1, weekday, 709, Hudson_Outbound, 2
+1, weekday, 710, Hudson_Inbound, 1
+1, weekday, 711, Hudson_Outbound, 2
+1, weekday, 712, Hudson_Inbound, 1
+1, weekday, 713, Hudson_Outbound, 2
+1, weekday, 714, Hudson_Inbound, 1
+1, weekday, 715, Hudson_Outbound, 2
+1, weekday, 716, Hudson_Inbound, 1
+1, weekday, 718, Hudson_Inbound, 1
+1, weekday, 719, Hudson_Outbound, 2
+1, weekday, 720, Hudson_Inbound, 1
+1, weekday, 722, Hudson_Inbound, 1
+1, weekday, 723, Hudson_Outbound, 2
+1, weekday, 724, Hudson_Inbound, 1
+1, weekday, 727, Hudson_Outbound, 2
+1, weekday, 728, Hudson_Inbound, 1
+1, weekday, 730, Hudson_Inbound, 1
+1, weekday, 731, Hudson_Outbound, 2
+1, weekday, 732, Hudson_Inbound, 1
+1, weekday, 733, Hudson_Outbound, 2
+1, weekday, 734, Hudson_Inbound, 1
+1, weekday, 735, Hudson_Outbound, 2
+1, weekday, 736, Hudson_Inbound, 1
+1, weekday, 737, Hudson_Outbound, 2
+1, weekday, 738, Hudson_Inbound, 1
+1, weekday, 739, Hudson_Outbound, 2
+1, weekday, 740, Hudson_Inbound, 1
+1, weekday, 742, Hudson_Inbound, 1
+1, weekday, 743, Hudson_Outbound, 2
+1, weekday, 744, Hudson_Inbound, 1
+1, weekday, 745, Hudson_Outbound, 2
+1, weekday, 746, Hudson_Inbound, 1
+1, weekday, 747, Hudson_Outbound, 2
+1, weekday, 748, Hudson_Inbound, 1
+1, weekday, 749, Hudson_Outbound, 2
+1, weekday, 750, Hudson_Inbound, 1
+1, weekday, 751, Hudson_Outbound, 2
+1, weekday, 753, Hudson_Outbound, 2
+1, weekday, 754, Hudson_Inbound, 1
+1, weekday, 755, Hudson_Outbound, 2
+1, weekday, 757, Hudson_Outbound, 2
+1, weekday, 758, Hudson_Inbound, 1
+1, weekday, 759, Hudson_Outbound, 2
+1, weekday, 761, Hudson_Outbound, 2
+1, weekday, 762, Hudson_Inbound, 1
+1, weekday, 763, Hudson_Outbound, 2
+1, weekday, 766, Hudson_Inbound, 1
+1, weekday, 767, Hudson_Outbound, 2
+1, weekday, 769, Hudson_Outbound, 2
+1, weekday, 770, Hudson_Inbound, 1
+1, weekday, 771, Hudson_Outbound, 2
+1, weekday, 772, Hudson_Inbound, 1
+1, weekday, 773, Hudson_Outbound, 2
+1, weekday, 774, Hudson_Inbound, 1
+1, weekday, 775, Hudson_Outbound, 2
+1, weekday, 776, Hudson_Inbound, 1
+1, weekday, 777, Hudson_Outbound, 2
+1, weekday, 778, Hudson_Inbound, 1
+1, weekday, 779, Hudson_Outbound, 2
+1, weekday, 781, Hudson_Outbound, 2
+1, weekday, 782, Hudson_Inbound, 1
+1, weekday, 783, Hudson_Outbound, 2
+1, weekday, 784, Hudson_Inbound, 1
+1, weekday, 787, Hudson_Outbound, 2
+1, weekday, 788, Hudson_Inbound, 1
+1, weekday, 789, Hudson_Outbound, 2
+1, weekday, 790, Hudson_Inbound, 1
+1, weekday, 791, Hudson_Outbound, 2
+1, weekday, 792, Hudson_Inbound, 1
+1, weekday, 794, Hudson_Inbound, 1
+1, weekday, 795, Hudson_Outbound, 2
+1, weekday, 796, Hudson_Inbound, 1
+1, weekday, 797, Hudson_Outbound, 2
+1, weekday, 799, Hudson_Outbound, 2
+1, weekday, 801, Hudson_Outbound, 2
+1, weekday, 802, Hudson_Inbound, 1
+1, weekday, 805, Hudson_Outbound, 2
+1, weekday, 806, Hudson_Inbound, 1
+1, weekday, 807, Hudson_Outbound, 2
+1, weekday, 809, Hudson_Outbound, 2
+1, weekday, 810, Hudson_Inbound, 1
+1, weekday, 813, Hudson_Outbound, 2
+1, weekday, 814, Hudson_Inbound, 1
+1, weekday, 816, Hudson_Inbound, 1
+1, weekday, 817, Hudson_Outbound, 2
+1, weekday, 818, Hudson_Inbound, 1
+1, weekday, 821, Hudson_Outbound, 2
+1, weekday, 825, Hudson_Outbound, 2
+1, weekday, 829, Hudson_Outbound, 2
+1, weekday, 830, Hudson_Inbound, 1
+1, weekday, 831, Hudson_Outbound, 2
+1, weekday, 832, Hudson_Inbound, 1
+1, weekday, 835, Hudson_Outbound, 2
+1, weekday, 836, Hudson_Inbound, 1
+1, weekday, 837, Hudson_Outbound, 2
+1, weekday, 838, Hudson_Inbound, 1
+1, weekday, 842, Hudson_Inbound, 1
+1, weekday, 843, Hudson_Outbound, 2
+1, weekday, 844, Hudson_Inbound, 1
+1, weekday, 846, Hudson_Inbound, 1
+1, weekday, 847, Hudson_Outbound, 2
+1, weekday, 848, Hudson_Inbound, 1
+1, weekday, 849, Hudson_Outbound, 2
+1, weekday, 851, Hudson_Outbound, 2
+1, weekday, 852, Hudson_Inbound, 1
+1, weekday, 853, Hudson_Outbound, 2
+1, weekday, 855, Hudson_Outbound, 2
+1, weekday, 856, Hudson_Inbound, 1
+1, weekday, 857, Hudson_Outbound, 2
+1, weekday, 860, Hudson_Inbound, 1
+1, weekday, 861, Hudson_Outbound, 2
+1, weekday, 864, Hudson_Inbound, 1
+1, weekday, 868, Hudson_Inbound, 1
+1, weekend, 8700, Hudson_Inbound, 1
+1, weekend, 8701, Hudson_Outbound, 2
+1, weekend, 8702, Hudson_Inbound, 1
+1, weekend, 8705, Hudson_Outbound, 2
+1, weekend, 8706, Hudson_Inbound, 1
+1, weekend, 8707, Hudson_Outbound, 2
+1, weekend, 8709, Hudson_Outbound, 2
+1, weekday, 871, Hudson_Outbound, 2
+1, weekend, 8710, Hudson_Inbound, 1
+1, weekend, 8711, Hudson_Outbound, 2
+1, weekend, 8713, Hudson_Outbound, 2
+1, weekend, 8714, Hudson_Inbound, 1
+1, weekend, 8715, Hudson_Outbound, 2
+1, weekend, 8716, Hudson_Inbound, 1
+1, weekend, 8717, Hudson_Outbound, 2
+1, weekend, 8718, Hudson_Inbound, 1
+1, weekend, 8719, Hudson_Outbound, 2
+1, weekday, 872, Hudson_Inbound, 1
+1, weekend, 8720, Hudson_Inbound, 1
+1, weekend, 8721, Hudson_Outbound, 2
+1, weekend, 8722, Hudson_Inbound, 1
+1, weekend, 8723, Hudson_Outbound, 2
+1, weekend, 8724, Hudson_Inbound, 1
+1, weekend, 8726, Hudson_Inbound, 1
+1, weekend, 8727, Hudson_Outbound, 2
+1, weekend, 8728, Hudson_Inbound, 1
+1, weekend, 8730, Hudson_Inbound, 1
+1, weekend, 8731, Hudson_Outbound, 2
+1, weekend, 8734, Hudson_Inbound, 1
+1, weekend, 8735, Hudson_Outbound, 2
+1, weekend, 8738, Hudson_Inbound, 1
+1, weekend, 8739, Hudson_Outbound, 2
+1, weekend, 8741, Hudson_Outbound, 2
+1, weekend, 8742, Hudson_Inbound, 1
+1, weekend, 8743, Hudson_Outbound, 2
+1, weekend, 8745, Hudson_Outbound, 2
+1, weekend, 8746, Hudson_Inbound, 1
+1, weekend, 8747, Hudson_Outbound, 2
+1, weekend, 8748, Hudson_Inbound, 1
+1, weekend, 8749, Hudson_Outbound, 2
+1, weekend, 8750, Hudson_Inbound, 1
+1, weekend, 8751, Hudson_Outbound, 2
+1, weekend, 8752, Hudson_Inbound, 1
+1, weekend, 8753, Hudson_Outbound, 2
+1, weekend, 8754, Hudson_Inbound, 1
+1, weekend, 8755, Hudson_Outbound, 2
+1, weekend, 8756, Hudson_Inbound, 1
+1, weekend, 8757, Hudson_Outbound, 2
+1, weekend, 8758, Hudson_Inbound, 1
+1, weekend, 8759, Hudson_Outbound, 2
+1, weekday, 876, Hudson_Inbound, 1
+1, weekend, 8762, Hudson_Inbound, 1
+1, weekend, 8763, Hudson_Outbound, 2
+1, weekend, 8766, Hudson_Inbound, 1
+1, weekend, 8767, Hudson_Outbound, 2
+1, weekend, 8769, Hudson_Outbound, 2
+1, weekend, 8770, Hudson_Inbound, 1
+1, weekend, 8771, Hudson_Outbound, 2
+1, weekend, 8772, Hudson_Inbound, 1
+1, weekend, 8774, Hudson_Inbound, 1
+1, weekend, 8775, Hudson_Outbound, 2
+1, weekend, 8779, Hudson_Outbound, 2
+1, weekday, 878, Hudson_Inbound, 1
+1, weekday, 879, Hudson_Outbound, 2
+1, weekday, 880, Hudson_Inbound, 1
+1, weekend, 8801, Hudson_Outbound, 2
+1, weekend, 8802, Hudson_Inbound, 1
+1, weekend, 8804, Hudson_Inbound, 1
+1, weekend, 8805, Hudson_Outbound, 2
+1, weekend, 8807, Hudson_Outbound, 2
+1, weekend, 8808, Hudson_Inbound, 1
+1, weekday, 881, Hudson_Outbound, 2
+1, weekend, 8811, Hudson_Outbound, 2
+1, weekend, 8812, Hudson_Inbound, 1
+1, weekend, 8815, Hudson_Outbound, 2
+1, weekend, 8816, Hudson_Inbound, 1
+1, sat, 8818, Hudson_Inbound, 1
+1, weekend, 8819, Hudson_Outbound, 2
+1, weekend, 8820, Hudson_Inbound, 1
+1, sat, 8822, Hudson_Inbound, 1
+1, weekend, 8824, Hudson_Inbound, 1
+1, weekend, 8825, Hudson_Outbound, 2
+1, weekend, 8828, Hudson_Inbound, 1
+1, weekend, 8829, Hudson_Outbound, 2
+1, weekday, 883, Hudson_Outbound, 2
+1, weekend, 8832, Hudson_Inbound, 1
+1, weekend, 8833, Hudson_Outbound, 2
+1, weekend, 8836, Hudson_Inbound, 1
+1, weekend, 8837, Hudson_Outbound, 2
+1, weekend, 8839, Hudson_Outbound, 2
+1, weekday, 884, Hudson_Inbound, 1
+1, weekend, 8840, Hudson_Inbound, 1
+1, weekend, 8843, Hudson_Outbound, 2
+1, weekend, 8844, Hudson_Inbound, 1
+1, weekend, 8847, Hudson_Outbound, 2
+1, weekend, 8848, Hudson_Inbound, 1
+1, sat, 8849, Hudson_Outbound, 2
+1, weekend, 8851, Hudson_Outbound, 2
+1, weekend, 8852, Hudson_Inbound, 1
+1, weekend, 8855, Hudson_Outbound, 2
+1, weekend, 8856, Hudson_Inbound, 1
+1, weekend, 8860, Hudson_Inbound, 1
+1, weekend, 8861, Hudson_Outbound, 2
+1, weekend, 8864, Hudson_Inbound, 1
+1, weekend, 8865, Hudson_Outbound, 2
+1, weekend, 8868, Hudson_Inbound, 1
+1, weekend, 8869, Hudson_Outbound, 2
+1, weekday, 887, Hudson_Outbound, 2
+1, weekend, 8872, Hudson_Inbound, 1
+1, weekend, 8873, Hudson_Outbound, 2
+1, weekend, 8879, Hudson_Outbound, 2
+1, weekday, 888, Hudson_Inbound, 1
+1, weekday, 890, Hudson_Inbound, 1
+1, weekday, 891, Hudson_Outbound, 2
+1, weekday, 892, Hudson_Inbound, 1
+1, weekday, 893, Hudson_Outbound, 2
+1, weekday, 894, Hudson_Inbound, 1
+1, weekday, 895, Hudson_Outbound, 2
+1, weekday, 899, Hudson_Outbound, 2
+2, weekday, 902, Harlem_Inbound, 3
+2, weekday, 905, Harlem_Outbound, 4
+2, weekday, 910, Harlem_Inbound, 3
+2, weekday, 915, Harlem_Outbound, 4
+2, weekday, 918, Harlem_Inbound, 3
+2, weekday, 923, Harlem_Outbound, 4
+2, weekday, 924, Harlem_Inbound, 3
+2, weekday, 931, Harlem_Outbound, 4
+2, weekday, 932, Harlem_Inbound, 3
+2, weekday, 939, Harlem_Outbound, 4
+2, weekday, 944, Harlem_Inbound, 3
+2, weekday, 949, Harlem_Outbound, 4
+2, sat, 9500, Harlem_Inbound, 3
+2, weekend, 9501, Harlem_Outbound, 4
+2, weekend, 9502, Harlem_Inbound, 3
+2, weekend, 9503, Harlem_Outbound, 4
+2, sat, 9504, Harlem_Inbound, 3
+2, weekend, 9506, Harlem_Inbound, 3
+2, sat, 9508, Harlem_Inbound, 3
+2, sat, 9509, Harlem_Outbound, 4
+2, weekend, 9510, Harlem_Inbound, 3
+2, weekend, 9511, Harlem_Outbound, 4
+2, sat, 9512, Harlem_Inbound, 3
+2, sat, 9513, Harlem_Outbound, 4
+2, weekend, 9514, Harlem_Inbound, 3
+2, weekend, 9515, Harlem_Outbound, 4
+2, sat, 9516, Harlem_Inbound, 3
+2, sat, 9517, Harlem_Outbound, 4
+2, weekend, 9518, Harlem_Inbound, 3
+2, weekend, 9519, Harlem_Outbound, 4
+2, weekday, 952, Harlem_Inbound, 3
+2, sat, 9520, Harlem_Inbound, 3
+2, sat, 9521, Harlem_Outbound, 4
+2, weekend, 9522, Harlem_Inbound, 3
+2, weekend, 9523, Harlem_Outbound, 4
+2, sat, 9524, Harlem_Inbound, 3
+2, sat, 9525, Harlem_Outbound, 4
+2, weekend, 9526, Harlem_Inbound, 3
+2, weekend, 9527, Harlem_Outbound, 4
+2, sat, 9528, Harlem_Inbound, 3
+2, sat, 9529, Harlem_Outbound, 4
+2, weekday, 953, Harlem_Outbound, 4
+2, weekend, 9530, Harlem_Inbound, 3
+2, weekend, 9531, Harlem_Outbound, 4
+2, sat, 9532, Harlem_Inbound, 3
+2, sat, 9533, Harlem_Outbound, 4
+2, weekend, 9534, Harlem_Inbound, 3
+2, weekend, 9535, Harlem_Outbound, 4
+2, sat, 9536, Harlem_Inbound, 3
+2, sat, 9537, Harlem_Outbound, 4
+2, weekend, 9538, Harlem_Inbound, 3
+2, weekend, 9539, Harlem_Outbound, 4
+2, sat, 9540, Harlem_Inbound, 3
+2, sat, 9541, Harlem_Outbound, 4
+2, weekend, 9542, Harlem_Inbound, 3
+2, weekend, 9543, Harlem_Outbound, 4
+2, sat, 9544, Harlem_Inbound, 3
+2, sat, 9545, Harlem_Outbound, 4
+2, weekend, 9546, Harlem_Inbound, 3
+2, weekend, 9547, Harlem_Outbound, 4
+2, sat, 9548, Harlem_Inbound, 3
+2, sat, 9549, Harlem_Outbound, 4
+2, weekend, 9550, Harlem_Inbound, 3
+2, weekend, 9551, Harlem_Outbound, 4
+2, sat, 9552, Harlem_Inbound, 3
+2, sat, 9553, Harlem_Outbound, 4
+2, weekend, 9554, Harlem_Inbound, 3
+2, weekend, 9555, Harlem_Outbound, 4
+2, sat, 9557, Harlem_Outbound, 4
+2, weekend, 9558, Harlem_Inbound, 3
+2, weekend, 9559, Harlem_Outbound, 4
+2, weekend, 9562, Harlem_Inbound, 3
+2, weekend, 9563, Harlem_Outbound, 4
+2, weekend, 9566, Harlem_Inbound, 3
+2, weekend, 9567, Harlem_Outbound, 4
+2, weekend, 9570, Harlem_Inbound, 3
+2, weekend, 9571, Harlem_Outbound, 4
+2, sat, 9573, Harlem_Outbound, 4
+2, weekend, 9574, Harlem_Inbound, 3
+2, weekend, 9575, Harlem_Outbound, 4
+2, weekday, 959, Harlem_Outbound, 4
+2, weekday, 960, Harlem_Inbound, 3
+2, weekend, 9600, Harlem_Inbound, 3
+2, weekend, 9601, Harlem_Outbound, 4
+2, weekend, 9602, Harlem_Inbound, 3
+2, weekend, 9603, Harlem_Outbound, 4
+2, weekend, 9605, Harlem_Outbound, 4
+2, weekend, 9606, Harlem_Inbound, 3
+2, weekend, 9607, Harlem_Outbound, 4
+2, weekend, 9610, Harlem_Inbound, 3
+2, weekend, 9611, Harlem_Outbound, 4
+2, weekend, 9614, Harlem_Inbound, 3
+2, weekend, 9615, Harlem_Outbound, 4
+2, weekend, 9618, Harlem_Inbound, 3
+2, weekend, 9619, Harlem_Outbound, 4
+2, sat, 9620, Harlem_Inbound, 3
+2, weekend, 9622, Harlem_Inbound, 3
+2, weekend, 9623, Harlem_Outbound, 4
+2, sat, 9624, Harlem_Inbound, 3
+2, weekend, 9626, Harlem_Inbound, 3
+2, weekend, 9627, Harlem_Outbound, 4
+2, sat, 9628, Harlem_Inbound, 3
+2, weekend, 9630, Harlem_Inbound, 3
+2, weekend, 9631, Harlem_Outbound, 4
+2, weekend, 9634, Harlem_Inbound, 3
+2, weekend, 9635, Harlem_Outbound, 4
+2, weekend, 9638, Harlem_Inbound, 3
+2, weekend, 9639, Harlem_Outbound, 4
+2, weekend, 9642, Harlem_Inbound, 3
+2, weekend, 9643, Harlem_Outbound, 4
+2, sat, 9645, Harlem_Outbound, 4
+2, weekend, 9646, Harlem_Inbound, 3
+2, weekend, 9647, Harlem_Outbound, 4
+2, weekend, 9650, Harlem_Inbound, 3
+2, weekend, 9651, Harlem_Outbound, 4
+2, sat, 9653, Harlem_Outbound, 4
+2, weekend, 9654, Harlem_Inbound, 3
+2, weekend, 9655, Harlem_Outbound, 4
+2, sat, 9657, Harlem_Outbound, 4
+2, weekend, 9658, Harlem_Inbound, 3
+2, weekend, 9659, Harlem_Outbound, 4
+2, weekend, 9662, Harlem_Inbound, 3
+2, weekend, 9663, Harlem_Outbound, 4
+2, weekend, 9666, Harlem_Inbound, 3
+2, weekend, 9667, Harlem_Outbound, 4
+2, weekend, 9669, Harlem_Outbound, 4
+2, weekday, 967, Harlem_Outbound, 4
+2, weekend, 9670, Harlem_Inbound, 3
+2, weekend, 9671, Harlem_Outbound, 4
+2, weekend, 9674, Harlem_Inbound, 3
+2, weekend, 9675, Harlem_Outbound, 4
+2, weekend, 9676, Harlem_Inbound, 3
+2, weekday, 968, Harlem_Inbound, 3
+2, weekday, 975, Harlem_Outbound, 4
+2, weekday, 981, Harlem_Outbound, 4
+2, weekday, 982, Harlem_Inbound, 3
+2, weekday, 987, Harlem_Outbound, 4
+2, weekday, 990, Harlem_Inbound, 3
+2, weekday, 991, Harlem_Outbound, 4
+2, weekend, 9910, Harlem_Inbound, 3
+2, weekend, 9911, Harlem_Outbound, 4
+2, sat, 9916, Harlem_Inbound, 3
+2, sun, 9918, Harlem_Inbound, 3
+2, weekend, 9919, Harlem_Outbound, 4
+2, weekend, 9926, Harlem_Inbound, 3
+2, weekend, 9927, Harlem_Outbound, 4
+2, weekend, 9934, Harlem_Inbound, 3
+2, weekend, 9935, Harlem_Outbound, 4
+2, weekend, 9942, Harlem_Inbound, 3
+2, weekend, 9943, Harlem_Outbound, 4
+2, weekend, 9949, Harlem_Outbound, 4
+2, weekend, 9950, Harlem_Inbound, 3
+2, sat, 9958, Harlem_Inbound, 3
+2, weekend, 9959, Harlem_Outbound, 4
+2, weekday, 996, Harlem_Inbound, 3
+2, sun, 9960, Harlem_Inbound, 3
+2, weekend, 9966, Harlem_Inbound, 3
+2, weekend, 9967, Harlem_Outbound, 4
+2, weekend, 9975, Harlem_Outbound, 4
+2, weekend, 9976, Harlem_Inbound, 3
+2, weekday, 998, Harlem_Inbound, 3
+2, weekday, 999, Harlem_Outbound, 4

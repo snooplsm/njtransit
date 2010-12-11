@@ -1,0 +1,7 @@
+route_id, route_short_name, route_long_name, route_desc, route_type
+1, , Hudson Line, , 2
+2, , Harlem Line, , 2
+3, , New Haven Line, , 2
+4, , New Canaan Line, , 2
+5, , Danbury Line, , 2
+6, , Waterbury Line, , 2

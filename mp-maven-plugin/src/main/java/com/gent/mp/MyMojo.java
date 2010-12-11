@@ -104,7 +104,7 @@ public class MyMojo extends AbstractMojo {
 	 * @required
 	 */
 	private File resourceDirectory;
-	
+
 	public void execute() throws MojoExecutionException {
 		File androidManifest = androidManifestFile;
 
@@ -140,24 +140,22 @@ public class MyMojo extends AbstractMojo {
 
 		renamePackages();
 
-		TransformerFactory tFactory =
-		    TransformerFactory.newInstance();
-		  Transformer transformer = null;
+		TransformerFactory tFactory = TransformerFactory.newInstance();
+		Transformer transformer = null;
 		try {
 			transformer = tFactory.newTransformer();
 		} catch (TransformerConfigurationException e1) {
 			throw new RuntimeException(e1);
 		}
 
-		  DOMSource source = new DOMSource(doc);
-		  StreamResult result = new StreamResult(androidManifest);
-		  try {
+		DOMSource source = new DOMSource(doc);
+		StreamResult result = new StreamResult(androidManifest);
+		try {
 			transformer.transform(source, result);
 		} catch (TransformerException e1) {
 			throw new RuntimeException(e1);
-		} 
+		}
 
-		
 		File f = outputDirectory;
 
 		if (!f.exists()) {
@@ -189,19 +187,20 @@ public class MyMojo extends AbstractMojo {
 
 			@Override
 			public boolean accept(File arg0) {
-				return arg0.isDirectory() || arg0.getName().endsWith(".java") || arg0.getName().endsWith(".xml");
+				return arg0.isDirectory() || arg0.getName().endsWith(".java")
+						|| arg0.getName().endsWith(".xml");
 			}
 
 		};
 
 		String rMatch = _packageName + ".R";
-		rMatch = "("+rMatch.replaceAll("\\.", "\\\\.")+")";
-		String mMatch = "http://schemas.android.com/apk/res/"+_packageName;
-		rMatch = "("+rMatch.replaceAll("\\.","\\\\.")+")";
-		mMatch = "("+mMatch.replaceAll("\\.","\\\\.")+")";
+		rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
+		String mMatch = "http://schemas.android.com/apk/res/" + _packageName;
+		rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
+		mMatch = "(" + mMatch.replaceAll("\\.", "\\\\.") + ")";
 		Pattern p = Pattern.compile(rMatch);
 		Pattern m = Pattern.compile(mMatch);
-		String mNew = "http://schemas.android.com/apk/res/"+packageName;
+		String mNew = "http://schemas.android.com/apk/res/" + packageName;
 		String rNew = packageName + ".R";
 		Stack<File> files = new Stack<File>();
 		files.push(sourceDirectory);
@@ -211,40 +210,32 @@ public class MyMojo extends AbstractMojo {
 			for (File file : currentFolder.listFiles(javaFilter)) {
 				if (file.isDirectory()) {
 					files.push(file);
-				} else {					
+				} else {
 					FileInputStream fin = null;
 					BufferedInputStream bis = null;
 					try {
 						fin = new FileInputStream(file);
 						bis = new BufferedInputStream(fin);
-						BufferedReader br = new BufferedReader(new InputStreamReader(bis));
+						BufferedReader br = new BufferedReader(
+								new InputStreamReader(bis));
 						StringBuilder b = new StringBuilder();
 						String line = null;
 						boolean changed = false;
-						while((line = br.readLine())!=null) {
-							if(file.getName().endsWith(".java")) {
-								Matcher matcher = p.matcher(line);							
-								if(matcher.find()) {
-									String newString = matcher.replaceAll(rNew);
-									b.append(newString);
-									changed=true;
-								} else {
-									b.append(line);
-								}
+						while ((line = br.readLine()) != null) {
+							if (file.getName().endsWith(".java")) {
+								Matcher matcher = p.matcher(line);
+								String newString = matcher.replaceAll(rNew);
+								b.append(newString);
+
 							}
-							if(file.getName().endsWith(".xml")) {
-								Matcher matcher = m.matcher(line);							
-								if(matcher.find()) {
-									String newString = matcher.replaceAll(mNew);
-									b.append(newString);
-									changed=true;
-								} else {
-									b.append(line);
-								}
+							if (file.getName().endsWith(".xml")) {
+								Matcher matcher = m.matcher(line);
+								String newString = matcher.replaceAll(mNew);
+								b.append(newString);
 							}
 							b.append("\n");
 						}
-						if(changed) {
+						if (changed) {
 							FileOutputStream fos = null;
 							BufferedOutputStream bos = null;
 							try {
@@ -253,13 +244,12 @@ public class MyMojo extends AbstractMojo {
 								bos.write(b.toString().getBytes());
 							} catch (Exception e) {
 								throw new RuntimeException(e);
-							}
-							finally {
-								if(bos!=null) {
+							} finally {
+								if (bos != null) {
 									bos.flush();
 									bos.close();
 								}
-								if(fos!=null) {									
+								if (fos != null) {
 									fos.close();
 								}
 							}
@@ -286,8 +276,8 @@ public class MyMojo extends AbstractMojo {
 
 	private void setDebuggable(Element element) {
 		Object o = element.getElementsByTagName("application").item(0);
-		((Element) o).setAttribute(
-				"android:debuggable", Boolean.FALSE.toString());
+		((Element) o).setAttribute("android:debuggable", Boolean.FALSE
+				.toString());
 	}
 
 	private void setVersion(Element element) {
