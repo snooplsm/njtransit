@@ -490,7 +490,7 @@ public class DatabaseCreater {
 				"create table if not exists stops(id varchar(50), name varchar(255), desc varchar(255), lat real, lon real, zone_id)",
 				"create table if not exists stop_times(trip_id varchar(50), arrival varchar(10), departure varchar(10), stop_id varchar(100), sequence int, pickup_type int, drop_off_type int)",
 				"create table if not exists routes(id int, agency_id varchar(100), short_name varchar(255), long_name varchar(255), route_type int, timezone varchar(100))",
-				"create table if not exists calendar(service_id varchar(100), monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start int, end int)",
+				"create table if not exists calendar(service_id varchar(100), monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start varchar(10), end varchar(10))",
 				// agency_id,agency_name,agency_url,agency_timezone
 				"create table if not exists calendar_dates(service_id varchar(100), calendar_date varchar(10), exception_type int)",
 				"create table if not exists agency(id varchar(100), name varchar(255), url varchar(255), timezone varchar(100))",
@@ -528,7 +528,7 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					String timezone = nextLine[headerToPos
-							.get("agency_timezone")];
+							.get("agency_timezone")].trim();
 					if (lastTimeZone == null && timezone != null) {
 						lastTimeZone = timezone;
 					}
@@ -537,9 +537,13 @@ public class DatabaseCreater {
 								"Weird case, more than 1 timezone, app not able to handle this.");
 					}
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")]));
-					o.add(nextLine[headerToPos.get("agency_name")]);
-					o.add(nextLine[headerToPos.get("agency_url")]);
+					if(headerToPos.get("agency_id")==null) {
+						o.add(-1);
+					} else {
+						o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")].trim()));
+					}
+					o.add(nextLine[headerToPos.get("agency_name")].trim());
+					o.add(nextLine[headerToPos.get("agency_url")].trim());
 
 					o.add(timezone);
 					values.add(o);
@@ -569,18 +573,18 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")]));
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim()));
 					try {
-						o.add(nextLine[headerToPos.get("arrival_time")]);
-						o.add(nextLine[headerToPos.get("departure_time")]);
+						o.add(nextLine[headerToPos.get("arrival_time")].trim());
+						o.add(nextLine[headerToPos.get("departure_time")].trim());
 					} catch (Exception e) {
 						throw new RuntimeException(e);
 					}
 
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("stop_id")]));
-					o.add(nextLine[headerToPos.get("stop_sequence")]);
-					o.add(nextLine[headerToPos.get("pickup_type")]);
-					o.add(nextLine[headerToPos.get("drop_off_type")]);
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("stop_id")].trim()));
+					o.add(nextLine[headerToPos.get("stop_sequence")].trim());
+					o.add(nextLine[headerToPos.get("pickup_type")].trim());
+					o.add(nextLine[headerToPos.get("drop_off_type")].trim());
 					values.add(o);
 				}
 				return values;
@@ -604,12 +608,29 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")]));
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")]));
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")]));
-					o.add(nextLine[headerToPos.get("trip_headsign")]);
-					o.add(nextLine[headerToPos.get("direction_id")]);
-					o.add(nextLine[headerToPos.get("block_id")]);
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")].trim()));
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")].trim()));
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim()));
+					String headsign = nextLine[headerToPos.get("trip_headsign")].trim(); 
+					o.add(headsign);
+					if(headerToPos.get("direction_id")==null) {
+						if(headsign.toLowerCase().endsWith("outbound")) {
+							o.add(0);
+						}else
+						if(headsign.toLowerCase().endsWith("inbound")) {
+							o.add(1);
+						}else {
+							throw new RuntimeException("We dont know the direction!!!!!");
+						}
+						
+					} else {
+						o.add(nextLine[headerToPos.get("direction_id")].trim());
+					}
+					if(headerToPos.get("block_id")==null) {
+						o.add(null);
+					} else {
+						o.add(nextLine[headerToPos.get("block_id")].trim());
+					}
 					values.add(o);
 				}
 				return values;
@@ -634,24 +655,16 @@ public class DatabaseCreater {
 				String[] nextLine;
 				while ((nextLine = reader.readNext()) != null) {
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")]));// service_id
-					o.add(nextLine[headerToPos.get("monday")]);// monday
-					o.add(nextLine[headerToPos.get("tuesday")]);// tue
-					o.add(nextLine[headerToPos.get("wednesday")]);// wed
-					o.add(nextLine[headerToPos.get("thursday")]);// thurs
-					o.add(nextLine[headerToPos.get("friday")]);// fri
-					o.add(nextLine[headerToPos.get("saturday")]);// sat
-					o.add(nextLine[headerToPos.get("sunday")]);// sun
-					try {
-						o.add(utc(dateFormat.parse(nextLine[8])));
-					} catch (ParseException e1) {
-						throw new RuntimeException(e1);
-					}
-					try {
-						o.add(utc(dateFormat.parse(nextLine[9])));
-					} catch (ParseException e) {
-						throw new RuntimeException(e);
-					}
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")].trim()));// service_id
+					o.add(nextLine[headerToPos.get("monday")].trim());// monday
+					o.add(nextLine[headerToPos.get("tuesday")].trim());// tue
+					o.add(nextLine[headerToPos.get("wednesday")].trim());// wed
+					o.add(nextLine[headerToPos.get("thursday")].trim());// thurs
+					o.add(nextLine[headerToPos.get("friday")].trim());// fri
+					o.add(nextLine[headerToPos.get("saturday")].trim());// sat
+					o.add(nextLine[headerToPos.get("sunday")].trim());// sun
+					o.add(nextLine[8].trim());
+					o.add(nextLine[9].trim());
 					values.add(o);
 				}
 				return values;
@@ -676,10 +689,10 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")]));
-					String start = nextLine[headerToPos.get("date")];
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")].trim()));
+					String start = nextLine[headerToPos.get("date")].trim();
 					o.add(start);
-					o.add(nextLine[headerToPos.get("exception_type")]);
+					o.add(nextLine[headerToPos.get("exception_type")].trim());
 					values.add(o);
 				}
 				return values;
@@ -704,15 +717,15 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")]));
+					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")].trim()));
 					if(headerToPos.get("agency_id")==null) {
 						o.add(-1);
 					} else {
-						o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")]));
+						o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")].trim()));
 					}					
-					o.add(nextLine[headerToPos.get("route_short_name")]);
-					o.add(nextLine[headerToPos.get("route_long_name")]);
-					o.add(nextLine[headerToPos.get("route_type")]);
+					o.add(nextLine[headerToPos.get("route_short_name")].trim());
+					o.add(nextLine[headerToPos.get("route_long_name")].trim());
+					o.add(nextLine[headerToPos.get("route_type")].trim());
 					values.add(o);
 				}
 				return values;
@@ -764,9 +777,9 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					int stopId = stringIdToIntegerId(nextLine[headerToPos.get("stop_id")]); 
+					int stopId = stringIdToIntegerId(nextLine[headerToPos.get("stop_id")].trim()); 
 					o.add(stopId);
-					String stopName = nextLine[headerToPos.get("stop_name")];
+					String stopName = nextLine[headerToPos.get("stop_name")].trim();
 					if(stopId==38291) {
 						if(stopName.equals("TRENTON TRANSIT CENTER")) {
 							stopName = stopName + " - RIVERLINE";
@@ -775,11 +788,15 @@ public class DatabaseCreater {
 						stopName = getAlternate(stopName);
 					}
 					o.add(stopName);
-					int tripId = stopIdToTrips.get(stopId);
-					o.add(tripIdToName.get(tripId));
-					o.add(nextLine[headerToPos.get("stop_lat")]);
-					o.add(nextLine[headerToPos.get("stop_lon")]);
-					o.add(nextLine[headerToPos.get("zone_id")]);
+					//int tripId = stopIdToTrips.get(stopId);
+					o.add(null);
+					o.add(nextLine[headerToPos.get("stop_lat")].trim());
+					o.add(nextLine[headerToPos.get("stop_lon")].trim());
+					if(headerToPos.get("zone_id")==null) {
+						o.add(null);
+					}else {
+						o.add(nextLine[headerToPos.get("zone_id")].trim());
+					}
 					values.add(o);
 				}
 				return values;
