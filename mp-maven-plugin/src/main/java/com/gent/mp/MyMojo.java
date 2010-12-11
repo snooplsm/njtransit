@@ -298,13 +298,11 @@ public class MyMojo extends AbstractMojo {
 		}
 		Element application = (Element) element.getElementsByTagName("application").item(0);			
 		NodeList list = application.getElementsByTagName("meta-data");
-		Node publisherId = null;
+
 		for(int i = 0; i < list.getLength(); i++) {
-			Node node = list.item(i);
-			NamedNodeMap attributes = node.getAttributes();
-			if(attributes.getNamedItem("ADMOB_PUBLISHER_ID")!=null) {
-				publisherId = attributes.getNamedItem("ADMOB_PUBLISHER_ID");
-				publisherId.setNodeValue(admobPublisherId);
+			Element node = (Element)list.item(i);
+			if(node.getAttribute("android:name").equals("ADMOB_PUBLISHER_ID"))	 {
+				node.setAttribute("android:value", admobPublisherId);
 				break;
 			}
 		}
