@@ -222,5 +222,16 @@
 				<packageName>com.njtransit.bus</packageName>
 			</properties>
 		</profile>
+		<profile>
+			<id>metro-north</id>
+			<properties>
+				<artifactId>metro-north</artifactId>
+				<url>http://wmwm.us/metro-north</url>
+				<name>Metro North</name>
+				<resourceOverlayDirectory>../providers/metro-north/res</resourceOverlayDirectory>
+				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
+				<packageName>com.metro.north</packageName>
+			</properties>
+		</profile>
 	</profiles>
 </project>
