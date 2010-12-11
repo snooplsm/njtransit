@@ -705,7 +705,11 @@ public class DatabaseCreater {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
 					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")]));
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")]));
+					if(headerToPos.get("agency_id")==null) {
+						o.add(-1);
+					} else {
+						o.add(stringIdToIntegerId(nextLine[headerToPos.get("agency_id")]));
+					}					
 					o.add(nextLine[headerToPos.get("route_short_name")]);
 					o.add(nextLine[headerToPos.get("route_long_name")]);
 					o.add(nextLine[headerToPos.get("route_type")]);
