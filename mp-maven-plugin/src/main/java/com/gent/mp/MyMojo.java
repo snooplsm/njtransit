@@ -208,6 +208,10 @@ public class MyMojo extends AbstractMojo {
 		while (!files.isEmpty()) {
 			File currentFolder = files.pop();
 			for (File file : currentFolder.listFiles(javaFilter)) {
+				if (file.getName().equals("R.java") && file.getPath().endsWith(_packageName.replaceAll(".","/")+"R.java")) {
+					file.delete();
+					continue;
+				}
 				if (file.isDirectory()) {
 					files.push(file);
 				} else {

@@ -309,7 +309,7 @@ public class DatabaseCreater {
 					Map<String, Integer> headerToPos = new HashMap<String, Integer>();
 					int i = 0;
 					for (String header : reader.readNext()) {
-						headerToPos.put(header, i++);
+						headerToPos.put(header.trim(), i++);
 					}
 					List<List<Object>> values = valuesProvider
 							.getContentValues(headerToPos, reader);
