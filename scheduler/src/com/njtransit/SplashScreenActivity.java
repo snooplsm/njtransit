@@ -88,7 +88,7 @@ public class SplashScreenActivity extends SchedulerActivity {
 
 			@Override
 			protected void onPostExecute(DatabaseAdapter result) {
-				SchedulerApplication app = getSchedulerContext();
+				SchedulerApplication app = getSchedulerContext();				
 				app.setAdapter(result);
 				progressPercent.setVisibility(View.GONE);
 				progressText.setText("Loading Stations...");
@@ -103,6 +103,7 @@ public class SplashScreenActivity extends SchedulerActivity {
 					long min = result.getMinCalendarDate();
 					Root.saveScheduleStartDate(getApplicationContext(), min);
 				}
+				result.determineCalendarType();
 				Calendar cal = Calendar.getInstance();
 				cal.set(Calendar.HOUR, 0);
 				cal.set(Calendar.MINUTE, 0);
