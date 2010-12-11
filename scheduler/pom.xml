@@ -127,6 +127,7 @@
 				<version>1.0-SNAPSHOT</version>
 				<configuration>
 					<androidManifestTarget>${androidManifestTarget}</androidManifestTarget>
+					<admobPublisherId>${admobPublisherId}</admobPublisherId>
 					<packageName>${packageName}</packageName>
 				</configuration><!--
 				<executions>
@@ -209,17 +210,7 @@
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
 				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>				
 				<packageName>com.njtransit.rail</packageName>
-			</properties>
-		</profile>
-		<profile>
-			<id>njtransit-bus</id>
-			<properties>
-				<artifactId>njtransit-bus</artifactId>
-				<url>http://wmwm.us/njtransit-bus</url>
-				<name>NJTransit Bus</name>
-				<resourceOverlayDirectory>../providers/njtransit-bus/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/njtransit-bus/bus_data</gtfsFile>				
-				<packageName>com.njtransit.bus</packageName>
+				<admobPublisherId>a14cbf2b9d15c90</admobPublisherId>
 			</properties>
 		</profile>
 		<profile>
@@ -231,6 +222,7 @@
 				<resourceOverlayDirectory>../providers/metro-north/res</resourceOverlayDirectory>
 				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
 				<packageName>com.metro.north</packageName>
+				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
 			</properties>
 		</profile>
 	</profiles>

@@ -48,6 +48,9 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Goal which touches a timestamp file.
@@ -91,6 +94,11 @@ public class MyMojo extends AbstractMojo {
 	 */
 	private String packageName;
 
+	/**
+	 * @parameter
+	 */
+	private String admobPublisherId;
+	
 	private String _packageName;
 
 	/**
@@ -137,7 +145,7 @@ public class MyMojo extends AbstractMojo {
 				+ doc.getDocumentElement().getAttribute("android:versionName"));
 		System.out.println("versionCode "
 				+ doc.getDocumentElement().getAttribute("android:versionCode"));
-
+		setAdmobPublisherId(doc.getDocumentElement());
 		renamePackages();
 
 		TransformerFactory tFactory = TransformerFactory.newInstance();
@@ -282,6 +290,26 @@ public class MyMojo extends AbstractMojo {
 		Object o = element.getElementsByTagName("application").item(0);
 		((Element) o).setAttribute("android:debuggable", Boolean.FALSE
 				.toString());
+	}
+	
+	private void setAdmobPublisherId(Element element) {
+		if(admobPublisherId==null) {
+			return;
+		}
+		Element application = (Element) element.getElementsByTagName("application").item(0);			
+		NodeList list = application.getElementsByTagName("meta-data");
+		Node publisherId = null;
+		for(int i = 0; i < list.getLength(); i++) {
+			Node node = list.item(i);
+			NamedNodeMap attributes = node.getAttributes();
+			if(attributes.getNamedItem("ADMOB_PUBLISHER_ID")!=null) {
+				publisherId = attributes.getNamedItem("ADMOB_PUBLISHER_ID");
+				publisherId.setNodeValue(admobPublisherId);
+				break;
+			}
+		}
+		
+		
 	}
 
 	private void setVersion(Element element) {
