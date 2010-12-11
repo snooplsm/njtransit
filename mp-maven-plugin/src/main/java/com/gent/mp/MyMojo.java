@@ -224,18 +224,18 @@ public class MyMojo extends AbstractMojo {
 								new InputStreamReader(bis));
 						StringBuilder b = new StringBuilder();
 						String line = null;
-						boolean changed = false;
+						boolean changed = true;
 						while ((line = br.readLine()) != null) {
 							if (file.getName().endsWith(".java")) {
 								Matcher matcher = p.matcher(line);
 								String newString = matcher.replaceAll(rNew);
 								b.append(newString);
-
 							}
 							if (file.getName().endsWith(".xml")) {
 								Matcher matcher = m.matcher(line);
 								String newString = matcher.replaceAll(mNew);
 								b.append(newString);
+								
 							}
 							b.append("\n");
 						}
