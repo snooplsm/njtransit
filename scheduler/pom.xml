@@ -170,7 +170,9 @@
 						<platform>${android.platform}</platform>
 					</sdk>
 					<androidManifestFile>${androidManifestTarget}</androidManifestFile>
-					<resourceOverlayDirectory>${resourceOverlayDirectory}</resourceOverlayDirectory>
+					<resourceOverlayDirectories>						
+						<param>${resourceOverlayDirectory}</param>
+					</resourceOverlayDirectories>
 					<emulator>
 						<avd>16</avd>
 						<wait>10000</wait>
@@ -219,10 +221,7 @@
 				<artifactId>metro-north</artifactId>
 				<url>http://wmwm.us/metro-north</url>
 				<name>Metro North</name>
-				<resourceOverlayDirectories>
-					<value>res</value>
-					<value>../providers/metro-north/res</value>
-				</resourceOverlayDirectories>
+				<resourceOverlayDirectory>../providers/metro-north/res</resourceOverlayDirectory>
 				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
 				<packageName>com.metro.north</packageName>
 				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
