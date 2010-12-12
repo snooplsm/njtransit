@@ -219,7 +219,10 @@
 				<artifactId>metro-north</artifactId>
 				<url>http://wmwm.us/metro-north</url>
 				<name>Metro North</name>
-				<resourceOverlayDirectory>../providers/metro-north/res</resourceOverlayDirectory>
+				<resourceOverlayDirectories>
+					<resourceOverlayDirectorie>res</resourceOverlayDirectorie>
+					<resourceOverlayDirectorie>../providers/metro-north/res</resourceOverlayDirectorie>
+				</resourceOverlayDirectories>
 				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
 				<packageName>com.metro.north</packageName>
 				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
