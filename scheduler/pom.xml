@@ -220,8 +220,8 @@
 				<url>http://wmwm.us/metro-north</url>
 				<name>Metro North</name>
 				<resourceOverlayDirectories>
-					<resourceOverlayDirectorie>res</resourceOverlayDirectorie>
-					<resourceOverlayDirectorie>../providers/metro-north/res</resourceOverlayDirectorie>
+					<value>res</value>
+					<value>../providers/metro-north/res</value>
 				</resourceOverlayDirectories>
 				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
 				<packageName>com.metro.north</packageName>
