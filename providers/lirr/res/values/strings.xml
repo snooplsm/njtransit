@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="update_threshold">8640000</string>
+  <string name="update_url">http://192.168.3.1/transit/njtransit/version.json</string>
+  <string name="app_name">LIRR</string>
+  <string name="app_name_full">LIRR</string>
+  <string name="email_address">lirr@wmwm.us</string>
+  <string name="disclaimer">This application is not affiliated with Long Island Rail Road.</string>
+  <string name="departure_station">departure station</string>
+  <string name="adeparting_from">Departing from</string>
+  <string name="clear_favorites">Clear Favorites</string>
+  <string name="minute_short">m</string>
+  <string name="hour_short">h</string>
+  <string name="reverse">Reverse</string>
+  <string name="date_pick">Calendar</string>
+  <string name="abc">ABC</string>
+  <string name="second_short">s</string>
+  <string name="google_ua">UA-3270317-11</string>
+  <string name="search_hint">Grand Central Terminal</string>
+</resources>

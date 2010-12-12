@@ -227,5 +227,17 @@
 				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
 			</properties>
 		</profile>
+		<profile>
+			<id>lirr</id>
+			<properties>
+				<artifactId>lirr</artifactId>
+				<url>http://wmwm.us/lirr</url>
+				<name>LIRR</name>
+				<resourceOverlayDirectory>../providers/lirr/res</resourceOverlayDirectory>
+				<gtfsFile>../providers/lirr/rail_data</gtfsFile>				
+				<packageName>com.lirr</packageName>
+				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
+			</properties>
+		</profile>
 	</profiles>
 </project>

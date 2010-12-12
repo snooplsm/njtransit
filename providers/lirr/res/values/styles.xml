@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><!--
+	<style name="OrangeTheme">
+		<item name="android:background">#F47920</item>
+		<item name="android:textColor">#00FF00</item>
+		<item name="android:typeface">monospace</item>
+	</style>
+
+	--><style name="OrangeTheme" parent="@android:style/Theme.Light">
+		<item name="android:listSeparatorTextViewStyle">@style/listSeparatorTextViewStyle</item>
+		<item name="android:listViewStyle">@style/listViewStyle</item>
+	</style>
+	
+	 <style
+    name="listSeparatorTextViewStyle"
+    parent="@android:attr/listSeparatorTextViewStyle">
+    <item
+      name="android:layout_height">wrap_content</item>
+    <item
+      name="android:layout_width">fill_parent</item>
+    <item
+      name="android:paddingTop">2dip</item>
+    <item
+      name="android:paddingBottom">3dip</item>
+    <item
+      name="android:paddingLeft">5dip</item>
+    <item
+      name="android:background">@drawable/orange_gradient</item>
+    <item
+      name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    <item
+      name="android:shadowColor">#111111</item>
+    <item
+      name="android:shadowRadius">1</item>
+    <item
+      name="android:shadowDy">1</item>
+    <item
+      name="android:textStyle">bold</item>
+    <item
+      name="android:textColor">@android:color/white</item>
+  </style>
+  
+    <style
+    name="listViewStyle"
+    parent="@android:attr/listViewStyle">
+    <item
+      name="android:background">@android:color/white</item>
+    <item
+      name="android:divider">@drawable/divider</item>
+  </style>
+
+  <style
+    name="tabHostStyle">
+    <item
+      name="android:background">@android:color/black</item>
+  </style>
+
+
+  <!--  Manually specified -->
+
+  <style
+    name="secondaryTextStyle">
+    <item
+      name="android:paddingRight">4dip</item>
+    <item
+      name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    <item
+      name="android:textColor">#74CBE7</item>
+  </style>
+  
+
+	<style name="listItemStyle">
+		<item name="android:paddingBottom">6dip</item>
+	</style>
+
+    <style name="TextViewStationListHeader">
+        <item name="android:textSize">15dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black_end</item>
+    </style>
+
+
+	<style name="TextViewStyleCheckinListItemLineMessage">
+		<item name="android:textSize">15dip</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/black_end</item>
+	</style>
+
+	<style name="TextViewStyleCheckinListItemLineAddress">
+		<item name="android:textSize">13dip</item>
+		<item name="android:textColor">@color/dgrey_start</item>
+	</style>
+
+	<style name="TextViewStyleCheckinListItemLineTimestamp">
+		<item name="android:textSize">13dip</item>
+		<item name="android:textColor">@color/grey_end</item>
+	</style>
+
+	<style name="choose_station_button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>        
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/lgrey_start</item>
+    </style>
+
+  <style name="TextViewStyleUserDetailsActivityGeneralTitle">
+    <item name="android:textSize">11dip</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  
+  <style name="TextViewStyleUserDetailsActivityGeneralValue">
+    <item name="android:textSize">18dip</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+</resources>
