@@ -131,8 +131,8 @@ public class ApkMojo extends AbstractAndroidMojo {
 
         commands.add("-z");
         commands.add(new File(project.getBuild().getDirectory(), project.getBuild().getFinalName() + ".ap_").getAbsolutePath());
-//        commands.add("-f");
-//        commands.add(new File(project.getBuild().getDirectory(), "classes.dex").getAbsolutePath());
+        commands.add("-f");
+        commands.add(new File(project.getBuild().getDirectory(), "classes.dex").getAbsolutePath());
         commands.add("-rf");
         commands.add(new File(project.getBuild().getDirectory(), "classes").getAbsolutePath());
 
