@@ -3,6 +3,7 @@ package com.njtransit;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.njtransit.rail.R;
@@ -38,6 +39,7 @@ public class SchedulerActivity extends Activity {
 		} catch (Exception e) {
 
 		}
+		Log.i(getApplication().getClass().getSimpleName(), getString(R.string.google_ua,this));
 		tracker.start(getString(R.string.google_ua), this);
 		tracker.setDispatchPeriod(60);
 	}

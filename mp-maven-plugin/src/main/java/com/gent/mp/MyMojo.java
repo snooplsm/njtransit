@@ -98,7 +98,7 @@ public class MyMojo extends AbstractMojo {
 	 * @parameter
 	 */
 	private String admobPublisherId;
-	
+
 	private String _packageName;
 
 	/**
@@ -202,12 +202,12 @@ public class MyMojo extends AbstractMojo {
 		};
 
 		String rMatch = _packageName + ".R";
-		rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
+		// rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
 		String mMatch = "http://schemas.android.com/apk/res/" + _packageName;
-		rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
-		mMatch = "(" + mMatch.replaceAll("\\.", "\\\\.") + ")";
-		Pattern p = Pattern.compile(rMatch);
-		Pattern m = Pattern.compile(mMatch);
+		// rMatch = "(" + rMatch.replaceAll("\\.", "\\\\.") + ")";
+		// mMatch = "(" + mMatch.replaceAll("\\.", "\\\\.") + ")";
+		// Pattern p = Pattern.compile(rMatch);
+		// Pattern m = Pattern.compile(mMatch);
 		String mNew = "http://schemas.android.com/apk/res/" + packageName;
 		String rNew = packageName + ".R";
 		Stack<File> files = new Stack<File>();
@@ -216,7 +216,9 @@ public class MyMojo extends AbstractMojo {
 		while (!files.isEmpty()) {
 			File currentFolder = files.pop();
 			for (File file : currentFolder.listFiles(javaFilter)) {
-				if (file.getName().equals("R.java") && file.getPath().endsWith(_packageName.replaceAll(".","/")+"R.java")) {
+				if (file.getName().equals("R.java")
+						&& file.getPath().endsWith(
+								_packageName.replaceAll(".", "/") + "R.java")) {
 					file.delete();
 					continue;
 				}
@@ -232,18 +234,30 @@ public class MyMojo extends AbstractMojo {
 								new InputStreamReader(bis));
 						StringBuilder b = new StringBuilder();
 						String line = null;
-						boolean changed = true;
+						boolean changed = false;
 						while ((line = br.readLine()) != null) {
 							if (file.getName().endsWith(".java")) {
-								Matcher matcher = p.matcher(line);
-								String newString = matcher.replaceAll(rNew);
-								b.append(newString);
+								if (line.contains(rMatch)) {
+									changed = true;
+									String newString = line.replaceAll(rMatch,
+											rNew);
+									b.append(newString);
+									System.out.println("replacing " + line
+											+ " with " + newString + " in " + file.getAbsolutePath());
+								} else {
+									b.append(line);
+								}
 							}
 							if (file.getName().endsWith(".xml")) {
-								Matcher matcher = m.matcher(line);
-								String newString = matcher.replaceAll(mNew);
-								b.append(newString);
-								
+								if (line.contains(mMatch)) {
+									changed = true;
+									String newString = line.replaceAll(mMatch,
+											mNew);
+									b.append(newString);
+								} else {
+									b.append(line);
+								}
+
 							}
 							b.append("\n");
 						}
@@ -291,23 +305,23 @@ public class MyMojo extends AbstractMojo {
 		((Element) o).setAttribute("android:debuggable", Boolean.FALSE
 				.toString());
 	}
-	
+
 	private void setAdmobPublisherId(Element element) {
-		if(admobPublisherId==null) {
+		if (admobPublisherId == null) {
 			return;
 		}
-		Element application = (Element) element.getElementsByTagName("application").item(0);			
+		Element application = (Element) element.getElementsByTagName(
+				"application").item(0);
 		NodeList list = application.getElementsByTagName("meta-data");
 
-		for(int i = 0; i < list.getLength(); i++) {
-			Element node = (Element)list.item(i);
-			if(node.getAttribute("android:name").equals("ADMOB_PUBLISHER_ID"))	 {
+		for (int i = 0; i < list.getLength(); i++) {
+			Element node = (Element) list.item(i);
+			if (node.getAttribute("android:name").equals("ADMOB_PUBLISHER_ID")) {
 				node.setAttribute("android:value", admobPublisherId);
 				break;
 			}
 		}
-		
-		
+
 	}
 
 	private void setVersion(Element element) {
