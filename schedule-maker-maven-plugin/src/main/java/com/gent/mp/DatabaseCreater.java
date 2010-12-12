@@ -583,8 +583,17 @@ public class DatabaseCreater {
 
 					o.add(stringIdToIntegerId(nextLine[headerToPos.get("stop_id")].trim()));
 					o.add(nextLine[headerToPos.get("stop_sequence")].trim());
-					o.add(nextLine[headerToPos.get("pickup_type")].trim());
-					o.add(nextLine[headerToPos.get("drop_off_type")].trim());
+					if(headerToPos.get("pickup_type")!=null) {
+						o.add(nextLine[headerToPos.get("pickup_type")].trim());						
+					} else {
+						o.add("1");
+					}
+					if(headerToPos.get("drop_off_type")!=null) {
+						o.add(nextLine[headerToPos.get("drop_off_type")].trim());
+					} else {
+						o.add("1");
+					}
+					
 					values.add(o);
 				}
 				return values;
