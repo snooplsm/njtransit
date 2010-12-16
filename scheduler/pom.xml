@@ -239,5 +239,17 @@
 				<admobPublisherId>a14d07cbc165069</admobPublisherId>
 			</properties>
 		</profile>
+		<profile>
+			<id>bart</id>
+			<properties>
+				<artifactId>bart</artifactId>
+				<url>http://wmwm.us/bart</url>
+				<name>BART</name>
+				<resourceOverlayDirectory>../providers/bart/res</resourceOverlayDirectory>
+				<gtfsFile>../providers/bart/rail_data</gtfsFile>				
+				<packageName>com.bart</packageName>
+				<admobPublisherId>a14d0aa74941c38</admobPublisherId>
+			</properties>
+		</profile>
 	</profiles>
 </project>
