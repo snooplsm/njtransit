@@ -79,23 +79,32 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 		
 	}
 
-	@Override
-	public void onJump(String c) {
-        if("FAV".equals(c)) {
-            showingFavorites = true;
+    private void showFavorites() {
+        showingFavorites = true;
             stations.getStationAdapter().clear();
 
             for(Station s : getSchedulerContext().getAdapter().getMostVisitedStations(getSchedulerContext(),System.currentTimeMillis())) {
                 stations.getStationAdapter().add(s);
             }
+            trackPageView("Favorites");
+    }
+
+    private void clearFavorites() {
+        stations.getStationAdapter().clear();
+        for(Station s : getSchedulerContext().getStations()) {
+            stations.getStationAdapter().add(s);
+        }
+        showingFavorites = false;
+    }
+
+	@Override
+	public void onJump(String c) {
+        if("FAV".equals(c)) {
+            showFavorites();
             return;
         }
         if(showingFavorites) {
-            stations.getStationAdapter().clear();
-            for(Station s : getSchedulerContext().getStations()) {
-                stations.getStationAdapter().add(s);
-            }
-            showingFavorites = false;
+            clearFavorites();
         }
 		Object[] sections = stations.getStationAdapter().getSections();
 		for(int i = 0; i < sections.length; i++) {
@@ -117,15 +126,21 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 		}
 		return stationLetters;
 	}
-	
+
+    private MenuItem jump;
+    private MenuItem favorites;
+    private MenuItem clearFavorites;
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		trackEvent("menu-click", "MenuButton", "click", 0);
-		if(canJump) {
-			MenuItem jump = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.abc));
-			jump.setIcon(R.drawable.small_tiles);
-		}
+        jump = menu.add(Menu.NONE,1,Menu.FIRST, getString(R.string.abc));
+        jump.setIcon(R.drawable.small_tiles);
+        favorites = menu.add(Menu.NONE,2,Menu.FIRST, getString(R.string.favorites));
+        favorites.setIcon(R.drawable.favorites);
+        clearFavorites = menu.add(Menu.NONE,3,Menu.FIRST,getString(R.string.clear_favorites));
+        clearFavorites.setIcon(R.drawable.clear_favorites2);
 		return true;
 	}
 	
@@ -134,7 +149,23 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 		if(item.getItemId()==1) {	
 			trackEvent("user-jump", "MenuItem", "click", item.getItemId());
 			jumpDialog.show();
-		}		
+		}else
+        if(item.getItemId()==2) {
+            showFavorites();
+            trackEvent("show-favorites","MenuItem","click",item.getItemId());
+        }else
+        if(item.getItemId()==3) {
+            clearFavorites();
+        }
 		return super.onOptionsItemSelected(item);
 	}
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        favorites.setVisible(!showingFavorites);
+        jump.setVisible(canJump);
+        clearFavorites.setVisible(showingFavorites);
+        return super.onPrepareOptionsMenu(menu);
+
+    }
 }
