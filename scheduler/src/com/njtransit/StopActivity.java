@@ -138,7 +138,12 @@ public class StopActivity extends SchedulerActivity {
 
 			@Override
 			protected StopResult doInBackground(Void... params) {
-
+				try {
+					Root.saveLastArrivalStation(StopActivity.this, getSchedulerContext().getDepartureStation().getId());
+					Root.saveLastDepartureStation(StopActivity.this, getSchedulerContext().getArrivalStation().getId());
+				} finally {
+					
+				}
 				final StopsQueryResult sqr;
 				if (getSchedulerContext().getDepartureDate() != null) {
 					sqr = getSchedulerContext().getAdapter()

@@ -92,6 +92,7 @@ public class MainActivity extends SchedulerActivity {
 		if(savedInstanceState!=null) {
 			return;
 		}
+		
 		RelativeLayout btn = (RelativeLayout) findViewById(R.id.departure);
 		departureText = (TextView) findViewById(R.id.departureText);
 		btn.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +141,18 @@ public class MainActivity extends SchedulerActivity {
 				.getScheduleStartDate(getApplicationContext()));
 		maxDate.setTimeInMillis(Root
 				.getScheduleEndDate(getApplicationContext()));
+		
+		Integer depart = Root.getLastDepartureStation(this);
+		Integer arrive = Root.getLastArrivalStation(this);
+		if(depart >=0 && arrive >=0) {
+			Station _depart = getSchedulerContext().getStation(depart);
+			Station _arrive = getSchedulerContext().getStation(arrive);
+			if(_depart!=null && _arrive!=null) {
+				getSchedulerContext().setArrivalStation(_arrive);
+				getSchedulerContext().setDepartureStation(_depart);
+				onActivityResult(0, -0, null);
+			}
+		}
 	}
 
 	@Override

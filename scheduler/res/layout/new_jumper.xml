@@ -116,6 +116,11 @@
 		<TextView android:text="#" android:gravity="center"
 			android:textSize="52dip" android:layout_width="wrap_content"
 			android:layout_height="fill_parent" android:layout_weight="1" />
+			
+		<TextView android:text="FAV" android:gravity="center"
+			android:textSize="52dip" android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:layout_weight="1" />
+			
 	</LinearLayout>
 	
 	<!--<LinearLayout android:layout_width="fill_parent" android:layout_height="10dip"></LinearLayout>

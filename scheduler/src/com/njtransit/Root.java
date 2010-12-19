@@ -8,6 +8,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
+import com.njtransit.domain.Station;
+
 public class Root {
 	public static int getVersion(Context ctx) {
 
@@ -115,5 +117,27 @@ public class Root {
 	public static void deleteScheduleDates(Context ctx) {
 		SharedPreferences prefs = getProperties(ctx);
 		prefs.edit().remove("schedule-start-date").remove("schedule-end-date").commit();		
+	}
+	
+	public static void saveLastArrivalStation(Context ctx, Integer stationId) {
+		SharedPreferences prefs = getProperties(ctx);
+		Editor e = prefs.edit().putInt("last-arrival-station", stationId);
+		e.commit();
+	}
+	
+	public static Integer getLastArrivalStation(Context ctx) {
+		SharedPreferences prefs = getProperties(ctx);
+		return prefs.getInt("last-arrival-station", -1);
+	}
+	
+	public static void saveLastDepartureStation(Context ctx, Integer stationId) {
+		SharedPreferences prefs = getProperties(ctx);
+		Editor e = prefs.edit().putInt("last-departure-station", stationId);
+		e.commit();
+	}
+	
+	public static int getLastDepartureStation(Context ctx) {
+		SharedPreferences prefs = getProperties(ctx);
+		return prefs.getInt("last-departure-station", -1);
 	}
 }
