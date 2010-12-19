@@ -1,11 +1,5 @@
 package com.njtransit.ui.adapter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +8,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
 import com.njtransit.SchedulerApplication;
 import com.njtransit.domain.Station;
 import com.njtransit.rail.R;
 import com.njtransit.utils.Locations;
+
+import java.util.*;
 
 public class StationAdapter extends ArrayAdapter<Station> implements
 		SectionIndexer, Filterable {
 
 	private SchedulerApplication app;
 
-	private HashMap<Integer, Character> posToCharacter;
+	private HashMap<Integer, String> posToCharacter;
 
-	private HashMap<Character, Integer> characterToPos;
+	private HashMap<String, Integer> characterToPos;
 
-	private Character[] sections;
+	private String[] sections;
 
 	public StationAdapter(Context context, int textViewResourceId,
 			List<Station> items, SchedulerApplication app) {
@@ -74,7 +69,7 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 
 	@Override
 	public int getPositionForSection(int section) {
-		char c = sections[section];
+		String c = (String)sections[section];
 		return characterToPos.get(c);
 	}
 
@@ -94,18 +89,18 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 	private void calculateSections() {
 		if (sections != null)
 			return;
-		HashSet<Character> c = new HashSet<Character>();
-		posToCharacter = new HashMap<Integer, Character>();
-		characterToPos = new HashMap<Character, Integer>();
+		HashSet<String> c = new HashSet<String>();
+		posToCharacter = new HashMap<Integer, String>();
+		characterToPos = new HashMap<String, Integer>();
 		for (int i = 0; i < getCount(); i++) {
 			Station s = getItem(i);
-			char ch = s.getName().charAt(0);
+			String ch = s.getName().substring(0,1);
 			if (c.add(ch)) {
 				posToCharacter.put(i, ch);
 				characterToPos.put(ch, i);
 			}
 		}
-		sections = new Character[c.size()];
+		sections = new String[c.size()];
 		c.toArray(sections);
 		Arrays.sort(sections);
 	}

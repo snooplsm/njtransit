@@ -1,19 +1,18 @@
 package com.njtransit;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-
 import com.njtransit.JumpDialog.OnJumpListener;
 import com.njtransit.StationListView.OnStationListener;
 import com.njtransit.domain.Station;
 import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StationAdapter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * List for display all the stations in a particular order.
@@ -28,7 +27,9 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	private StationListView stations;
 	
 	private boolean canJump;
-	
+
+    private boolean showingFavorites;
+
 	private JumpDialog jumpDialog;
 	
 	@Override
@@ -59,8 +60,8 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 			jumpDialog = new JumpDialog(this, this) {
 
 				@Override
-				protected void onLetterSelect(char c) {
-					trackEvent("jumps", "Button", c+"" , (int)c);
+				protected void onLetterSelect(String c) {
+					trackEvent("jumps", "Button", c+"" , c.hashCode());
 				}
 
 				@Override
@@ -79,7 +80,23 @@ public class StationListActivity extends SchedulerActivity implements OnJumpList
 	}
 
 	@Override
-	public void onJump(Character c) {
+	public void onJump(String c) {
+        if("FAV".equals(c)) {
+            showingFavorites = true;
+            stations.getStationAdapter().clear();
+
+            for(Station s : getSchedulerContext().getAdapter().getMostVisitedStations(getSchedulerContext(),System.currentTimeMillis())) {
+                stations.getStationAdapter().add(s);
+            }
+            return;
+        }
+        if(showingFavorites) {
+            stations.getStationAdapter().clear();
+            for(Station s : getSchedulerContext().getStations()) {
+                stations.getStationAdapter().add(s);
+            }
+            showingFavorites = false;
+        }
 		Object[] sections = stations.getStationAdapter().getSections();
 		for(int i = 0; i < sections.length; i++) {
 			if(sections[i].equals(c)) {

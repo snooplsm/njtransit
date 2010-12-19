@@ -1,8 +1,5 @@
 package com.njtransit;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -10,13 +7,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnTouchListener;
+import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.njtransit.rail.R;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Simple Dialog intended for alpha/numeric index selection
@@ -26,7 +25,7 @@ import com.njtransit.rail.R;
 public abstract class JumpDialog extends Dialog {
 
 	public static interface OnJumpListener {
-		void onJump(Character c);
+		void onJump(String c);
 	}
 
 	private Collection<Character> subset = Collections.<Character> emptyList();
@@ -57,15 +56,15 @@ public abstract class JumpDialog extends Dialog {
 			LinearLayout row = (LinearLayout) linearLayout.getChildAt(i);
 			for (int j = 0; j < row.getChildCount(); j++) {
 				final TextView text = (TextView) row.getChildAt(j);
-				final char c = text.getText().charAt(0);
-				if (subset.contains(text.getText().charAt(0)) || ((alpha && c == '#') || (!alpha && c=='A'))) {
+				final String c = text.getText().toString();
+				if (subset.contains(text.getText().charAt(0)) || ((alpha && c.equals("#") || (!alpha && c.equals("A"))))) {
 					text.setClickable(true);
 					text.setTextColor(Color.WHITE);
 					text.setOnClickListener(new View.OnClickListener() {
 						
 						public void onClick(View v) {
 							onLetterSelect(c);
-							if(alpha && c=='#') {
+							if(alpha && c.equals("#")) {
 								LayoutParams lp = new LayoutParams();
 								Display display = getWindow().getWindowManager().getDefaultDisplay();
 								lp.width = display.getWidth();
@@ -79,7 +78,7 @@ public abstract class JumpDialog extends Dialog {
 								listener.onJump(c);
 								JumpDialog.this.dismiss();
 							}
-							if(!alpha && c=='A') {
+							if(!alpha && c.equals('A')) {
 								LayoutParams lp = new LayoutParams();
 								Display display = getWindow().getWindowManager().getDefaultDisplay();
 								lp.width = display.getWidth();
@@ -110,7 +109,7 @@ public abstract class JumpDialog extends Dialog {
 		}
 	}
 
-	protected abstract void onLetterSelect(char c);
+	protected abstract void onLetterSelect(String c);
 
 	public JumpDialog only(Collection<Character> subset) {
 		this.subset = subset;
