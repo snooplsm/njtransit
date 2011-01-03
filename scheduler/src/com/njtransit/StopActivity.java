@@ -1,16 +1,5 @@
 package com.njtransit;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,7 +12,6 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.SimpleAdListener;
 import com.njtransit.domain.IService;
@@ -32,6 +20,8 @@ import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
+
+import java.util.*;
 
 public class StopActivity extends SchedulerActivity {
 
@@ -190,7 +180,8 @@ public class StopActivity extends SchedulerActivity {
 									.getArrive().get(Calendar.DAY_OF_YEAR)) {
 								newArrive.add(Calendar.DAY_OF_YEAR, 1);
 							}
-							stops.add(stop);
+                            Stop stop2 = new Stop(stop.getTripId(),newDepart,newArrive);
+							stops.add(stop2);
 						}
 					}
 					Collections.sort(stops, comparator);
