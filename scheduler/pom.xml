@@ -189,6 +189,15 @@
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 				</configuration>
 				<extensions>true</extensions>
+				<executions>
+				  <execution>
+				    <id>alignApk</id>
+				    <phase>install</phase>
+				    <goals>
+				      <goal>zipalign</goal>
+				    </goals>
+				  </execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
