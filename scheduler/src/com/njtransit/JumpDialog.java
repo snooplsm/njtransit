@@ -74,11 +74,8 @@ public abstract class JumpDialog extends Dialog {
 								alpha = !alpha;
 								JumpDialog.this.show();
 								return;
-							} else {
-								listener.onJump(c);
-								JumpDialog.this.dismiss();
 							}
-							if(!alpha && c.equals('A')) {
+							if(!alpha && c.equals("A")) {
 								LayoutParams lp = new LayoutParams();
 								Display display = getWindow().getWindowManager().getDefaultDisplay();
 								lp.width = display.getWidth();
