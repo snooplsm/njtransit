@@ -1,24 +1,17 @@
 package com.njtransit;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import android.app.Application;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Preferences;
 import com.njtransit.domain.Station;
 import com.njtransit.utils.Distance;
+
+import java.util.*;
 
 /** Shared state management */
 public class SchedulerApplication extends Application implements
@@ -165,6 +158,18 @@ public class SchedulerApplication extends Application implements
 		if (getLastKnownLocation() == null) {
 			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
 					0, this);
+            new Thread() {
+
+                public void run() {
+                    try {
+                        Thread.sleep(20000L);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    getLocations().removeUpdates(SchedulerApplication.this);
+                }
+
+            }.start();
 		}
 	}
 
