@@ -87,6 +87,16 @@ public class MyMojo extends AbstractMojo {
 	 * @required
 	 */
 	private File androidManifestFile;
+	
+	/**
+	 * @parameter
+	 */
+	private String androidVersionName;
+	
+	/**
+	 * @parameter
+	 */
+	private Integer androidVersionCode;
 
 	/**
 	 * @parameter
@@ -325,11 +335,16 @@ public class MyMojo extends AbstractMojo {
 	}
 
 	private void setVersion(Element element) {
-		Calendar cal = Calendar.getInstance();
-		Date date = cal.getTime();
-		element.setAttribute("android:versionName", VERSION_NAME_FORMAT
-				.format(date));
-		element.setAttribute("android:versionCode", VERSION_CODE_FORMAT
-				.format(date));
+		if(androidVersionName!=null && androidVersionCode!=null) {
+			element.setAttribute("android:versionName", androidVersionName);
+			element.setAttribute("android:versionCode", androidVersionCode.toString());
+		} else {
+			Calendar cal = Calendar.getInstance();
+			Date date = cal.getTime();
+			element.setAttribute("android:versionName", VERSION_NAME_FORMAT
+					.format(date));
+			element.setAttribute("android:versionCode", VERSION_CODE_FORMAT
+					.format(date));
+		}
 	}
 }
