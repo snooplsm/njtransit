@@ -1,1063 +1,2441 @@
-route_id, service_id, trip_id, trip_headsign, shape_id
-3, weekday, 1213, New Haven_Inbound, 5
-3, weekday, 1217, New Haven_Inbound, 5
-3, weekday, 1225, New Haven_Inbound, 5
-3, weekday, 1229, New Haven_Inbound, 5
-3, weekday, 1231, New Haven_Inbound, 5
-3, weekday, 1233, New Haven_Inbound, 5
-3, weekday, 1235, New Haven_Inbound, 5
-3, weekday, 1237, New Haven_Inbound, 5
-3, weekday, 1239, New Haven_Inbound, 5
-3, weekday, 1241, New Haven_Inbound, 5
-3, weekday, 1244, New Haven_Outbound, 6
-3, weekday, 1245, New Haven_Inbound, 5
-3, weekday, 1246, New Haven_Outbound, 6
-3, weekday, 1248, New Haven_Outbound, 6
-3, weekday, 1254, New Haven_Outbound, 6
-3, weekday, 1256, New Haven_Outbound, 6
-3, weekday, 1260, New Haven_Outbound, 6
-3, weekday, 1268, New Haven_Outbound, 6
-3, weekday, 1270, New Haven_Outbound, 6
-3, weekday, 1272, New Haven_Outbound, 6
-3, weekday, 1275, New Haven_Inbound, 5
-3, weekday, 1278, New Haven_Outbound, 6
-3, weekday, 1279, New Haven_Inbound, 5
-3, weekday, 1300, New Haven_Outbound, 6
-3, weekday, 1301, New Haven_Inbound, 5
-3, weekday, 1302, New Haven_Outbound, 6
-3, weekday, 1303, New Haven_Inbound, 5
-3, weekday, 1304, New Haven_Outbound, 6
-3, weekday, 1305, New Haven_Inbound, 5
-3, weekday, 1306, New Haven_Outbound, 6
-3, weekday, 1307, New Haven_Inbound, 5
-3, weekday, 1308, New Haven_Outbound, 6
-3, weekday, 1309, New Haven_Inbound, 5
-3, weekday, 1311, New Haven_Inbound, 5
-3, weekday, 1312, New Haven_Outbound, 6
-3, weekday, 1313, New Haven_Inbound, 5
-3, weekday, 1314, New Haven_Outbound, 6
-3, weekday, 1315, New Haven_Inbound, 5
-3, weekday, 1316, New Haven_Outbound, 6
-3, weekday, 1318, New Haven_Outbound, 6
-3, weekday, 1319, New Haven_Inbound, 5
-3, weekday, 1320, New Haven_Outbound, 6
-3, weekday, 1321, New Haven_Inbound, 5
-3, weekday, 1322, New Haven_Outbound, 6
-3, weekday, 1323, New Haven_Inbound, 5
-3, weekday, 1324, New Haven_Outbound, 6
-3, weekday, 1325, New Haven_Inbound, 5
-3, weekday, 1326, New Haven_Outbound, 6
-3, weekday, 1327, New Haven_Inbound, 5
-3, weekday, 1328, New Haven_Outbound, 6
-3, weekday, 1330, New Haven_Outbound, 6
-3, weekday, 1331, New Haven_Inbound, 5
-3, weekday, 1332, New Haven_Outbound, 6
-3, weekday, 1333, New Haven_Inbound, 5
-3, weekday, 1334, New Haven_Outbound, 6
-3, weekday, 1336, New Haven_Outbound, 6
-3, weekday, 1338, New Haven_Outbound, 6
-3, weekday, 1340, New Haven_Outbound, 6
-3, weekday, 1342, New Haven_Outbound, 6
-3, weekday, 1345, New Haven_Inbound, 5
-3, weekday, 1347, New Haven_Inbound, 5
-3, weekday, 1349, New Haven_Inbound, 5
-3, weekday, 1351, New Haven_Inbound, 5
-3, weekday, 1352, New Haven_Outbound, 6
-3, weekday, 1353, New Haven_Inbound, 5
-3, weekday, 1355, New Haven_Inbound, 5
-3, weekday, 1357, New Haven_Inbound, 5
-3, weekday, 1358, New Haven_Outbound, 6
-3, weekday, 1359, New Haven_Inbound, 5
-3, weekday, 1360, New Haven_Outbound, 6
-3, weekday, 1361, New Haven_Inbound, 5
-3, weekday, 1362, New Haven_Outbound, 6
-3, weekday, 1363, New Haven_Inbound, 5
-3, weekday, 1364, New Haven_Outbound, 6
-3, weekday, 1365, New Haven_Inbound, 5
-3, weekday, 1367, New Haven_Inbound, 5
-3, weekday, 1368, New Haven_Outbound, 6
-3, weekday, 1369, New Haven_Inbound, 5
-3, weekday, 1370, New Haven_Outbound, 6
-3, weekday, 1371, New Haven_Inbound, 5
-3, weekday, 1373, New Haven_Inbound, 5
-3, weekday, 1374, New Haven_Outbound, 6
-3, weekday, 1375, New Haven_Inbound, 5
-3, weekday, 1376, New Haven_Outbound, 6
-3, weekday, 1378, New Haven_Outbound, 6
-3, weekday, 1379, New Haven_Inbound, 5
-3, weekday, 1381, New Haven_Inbound, 5
-3, weekday, 1382, New Haven_Outbound, 6
-3, weekday, 1383, New Haven_Inbound, 5
-3, weekday, 1384, New Haven_Outbound, 6
-3, weekday, 1385, New Haven_Inbound, 5
-3, weekday, 1386, New Haven_Outbound, 6
-3, weekday, 1387, New Haven_Inbound, 5
-3, weekday, 1388, New Haven_Outbound, 6
-3, weekday, 1389, New Haven_Inbound, 5
-3, weekday, 1390, New Haven_Outbound, 6
-3, weekday, 1391, New Haven_Inbound, 5
-3, weekday, 1392, New Haven_Outbound, 6
-3, weekday, 1393, New Haven_Inbound, 5
-3, weekday, 1394, New Haven_Outbound, 6
-3, weekday, 1395, New Haven_Inbound, 5
-3, weekday, 1396, New Haven_Outbound, 6
-3, weekday, 1398, New Haven_Outbound, 6
-3, weekday, 1399, New Haven_Inbound, 5
-3, weekday, 1404, New Haven_Outbound, 6
-3, weekday, 1407, New Haven_Inbound, 5
-3, weekday, 1408, New Haven_Outbound, 6
-3, weekday, 1409, New Haven_Inbound, 5
-3, weekday, 1410, New Haven_Outbound, 6
-3, weekday, 1412, New Haven_Outbound, 6
-3, weekday, 1417, New Haven_Inbound, 5
-3, weekday, 1419, New Haven_Inbound, 5
-3, weekday, 1427, New Haven_Inbound, 5
-3, weekday, 1429, New Haven_Inbound, 5
-3, weekday, 1433, New Haven_Inbound, 5
-3, weekday, 1437, New Haven_Inbound, 5
-3, weekday, 1439, New Haven_Inbound, 5
-3, weekday, 1441, New Haven_Inbound, 5
-3, weekday, 1442, New Haven_Outbound, 6
-3, weekday, 1445, New Haven_Inbound, 5
-3, weekday, 1451, New Haven_Inbound, 5
-3, weekday, 1456, New Haven_Outbound, 6
-3, weekday, 1458, New Haven_Outbound, 6
-3, weekday, 1464, New Haven_Outbound, 6
-3, weekday, 1469, New Haven_Inbound, 5
-3, weekday, 1470, New Haven_Outbound, 6
-3, weekday, 1473, New Haven_Inbound, 5
-3, weekday, 1477, New Haven_Inbound, 5
-3, weekday, 1497, New Haven_Inbound, 5
-3, weekday, 1500, New Haven_Outbound, 6
-3, weekday, 1502, New Haven_Outbound, 6
-3, weekday, 1503, New Haven_Inbound, 5
-3, weekday, 1504, New Haven_Outbound, 6
-3, weekday, 1506, New Haven_Outbound, 6
-3, weekday, 1507, New Haven_Inbound, 5
-3, weekday, 1508, New Haven_Outbound, 6
-3, weekday, 1509, New Haven_Inbound, 5
-3, weekday, 1510, New Haven_Outbound, 6
-3, weekday, 1511, New Haven_Inbound, 5
-3, weekday, 1512, New Haven_Outbound, 6
-3, weekday, 1513, New Haven_Inbound, 5
-3, weekday, 1514, New Haven_Outbound, 6
-3, weekday, 1516, New Haven_Outbound, 6
-3, weekday, 1518, New Haven_Outbound, 6
-3, weekday, 1521, New Haven_Inbound, 5
-3, weekday, 1522, New Haven_Outbound, 6
-3, weekday, 1526, New Haven_Outbound, 6
-3, weekday, 1527, New Haven_Inbound, 5
-3, weekday, 1529, New Haven_Inbound, 5
-3, weekday, 1530, New Haven_Outbound, 6
-3, weekday, 1531, New Haven_Inbound, 5
-3, weekday, 1532, New Haven_Outbound, 6
-3, weekday, 1533, New Haven_Inbound, 5
-3, weekday, 1534, New Haven_Outbound, 6
-3, weekday, 1535, New Haven_Inbound, 5
-3, weekday, 1536, New Haven_Outbound, 6
-3, weekday, 1537, New Haven_Inbound, 5
-3, weekday, 1538, New Haven_Outbound, 6
-3, weekday, 1539, New Haven_Inbound, 5
-3, weekday, 1540, New Haven_Outbound, 6
-3, weekday, 1541, New Haven_Inbound, 5
-3, weekday, 1542, New Haven_Outbound, 6
-3, weekday, 1544, New Haven_Outbound, 6
-3, weekday, 1545, New Haven_Inbound, 5
-3, weekday, 1546, New Haven_Outbound, 6
-3, weekday, 1548, New Haven_Outbound, 6
-3, weekday, 1549, New Haven_Inbound, 5
-3, weekday, 1551, New Haven_Inbound, 5
-3, weekday, 1552, New Haven_Outbound, 6
-3, weekday, 1554, New Haven_Outbound, 6
-3, weekday, 1555, New Haven_Inbound, 5
-3, weekday, 1556, New Haven_Outbound, 6
-3, weekday, 1559, New Haven_Inbound, 5
-3, weekday, 1560, New Haven_Outbound, 6
-3, weekday, 1562, New Haven_Outbound, 6
-3, weekday, 1563, New Haven_Inbound, 5
-3, weekday, 1567, New Haven_Inbound, 5
-3, weekday, 1568, New Haven_Outbound, 6
-3, weekday, 1569, New Haven_Inbound, 5
-3, weekday, 1570, New Haven_Outbound, 6
-3, weekday, 1571, New Haven_Inbound, 5
-3, weekday, 1572, New Haven_Outbound, 6
-3, weekday, 1573, New Haven_Inbound, 5
-3, weekday, 1574, New Haven_Outbound, 6
-3, weekday, 1575, New Haven_Inbound, 5
-3, weekday, 1576, New Haven_Outbound, 6
-3, weekday, 1577, New Haven_Inbound, 5
-3, weekday, 1578, New Haven_Outbound, 6
-3, weekday, 1579, New Haven_Inbound, 5
-3, weekday, 1580, New Haven_Outbound, 6
-3, weekday, 1581, New Haven_Inbound, 5
-3, weekday, 1582, New Haven_Outbound, 6
-3, weekday, 1583, New Haven_Inbound, 5
-3, weekday, 1584, New Haven_Outbound, 6
-3, weekday, 1586, New Haven_Outbound, 6
-3, weekday, 1587, New Haven_Inbound, 5
-3, weekday, 1588, New Haven_Outbound, 6
-3, weekday, 1590, New Haven_Outbound, 6
-3, weekday, 1591, New Haven_Inbound, 5
-3, weekday, 1594, New Haven_Outbound, 6
-3, weekday, 1595, New Haven_Inbound, 5
-3, weekday, 1597, New Haven_Inbound, 5
-3, weekday, 1598, New Haven_Outbound, 6
-3, weekday, 1599, New Haven_Inbound, 5
-3, weekday, 1617, New Haven_Inbound, 5
-4, weekday, 1707, New Canaan_Inbound, 7
-4, weekday, 1710, New Canaan_Outbound, 8
-4, weekday, 1711, New Canaan_Inbound, 7
-4, weekday, 1712, New Canaan_Outbound, 8
-4, weekday, 1716, New Canaan_Outbound, 8
-4, weekday, 1718, New Canaan_Outbound, 8
-4, weekday, 1722, New Canaan_Outbound, 8
-4, weekday, 1723, New Canaan_Inbound, 7
-4, weekday, 1726, New Canaan_Outbound, 8
-4, weekday, 1730, New Canaan_Outbound, 8
-4, weekday, 1731, New Canaan_Inbound, 7
-4, weekday, 1734, New Canaan_Outbound, 8
-4, weekday, 1735, New Canaan_Inbound, 7
-4, weekday, 1738, New Canaan_Outbound, 8
-4, weekday, 1740, New Canaan_Outbound, 8
-4, weekday, 1741, New Canaan_Inbound, 7
-4, weekday, 1745, New Canaan_Inbound, 7
-4, weekday, 1750, New Canaan_Outbound, 8
-4, weekday, 1751, New Canaan_Inbound, 7
-4, weekday, 1752, New Canaan_Outbound, 8
-4, weekday, 1755, New Canaan_Inbound, 7
-4, weekday, 1758, New Canaan_Outbound, 8
-4, weekday, 1759, New Canaan_Inbound, 7
-4, weekday, 1763, New Canaan_Inbound, 7
-4, weekday, 1767, New Canaan_Inbound, 7
-4, weekday, 1770, New Canaan_Outbound, 8
-4, weekday, 1771, New Canaan_Inbound, 7
-4, weekday, 1774, New Canaan_Outbound, 8
-4, weekday, 1775, New Canaan_Inbound, 7
-4, weekday, 1777, New Canaan_Inbound, 7
-4, weekday, 1778, New Canaan_Outbound, 8
-4, weekday, 1782, New Canaan_Outbound, 8
-4, weekday, 1786, New Canaan_Outbound, 8
-4, weekday, 1787, New Canaan_Inbound, 7
-4, weekday, 1789, New Canaan_Inbound, 7
-4, weekday, 1790, New Canaan_Outbound, 8
-4, weekday, 1794, New Canaan_Outbound, 8
-4, weekday, 1795, New Canaan_Inbound, 7
-4, weekday, 1797, New Canaan_Inbound, 7
-4, weekday, 1798, New Canaan_Outbound, 8
-4, weekday, 1799, New Canaan_Inbound, 7
-5, weekday, 1811, Danbury_Inbound, 9
-5, weekday, 1819, Danbury_Inbound, 9
-5, weekday, 1833, Danbury_Inbound, 9
-5, weekday, 1837, Danbury_Inbound, 9
-5, weekday, 1838, Danbury_Outbound, 10
-5, weekday, 1841, Danbury_Inbound, 9
-5, weekday, 1844, Danbury_Outbound, 10
-5, weekday, 1848, Danbury_Outbound, 10
-5, weekday, 1860, Danbury_Outbound, 10
-5, weekday, 1868, Danbury_Outbound, 10
-5, weekday, 1874, Danbury_Outbound, 10
-5, weekday, 1881, Danbury_Inbound, 9
-5, weekday, 1882, Danbury_Outbound, 10
-5, weekday, 1890, Danbury_Outbound, 10
-5, weekday, 1895, Danbury_Inbound, 9
-5, weekday, 1897, Danbury_Inbound, 9
-6, weekday, 1906, Waterbury_Outbound, 12
-6, weekday, 1916, Waterbury_Outbound, 12
-6, weekday, 1923, Waterbury_Inbound, 11
-6, weekday, 1926, Waterbury_Outbound, 12
-6, weekday, 1934, Waterbury_Outbound, 12
-6, weekday, 1935, Waterbury_Inbound, 11
-6, weekday, 1946, Waterbury_Outbound, 12
-6, weekday, 1951, Waterbury_Inbound, 11
-6, weekday, 1963, Waterbury_Inbound, 11
-6, weekday, 1973, Waterbury_Inbound, 11
-6, weekday, 1974, Waterbury_Outbound, 12
-6, weekday, 1981, Waterbury_Inbound, 11
-6, weekday, 1986, Waterbury_Outbound, 12
-6, weekday, 1991, Waterbury_Inbound, 11
-6, weekday, 1997, Waterbury_Inbound, 11
-2, weekday, 300, Harlem_Inbound, 3
-2, weekday, 306, Harlem_Inbound, 3
-2, weekday, 308, Harlem_Inbound, 3
-2, weekday, 314, Harlem_Inbound, 3
-2, weekday, 316, Harlem_Inbound, 3
-2, weekday, 324, Harlem_Inbound, 3
-2, weekday, 330, Harlem_Inbound, 3
-2, weekday, 334, Harlem_Inbound, 3
-2, weekday, 336, Harlem_Inbound, 3
-2, weekday, 338, Harlem_Inbound, 3
-2, weekday, 351, Harlem_Outbound, 4
-3, fri, 3538, New Haven_Outbound, 6
-2, weekday, 357, Harlem_Outbound, 4
-2, weekday, 359, Harlem_Outbound, 4
-2, weekday, 363, Harlem_Outbound, 4
-2, weekday, 367, Harlem_Outbound, 4
-2, weekday, 371, Harlem_Outbound, 4
-2, weekday, 379, Harlem_Outbound, 4
-1, weekday, 416, Hudson_Inbound, 1
-1, weekday, 426, Hudson_Inbound, 1
-1, weekday, 430, Hudson_Inbound, 1
-1, weekday, 438, Hudson_Inbound, 1
-1, weekday, 440, Hudson_Inbound, 1
-1, weekday, 442, Hudson_Inbound, 1
-1, weekday, 446, Hudson_Inbound, 1
-1, weekday, 457, Hudson_Outbound, 2
-1, weekday, 461, Hudson_Outbound, 2
-1, weekday, 469, Hudson_Outbound, 2
-1, weekday, 483, Hudson_Outbound, 2
-1, weekday, 485, Hudson_Outbound, 2
-2, weekday, 500, Harlem_Inbound, 3
-2, weekday, 501, Harlem_Outbound, 4
-2, weekday, 502, Harlem_Inbound, 3
-2, weekday, 503, Harlem_Outbound, 4
-2, weekday, 504, Harlem_Inbound, 3
-2, weekday, 505, Harlem_Outbound, 4
-2, weekday, 506, Harlem_Inbound, 3
-2, weekday, 508, Harlem_Inbound, 3
-2, weekday, 509, Harlem_Outbound, 4
-2, weekday, 510, Harlem_Inbound, 3
-2, weekday, 511, Harlem_Outbound, 4
-2, weekday, 512, Harlem_Inbound, 3
-2, weekday, 513, Harlem_Outbound, 4
-2, weekday, 514, Harlem_Inbound, 3
-2, weekday, 515, Harlem_Outbound, 4
-2, weekday, 516, Harlem_Inbound, 3
-2, weekday, 517, Harlem_Outbound, 4
-2, weekday, 518, Harlem_Inbound, 3
-2, weekday, 519, Harlem_Outbound, 4
-2, weekday, 520, Harlem_Inbound, 3
-2, weekday, 521, Harlem_Outbound, 4
-2, weekday, 522, Harlem_Inbound, 3
-2, weekday, 523, Harlem_Outbound, 4
-2, weekday, 524, Harlem_Inbound, 3
-2, weekday, 525, Harlem_Outbound, 4
-2, weekday, 526, Harlem_Inbound, 3
-2, weekday, 527, Harlem_Outbound, 4
-2, weekday, 528, Harlem_Inbound, 3
-2, weekday, 529, Harlem_Outbound, 4
-2, weekday, 531, Harlem_Outbound, 4
-2, weekday, 532, Harlem_Inbound, 3
-2, weekday, 533, Harlem_Outbound, 4
-2, weekday, 534, Harlem_Inbound, 3
-2, weekday, 535, Harlem_Outbound, 4
-2, weekday, 536, Harlem_Inbound, 3
-2, weekday, 537, Harlem_Outbound, 4
-2, weekday, 538, Harlem_Inbound, 3
-2, weekday, 539, Harlem_Outbound, 4
-2, weekday, 540, Harlem_Inbound, 3
-2, weekday, 541, Harlem_Outbound, 4
-2, weekday, 542, Harlem_Inbound, 3
-2, weekday, 543, Harlem_Outbound, 4
-2, weekday, 544, Harlem_Inbound, 3
-2, weekday, 545, Harlem_Outbound, 4
-2, weekday, 547, Harlem_Outbound, 4
-2, weekday, 548, Harlem_Inbound, 3
-2, weekday, 549, Harlem_Outbound, 4
-2, weekday, 551, Harlem_Outbound, 4
-2, weekday, 552, Harlem_Inbound, 3
-2, weekday, 553, Harlem_Outbound, 4
-2, weekday, 554, Harlem_Inbound, 3
-2, weekday, 555, Harlem_Outbound, 4
-2, weekday, 556, Harlem_Inbound, 3
-2, weekday, 557, Harlem_Outbound, 4
-2, weekday, 558, Harlem_Inbound, 3
-2, weekday, 559, Harlem_Outbound, 4
-2, weekday, 560, Harlem_Inbound, 3
-2, weekday, 561, Harlem_Outbound, 4
-2, weekday, 562, Harlem_Inbound, 3
-2, weekday, 563, Harlem_Outbound, 4
-2, weekday, 564, Harlem_Inbound, 3
-2, weekday, 565, Harlem_Outbound, 4
-2, weekday, 566, Harlem_Inbound, 3
-2, weekday, 567, Harlem_Outbound, 4
-2, weekday, 568, Harlem_Inbound, 3
-2, weekday, 569, Harlem_Outbound, 4
-2, weekday, 572, Harlem_Inbound, 3
-2, weekday, 573, Harlem_Outbound, 4
-2, weekday, 574, Harlem_Inbound, 3
-2, weekday, 575, Harlem_Outbound, 4
-2, weekday, 576, Harlem_Inbound, 3
-2, weekday, 577, Harlem_Outbound, 4
-2, weekday, 578, Harlem_Inbound, 3
-2, weekday, 579, Harlem_Outbound, 4
-2, weekday, 580, Harlem_Inbound, 3
-2, weekday, 581, Harlem_Outbound, 4
-2, weekday, 582, Harlem_Inbound, 3
-2, weekday, 583, Harlem_Outbound, 4
-2, weekday, 584, Harlem_Inbound, 3
-2, weekday, 585, Harlem_Outbound, 4
-2, weekday, 586, Harlem_Inbound, 3
-2, weekday, 587, Harlem_Outbound, 4
-2, weekday, 588, Harlem_Inbound, 3
-2, weekday, 589, Harlem_Outbound, 4
-2, weekday, 590, Harlem_Inbound, 3
-2, weekday, 591, Harlem_Outbound, 4
-2, weekday, 593, Harlem_Outbound, 4
-2, weekday, 594, Harlem_Inbound, 3
-2, weekday, 595, Harlem_Outbound, 4
-2, weekday, 596, Harlem_Inbound, 3
-2, weekday, 597, Harlem_Outbound, 4
-2, weekday, 598, Harlem_Inbound, 3
-2, weekday, 599, Harlem_Outbound, 4
-2, weekday, 600, Harlem_Inbound, 3
-2, weekday, 601, Harlem_Outbound, 4
-2, weekday, 602, Harlem_Inbound, 3
-2, weekday, 603, Harlem_Outbound, 4
-2, weekday, 604, Harlem_Inbound, 3
-2, weekday, 605, Harlem_Outbound, 4
-2, weekday, 606, Harlem_Inbound, 3
-2, weekday, 607, Harlem_Outbound, 4
-2, weekday, 608, Harlem_Inbound, 3
-2, weekday, 609, Harlem_Outbound, 4
-2, weekday, 610, Harlem_Inbound, 3
-2, weekday, 611, Harlem_Outbound, 4
-2, weekday, 612, Harlem_Inbound, 3
-2, weekday, 613, Harlem_Outbound, 4
-2, weekday, 614, Harlem_Inbound, 3
-2, weekday, 615, Harlem_Outbound, 4
-2, weekday, 616, Harlem_Inbound, 3
-2, weekday, 617, Harlem_Outbound, 4
-2, weekday, 618, Harlem_Inbound, 3
-2, weekday, 619, Harlem_Outbound, 4
-3, weekend, 6201, New Haven_Inbound, 5
-3, sat, 6203, New Haven_Inbound, 5
-2, weekday, 622, Harlem_Inbound, 3
-2, weekday, 623, Harlem_Outbound, 4
-2, weekday, 624, Harlem_Inbound, 3
-2, weekday, 627, Harlem_Outbound, 4
-2, weekday, 628, Harlem_Inbound, 3
-2, weekday, 630, Harlem_Inbound, 3
-3, weekend, 6300, New Haven_Outbound, 6
-3, weekend, 6302, New Haven_Outbound, 6
-3, weekend, 6303, New Haven_Inbound, 5
-3, weekend, 6304, New Haven_Outbound, 6
-3, weekend, 6305, New Haven_Inbound, 5
-3, weekend, 6306, New Haven_Outbound, 6
-3, sat, 6307, New Haven_Inbound, 5
-3, sat, 6308, New Haven_Outbound, 6
-3, weekend, 6309, New Haven_Inbound, 5
-2, weekday, 631, Harlem_Outbound, 4
-3, weekend, 6310, New Haven_Outbound, 6
-3, sat, 6311, New Haven_Inbound, 5
-3, sat, 6312, New Haven_Outbound, 6
-3, weekend, 6313, New Haven_Inbound, 5
-3, weekend, 6314, New Haven_Outbound, 6
-3, sat, 6315, New Haven_Inbound, 5
-3, sat, 6316, New Haven_Outbound, 6
-3, weekend, 6317, New Haven_Inbound, 5
-3, weekend, 6318, New Haven_Outbound, 6
-3, sat, 6319, New Haven_Inbound, 5
-2, weekday, 632, Harlem_Inbound, 3
-3, sat, 6320, New Haven_Outbound, 6
-3, weekend, 6321, New Haven_Inbound, 5
-3, weekend, 6322, New Haven_Outbound, 6
-3, sat, 6323, New Haven_Inbound, 5
-3, sat, 6324, New Haven_Outbound, 6
-3, weekend, 6325, New Haven_Inbound, 5
-3, weekend, 6326, New Haven_Outbound, 6
-3, sat, 6327, New Haven_Inbound, 5
-3, sat, 6328, New Haven_Outbound, 6
-3, weekend, 6329, New Haven_Inbound, 5
-3, weekend, 6330, New Haven_Outbound, 6
-3, sat, 6331, New Haven_Inbound, 5
-3, sat, 6332, New Haven_Outbound, 6
-3, weekend, 6333, New Haven_Inbound, 5
-3, weekend, 6334, New Haven_Outbound, 6
-3, sat, 6335, New Haven_Inbound, 5
-3, sat, 6336, New Haven_Outbound, 6
-3, weekend, 6337, New Haven_Inbound, 5
-3, weekend, 6338, New Haven_Outbound, 6
-3, sat, 6339, New Haven_Inbound, 5
-2, weekday, 634, Harlem_Inbound, 3
-3, sat, 6340, New Haven_Outbound, 6
-3, weekend, 6341, New Haven_Inbound, 5
-3, weekend, 6342, New Haven_Outbound, 6
-3, sat, 6343, New Haven_Inbound, 5
-3, sat, 6344, New Haven_Outbound, 6
-3, weekend, 6345, New Haven_Inbound, 5
-3, weekend, 6346, New Haven_Outbound, 6
-3, sat, 6347, New Haven_Inbound, 5
-3, sat, 6348, New Haven_Outbound, 6
-3, weekend, 6349, New Haven_Inbound, 5
-2, weekday, 635, Harlem_Outbound, 4
-3, weekend, 6350, New Haven_Outbound, 6
-3, sat, 6351, New Haven_Inbound, 5
-3, sat, 6352, New Haven_Outbound, 6
-3, weekend, 6353, New Haven_Inbound, 5
-3, weekend, 6354, New Haven_Outbound, 6
-3, sat, 6355, New Haven_Inbound, 5
-3, sat, 6356, New Haven_Outbound, 6
-3, weekend, 6357, New Haven_Inbound, 5
-3, weekend, 6358, New Haven_Outbound, 6
-2, weekday, 636, Harlem_Inbound, 3
-3, weekend, 6361, New Haven_Inbound, 5
-3, weekend, 6362, New Haven_Outbound, 6
-3, weekend, 6365, New Haven_Inbound, 5
-3, weekend, 6366, New Haven_Outbound, 6
-3, weekend, 6369, New Haven_Inbound, 5
-3, weekend, 6370, New Haven_Outbound, 6
-3, sat, 6372, New Haven_Outbound, 6
-3, weekend, 6373, New Haven_Inbound, 5
-3, weekend, 6374, New Haven_Outbound, 6
-2, weekday, 638, Harlem_Inbound, 3
-2, weekday, 639, Harlem_Outbound, 4
-2, weekday, 640, Harlem_Inbound, 3
-2, weekday, 641, Harlem_Outbound, 4
-2, weekday, 643, Harlem_Outbound, 4
-2, weekday, 644, Harlem_Inbound, 3
-2, weekday, 645, Harlem_Outbound, 4
-2, weekday, 646, Harlem_Inbound, 3
-2, weekday, 648, Harlem_Inbound, 3
-2, weekday, 649, Harlem_Outbound, 4
-2, weekday, 650, Harlem_Inbound, 3
-3, weekend, 6500, New Haven_Outbound, 6
-3, weekend, 6502, New Haven_Outbound, 6
-3, weekend, 6503, New Haven_Inbound, 5
-3, weekend, 6504, New Haven_Outbound, 6
-3, weekend, 6505, New Haven_Inbound, 5
-3, weekend, 6506, New Haven_Outbound, 6
-3, weekend, 6509, New Haven_Inbound, 5
-2, weekday, 651, Harlem_Outbound, 4
-3, weekend, 6510, New Haven_Outbound, 6
-3, sat, 6511, New Haven_Inbound, 5
-3, weekend, 6513, New Haven_Inbound, 5
-3, weekend, 6514, New Haven_Outbound, 6
-3, weekend, 6515, New Haven_Inbound, 5
-3, weekend, 6517, New Haven_Inbound, 5
-3, weekend, 6518, New Haven_Outbound, 6
-3, weekend, 6519, New Haven_Inbound, 5
-2, weekday, 652, Harlem_Inbound, 3
-3, weekend, 6521, New Haven_Inbound, 5
-3, weekend, 6522, New Haven_Outbound, 6
-3, weekend, 6523, New Haven_Inbound, 5
-3, weekend, 6525, New Haven_Inbound, 5
-3, weekend, 6526, New Haven_Outbound, 6
-3, weekend, 6527, New Haven_Inbound, 5
-3, weekend, 6529, New Haven_Inbound, 5
-2, weekday, 653, Harlem_Outbound, 4
-3, weekend, 6530, New Haven_Outbound, 6
-3, weekend, 6533, New Haven_Inbound, 5
-3, weekend, 6534, New Haven_Outbound, 6
-3, weekend, 6537, New Haven_Inbound, 5
-3, weekend, 6538, New Haven_Outbound, 6
-3, weekend, 6541, New Haven_Inbound, 5
-3, weekend, 6542, New Haven_Outbound, 6
-3, weekend, 6544, New Haven_Outbound, 6
-3, weekend, 6545, New Haven_Inbound, 5
-3, weekend, 6546, New Haven_Outbound, 6
-3, weekend, 6547, New Haven_Inbound, 5
-3, weekend, 6548, New Haven_Outbound, 6
-3, weekend, 6549, New Haven_Inbound, 5
-2, weekday, 655, Harlem_Outbound, 4
-3, weekend, 6550, New Haven_Outbound, 6
-3, weekend, 6552, New Haven_Outbound, 6
-3, weekend, 6553, New Haven_Inbound, 5
-3, weekend, 6554, New Haven_Outbound, 6
-3, sat, 6556, New Haven_Outbound, 6
-3, weekend, 6557, New Haven_Inbound, 5
-3, weekend, 6558, New Haven_Outbound, 6
-2, weekday, 656, Harlem_Inbound, 3
-3, weekend, 6561, New Haven_Inbound, 5
-3, weekend, 6562, New Haven_Outbound, 6
-3, weekend, 6565, New Haven_Inbound, 5
-3, weekend, 6566, New Haven_Outbound, 6
-3, weekend, 6569, New Haven_Inbound, 5
-2, weekday, 657, Harlem_Outbound, 4
-3, weekend, 6570, New Haven_Outbound, 6
-3, weekend, 6573, New Haven_Inbound, 5
-3, weekend, 6574, New Haven_Outbound, 6
-2, weekday, 659, Harlem_Outbound, 4
-2, weekday, 660, Harlem_Inbound, 3
-2, weekday, 661, Harlem_Outbound, 4
-2, weekday, 663, Harlem_Outbound, 4
-2, weekday, 664, Harlem_Inbound, 3
-2, weekday, 665, Harlem_Outbound, 4
-2, weekday, 667, Harlem_Outbound, 4
-2, weekday, 668, Harlem_Inbound, 3
-2, weekday, 669, Harlem_Outbound, 4
-2, weekday, 670, Harlem_Inbound, 3
-4, weekend, 6704, New Canaan_Outbound, 8
-4, weekend, 6705, New Canaan_Inbound, 7
-4, weekend, 6706, New Canaan_Outbound, 8
-4, weekend, 6709, New Canaan_Inbound, 7
-2, weekday, 671, Harlem_Outbound, 4
-4, weekend, 6710, New Canaan_Outbound, 8
-4, weekend, 6713, New Canaan_Inbound, 7
-4, weekend, 6714, New Canaan_Outbound, 8
-4, weekend, 6717, New Canaan_Inbound, 7
-4, weekend, 6718, New Canaan_Outbound, 8
-4, weekend, 6721, New Canaan_Inbound, 7
-4, weekend, 6722, New Canaan_Outbound, 8
-4, weekend, 6725, New Canaan_Inbound, 7
-4, weekend, 6726, New Canaan_Outbound, 8
-4, weekend, 6729, New Canaan_Inbound, 7
-2, weekday, 673, Harlem_Outbound, 4
-4, weekend, 6730, New Canaan_Outbound, 8
-4, weekend, 6733, New Canaan_Inbound, 7
-4, weekend, 6734, New Canaan_Outbound, 8
-4, weekend, 6737, New Canaan_Inbound, 7
-4, weekend, 6738, New Canaan_Outbound, 8
-4, weekend, 6741, New Canaan_Inbound, 7
-4, weekend, 6742, New Canaan_Outbound, 8
-4, weekend, 6745, New Canaan_Inbound, 7
-4, weekend, 6746, New Canaan_Outbound, 8
-4, weekend, 6749, New Canaan_Inbound, 7
-2, weekday, 675, Harlem_Outbound, 4
-4, weekend, 6750, New Canaan_Outbound, 8
-4, weekend, 6753, New Canaan_Inbound, 7
-4, weekend, 6754, New Canaan_Outbound, 8
-4, weekend, 6757, New Canaan_Inbound, 7
-4, weekend, 6758, New Canaan_Outbound, 8
-2, weekday, 676, Harlem_Inbound, 3
-4, weekend, 6761, New Canaan_Inbound, 7
-4, weekend, 6762, New Canaan_Outbound, 8
-4, weekend, 6765, New Canaan_Inbound, 7
-4, weekend, 6766, New Canaan_Outbound, 8
-4, weekend, 6769, New Canaan_Inbound, 7
-2, weekday, 677, Harlem_Outbound, 4
-4, weekend, 6770, New Canaan_Outbound, 8
-4, weekend, 6773, New Canaan_Inbound, 7
-4, weekend, 6774, New Canaan_Outbound, 8
-2, weekday, 679, Harlem_Outbound, 4
-2, weekday, 680, Harlem_Inbound, 3
-2, weekday, 681, Harlem_Outbound, 4
-5, weekend, 6810, Danbury_Outbound, 10
-5, weekend, 6813, Danbury_Inbound, 9
-2, weekday, 682, Harlem_Inbound, 3
-5, weekend, 6822, Danbury_Outbound, 10
-5, weekend, 6825, Danbury_Inbound, 9
-5, weekend, 6834, Danbury_Outbound, 10
-5, weekend, 6837, Danbury_Inbound, 9
-2, weekday, 684, Harlem_Inbound, 3
-5, weekend, 6846, Danbury_Outbound, 10
-5, weekend, 6849, Danbury_Inbound, 9
-2, weekday, 685, Harlem_Outbound, 4
-2, weekday, 686, Harlem_Inbound, 3
-5, weekend, 6861, Danbury_Inbound, 9
-5, weekend, 6862, Danbury_Outbound, 10
-2, weekday, 687, Harlem_Outbound, 4
-5, weekend, 6873, Danbury_Inbound, 9
-2, weekday, 688, Harlem_Inbound, 3
-2, weekday, 689, Harlem_Outbound, 4
-2, weekday, 690, Harlem_Inbound, 3
-6, weekend, 6906, Waterbury_Outbound, 12
-2, weekday, 691, Harlem_Outbound, 4
-6, weekend, 6913, Waterbury_Inbound, 11
-6, weekend, 6918, Waterbury_Outbound, 12
-2, weekday, 692, Harlem_Inbound, 3
-6, weekend, 6923, Waterbury_Inbound, 11
-2, weekday, 693, Harlem_Outbound, 4
-6, weekend, 6930, Waterbury_Outbound, 12
-6, weekend, 6937, Waterbury_Inbound, 11
-2, weekday, 694, Harlem_Inbound, 3
-6, weekend, 6948, Waterbury_Outbound, 12
-6, weekend, 6949, Waterbury_Inbound, 11
-2, weekday, 695, Harlem_Outbound, 4
-2, weekday, 696, Harlem_Inbound, 3
-6, weekend, 6962, Waterbury_Outbound, 12
-6, weekend, 6965, Waterbury_Inbound, 11
-2, weekday, 698, Harlem_Inbound, 3
-2, weekday, 699, Harlem_Outbound, 4
-1, weekday, 700, Hudson_Inbound, 1
-1, weekday, 701, Hudson_Outbound, 2
-1, weekday, 702, Hudson_Inbound, 1
-1, weekday, 703, Hudson_Outbound, 2
-1, weekday, 704, Hudson_Inbound, 1
-1, weekday, 705, Hudson_Outbound, 2
-1, weekday, 706, Hudson_Inbound, 1
-1, weekday, 707, Hudson_Outbound, 2
-1, weekday, 708, Hudson_Inbound, 1
-1, weekday, 709, Hudson_Outbound, 2
-1, weekday, 710, Hudson_Inbound, 1
-1, weekday, 711, Hudson_Outbound, 2
-1, weekday, 712, Hudson_Inbound, 1
-1, weekday, 713, Hudson_Outbound, 2
-1, weekday, 714, Hudson_Inbound, 1
-1, weekday, 715, Hudson_Outbound, 2
-1, weekday, 716, Hudson_Inbound, 1
-1, weekday, 718, Hudson_Inbound, 1
-1, weekday, 719, Hudson_Outbound, 2
-1, weekday, 720, Hudson_Inbound, 1
-1, weekday, 722, Hudson_Inbound, 1
-1, weekday, 723, Hudson_Outbound, 2
-1, weekday, 724, Hudson_Inbound, 1
-1, weekday, 727, Hudson_Outbound, 2
-1, weekday, 728, Hudson_Inbound, 1
-1, weekday, 730, Hudson_Inbound, 1
-1, weekday, 731, Hudson_Outbound, 2
-1, weekday, 732, Hudson_Inbound, 1
-1, weekday, 733, Hudson_Outbound, 2
-1, weekday, 734, Hudson_Inbound, 1
-1, weekday, 735, Hudson_Outbound, 2
-1, weekday, 736, Hudson_Inbound, 1
-1, weekday, 737, Hudson_Outbound, 2
-1, weekday, 738, Hudson_Inbound, 1
-1, weekday, 739, Hudson_Outbound, 2
-1, weekday, 740, Hudson_Inbound, 1
-1, weekday, 742, Hudson_Inbound, 1
-1, weekday, 743, Hudson_Outbound, 2
-1, weekday, 744, Hudson_Inbound, 1
-1, weekday, 745, Hudson_Outbound, 2
-1, weekday, 746, Hudson_Inbound, 1
-1, weekday, 747, Hudson_Outbound, 2
-1, weekday, 748, Hudson_Inbound, 1
-1, weekday, 749, Hudson_Outbound, 2
-1, weekday, 750, Hudson_Inbound, 1
-1, weekday, 751, Hudson_Outbound, 2
-1, weekday, 753, Hudson_Outbound, 2
-1, weekday, 754, Hudson_Inbound, 1
-1, weekday, 755, Hudson_Outbound, 2
-1, weekday, 757, Hudson_Outbound, 2
-1, weekday, 758, Hudson_Inbound, 1
-1, weekday, 759, Hudson_Outbound, 2
-1, weekday, 761, Hudson_Outbound, 2
-1, weekday, 762, Hudson_Inbound, 1
-1, weekday, 763, Hudson_Outbound, 2
-1, weekday, 766, Hudson_Inbound, 1
-1, weekday, 767, Hudson_Outbound, 2
-1, weekday, 769, Hudson_Outbound, 2
-1, weekday, 770, Hudson_Inbound, 1
-1, weekday, 771, Hudson_Outbound, 2
-1, weekday, 772, Hudson_Inbound, 1
-1, weekday, 773, Hudson_Outbound, 2
-1, weekday, 774, Hudson_Inbound, 1
-1, weekday, 775, Hudson_Outbound, 2
-1, weekday, 776, Hudson_Inbound, 1
-1, weekday, 777, Hudson_Outbound, 2
-1, weekday, 778, Hudson_Inbound, 1
-1, weekday, 779, Hudson_Outbound, 2
-1, weekday, 781, Hudson_Outbound, 2
-1, weekday, 782, Hudson_Inbound, 1
-1, weekday, 783, Hudson_Outbound, 2
-1, weekday, 784, Hudson_Inbound, 1
-1, weekday, 787, Hudson_Outbound, 2
-1, weekday, 788, Hudson_Inbound, 1
-1, weekday, 789, Hudson_Outbound, 2
-1, weekday, 790, Hudson_Inbound, 1
-1, weekday, 791, Hudson_Outbound, 2
-1, weekday, 792, Hudson_Inbound, 1
-1, weekday, 794, Hudson_Inbound, 1
-1, weekday, 795, Hudson_Outbound, 2
-1, weekday, 796, Hudson_Inbound, 1
-1, weekday, 797, Hudson_Outbound, 2
-1, weekday, 799, Hudson_Outbound, 2
-1, weekday, 801, Hudson_Outbound, 2
-1, weekday, 802, Hudson_Inbound, 1
-1, weekday, 805, Hudson_Outbound, 2
-1, weekday, 806, Hudson_Inbound, 1
-1, weekday, 807, Hudson_Outbound, 2
-1, weekday, 809, Hudson_Outbound, 2
-1, weekday, 810, Hudson_Inbound, 1
-1, weekday, 813, Hudson_Outbound, 2
-1, weekday, 814, Hudson_Inbound, 1
-1, weekday, 816, Hudson_Inbound, 1
-1, weekday, 817, Hudson_Outbound, 2
-1, weekday, 818, Hudson_Inbound, 1
-1, weekday, 821, Hudson_Outbound, 2
-1, weekday, 825, Hudson_Outbound, 2
-1, weekday, 829, Hudson_Outbound, 2
-1, weekday, 830, Hudson_Inbound, 1
-1, weekday, 831, Hudson_Outbound, 2
-1, weekday, 832, Hudson_Inbound, 1
-1, weekday, 835, Hudson_Outbound, 2
-1, weekday, 836, Hudson_Inbound, 1
-1, weekday, 837, Hudson_Outbound, 2
-1, weekday, 838, Hudson_Inbound, 1
-1, weekday, 842, Hudson_Inbound, 1
-1, weekday, 843, Hudson_Outbound, 2
-1, weekday, 844, Hudson_Inbound, 1
-1, weekday, 846, Hudson_Inbound, 1
-1, weekday, 847, Hudson_Outbound, 2
-1, weekday, 848, Hudson_Inbound, 1
-1, weekday, 849, Hudson_Outbound, 2
-1, weekday, 851, Hudson_Outbound, 2
-1, weekday, 852, Hudson_Inbound, 1
-1, weekday, 853, Hudson_Outbound, 2
-1, weekday, 855, Hudson_Outbound, 2
-1, weekday, 856, Hudson_Inbound, 1
-1, weekday, 857, Hudson_Outbound, 2
-1, weekday, 860, Hudson_Inbound, 1
-1, weekday, 861, Hudson_Outbound, 2
-1, weekday, 864, Hudson_Inbound, 1
-1, weekday, 868, Hudson_Inbound, 1
-1, weekend, 8700, Hudson_Inbound, 1
-1, weekend, 8701, Hudson_Outbound, 2
-1, weekend, 8702, Hudson_Inbound, 1
-1, weekend, 8705, Hudson_Outbound, 2
-1, weekend, 8706, Hudson_Inbound, 1
-1, weekend, 8707, Hudson_Outbound, 2
-1, weekend, 8709, Hudson_Outbound, 2
-1, weekday, 871, Hudson_Outbound, 2
-1, weekend, 8710, Hudson_Inbound, 1
-1, weekend, 8711, Hudson_Outbound, 2
-1, weekend, 8713, Hudson_Outbound, 2
-1, weekend, 8714, Hudson_Inbound, 1
-1, weekend, 8715, Hudson_Outbound, 2
-1, weekend, 8716, Hudson_Inbound, 1
-1, weekend, 8717, Hudson_Outbound, 2
-1, weekend, 8718, Hudson_Inbound, 1
-1, weekend, 8719, Hudson_Outbound, 2
-1, weekday, 872, Hudson_Inbound, 1
-1, weekend, 8720, Hudson_Inbound, 1
-1, weekend, 8721, Hudson_Outbound, 2
-1, weekend, 8722, Hudson_Inbound, 1
-1, weekend, 8723, Hudson_Outbound, 2
-1, weekend, 8724, Hudson_Inbound, 1
-1, weekend, 8726, Hudson_Inbound, 1
-1, weekend, 8727, Hudson_Outbound, 2
-1, weekend, 8728, Hudson_Inbound, 1
-1, weekend, 8730, Hudson_Inbound, 1
-1, weekend, 8731, Hudson_Outbound, 2
-1, weekend, 8734, Hudson_Inbound, 1
-1, weekend, 8735, Hudson_Outbound, 2
-1, weekend, 8738, Hudson_Inbound, 1
-1, weekend, 8739, Hudson_Outbound, 2
-1, weekend, 8741, Hudson_Outbound, 2
-1, weekend, 8742, Hudson_Inbound, 1
-1, weekend, 8743, Hudson_Outbound, 2
-1, weekend, 8745, Hudson_Outbound, 2
-1, weekend, 8746, Hudson_Inbound, 1
-1, weekend, 8747, Hudson_Outbound, 2
-1, weekend, 8748, Hudson_Inbound, 1
-1, weekend, 8749, Hudson_Outbound, 2
-1, weekend, 8750, Hudson_Inbound, 1
-1, weekend, 8751, Hudson_Outbound, 2
-1, weekend, 8752, Hudson_Inbound, 1
-1, weekend, 8753, Hudson_Outbound, 2
-1, weekend, 8754, Hudson_Inbound, 1
-1, weekend, 8755, Hudson_Outbound, 2
-1, weekend, 8756, Hudson_Inbound, 1
-1, weekend, 8757, Hudson_Outbound, 2
-1, weekend, 8758, Hudson_Inbound, 1
-1, weekend, 8759, Hudson_Outbound, 2
-1, weekday, 876, Hudson_Inbound, 1
-1, weekend, 8762, Hudson_Inbound, 1
-1, weekend, 8763, Hudson_Outbound, 2
-1, weekend, 8766, Hudson_Inbound, 1
-1, weekend, 8767, Hudson_Outbound, 2
-1, weekend, 8769, Hudson_Outbound, 2
-1, weekend, 8770, Hudson_Inbound, 1
-1, weekend, 8771, Hudson_Outbound, 2
-1, weekend, 8772, Hudson_Inbound, 1
-1, weekend, 8774, Hudson_Inbound, 1
-1, weekend, 8775, Hudson_Outbound, 2
-1, weekend, 8779, Hudson_Outbound, 2
-1, weekday, 878, Hudson_Inbound, 1
-1, weekday, 879, Hudson_Outbound, 2
-1, weekday, 880, Hudson_Inbound, 1
-1, weekend, 8801, Hudson_Outbound, 2
-1, weekend, 8802, Hudson_Inbound, 1
-1, weekend, 8804, Hudson_Inbound, 1
-1, weekend, 8805, Hudson_Outbound, 2
-1, weekend, 8807, Hudson_Outbound, 2
-1, weekend, 8808, Hudson_Inbound, 1
-1, weekday, 881, Hudson_Outbound, 2
-1, weekend, 8811, Hudson_Outbound, 2
-1, weekend, 8812, Hudson_Inbound, 1
-1, weekend, 8815, Hudson_Outbound, 2
-1, weekend, 8816, Hudson_Inbound, 1
-1, sat, 8818, Hudson_Inbound, 1
-1, weekend, 8819, Hudson_Outbound, 2
-1, weekend, 8820, Hudson_Inbound, 1
-1, sat, 8822, Hudson_Inbound, 1
-1, weekend, 8824, Hudson_Inbound, 1
-1, weekend, 8825, Hudson_Outbound, 2
-1, weekend, 8828, Hudson_Inbound, 1
-1, weekend, 8829, Hudson_Outbound, 2
-1, weekday, 883, Hudson_Outbound, 2
-1, weekend, 8832, Hudson_Inbound, 1
-1, weekend, 8833, Hudson_Outbound, 2
-1, weekend, 8836, Hudson_Inbound, 1
-1, weekend, 8837, Hudson_Outbound, 2
-1, weekend, 8839, Hudson_Outbound, 2
-1, weekday, 884, Hudson_Inbound, 1
-1, weekend, 8840, Hudson_Inbound, 1
-1, weekend, 8843, Hudson_Outbound, 2
-1, weekend, 8844, Hudson_Inbound, 1
-1, weekend, 8847, Hudson_Outbound, 2
-1, weekend, 8848, Hudson_Inbound, 1
-1, sat, 8849, Hudson_Outbound, 2
-1, weekend, 8851, Hudson_Outbound, 2
-1, weekend, 8852, Hudson_Inbound, 1
-1, weekend, 8855, Hudson_Outbound, 2
-1, weekend, 8856, Hudson_Inbound, 1
-1, weekend, 8860, Hudson_Inbound, 1
-1, weekend, 8861, Hudson_Outbound, 2
-1, weekend, 8864, Hudson_Inbound, 1
-1, weekend, 8865, Hudson_Outbound, 2
-1, weekend, 8868, Hudson_Inbound, 1
-1, weekend, 8869, Hudson_Outbound, 2
-1, weekday, 887, Hudson_Outbound, 2
-1, weekend, 8872, Hudson_Inbound, 1
-1, weekend, 8873, Hudson_Outbound, 2
-1, weekend, 8879, Hudson_Outbound, 2
-1, weekday, 888, Hudson_Inbound, 1
-1, weekday, 890, Hudson_Inbound, 1
-1, weekday, 891, Hudson_Outbound, 2
-1, weekday, 892, Hudson_Inbound, 1
-1, weekday, 893, Hudson_Outbound, 2
-1, weekday, 894, Hudson_Inbound, 1
-1, weekday, 895, Hudson_Outbound, 2
-1, weekday, 899, Hudson_Outbound, 2
-2, weekday, 902, Harlem_Inbound, 3
-2, weekday, 905, Harlem_Outbound, 4
-2, weekday, 910, Harlem_Inbound, 3
-2, weekday, 915, Harlem_Outbound, 4
-2, weekday, 918, Harlem_Inbound, 3
-2, weekday, 923, Harlem_Outbound, 4
-2, weekday, 924, Harlem_Inbound, 3
-2, weekday, 931, Harlem_Outbound, 4
-2, weekday, 932, Harlem_Inbound, 3
-2, weekday, 939, Harlem_Outbound, 4
-2, weekday, 944, Harlem_Inbound, 3
-2, weekday, 949, Harlem_Outbound, 4
-2, sat, 9500, Harlem_Inbound, 3
-2, weekend, 9501, Harlem_Outbound, 4
-2, weekend, 9502, Harlem_Inbound, 3
-2, weekend, 9503, Harlem_Outbound, 4
-2, sat, 9504, Harlem_Inbound, 3
-2, weekend, 9506, Harlem_Inbound, 3
-2, sat, 9508, Harlem_Inbound, 3
-2, sat, 9509, Harlem_Outbound, 4
-2, weekend, 9510, Harlem_Inbound, 3
-2, weekend, 9511, Harlem_Outbound, 4
-2, sat, 9512, Harlem_Inbound, 3
-2, sat, 9513, Harlem_Outbound, 4
-2, weekend, 9514, Harlem_Inbound, 3
-2, weekend, 9515, Harlem_Outbound, 4
-2, sat, 9516, Harlem_Inbound, 3
-2, sat, 9517, Harlem_Outbound, 4
-2, weekend, 9518, Harlem_Inbound, 3
-2, weekend, 9519, Harlem_Outbound, 4
-2, weekday, 952, Harlem_Inbound, 3
-2, sat, 9520, Harlem_Inbound, 3
-2, sat, 9521, Harlem_Outbound, 4
-2, weekend, 9522, Harlem_Inbound, 3
-2, weekend, 9523, Harlem_Outbound, 4
-2, sat, 9524, Harlem_Inbound, 3
-2, sat, 9525, Harlem_Outbound, 4
-2, weekend, 9526, Harlem_Inbound, 3
-2, weekend, 9527, Harlem_Outbound, 4
-2, sat, 9528, Harlem_Inbound, 3
-2, sat, 9529, Harlem_Outbound, 4
-2, weekday, 953, Harlem_Outbound, 4
-2, weekend, 9530, Harlem_Inbound, 3
-2, weekend, 9531, Harlem_Outbound, 4
-2, sat, 9532, Harlem_Inbound, 3
-2, sat, 9533, Harlem_Outbound, 4
-2, weekend, 9534, Harlem_Inbound, 3
-2, weekend, 9535, Harlem_Outbound, 4
-2, sat, 9536, Harlem_Inbound, 3
-2, sat, 9537, Harlem_Outbound, 4
-2, weekend, 9538, Harlem_Inbound, 3
-2, weekend, 9539, Harlem_Outbound, 4
-2, sat, 9540, Harlem_Inbound, 3
-2, sat, 9541, Harlem_Outbound, 4
-2, weekend, 9542, Harlem_Inbound, 3
-2, weekend, 9543, Harlem_Outbound, 4
-2, sat, 9544, Harlem_Inbound, 3
-2, sat, 9545, Harlem_Outbound, 4
-2, weekend, 9546, Harlem_Inbound, 3
-2, weekend, 9547, Harlem_Outbound, 4
-2, sat, 9548, Harlem_Inbound, 3
-2, sat, 9549, Harlem_Outbound, 4
-2, weekend, 9550, Harlem_Inbound, 3
-2, weekend, 9551, Harlem_Outbound, 4
-2, sat, 9552, Harlem_Inbound, 3
-2, sat, 9553, Harlem_Outbound, 4
-2, weekend, 9554, Harlem_Inbound, 3
-2, weekend, 9555, Harlem_Outbound, 4
-2, sat, 9557, Harlem_Outbound, 4
-2, weekend, 9558, Harlem_Inbound, 3
-2, weekend, 9559, Harlem_Outbound, 4
-2, weekend, 9562, Harlem_Inbound, 3
-2, weekend, 9563, Harlem_Outbound, 4
-2, weekend, 9566, Harlem_Inbound, 3
-2, weekend, 9567, Harlem_Outbound, 4
-2, weekend, 9570, Harlem_Inbound, 3
-2, weekend, 9571, Harlem_Outbound, 4
-2, sat, 9573, Harlem_Outbound, 4
-2, weekend, 9574, Harlem_Inbound, 3
-2, weekend, 9575, Harlem_Outbound, 4
-2, weekday, 959, Harlem_Outbound, 4
-2, weekday, 960, Harlem_Inbound, 3
-2, weekend, 9600, Harlem_Inbound, 3
-2, weekend, 9601, Harlem_Outbound, 4
-2, weekend, 9602, Harlem_Inbound, 3
-2, weekend, 9603, Harlem_Outbound, 4
-2, weekend, 9605, Harlem_Outbound, 4
-2, weekend, 9606, Harlem_Inbound, 3
-2, weekend, 9607, Harlem_Outbound, 4
-2, weekend, 9610, Harlem_Inbound, 3
-2, weekend, 9611, Harlem_Outbound, 4
-2, weekend, 9614, Harlem_Inbound, 3
-2, weekend, 9615, Harlem_Outbound, 4
-2, weekend, 9618, Harlem_Inbound, 3
-2, weekend, 9619, Harlem_Outbound, 4
-2, sat, 9620, Harlem_Inbound, 3
-2, weekend, 9622, Harlem_Inbound, 3
-2, weekend, 9623, Harlem_Outbound, 4
-2, sat, 9624, Harlem_Inbound, 3
-2, weekend, 9626, Harlem_Inbound, 3
-2, weekend, 9627, Harlem_Outbound, 4
-2, sat, 9628, Harlem_Inbound, 3
-2, weekend, 9630, Harlem_Inbound, 3
-2, weekend, 9631, Harlem_Outbound, 4
-2, weekend, 9634, Harlem_Inbound, 3
-2, weekend, 9635, Harlem_Outbound, 4
-2, weekend, 9638, Harlem_Inbound, 3
-2, weekend, 9639, Harlem_Outbound, 4
-2, weekend, 9642, Harlem_Inbound, 3
-2, weekend, 9643, Harlem_Outbound, 4
-2, sat, 9645, Harlem_Outbound, 4
-2, weekend, 9646, Harlem_Inbound, 3
-2, weekend, 9647, Harlem_Outbound, 4
-2, weekend, 9650, Harlem_Inbound, 3
-2, weekend, 9651, Harlem_Outbound, 4
-2, sat, 9653, Harlem_Outbound, 4
-2, weekend, 9654, Harlem_Inbound, 3
-2, weekend, 9655, Harlem_Outbound, 4
-2, sat, 9657, Harlem_Outbound, 4
-2, weekend, 9658, Harlem_Inbound, 3
-2, weekend, 9659, Harlem_Outbound, 4
-2, weekend, 9662, Harlem_Inbound, 3
-2, weekend, 9663, Harlem_Outbound, 4
-2, weekend, 9666, Harlem_Inbound, 3
-2, weekend, 9667, Harlem_Outbound, 4
-2, weekend, 9669, Harlem_Outbound, 4
-2, weekday, 967, Harlem_Outbound, 4
-2, weekend, 9670, Harlem_Inbound, 3
-2, weekend, 9671, Harlem_Outbound, 4
-2, weekend, 9674, Harlem_Inbound, 3
-2, weekend, 9675, Harlem_Outbound, 4
-2, weekend, 9676, Harlem_Inbound, 3
-2, weekday, 968, Harlem_Inbound, 3
-2, weekday, 975, Harlem_Outbound, 4
-2, weekday, 981, Harlem_Outbound, 4
-2, weekday, 982, Harlem_Inbound, 3
-2, weekday, 987, Harlem_Outbound, 4
-2, weekday, 990, Harlem_Inbound, 3
-2, weekday, 991, Harlem_Outbound, 4
-2, weekend, 9910, Harlem_Inbound, 3
-2, weekend, 9911, Harlem_Outbound, 4
-2, sat, 9916, Harlem_Inbound, 3
-2, sun, 9918, Harlem_Inbound, 3
-2, weekend, 9919, Harlem_Outbound, 4
-2, weekend, 9926, Harlem_Inbound, 3
-2, weekend, 9927, Harlem_Outbound, 4
-2, weekend, 9934, Harlem_Inbound, 3
-2, weekend, 9935, Harlem_Outbound, 4
-2, weekend, 9942, Harlem_Inbound, 3
-2, weekend, 9943, Harlem_Outbound, 4
-2, weekend, 9949, Harlem_Outbound, 4
-2, weekend, 9950, Harlem_Inbound, 3
-2, sat, 9958, Harlem_Inbound, 3
-2, weekend, 9959, Harlem_Outbound, 4
-2, weekday, 996, Harlem_Inbound, 3
-2, sun, 9960, Harlem_Inbound, 3
-2, weekend, 9966, Harlem_Inbound, 3
-2, weekend, 9967, Harlem_Outbound, 4
-2, weekend, 9975, Harlem_Outbound, 4
-2, weekend, 9976, Harlem_Inbound, 3
-2, weekday, 998, Harlem_Inbound, 3
-2, weekday, 999, Harlem_Outbound, 4
+route_id,service_id,trip_id,trip_headsign,trip_short_name,direction_id,block_id,shape_id,wheelchair_boarding
+2,1,2726067,Grand Central Terminal - Southeast,9611,0,,14,1
+2,1,2726069,Grand Central Terminal - Southeast,9615,0,,14,1
+2,1,2726071,Grand Central Terminal - Southeast,9619,0,,14,1
+2,1,2726074,Grand Central Terminal - Southeast,9623,0,,14,1
+2,1,2726077,Grand Central Terminal - Southeast,9627,0,,14,1
+2,1,2726080,Grand Central Terminal - Southeast,9631,0,,14,1
+2,1,2726082,Grand Central Terminal - Southeast,9635,0,,14,1
+2,1,2726084,Grand Central Terminal - Southeast,9639,0,,14,1
+2,1,2726086,Grand Central Terminal - Southeast,9643,0,,14,1
+2,2,2726087,Grand Central Terminal - Southeast,9645,0,,14,1
+2,1,2726089,Grand Central Terminal - Southeast,9647,0,,14,1
+2,1,2726091,Grand Central Terminal - Southeast,9651,0,,14,1
+2,2,2726092,Grand Central Terminal - Southeast,9653,0,,14,1
+2,1,2726094,Grand Central Terminal - Southeast,9655,0,,14,1
+2,1,2726095,Grand Central Terminal - North White Plains,9527,0,,14,1
+2,2,2726097,Grand Central Terminal - North White Plains,9529,0,,14,1
+2,1,2726099,Grand Central Terminal - North White Plains,9531,0,,14,1
+2,2,2726101,Grand Central Terminal - North White Plains,9533,0,,14,1
+2,1,2726103,Grand Central Terminal - North White Plains,9535,0,,14,1
+2,2,2726105,Grand Central Terminal - North White Plains,9537,0,,14,1
+2,1,2726107,Grand Central Terminal - North White Plains,9539,0,,14,1
+2,2,2726108,Grand Central Terminal - North White Plains,9557,0,,14,1
+2,1,2726110,Grand Central Terminal - North White Plains,9559,0,,14,1
+2,1,2726112,Grand Central Terminal - North White Plains,9563,0,,14,1
+2,1,2726114,Grand Central Terminal - North White Plains,9567,0,,14,1
+2,1,2726116,Grand Central Terminal - North White Plains,9571,0,,14,1
+2,2,2726117,Grand Central Terminal - North White Plains,9573,0,,14,1
+2,1,2726119,Grand Central Terminal - North White Plains,9575,0,,14,1
+2,1,2726121,Grand Central Terminal - Southeast,9601,0,,14,1
+2,2,2726122,Grand Central Terminal - North White Plains,9513,0,,14,1
+2,1,2726124,Grand Central Terminal - North White Plains,9515,0,,14,1
+2,2,2726126,Grand Central Terminal - North White Plains,9517,0,,14,1
+2,1,2726128,Grand Central Terminal - North White Plains,9519,0,,14,1
+2,2,2726130,Grand Central Terminal - North White Plains,9521,0,,14,1
+2,1,2726132,Grand Central Terminal - North White Plains,9523,0,,14,1
+2,2,2726134,Grand Central Terminal - North White Plains,9525,0,,14,1
+2,2,2726152,Grand Central Terminal - North White Plains,9541,0,,14,1
+2,1,2726154,Grand Central Terminal - North White Plains,9543,0,,14,1
+2,2,2726156,Grand Central Terminal - North White Plains,9545,0,,14,1
+2,1,2726158,Grand Central Terminal - North White Plains,9547,0,,14,1
+2,2,2726160,Grand Central Terminal - North White Plains,9549,0,,14,1
+2,1,2726162,Grand Central Terminal - North White Plains,9551,0,,14,1
+2,1,2726169,Grand Central Terminal - North White Plains,9501,0,,14,1
+2,1,2726171,Grand Central Terminal - North White Plains,9503,0,,14,1
+2,2,2726400,Grand Central Terminal - North White Plains,9553,0,,14,1
+2,1,2726402,Grand Central Terminal - North White Plains,9555,0,,14,1
+2,1,2726403,Grand Central Terminal - North White Plains,9511,0,,14,1
+2,2,2726409,Grand Central Terminal - North White Plains,9509,0,,14,1
+2,1,2726412,Grand Central Terminal - Southeast,9603,0,,14,1
+2,1,2726413,Grand Central Terminal - Southeast,9605,0,,14,1
+2,1,2726415,Grand Central Terminal - Southeast,9607,0,,14,1
+2,2,2726445,Grand Central Terminal - Southeast,9657,0,,14,1
+2,1,2726447,Grand Central Terminal - Southeast,9659,0,,14,1
+2,1,2726449,Grand Central Terminal - Southeast,9663,0,,14,1
+2,1,2726451,Grand Central Terminal - Southeast,9667,0,,14,1
+2,1,2726452,Grand Central Terminal - Southeast,9669,0,,14,1
+2,1,2726454,Grand Central Terminal - Southeast,9671,0,,14,1
+2,1,2726456,Grand Central Terminal - Southeast,9675,0,,14,1
+1,1,2726249,Grand Central Terminal - Croton Harmon,8701,0,,12,1
+1,1,2726251,Grand Central Terminal - Croton Harmon,8705,0,,12,1
+1,1,2726253,Grand Central Terminal - Croton Harmon,8707,0,,12,1
+1,1,2726254,Grand Central Terminal - Croton Harmon,8709,0,,12,1
+1,1,2726326,Grand Central Terminal - Croton Harmon,8711,0,,12,1
+1,1,2726327,Grand Central Terminal - Croton Harmon,8713,0,,12,1
+1,1,2726329,Grand Central Terminal - Croton Harmon,8715,0,,12,1
+1,1,2726333,Grand Central Terminal - Croton Harmon,8719,0,,12,1
+1,1,2726335,Grand Central Terminal - Croton Harmon,8721,0,,12,1
+1,1,2726337,Grand Central Terminal - Croton Harmon,8723,0,,12,1
+1,1,2726341,Grand Central Terminal - Croton Harmon,8749,0,,12,1
+1,1,2726343,Grand Central Terminal - Croton Harmon,8751,0,,12,1
+1,1,2726347,Grand Central Terminal - Croton Harmon,8755,0,,12,1
+1,1,2726351,Grand Central Terminal - Croton Harmon,8759,0,,12,1
+1,1,2726353,Grand Central Terminal - Croton Harmon,8763,0,,12,1
+1,1,2726431,Grand Central Terminal - Croton Harmon,8727,0,,12,1
+1,1,2726434,Grand Central Terminal - Croton Harmon,8731,0,,12,1
+1,1,2726436,Grand Central Terminal - Croton Harmon,8735,0,,12,1
+1,1,2726438,Grand Central Terminal - Croton Harmon,8739,0,,12,1
+1,1,2726441,Grand Central Terminal - Croton Harmon,8743,0,,12,1
+1,1,2726444,Grand Central Terminal - Croton Harmon,8747,0,,12,1
+1,1,2726478,Grand Central Terminal - Croton Harmon,8767,0,,12,1
+1,1,2726481,Grand Central Terminal - Croton Harmon,8771,0,,12,1
+1,1,2726484,Grand Central Terminal - Croton Harmon,8775,0,,12,1
+1,1,2726485,Grand Central Terminal - Croton Harmon,8779,0,,12,1
+2,1,2726068,Southeast - Grand Central Terminal,9614,1,,3,1
+2,1,2726070,Southeast - Grand Central Terminal,9618,1,,3,1
+2,2,2726072,Southeast - Grand Central Terminal,9620,1,,3,1
+2,1,2726073,Southeast - Grand Central Terminal,9622,1,,3,1
+2,2,2726075,Southeast - Grand Central Terminal,9624,1,,3,1
+2,1,2726076,Southeast - Grand Central Terminal,9626,1,,3,1
+2,2,2726078,Southeast - Grand Central Terminal,9628,1,,3,1
+2,1,2726079,Southeast - Grand Central Terminal,9630,1,,3,1
+2,1,2726081,Southeast - Grand Central Terminal,9634,1,,3,1
+2,1,2726083,Southeast - Grand Central Terminal,9638,1,,3,1
+2,1,2726085,Southeast - Grand Central Terminal,9642,1,,3,1
+2,1,2726088,Southeast - Grand Central Terminal,9646,1,,3,1
+2,1,2726090,Southeast - Grand Central Terminal,9650,1,,3,1
+2,1,2726093,Southeast - Grand Central Terminal,9654,1,,3,1
+2,1,2726120,Southeast - Grand Central Terminal,9600,1,,3,1
+2,1,2726411,Southeast - Grand Central Terminal,9602,1,,3,1
+2,1,2726414,Southeast - Grand Central Terminal,9606,1,,3,1
+2,1,2726416,Southeast - Grand Central Terminal,9610,1,,3,1
+2,1,2726446,Southeast - Grand Central Terminal,9658,1,,3,1
+2,1,2726448,Southeast - Grand Central Terminal,9662,1,,3,1
+2,1,2726450,Southeast - Grand Central Terminal,9666,1,,3,1
+2,1,2726453,Southeast - Grand Central Terminal,9670,1,,3,1
+2,1,2726455,Southeast - Grand Central Terminal,9674,1,,3,1
+2,1,2726457,Southeast - Grand Central Terminal,9676,1,,3,1
+2,2,2726096,North White Plains - Grand Central Terminal,9528,1,,3,1
+2,1,2726098,North White Plains - Grand Central Terminal,9530,1,,3,1
+2,2,2726100,North White Plains - Grand Central Terminal,9532,1,,3,1
+2,1,2726102,North White Plains - Grand Central Terminal,9534,1,,3,1
+2,2,2726104,North White Plains - Grand Central Terminal,9536,1,,3,1
+2,1,2726106,North White Plains - Grand Central Terminal,9538,1,,3,1
+2,1,2726109,North White Plains - Grand Central Terminal,9558,1,,3,1
+2,1,2726111,North White Plains - Grand Central Terminal,9562,1,,3,1
+2,1,2726113,North White Plains - Grand Central Terminal,9566,1,,3,1
+2,1,2726115,North White Plains - Grand Central Terminal,9570,1,,3,1
+2,1,2726118,North White Plains - Grand Central Terminal,9574,1,,3,1
+2,1,2726123,North White Plains - Grand Central Terminal,9514,1,,3,1
+2,2,2726125,North White Plains - Grand Central Terminal,9516,1,,3,1
+2,1,2726127,North White Plains - Grand Central Terminal,9518,1,,3,1
+2,2,2726129,North White Plains - Grand Central Terminal,9520,1,,3,1
+2,1,2726131,North White Plains - Grand Central Terminal,9522,1,,3,1
+2,2,2726133,North White Plains - Grand Central Terminal,9524,1,,3,1
+2,1,2726135,North White Plains - Grand Central Terminal,9526,1,,3,1
+2,2,2726151,North White Plains - Grand Central Terminal,9540,1,,3,1
+2,1,2726153,North White Plains - Grand Central Terminal,9542,1,,3,1
+2,2,2726155,North White Plains - Grand Central Terminal,9544,1,,3,1
+2,1,2726157,North White Plains - Grand Central Terminal,9546,1,,3,1
+2,2,2726159,North White Plains - Grand Central Terminal,9548,1,,3,1
+2,1,2726161,North White Plains - Grand Central Terminal,9550,1,,3,1
+2,2,2726163,North White Plains - Grand Central Terminal,9552,1,,3,1
+2,2,2726168,North White Plains - Grand Central Terminal,9500,1,,3,1
+2,1,2726170,North White Plains - Grand Central Terminal,9502,1,,3,1
+2,2,2726172,North White Plains - Grand Central Terminal,9504,1,,3,1
+2,1,2726173,North White Plains - Grand Central Terminal,9506,1,,3,1
+2,1,2726401,North White Plains - Grand Central Terminal,9554,1,,3,1
+2,2,2726404,North White Plains - Grand Central Terminal,9512,1,,3,1
+2,2,2726408,North White Plains - Grand Central Terminal,9508,1,,3,1
+2,1,2726410,North White Plains - Grand Central Terminal,9510,1,,3,1
+1,1,2726248,Croton Harmon - Grand Central Terminal,8700,1,,1,1
+1,1,2726250,Croton Harmon - Grand Central Terminal,8702,1,,1,1
+1,1,2726252,Croton Harmon - Grand Central Terminal,8706,1,,1,1
+1,1,2726255,Croton Harmon - Grand Central Terminal,8710,1,,1,1
+1,1,2726328,Croton Harmon - Grand Central Terminal,8714,1,,1,1
+1,1,2726330,Croton Harmon - Grand Central Terminal,8716,1,,1,1
+1,1,2726332,Croton Harmon - Grand Central Terminal,8718,1,,1,1
+1,1,2726334,Croton Harmon - Grand Central Terminal,8720,1,,1,1
+1,1,2726336,Croton Harmon - Grand Central Terminal,8722,1,,1,1
+1,1,2726338,Croton Harmon - Grand Central Terminal,8724,1,,1,1
+1,1,2726339,Croton Harmon - Grand Central Terminal,8726,1,,1,1
+1,1,2726342,Croton Harmon - Grand Central Terminal,8750,1,,1,1
+1,1,2726344,Croton Harmon - Grand Central Terminal,8752,1,,1,1
+1,1,2726346,Croton Harmon - Grand Central Terminal,8754,1,,1,1
+1,1,2726350,Croton Harmon - Grand Central Terminal,8758,1,,1,1
+1,1,2726352,Croton Harmon - Grand Central Terminal,8762,1,,1,1
+1,1,2726433,Croton Harmon - Grand Central Terminal,8730,1,,1,1
+1,1,2726435,Croton Harmon - Grand Central Terminal,8734,1,,1,1
+1,1,2726437,Croton Harmon - Grand Central Terminal,8738,1,,1,1
+1,1,2726440,Croton Harmon - Grand Central Terminal,8742,1,,1,1
+1,1,2726443,Croton Harmon - Grand Central Terminal,8746,1,,1,1
+1,1,2726477,Croton Harmon - Grand Central Terminal,8766,1,,1,1
+1,1,2726480,Croton Harmon - Grand Central Terminal,8770,1,,1,1
+1,1,2726482,Croton Harmon - Grand Central Terminal,8772,1,,1,1
+1,1,2726483,Croton Harmon - Grand Central Terminal,8774,1,,1,1
+4,1,2726201,Stamford - New Canaan,6704,0,,19,1
+4,1,2726203,Stamford - New Canaan,6706,0,,19,1
+4,1,2726205,Stamford - New Canaan,6710,0,,19,1
+4,1,2726207,Stamford - New Canaan,6714,0,,19,1
+4,1,2726209,Stamford - New Canaan,6718,0,,19,1
+4,1,2726211,Stamford - New Canaan,6722,0,,19,1
+4,1,2726213,Stamford - New Canaan,6726,0,,19,1
+4,1,2726215,Stamford - New Canaan,6758,0,,19,1
+4,1,2726217,Stamford - New Canaan,6762,0,,19,1
+4,1,2726219,Stamford - New Canaan,6766,0,,19,1
+4,1,2726221,Stamford - New Canaan,6770,0,,19,1
+4,1,2726223,Stamford - New Canaan,6774,0,,19,1
+4,1,2726299,Stamford - New Canaan,6730,0,,19,1
+4,1,2726301,Stamford - New Canaan,6734,0,,19,1
+4,1,2726303,Stamford - New Canaan,6738,0,,19,1
+4,1,2726305,Stamford - New Canaan,6742,0,,19,1
+4,1,2726307,Stamford - New Canaan,6746,0,,19,1
+4,1,2726309,Stamford - New Canaan,6750,0,,19,1
+4,1,2726311,Stamford - New Canaan,6754,0,,19,1
+3,1,2726016,Grand Central Terminal - New Haven,6518,0,,16,1
+3,1,2726019,Grand Central Terminal - New Haven,6522,0,,16,1
+3,1,2726177,Grand Central Terminal - Stamford,6374,0,,16,1
+3,1,2726182,Grand Central Terminal - New Haven,6504,0,,16,1
+3,1,2726184,Grand Central Terminal - New Haven,6506,0,,16,1
+3,1,2726186,Grand Central Terminal - New Haven,6530,0,,16,1
+3,1,2726188,Grand Central Terminal - New Haven,6534,0,,16,1
+3,1,2726190,Grand Central Terminal - New Haven,6538,0,,16,1
+3,1,2726192,Grand Central Terminal - New Haven,6542,0,,16,1
+3,1,2726195,Grand Central Terminal - New Haven,6546,0,,16,1
+3,1,2726199,Grand Central Terminal - New Haven,6550,0,,16,1
+3,1,2726264,Grand Central Terminal - Stamford,6300,0,,16,1
+3,1,2726265,Grand Central Terminal - Stamford,6302,0,,16,1
+3,1,2726269,Grand Central Terminal - Stamford,6306,0,,16,1
+3,1,2726271,Grand Central Terminal - Stamford,6338,0,,16,1
+3,1,2726273,Grand Central Terminal - Stamford,6342,0,,16,1
+3,1,2726275,Grand Central Terminal - Stamford,6346,0,,16,1
+3,1,2726277,Grand Central Terminal - Stamford,6350,0,,16,1
+3,1,2726279,Grand Central Terminal - Stamford,6354,0,,16,1
+3,1,2726281,Grand Central Terminal - Stamford,6358,0,,16,1
+3,1,2726283,Grand Central Terminal - Stamford,6362,0,,16,1
+3,1,2726284,Grand Central Terminal - New Haven,6510,0,,16,1
+3,1,2726286,Grand Central Terminal - New Haven,6514,0,,16,1
+3,1,2726288,Grand Central Terminal - New Haven,6558,0,,16,1
+3,1,2726290,Grand Central Terminal - New Haven,6562,0,,16,1
+3,1,2726292,Grand Central Terminal - New Haven,6566,0,,16,1
+3,1,2726294,Grand Central Terminal - New Haven,6570,0,,16,1
+3,1,2726383,Grand Central Terminal - Stamford,6310,0,,16,1
+3,1,2726385,Grand Central Terminal - Stamford,6314,0,,16,1
+3,1,2726387,Grand Central Terminal - Stamford,6318,0,,16,1
+3,1,2726389,Grand Central Terminal - Stamford,6322,0,,16,1
+3,1,2726391,Grand Central Terminal - Stamford,6326,0,,16,1
+3,1,2726393,Grand Central Terminal - Stamford,6330,0,,16,1
+3,1,2726395,Grand Central Terminal - Stamford,6334,0,,16,1
+3,1,2726397,Grand Central Terminal - Stamford,6366,0,,16,1
+3,1,2726399,Grand Central Terminal - Stamford,6370,0,,16,1
+3,1,2726507,Grand Central Terminal - New Haven,6554,0,,16,1
+4,1,2726202,New Canaan - Stamford,6705,1,,8,1
+4,1,2726204,New Canaan - Stamford,6709,1,,8,1
+4,1,2726206,New Canaan - Stamford,6713,1,,8,1
+4,1,2726208,New Canaan - Stamford,6717,1,,8,1
+4,1,2726210,New Canaan - Stamford,6721,1,,8,1
+4,1,2726212,New Canaan - Stamford,6725,1,,8,1
+4,1,2726214,New Canaan - Stamford,6757,1,,8,1
+4,1,2726216,New Canaan - Stamford,6761,1,,8,1
+4,1,2726218,New Canaan - Stamford,6765,1,,8,1
+4,1,2726220,New Canaan - Stamford,6769,1,,8,1
+4,1,2726222,New Canaan - Stamford,6773,1,,8,1
+4,1,2726298,New Canaan - Stamford,6729,1,,8,1
+4,1,2726300,New Canaan - Stamford,6733,1,,8,1
+4,1,2726302,New Canaan - Stamford,6737,1,,8,1
+4,1,2726304,New Canaan - Stamford,6741,1,,8,1
+4,1,2726306,New Canaan - Stamford,6745,1,,8,1
+4,1,2726308,New Canaan - Stamford,6749,1,,8,1
+4,1,2726310,New Canaan - Stamford,6753,1,,8,1
+3,1,2726015,New Haven - Grand Central Terminal,6517,1,,5,1
+3,1,2726018,New Haven - Grand Central Terminal,6521,1,,5,1
+3,1,2726021,New Haven - Grand Central Terminal,6525,1,,5,1
+3,1,2726024,New Haven - Grand Central Terminal,6529,1,,5,1
+3,1,2726185,New Haven - Grand Central Terminal,6509,1,,5,1
+3,1,2726187,New Haven - Grand Central Terminal,6533,1,,5,1
+3,1,2726189,New Haven - Grand Central Terminal,6537,1,,5,1
+3,1,2726191,New Haven - Grand Central Terminal,6541,1,,5,1
+3,1,2726194,New Haven - Grand Central Terminal,6545,1,,5,1
+3,1,2726198,New Haven - Grand Central Terminal,6549,1,,5,1
+3,1,2726285,New Haven - Grand Central Terminal,6513,1,,5,1
+3,1,2726289,New Haven - Grand Central Terminal,6561,1,,5,1
+3,1,2726291,New Haven - Grand Central Terminal,6565,1,,5,1
+3,1,2726293,New Haven - Grand Central Terminal,6569,1,,5,1
+3,1,2726295,New Haven - Grand Central Terminal,6573,1,,5,1
+3,1,2726506,New Haven - Grand Central Terminal,6553,1,,5,1
+3,1,2726508,New Haven - Grand Central Terminal,6557,1,,5,1
+3,1,2726176,Stamford - Grand Central Terminal,6373,1,,5,1
+3,1,2726262,Stamford - Grand Central Terminal,6201,1,,5,1
+3,1,2726266,Stamford - Grand Central Terminal,6303,1,,5,1
+3,1,2726268,Stamford - Grand Central Terminal,6305,1,,5,1
+3,1,2726270,Stamford - Grand Central Terminal,6337,1,,5,1
+3,1,2726272,Stamford - Grand Central Terminal,6341,1,,5,1
+3,1,2726274,Stamford - Grand Central Terminal,6345,1,,5,1
+3,1,2726276,Stamford - Grand Central Terminal,6349,1,,5,1
+3,1,2726278,Stamford - Grand Central Terminal,6353,1,,5,1
+3,1,2726280,Stamford - Grand Central Terminal,6357,1,,5,1
+3,1,2726282,Stamford - Grand Central Terminal,6361,1,,5,1
+3,1,2726382,Stamford - Grand Central Terminal,6309,1,,5,1
+3,1,2726384,Stamford - Grand Central Terminal,6313,1,,5,1
+3,1,2726386,Stamford - Grand Central Terminal,6317,1,,5,1
+3,1,2726388,Stamford - Grand Central Terminal,6321,1,,5,1
+3,1,2726390,Stamford - Grand Central Terminal,6325,1,,5,1
+3,1,2726392,Stamford - Grand Central Terminal,6329,1,,5,1
+3,1,2726394,Stamford - Grand Central Terminal,6333,1,,5,1
+3,1,2726396,Stamford - Grand Central Terminal,6365,1,,5,1
+3,1,2726398,Stamford - Grand Central Terminal,6369,1,,5,1
+6,1,2726243,Bridgeport - Waterbury,6948,0,,22,1
+6,1,2726245,Bridgeport - Waterbury,6962,0,,22,1
+6,1,2726321,Bridgeport - Waterbury,6906,0,,22,1
+6,1,2726323,Bridgeport - Waterbury,6918,0,,22,1
+6,1,2726325,Bridgeport - Waterbury,6930,0,,22,1
+5,1,2726225,South Norwalk - Danbury,6810,0,,21,1
+5,1,2726227,South Norwalk - Danbury,6822,0,,21,1
+5,1,2726313,South Norwalk - Danbury,6834,0,,21,1
+5,1,2726315,South Norwalk - Danbury,6846,0,,21,1
+5,1,2726318,South Norwalk - Danbury,6862,0,,21,1
+3,1,2726179,Grand Central Terminal - New Haven,6500,0,,16,1
+3,1,2726180,Grand Central Terminal - New Haven,6502,0,,16,1
+3,1,2726296,Grand Central Terminal - New Haven,6574,0,,16,1
+2,1,2726460,Southeast - Wassaic,9911,0,,14,1
+2,1,2726462,Southeast - Wassaic,9919,0,,14,1
+2,1,2726464,Southeast - Wassaic,9927,0,,14,1
+2,1,2726466,Southeast - Wassaic,9935,0,,14,1
+2,1,2726468,Southeast - Wassaic,9943,0,,14,1
+2,1,2726474,Southeast - Wassaic,9967,0,,14,1
+2,1,2726475,Southeast - Dover Plains,9975,0,,14,1
+1,1,2726167,Croton Harmon - Poughkeepsie,8879,0,,12,1
+1,1,2726487,Croton Harmon - Poughkeepsie,8801,0,,12,1
+1,1,2726490,Croton Harmon - Poughkeepsie,8805,0,,12,1
+6,1,2726242,Waterbury - Bridgeport,6937,1,,11,1
+6,1,2726244,Waterbury - Bridgeport,6949,1,,11,1
+6,1,2726246,Waterbury - Bridgeport,6965,1,,11,1
+6,1,2726322,Waterbury - Bridgeport,6913,1,,11,1
+6,1,2726324,Waterbury - Bridgeport,6923,1,,11,1
+5,1,2726226,Danbury - South Norwalk,6813,1,,10,1
+5,1,2726312,Danbury - South Norwalk,6825,1,,10,1
+5,1,2726314,Danbury - South Norwalk,6837,1,,10,1
+5,1,2726316,Danbury - South Norwalk,6849,1,,10,1
+5,1,2726317,Danbury - South Norwalk,6861,1,,10,1
+5,1,2726319,Danbury - South Norwalk,6873,1,,10,1
+1,1,2726138,Grand Central Terminal - Poughkeepsie,8847,0,,12,1
+1,2,2726140,Grand Central Terminal - Poughkeepsie,8849,0,,12,1
+1,1,2726141,Grand Central Terminal - Poughkeepsie,8851,0,,12,1
+1,1,2726143,Grand Central Terminal - Poughkeepsie,8855,0,,12,1
+1,1,2726146,Grand Central Terminal - Poughkeepsie,8861,0,,12,1
+1,1,2726331,Grand Central Terminal - Croton Harmon,8717,0,,12,1
+1,1,2726345,Grand Central Terminal - Croton Harmon,8753,0,,12,1
+1,1,2726354,Grand Central Terminal - Poughkeepsie,8807,0,,12,1
+1,1,2726356,Grand Central Terminal - Poughkeepsie,8811,0,,12,1
+1,1,2726358,Grand Central Terminal - Poughkeepsie,8815,0,,12,1
+1,1,2726367,Grand Central Terminal - Poughkeepsie,8829,0,,12,1
+1,1,2726166,Grand Central Terminal - Poughkeepsie,8873,0,,12,1
+1,1,2726405,Grand Central Terminal - Poughkeepsie,8833,0,,12,1
+1,1,2726442,Grand Central Terminal - Croton Harmon,8745,0,,12,1
+1,1,2726479,Grand Central Terminal - Croton Harmon,8769,0,,12,1
+3,1,2726183,New Haven - Grand Central Terminal,6505,1,,5,1
+2,1,2726463,Wassaic - Southeast,9926,1,,3,1
+2,1,2726465,Wassaic - Southeast,9934,1,,3,1
+2,1,2726467,Wassaic - Southeast,9942,1,,3,1
+2,1,2726470,Wassaic - Southeast,9950,1,,3,1
+2,2,2726471,Wassaic - Southeast,9958,1,,3,1
+1,1,2726137,Poughkeepsie - Grand Central Terminal,8844,1,,1,1
+1,1,2726139,Poughkeepsie - Grand Central Terminal,8848,1,,1,1
+1,1,2726145,Poughkeepsie - Grand Central Terminal,8860,1,,1,1
+1,1,2726147,Poughkeepsie - Grand Central Terminal,8864,1,,1,1
+1,1,2726149,Poughkeepsie - Grand Central Terminal,8868,1,,1,1
+1,1,2726150,Poughkeepsie - Grand Central Terminal,8832,1,,1,1
+1,1,2726165,Poughkeepsie - Croton Harmon,8872,1,,1,1
+1,1,2726355,Poughkeepsie - Grand Central Terminal,8808,1,,1,1
+1,1,2726357,Poughkeepsie - Grand Central Terminal,8812,1,,1,1
+1,1,2726359,Poughkeepsie - Grand Central Terminal,8816,1,,1,1
+1,2,2726360,Poughkeepsie - Grand Central Terminal,8818,1,,1,1
+1,2,2726363,Poughkeepsie - Grand Central Terminal,8822,1,,1,1
+1,1,2726366,Poughkeepsie - Grand Central Terminal,8828,1,,1,1
+1,1,2726488,Poughkeepsie - Grand Central Terminal,8802,1,,1,1
+1,1,2726489,Poughkeepsie - Grand Central Terminal,8804,1,,1,1
+1,1,2726340,Croton Harmon - Grand Central Terminal,8748,1,,1,1
+3,1,2726022,Grand Central Terminal - New Haven,6526,0,,16,1
+3,1,2726193,Grand Central Terminal - New Haven,6544,0,,16,1
+3,1,2726197,Grand Central Terminal - New Haven,6548,0,,16,1
+3,1,2726267,Grand Central Terminal - Stamford,6304,0,,16,1
+3,1,2726505,Grand Central Terminal - New Haven,6552,0,,16,1
+2,1,2726472,Southeast - Wassaic,9959,0,,14,1
+2,1,2726469,Grand Central Terminal - Wassaic,9949,0,,14,1
+1,1,2726136,Grand Central Terminal - Poughkeepsie,8843,0,,12,1
+1,1,2726148,Grand Central Terminal - Poughkeepsie,8865,0,,12,1
+1,1,2726164,Grand Central Terminal - Poughkeepsie,8869,0,,12,1
+1,1,2726174,Grand Central Terminal - Poughkeepsie,8839,0,,12,1
+1,1,2726349,Grand Central Terminal - Croton Harmon,8757,0,,12,1
+1,1,2726361,Grand Central Terminal - Poughkeepsie,8819,0,,12,1
+1,1,2726365,Grand Central Terminal - Poughkeepsie,8825,0,,12,1
+1,1,2726407,Grand Central Terminal - Poughkeepsie,8837,0,,12,1
+1,1,2726439,Grand Central Terminal - Croton Harmon,8741,0,,12,1
+3,1,2726017,New Haven - Grand Central Terminal,6519,1,,5,1
+3,1,2726020,New Haven - Grand Central Terminal,6523,1,,5,1
+3,1,2726023,New Haven - Grand Central Terminal,6527,1,,5,1
+3,1,2726181,New Haven - Grand Central Terminal,6503,1,,5,1
+3,1,2726196,New Haven - Grand Central Terminal,6547,1,,5,1
+3,1,2726287,New Haven - Grand Central Terminal,6515,1,,5,1
+2,1,2726459,Wassaic - Southeast,9910,1,,3,1
+2,2,2726461,Wassaic - Grand Central Terminal,9916,1,,3,1
+2,1,2726473,Wassaic - Southeast,9966,1,,3,1
+2,1,2726476,Wassaic - Southeast,9976,1,,3,1
+1,1,2726142,Poughkeepsie - Grand Central Terminal,8852,1,,1,1
+1,1,2726144,Poughkeepsie - Grand Central Terminal,8856,1,,1,1
+1,1,2726175,Poughkeepsie - Grand Central Terminal,8840,1,,1,1
+1,1,2726362,Poughkeepsie - Grand Central Terminal,8820,1,,1,1
+1,1,2726364,Poughkeepsie - Grand Central Terminal,8824,1,,1,1
+1,1,2726406,Poughkeepsie - Grand Central Terminal,8836,1,,1,1
+1,1,2726348,Croton Harmon - Grand Central Terminal,8756,1,,1,1
+1,1,2726432,Croton Harmon - Grand Central Terminal,8728,1,,1,1
+5,3,2727456,South Norwalk - Danbury,6870,0,,21,1
+2,4,2727589,Wassaic - Southeast,9918,1,,3,1
+1,4,2727333,Poughkeepsie - Grand Central Terminal,8846,1,,1,1
+2,4,2727600,Wassaic - Grand Central Terminal,9960,1,,3,1
+2,5,2744327,Grand Central Terminal - Southeast,699,0,,14,1
+2,5,2744501,Grand Central Terminal - Mount Kisco,643,0,,14,1
+2,5,2744503,Grand Central Terminal - Southeast,645,0,,14,1
+2,5,2744506,Grand Central Terminal - Southeast,649,0,,14,1
+2,5,2744508,Grand Central Terminal - Southeast,651,0,,14,1
+2,5,2744510,Grand Central Terminal - Southeast,653,0,,14,1
+2,5,2744511,Grand Central Terminal - Southeast,655,0,,14,1
+2,5,2744513,Grand Central Terminal - Mount Kisco,657,0,,14,1
+2,5,2744514,Grand Central Terminal - Brewster,659,0,,14,1
+2,5,2744518,Grand Central Terminal - Southeast,663,0,,14,1
+2,5,2744520,Grand Central Terminal - Mount Kisco,665,0,,14,1
+2,5,2744521,Grand Central Terminal - Brewster,667,0,,14,1
+2,5,2744523,Grand Central Terminal - Mount Kisco,669,0,,14,1
+2,5,2744526,Grand Central Terminal - Southeast,671,0,,14,1
+2,5,2744528,Grand Central Terminal - Southeast,675,0,,14,1
+2,5,2744530,Grand Central Terminal - Mount Kisco,677,0,,14,1
+2,5,2744531,Grand Central Terminal - Southeast,679,0,,14,1
+2,5,2744534,Grand Central Terminal - Southeast,681,0,,14,1
+2,5,2744537,Grand Central Terminal - Southeast,685,0,,14,1
+2,5,2744539,Grand Central Terminal - Southeast,687,0,,14,1
+2,5,2744541,Grand Central Terminal - Southeast,689,0,,14,1
+2,5,2744544,Grand Central Terminal - Southeast,691,0,,14,1
+2,5,2744546,Grand Central Terminal - Southeast,693,0,,14,1
+2,5,2744548,Grand Central Terminal - Southeast,695,0,,14,1
+2,5,2744553,Grand Central Terminal - North White Plains,583,0,,14,1
+2,5,2744557,Grand Central Terminal - North White Plains,587,0,,14,1
+2,5,2744559,Grand Central Terminal - North White Plains,589,0,,14,1
+2,5,2744567,Grand Central Terminal - North White Plains,591,0,,14,1
+2,5,2744568,Grand Central Terminal - North White Plains,593,0,,14,1
+2,5,2744570,Grand Central Terminal - North White Plains,595,0,,14,1
+2,5,2744572,Grand Central Terminal - North White Plains,597,0,,14,1
+2,5,2744574,Grand Central Terminal - North White Plains,599,0,,14,1
+2,5,2744577,Grand Central Terminal - Southeast,601,0,,14,1
+2,5,2744579,Grand Central Terminal - Southeast,603,0,,14,1
+2,5,2744581,Grand Central Terminal - Southeast,605,0,,14,1
+2,5,2744583,Grand Central Terminal - North White Plains,607,0,,14,1
+2,5,2744585,Grand Central Terminal - North White Plains,609,0,,14,1
+2,5,2744587,Grand Central Terminal - Southeast,611,0,,14,1
+2,5,2744589,Grand Central Terminal - Southeast,613,0,,14,1
+2,5,2744591,Grand Central Terminal - Southeast,615,0,,14,1
+2,5,2744595,Grand Central Terminal - Southeast,619,0,,14,1
+2,5,2744597,Grand Central Terminal - Southeast,623,0,,14,1
+2,5,2744599,Grand Central Terminal - Southeast,627,0,,14,1
+2,5,2744603,Grand Central Terminal - Southeast,631,0,,14,1
+2,5,2744606,Grand Central Terminal - Southeast,635,0,,14,1
+2,5,2744609,Grand Central Terminal - Southeast,639,0,,14,1
+2,5,2744612,Grand Central Terminal - Southeast,641,0,,14,1
+2,5,2744719,Grand Central Terminal - North White Plains,553,0,,14,1
+2,5,2744721,Grand Central Terminal - North White Plains,555,0,,14,1
+2,5,2744723,Grand Central Terminal - North White Plains,557,0,,14,1
+2,5,2744729,Grand Central Terminal - North White Plains,559,0,,14,1
+2,5,2744741,Grand Central Terminal - North White Plains,563,0,,14,1
+2,5,2744746,Grand Central Terminal - North White Plains,567,0,,14,1
+2,5,2744761,Grand Central Terminal - North White Plains,575,0,,14,1
+2,5,2744776,Grand Central Terminal - North White Plains,511,0,,14,1
+2,5,2744780,Grand Central Terminal - North White Plains,513,0,,14,1
+2,5,2744786,Grand Central Terminal - North White Plains,517,0,,14,1
+2,5,2744797,Grand Central Terminal - North White Plains,523,0,,14,1
+2,5,2744799,Grand Central Terminal - North White Plains,525,0,,14,1
+2,5,2744801,Grand Central Terminal - North White Plains,527,0,,14,1
+2,5,2744804,Grand Central Terminal - North White Plains,529,0,,14,1
+2,5,2744807,Grand Central Terminal - North White Plains,531,0,,14,1
+2,5,2744811,Grand Central Terminal - North White Plains,533,0,,14,1
+2,5,2744814,Grand Central Terminal - North White Plains,535,0,,14,1
+2,5,2744816,Grand Central Terminal - North White Plains,537,0,,14,1
+2,5,2744819,Grand Central Terminal - North White Plains,539,0,,14,1
+2,5,2744826,Grand Central Terminal - North White Plains,541,0,,14,1
+2,5,2744828,Grand Central Terminal - North White Plains,543,0,,14,1
+2,5,2744830,Grand Central Terminal - North White Plains,545,0,,14,1
+2,5,2744831,Grand Central Terminal - North White Plains,547,0,,14,1
+2,5,2744833,Grand Central Terminal - North White Plains,549,0,,14,1
+2,5,2744950,Grand Central Terminal - North White Plains,351,0,,14,1
+2,5,2744954,Grand Central Terminal - Crestwood,359,0,,14,1
+2,5,2744956,Grand Central Terminal - Crestwood,367,0,,14,1
+2,5,2744960,Grand Central Terminal - Mt Vernon West,379,0,,14,1
+2,5,2744989,Grand Central Terminal - North White Plains,501,0,,14,1
+2,5,2744992,Grand Central Terminal - North White Plains,503,0,,14,1
+2,5,2744994,Grand Central Terminal - North White Plains,505,0,,14,1
+2,5,2744998,Grand Central Terminal - North White Plains,509,0,,14,1
+1,5,2744329,Grand Central Terminal - Croton Harmon,701,0,,12,1
+1,5,2744331,Grand Central Terminal - Croton Harmon,703,0,,12,1
+1,5,2744333,Grand Central Terminal - Croton Harmon,705,0,,12,1
+1,5,2744335,Grand Central Terminal - Croton Harmon,707,0,,12,1
+1,5,2744337,Grand Central Terminal - Croton Harmon,709,0,,12,1
+1,5,2744339,Grand Central Terminal - Croton Harmon,711,0,,12,1
+1,5,2744341,Grand Central Terminal - Croton Harmon,713,0,,12,1
+1,5,2744343,Grand Central Terminal - Croton Harmon,715,0,,12,1
+1,5,2744346,Grand Central Terminal - Croton Harmon,719,0,,12,1
+1,5,2744349,Grand Central Terminal - Croton Harmon,723,0,,12,1
+1,5,2744351,Grand Central Terminal - Croton Harmon,727,0,,12,1
+1,5,2744354,Grand Central Terminal - Croton Harmon,731,0,,12,1
+1,5,2744356,Grand Central Terminal - Croton Harmon,733,0,,12,1
+1,5,2744358,Grand Central Terminal - Croton Harmon,735,0,,12,1
+1,5,2744360,Grand Central Terminal - Croton Harmon,737,0,,12,1
+1,5,2744362,Grand Central Terminal - Croton Harmon,739,0,,12,1
+1,5,2744367,Grand Central Terminal - Croton Harmon,745,0,,12,1
+1,5,2744369,Grand Central Terminal - Croton Harmon,747,0,,12,1
+1,5,2744371,Grand Central Terminal - Croton Harmon,749,0,,12,1
+1,5,2744374,Grand Central Terminal - Croton Harmon,753,0,,12,1
+1,5,2744376,Grand Central Terminal - Croton Harmon,755,0,,12,1
+1,5,2744377,Grand Central Terminal - Croton Harmon,757,0,,12,1
+1,5,2744379,Grand Central Terminal - Croton Harmon,759,0,,12,1
+1,5,2744380,Grand Central Terminal - Croton Harmon,761,0,,12,1
+1,5,2744382,Grand Central Terminal - Croton Harmon,763,0,,12,1
+1,5,2744384,Grand Central Terminal - Croton Harmon,767,0,,12,1
+1,5,2744389,Grand Central Terminal - Croton Harmon,773,0,,12,1
+1,5,2744391,Grand Central Terminal - Croton Harmon,775,0,,12,1
+1,5,2744393,Grand Central Terminal - Croton Harmon,777,0,,12,1
+1,5,2744395,Grand Central Terminal - Croton Harmon,779,0,,12,1
+1,5,2744396,Grand Central Terminal - Croton Harmon,781,0,,12,1
+1,5,2744398,Grand Central Terminal - Croton Harmon,783,0,,12,1
+1,5,2744400,Grand Central Terminal - Croton Harmon,787,0,,12,1
+1,5,2744402,Grand Central Terminal - Croton Harmon,789,0,,12,1
+1,5,2744404,Grand Central Terminal - Croton Harmon,791,0,,12,1
+1,5,2744409,Grand Central Terminal - Croton Harmon,797,0,,12,1
+1,5,2744410,Grand Central Terminal - Croton Harmon,799,0,,12,1
+1,5,2744969,Grand Central Terminal - Greystone,457,0,,12,1
+1,5,2744970,Grand Central Terminal - Greystone,461,0,,12,1
+1,5,2744971,Grand Central Terminal - Greystone,469,0,,12,1
+1,5,2744977,Grand Central Terminal - Croton Harmon,483,0,,12,1
+1,5,2744978,Grand Central Terminal - Croton Harmon,485,0,,12,1
+2,5,2744502,Southeast - Grand Central Terminal,644,1,,3,1
+2,5,2744505,Southeast - Grand Central Terminal,648,1,,3,1
+2,5,2744509,Southeast - Grand Central Terminal,652,1,,3,1
+2,5,2744512,Southeast - Grand Central Terminal,656,1,,3,1
+2,5,2744516,Southeast - Grand Central Terminal,660,1,,3,1
+2,5,2744519,Southeast - Grand Central Terminal,664,1,,3,1
+2,5,2744522,Southeast - Grand Central Terminal,668,1,,3,1
+2,5,2744529,Southeast - Grand Central Terminal,676,1,,3,1
+2,5,2744533,Southeast - Grand Central Terminal,680,1,,3,1
+2,5,2744535,Southeast - Grand Central Terminal,682,1,,3,1
+2,5,2744538,Southeast - Grand Central Terminal,686,1,,3,1
+2,5,2744543,Southeast - Grand Central Terminal,690,1,,3,1
+2,5,2744547,Southeast - Grand Central Terminal,694,1,,3,1
+2,5,2744549,Southeast - Grand Central Terminal,696,1,,3,1
+2,5,2744550,Southeast - Grand Central Terminal,698,1,,3,1
+2,5,2744576,Southeast - Grand Central Terminal,600,1,,3,1
+2,5,2744578,Southeast - Grand Central Terminal,602,1,,3,1
+2,5,2744580,Southeast - Grand Central Terminal,604,1,,3,1
+2,5,2744582,Southeast - Grand Central Terminal,606,1,,3,1
+2,5,2744584,Southeast - Grand Central Terminal,608,1,,3,1
+2,5,2744586,Southeast - Grand Central Terminal,610,1,,3,1
+2,5,2744588,Southeast - Grand Central Terminal,612,1,,3,1
+2,5,2744590,Southeast - Grand Central Terminal,614,1,,3,1
+2,5,2744592,Southeast - Grand Central Terminal,616,1,,3,1
+2,5,2744602,Southeast - Grand Central Terminal,630,1,,3,1
+2,5,2744605,Southeast - Grand Central Terminal,634,1,,3,1
+2,5,2744608,Southeast - Grand Central Terminal,638,1,,3,1
+2,5,2744611,Southeast - Grand Central Terminal,640,1,,3,1
+2,5,2744504,Mount Kisco - Grand Central Terminal,646,1,,3,1
+2,5,2744507,Mount Kisco - Grand Central Terminal,650,1,,3,1
+2,5,2744525,Mount Kisco - Grand Central Terminal,670,1,,3,1
+2,5,2744536,Mount Kisco - Grand Central Terminal,684,1,,3,1
+2,5,2744540,Mount Kisco - Grand Central Terminal,688,1,,3,1
+2,5,2744545,Mount Kisco - Grand Central Terminal,692,1,,3,1
+2,5,2744596,Mount Kisco - Grand Central Terminal,622,1,,3,1
+2,5,2744600,Mount Kisco - Grand Central Terminal,628,1,,3,1
+2,5,2744604,Mount Kisco - Grand Central Terminal,632,1,,3,1
+2,5,2744607,Mount Kisco - Grand Central Terminal,636,1,,3,1
+2,5,2744552,North White Plains - Grand Central Terminal,582,1,,3,1
+2,5,2744554,North White Plains - Grand Central Terminal,584,1,,3,1
+2,5,2744556,North White Plains - Grand Central Terminal,586,1,,3,1
+2,5,2744558,North White Plains - Grand Central Terminal,588,1,,3,1
+2,5,2744562,North White Plains - Grand Central Terminal,590,1,,3,1
+2,5,2744569,North White Plains - Grand Central Terminal,594,1,,3,1
+2,5,2744571,North White Plains - Grand Central Terminal,596,1,,3,1
+2,5,2744573,North White Plains - Grand Central Terminal,598,1,,3,1
+2,5,2744717,North White Plains - Grand Central Terminal,552,1,,3,1
+2,5,2744720,North White Plains - Grand Central Terminal,554,1,,3,1
+2,5,2744722,North White Plains - Grand Central Terminal,556,1,,3,1
+2,5,2744726,North White Plains - Grand Central Terminal,558,1,,3,1
+2,5,2744733,North White Plains - Grand Central Terminal,560,1,,3,1
+2,5,2744739,North White Plains - Grand Central Terminal,562,1,,3,1
+2,5,2744742,North White Plains - Grand Central Terminal,564,1,,3,1
+2,5,2744745,North White Plains - Grand Central Terminal,566,1,,3,1
+2,5,2744755,North White Plains - Grand Central Terminal,572,1,,3,1
+2,5,2744759,North White Plains - Grand Central Terminal,574,1,,3,1
+2,5,2744766,North White Plains - Grand Central Terminal,578,1,,3,1
+2,5,2744774,North White Plains - Grand Central Terminal,580,1,,3,1
+2,5,2744775,North White Plains - Grand Central Terminal,510,1,,3,1
+2,5,2744778,North White Plains - Grand Central Terminal,512,1,,3,1
+2,5,2744793,North White Plains - Grand Central Terminal,520,1,,3,1
+2,5,2744813,North White Plains - Grand Central Terminal,534,1,,3,1
+2,5,2744815,North White Plains - Grand Central Terminal,536,1,,3,1
+2,5,2744822,North White Plains - Grand Central Terminal,540,1,,3,1
+2,5,2744827,North White Plains - Grand Central Terminal,542,1,,3,1
+2,5,2744832,North White Plains - Grand Central Terminal,548,1,,3,1
+2,5,2744927,North White Plains - Grand Central Terminal,300,1,,3,1
+2,5,2744928,North White Plains - Grand Central Terminal,306,1,,3,1
+2,5,2744990,North White Plains - Grand Central Terminal,502,1,,3,1
+2,5,2744993,North White Plains - Grand Central Terminal,504,1,,3,1
+2,5,2744995,North White Plains - Grand Central Terminal,506,1,,3,1
+2,5,2744997,North White Plains - Grand Central Terminal,508,1,,3,1
+2,5,2744808,Hartsdale - Grand Central Terminal,532,1,,3,1
+2,5,2744795,Crestwood - Grand Central Terminal,522,1,,3,1
+2,5,2744930,Crestwood - Grand Central Terminal,314,1,,3,1
+2,5,2744931,Crestwood - Grand Central Terminal,316,1,,3,1
+2,5,2744942,Crestwood - Grand Central Terminal,334,1,,3,1
+2,5,2744944,Crestwood - Grand Central Terminal,336,1,,3,1
+2,5,2744934,Mt Vernon West - Grand Central Terminal,324,1,,3,1
+1,5,2744328,Croton Harmon - Grand Central Terminal,700,1,,1,1
+1,5,2744330,Croton Harmon - Grand Central Terminal,702,1,,1,1
+1,5,2744332,Croton Harmon - Grand Central Terminal,704,1,,1,1
+1,5,2744336,Croton Harmon - Grand Central Terminal,708,1,,1,1
+1,5,2744338,Croton Harmon - Grand Central Terminal,710,1,,1,1
+1,5,2744340,Croton Harmon - Grand Central Terminal,712,1,,1,1
+1,5,2744342,Croton Harmon - Grand Central Terminal,714,1,,1,1
+1,5,2744348,Croton Harmon - Grand Central Terminal,722,1,,1,1
+1,5,2744350,Croton Harmon - Grand Central Terminal,724,1,,1,1
+1,5,2744353,Croton Harmon - Grand Central Terminal,730,1,,1,1
+1,5,2744355,Croton Harmon - Grand Central Terminal,732,1,,1,1
+1,5,2744357,Croton Harmon - Grand Central Terminal,734,1,,1,1
+1,5,2744361,Croton Harmon - Grand Central Terminal,738,1,,1,1
+1,5,2744363,Croton Harmon - Grand Central Terminal,740,1,,1,1
+1,5,2744364,Croton Harmon - Grand Central Terminal,742,1,,1,1
+1,5,2744366,Croton Harmon - Grand Central Terminal,744,1,,1,1
+1,5,2744368,Croton Harmon - Grand Central Terminal,746,1,,1,1
+1,5,2744370,Croton Harmon - Grand Central Terminal,748,1,,1,1
+1,5,2744372,Croton Harmon - Grand Central Terminal,750,1,,1,1
+1,5,2744375,Croton Harmon - Grand Central Terminal,754,1,,1,1
+1,5,2744378,Croton Harmon - Grand Central Terminal,758,1,,1,1
+1,5,2744381,Croton Harmon - Grand Central Terminal,762,1,,1,1
+1,5,2744383,Croton Harmon - Grand Central Terminal,766,1,,1,1
+1,5,2744386,Croton Harmon - Grand Central Terminal,770,1,,1,1
+1,5,2744388,Croton Harmon - Grand Central Terminal,772,1,,1,1
+1,5,2744390,Croton Harmon - Grand Central Terminal,774,1,,1,1
+1,5,2744392,Croton Harmon - Grand Central Terminal,776,1,,1,1
+1,5,2744394,Croton Harmon - Grand Central Terminal,778,1,,1,1
+1,5,2744397,Croton Harmon - Grand Central Terminal,782,1,,1,1
+1,5,2744399,Croton Harmon - Grand Central Terminal,784,1,,1,1
+1,5,2744401,Croton Harmon - Grand Central Terminal,788,1,,1,1
+1,5,2744403,Croton Harmon - Grand Central Terminal,790,1,,1,1
+1,5,2744405,Croton Harmon - Grand Central Terminal,792,1,,1,1
+1,5,2744406,Croton Harmon - Grand Central Terminal,794,1,,1,1
+1,5,2744408,Croton Harmon - Grand Central Terminal,796,1,,1,1
+1,5,2744347,Scarborough - Grand Central Terminal,720,1,,1,1
+1,5,2744345,Tarrytown - Grand Central Terminal,718,1,,1,1
+1,5,2744966,Tarrytown - Grand Central Terminal,440,1,,1,1
+1,5,2744968,Tarrytown - Grand Central Terminal,446,1,,1,1
+1,5,2744962,Greystone - Grand Central Terminal,416,1,,1,1
+1,5,2744964,Greystone - Grand Central Terminal,430,1,,1,1
+1,5,2744965,Greystone - Grand Central Terminal,438,1,,1,1
+2,5,2744517,Grand Central Terminal - Southeast,661,0,,14,1
+2,5,2744527,Grand Central Terminal - Mount Kisco,673,0,,14,1
+2,5,2744551,Grand Central Terminal - North White Plains,581,0,,14,1
+2,5,2744555,Grand Central Terminal - North White Plains,585,0,,14,1
+2,5,2744593,Grand Central Terminal - Southeast,617,0,,14,1
+2,5,2744715,Grand Central Terminal - North White Plains,551,0,,14,1
+2,5,2744737,Grand Central Terminal - North White Plains,561,0,,14,1
+2,5,2744743,Grand Central Terminal - North White Plains,565,0,,14,1
+2,5,2744749,Grand Central Terminal - North White Plains,569,0,,14,1
+2,5,2744758,Grand Central Terminal - North White Plains,573,0,,14,1
+2,5,2744764,Grand Central Terminal - North White Plains,577,0,,14,1
+2,5,2744768,Grand Central Terminal - North White Plains,579,0,,14,1
+2,5,2744790,Grand Central Terminal - North White Plains,519,0,,14,1
+2,5,2744794,Grand Central Terminal - North White Plains,521,0,,14,1
+2,5,2744953,Grand Central Terminal - Crestwood,357,0,,14,1
+2,5,2744955,Grand Central Terminal - Crestwood,363,0,,14,1
+2,5,2744957,Grand Central Terminal - Crestwood,371,0,,14,1
+1,5,2744365,Grand Central Terminal - Croton Harmon,743,0,,12,1
+1,5,2744373,Grand Central Terminal - Croton Harmon,751,0,,12,1
+1,5,2744385,Grand Central Terminal - Croton Harmon,769,0,,12,1
+1,5,2744387,Grand Central Terminal - Croton Harmon,771,0,,12,1
+1,5,2744407,Grand Central Terminal - Croton Harmon,795,0,,12,1
+2,5,2744598,Southeast - Grand Central Terminal,624,1,,3,1
+2,5,2744594,Golden's Bridge - Grand Central Terminal,618,1,,3,1
+2,5,2744747,North White Plains - Grand Central Terminal,568,1,,3,1
+2,5,2744762,North White Plains - Grand Central Terminal,576,1,,3,1
+2,5,2744781,North White Plains - Grand Central Terminal,514,1,,3,1
+2,5,2744785,North White Plains - Grand Central Terminal,516,1,,3,1
+2,5,2744803,North White Plains - Grand Central Terminal,528,1,,3,1
+2,5,2744829,North White Plains - Grand Central Terminal,544,1,,3,1
+2,5,2744984,North White Plains - Grand Central Terminal,500,1,,3,1
+2,5,2744788,Hartsdale - Grand Central Terminal,518,1,,3,1
+2,5,2744800,Hartsdale - Grand Central Terminal,526,1,,3,1
+2,5,2744798,Crestwood - Grand Central Terminal,524,1,,3,1
+2,5,2744929,Crestwood - Grand Central Terminal,308,1,,3,1
+2,5,2744936,Crestwood - Grand Central Terminal,330,1,,3,1
+2,5,2744946,Crestwood - Grand Central Terminal,338,1,,3,1
+1,5,2744334,Croton Harmon - Grand Central Terminal,706,1,,1,1
+1,5,2744344,Croton Harmon - Grand Central Terminal,716,1,,1,1
+1,5,2744352,Ossining - Grand Central Terminal,728,1,,1,1
+1,5,2744967,Tarrytown - Grand Central Terminal,442,1,,1,1
+1,5,2744963,Irvington - Grand Central Terminal,426,1,,1,1
+4,5,2744488,Stamford - New Canaan,1712,0,,19,1
+4,5,2744489,Stamford - New Canaan,1716,0,,19,1
+4,5,2744490,Stamford - New Canaan,1718,0,,19,1
+4,5,2744492,Stamford - New Canaan,1722,0,,19,1
+4,5,2744494,Stamford - New Canaan,1726,0,,19,1
+4,5,2744496,Stamford - New Canaan,1730,0,,19,1
+4,5,2744498,Stamford - New Canaan,1734,0,,19,1
+4,5,2744500,Stamford - New Canaan,1738,0,,19,1
+4,5,2744856,Stamford - New Canaan,1782,0,,19,1
+4,5,2744857,Stamford - New Canaan,1786,0,,19,1
+4,5,2744861,Stamford - New Canaan,1790,0,,19,1
+4,5,2744862,Stamford - New Canaan,1794,0,,19,1
+4,5,2744893,Stamford - New Canaan,1798,0,,19,1
+4,5,2744959,Stamford - New Canaan,3778,0,,19,1
+3,5,2744440,Grand Central Terminal - Stamford,1404,0,,16,1
+3,5,2744442,Grand Central Terminal - Stamford,1408,0,,16,1
+3,5,2744448,Grand Central Terminal - New Haven,1500,0,,16,1
+3,5,2744449,Grand Central Terminal - New Haven,1502,0,,16,1
+3,5,2744451,Grand Central Terminal - NH-State St.,1504,0,,16,1
+3,5,2744452,Grand Central Terminal - NH-State St.,1506,0,,16,1
+3,5,2744454,Grand Central Terminal - New Haven,1508,0,,16,1
+3,5,2744456,Grand Central Terminal - NH-State St.,1510,0,,16,1
+3,5,2744458,Grand Central Terminal - New Haven,1512,0,,16,1
+3,5,2744460,Grand Central Terminal - New Haven,1536,0,,16,1
+3,5,2744461,Grand Central Terminal - New Haven,1538,0,,16,1
+3,5,2744462,Grand Central Terminal - New Haven,1540,0,,16,1
+3,5,2744464,Grand Central Terminal - New Haven,1542,0,,16,1
+3,5,2744465,Grand Central Terminal - New Haven,1544,0,,16,1
+3,5,2744468,Grand Central Terminal - New Haven,1548,0,,16,1
+3,5,2744471,Grand Central Terminal - New Haven,1554,0,,16,1
+3,5,2744473,Grand Central Terminal - New Haven,1576,0,,16,1
+3,5,2744475,Grand Central Terminal - New Haven,1578,0,,16,1
+3,5,2744477,Grand Central Terminal - New Haven,1580,0,,16,1
+3,5,2744479,Grand Central Terminal - New Haven,1582,0,,16,1
+3,5,2744481,Grand Central Terminal - New Haven,1584,0,,16,1
+3,5,2744482,Grand Central Terminal - New Haven,1586,0,,16,1
+3,5,2744484,Grand Central Terminal - New Haven,1588,0,,16,1
+3,5,2744485,Grand Central Terminal - New Haven,1590,0,,16,1
+3,5,2744613,Grand Central Terminal - Stamford,1374,0,,16,1
+3,5,2744615,Grand Central Terminal - Stamford,1376,0,,16,1
+3,5,2744616,Grand Central Terminal - Stamford,1378,0,,16,1
+3,5,2744619,Grand Central Terminal - Stamford,1382,0,,16,1
+3,5,2744621,Grand Central Terminal - Stamford,1384,0,,16,1
+3,5,2744623,Grand Central Terminal - Stamford,1386,0,,16,1
+3,5,2744625,Grand Central Terminal - Stamford,1388,0,,16,1
+3,5,2744627,Grand Central Terminal - Stamford,1410,0,,16,1
+3,5,2744628,Grand Central Terminal - Stamford,1412,0,,16,1
+3,5,2744636,Grand Central Terminal - Bridgeport,1456,0,,16,1
+3,5,2744637,Grand Central Terminal - South Norwalk,1458,0,,16,1
+3,5,2744639,Grand Central Terminal - Bridgeport,1470,0,,16,1
+3,5,2744642,Grand Central Terminal - NH-State St.,1514,0,,16,1
+3,5,2744643,Grand Central Terminal - New Haven,1516,0,,16,1
+3,5,2744644,Grand Central Terminal - NH-State St.,1518,0,,16,1
+3,5,2744646,Grand Central Terminal - New Haven,1522,0,,16,1
+3,5,2744647,Grand Central Terminal - New Haven,1526,0,,16,1
+3,5,2744650,Grand Central Terminal - New Haven,1530,0,,16,1
+3,5,2744652,Grand Central Terminal - New Haven,1532,0,,16,1
+3,5,2744654,Grand Central Terminal - New Haven,1534,0,,16,1
+3,5,2744655,Grand Central Terminal - Stamford,1390,0,,16,1
+3,5,2744657,Grand Central Terminal - Stamford,1392,0,,16,1
+3,5,2744659,Grand Central Terminal - Stamford,1394,0,,16,1
+3,5,2744661,Grand Central Terminal - Stamford,1396,0,,16,1
+3,5,2744662,Grand Central Terminal - Stamford,1398,0,,16,1
+3,5,2744663,Grand Central Terminal - Stamford,1368,0,,16,1
+3,5,2744672,Grand Central Terminal - New Haven,1562,0,,16,1
+3,5,2744675,Grand Central Terminal - New Haven,1568,0,,16,1
+3,5,2744677,Grand Central Terminal - New Haven,1570,0,,16,1
+3,5,2744679,Grand Central Terminal - New Haven,1572,0,,16,1
+3,5,2744681,Grand Central Terminal - New Haven,1574,0,,16,1
+3,5,2744683,Grand Central Terminal - New Haven,1594,0,,16,1
+3,5,2744686,Grand Central Terminal - New Haven,1598,0,,16,1
+3,6,2744834,Grand Central Terminal - New Haven,3538,0,,16,1
+3,5,2744837,Grand Central Terminal - Stamford,1330,0,,16,1
+3,5,2744838,Grand Central Terminal - Stamford,1332,0,,16,1
+3,5,2744839,Grand Central Terminal - Stamford,1334,0,,16,1
+3,5,2744840,Grand Central Terminal - Stamford,1336,0,,16,1
+3,5,2744841,Grand Central Terminal - Stamford,1338,0,,16,1
+3,5,2744842,Grand Central Terminal - Stamford,1340,0,,16,1
+3,5,2744843,Grand Central Terminal - Stamford,1342,0,,16,1
+3,5,2744847,Grand Central Terminal - Stamford,1352,0,,16,1
+3,5,2744879,Grand Central Terminal - Stamford,1358,0,,16,1
+3,5,2744881,Grand Central Terminal - Stamford,1360,0,,16,1
+3,5,2744887,Grand Central Terminal - Stamford,1320,0,,16,1
+3,5,2744889,Grand Central Terminal - Stamford,1322,0,,16,1
+3,5,2744890,Grand Central Terminal - Stamford,1324,0,,16,1
+3,5,2744891,Grand Central Terminal - Stamford,1326,0,,16,1
+3,5,2744892,Grand Central Terminal - Stamford,1328,0,,16,1
+3,5,2744935,Grand Central Terminal - Harrison,3254,0,,16,1
+3,5,2744999,Grand Central Terminal - Stamford,1302,0,,16,1
+3,5,2745001,Grand Central Terminal - Stamford,1304,0,,16,1
+3,5,2745003,Grand Central Terminal - Stamford,1306,0,,16,1
+3,5,2745103,Grand Central Terminal - Stamford,1308,0,,16,1
+3,5,2745106,Grand Central Terminal - Stamford,1312,0,,16,1
+3,5,2745107,Grand Central Terminal - Stamford,1314,0,,16,1
+3,5,2745109,Grand Central Terminal - Stamford,1316,0,,16,1
+3,5,2745110,Grand Central Terminal - Stamford,1318,0,,16,1
+3,5,2745213,Grand Central Terminal - Harrison,1244,0,,16,1
+3,5,2745215,Grand Central Terminal - Harrison,1246,0,,16,1
+3,5,2745216,Grand Central Terminal - Harrison,1248,0,,16,1
+3,5,2745217,Grand Central Terminal - Harrison,1260,0,,16,1
+3,5,2745218,Grand Central Terminal - Harrison,1270,0,,16,1
+3,5,2745221,Grand Central Terminal - Stamford,1300,0,,16,1
+4,5,2744696,Grand Central Terminal - New Canaan,1710,0,,19,1
+4,5,2744698,Grand Central Terminal - New Canaan,1740,0,,19,1
+4,5,2744702,Grand Central Terminal - New Canaan,1750,0,,19,1
+4,5,2744705,Grand Central Terminal - New Canaan,1758,0,,19,1
+4,5,2744851,Grand Central Terminal - New Canaan,1770,0,,19,1
+4,5,2744853,Grand Central Terminal - New Canaan,1774,0,,19,1
+4,5,2744487,New Canaan - Grand Central Terminal,1711,1,,8,1
+4,5,2744493,New Canaan - Grand Central Terminal,1723,1,,8,1
+4,5,2744497,New Canaan - Grand Central Terminal,1731,1,,8,1
+4,5,2744499,New Canaan - Grand Central Terminal,1735,1,,8,1
+4,5,2744694,New Canaan - Grand Central Terminal,1707,1,,8,1
+4,5,2744699,New Canaan - Grand Central Terminal,1741,1,,8,1
+4,5,2744700,New Canaan - Stamford,1745,1,,8,1
+4,5,2744703,New Canaan - Stamford,1751,1,,8,1
+4,5,2744704,New Canaan - Stamford,1755,1,,8,1
+4,5,2744706,New Canaan - Stamford,1759,1,,8,1
+4,5,2744708,New Canaan - Stamford,1763,1,,8,1
+4,5,2744709,New Canaan - Stamford,1767,1,,8,1
+4,5,2744852,New Canaan - Stamford,1771,1,,8,1
+4,5,2744854,New Canaan - Grand Central Terminal,1775,1,,8,1
+4,5,2744858,New Canaan - Stamford,1787,1,,8,1
+4,5,2744859,New Canaan - Stamford,1789,1,,8,1
+4,5,2744863,New Canaan - Stamford,1795,1,,8,1
+4,5,2744864,New Canaan - Stamford,1797,1,,8,1
+4,5,2744894,New Canaan - Stamford,1799,1,,8,1
+4,5,2744958,New Canaan - Stamford,3777,1,,8,1
+3,5,2744472,NH-State St. - Grand Central Terminal,1555,1,,5,1
+3,5,2744476,NH-State St. - Grand Central Terminal,1579,1,,5,1
+3,5,2744478,NH-State St. - Grand Central Terminal,1581,1,,5,1
+3,5,2744480,NH-State St. - Grand Central Terminal,1583,1,,5,1
+3,5,2744680,NH-State St. - Grand Central Terminal,1573,1,,5,1
+3,5,2744682,NH-State St. - Grand Central Terminal,1575,1,,5,1
+3,5,2744450,New Haven - Grand Central Terminal,1503,1,,5,1
+3,5,2744453,New Haven - Grand Central Terminal,1507,1,,5,1
+3,5,2744455,New Haven - Grand Central Terminal,1509,1,,5,1
+3,5,2744459,New Haven - Grand Central Terminal,1535,1,,5,1
+3,5,2744463,New Haven - Grand Central Terminal,1541,1,,5,1
+3,5,2744466,New Haven - Grand Central Terminal,1545,1,,5,1
+3,5,2744469,New Haven - Grand Central Terminal,1549,1,,5,1
+3,5,2744474,New Haven - Grand Central Terminal,1577,1,,5,1
+3,5,2744483,New Haven - Grand Central Terminal,1587,1,,5,1
+3,5,2744486,New Haven - Grand Central Terminal,1591,1,,5,1
+3,5,2744641,New Haven - Grand Central Terminal,1513,1,,5,1
+3,5,2744645,New Haven - Grand Central Terminal,1521,1,,5,1
+3,5,2744651,New Haven - Grand Central Terminal,1531,1,,5,1
+3,5,2744670,New Haven - Grand Central Terminal,1559,1,,5,1
+3,5,2744673,New Haven - Grand Central Terminal,1563,1,,5,1
+3,5,2744674,New Haven - Grand Central Terminal,1567,1,,5,1
+3,5,2744676,New Haven - Grand Central Terminal,1569,1,,5,1
+3,5,2744678,New Haven - Grand Central Terminal,1571,1,,5,1
+3,5,2744684,New Haven - Grand Central Terminal,1595,1,,5,1
+3,5,2744685,New Haven - Grand Central Terminal,1597,1,,5,1
+3,5,2744687,New Haven - Grand Central Terminal,1599,1,,5,1
+3,5,2744951,New Haven - Grand Central Terminal,3539,1,,5,1
+3,5,2744952,New Haven - Grand Central Terminal,3551,1,,5,1
+3,5,2744443,Bridgeport - Grand Central Terminal,1409,1,,5,1
+3,5,2744633,Bridgeport - Grand Central Terminal,1439,1,,5,1
+3,5,2744635,Bridgeport - Grand Central Terminal,1445,1,,5,1
+3,5,2744629,Fairfield - Grand Central Terminal,1419,1,,5,1
+3,5,2744631,Fairfield - Grand Central Terminal,1433,1,,5,1
+3,5,2744447,South Norwalk - Grand Central Terminal,1497,1,,5,1
+3,5,2744630,South Norwalk - Grand Central Terminal,1429,1,,5,1
+3,5,2744632,South Norwalk - Grand Central Terminal,1437,1,,5,1
+3,5,2744634,South Norwalk - Grand Central Terminal,1441,1,,5,1
+3,5,2744949,South Norwalk - Grand Central Terminal,3451,1,,5,1
+3,5,2744439,Stamford - Grand Central Terminal,1399,1,,5,1
+3,5,2744441,Stamford - Grand Central Terminal,1407,1,,5,1
+3,5,2744445,Stamford - Grand Central Terminal,1477,1,,5,1
+3,5,2744614,Stamford - Grand Central Terminal,1375,1,,5,1
+3,5,2744617,Stamford - Grand Central Terminal,1379,1,,5,1
+3,5,2744618,Stamford - Grand Central Terminal,1381,1,,5,1
+3,5,2744620,Stamford - Grand Central Terminal,1383,1,,5,1
+3,5,2744622,Stamford - Grand Central Terminal,1385,1,,5,1
+3,5,2744624,Stamford - Grand Central Terminal,1387,1,,5,1
+3,5,2744626,Stamford - Grand Central Terminal,1389,1,,5,1
+3,5,2744638,Stamford - Grand Central Terminal,1469,1,,5,1
+3,5,2744640,Stamford - Grand Central Terminal,1473,1,,5,1
+3,5,2744656,Stamford - Grand Central Terminal,1391,1,,5,1
+3,5,2744658,Stamford - Grand Central Terminal,1393,1,,5,1
+3,5,2744660,Stamford - Grand Central Terminal,1395,1,,5,1
+3,5,2744664,Stamford - Grand Central Terminal,1369,1,,5,1
+3,5,2744667,Stamford - Grand Central Terminal,1371,1,,5,1
+3,5,2744668,Stamford - Grand Central Terminal,1373,1,,5,1
+3,5,2744844,Stamford - Grand Central Terminal,1345,1,,5,1
+3,5,2744845,Stamford - Grand Central Terminal,1347,1,,5,1
+3,5,2744846,Stamford - Grand Central Terminal,1349,1,,5,1
+3,5,2744848,Stamford - Grand Central Terminal,1353,1,,5,1
+3,5,2744849,Stamford - Grand Central Terminal,1355,1,,5,1
+3,5,2744850,Stamford - Grand Central Terminal,1357,1,,5,1
+3,5,2744880,Stamford - Grand Central Terminal,1359,1,,5,1
+3,5,2744882,Stamford - Grand Central Terminal,1361,1,,5,1
+3,5,2744884,Stamford - Grand Central Terminal,1363,1,,5,1
+3,5,2744885,Stamford - Grand Central Terminal,1365,1,,5,1
+3,5,2744886,Stamford - Grand Central Terminal,1367,1,,5,1
+3,5,2744888,Stamford - Grand Central Terminal,1321,1,,5,1
+3,5,2744940,Stamford - Grand Central Terminal,3333,1,,5,1
+3,5,2744941,Stamford - Grand Central Terminal,3339,1,,5,1
+3,5,2744943,Stamford - Grand Central Terminal,3351,1,,5,1
+3,5,2745000,Stamford - Grand Central Terminal,1303,1,,5,1
+3,5,2745002,Stamford - Grand Central Terminal,1305,1,,5,1
+3,5,2745004,Stamford - Grand Central Terminal,1307,1,,5,1
+3,5,2745104,Stamford - Grand Central Terminal,1309,1,,5,1
+3,5,2745105,Stamford - Grand Central Terminal,1311,1,,5,1
+3,5,2745222,Stamford - Grand Central Terminal,1301,1,,5,1
+3,5,2745108,Old Greenwich - Grand Central Terminal,1315,1,,5,1
+3,5,2744932,Harrison - Grand Central Terminal,3213,1,,5,1
+3,5,2744939,Harrison - Grand Central Terminal,3327,1,,5,1
+3,5,2745208,Harrison - Grand Central Terminal,1231,1,,5,1
+3,5,2745210,Harrison - Grand Central Terminal,1235,1,,5,1
+3,5,2745211,Harrison - Grand Central Terminal,1239,1,,5,1
+3,5,2745212,Harrison - Grand Central Terminal,1241,1,,5,1
+3,5,2745214,Harrison - Grand Central Terminal,1245,1,,5,1
+3,5,2745219,Harrison - Grand Central Terminal,1275,1,,5,1
+3,5,2745220,Harrison - Grand Central Terminal,1279,1,,5,1
+3,5,2745206,New Rochelle - Grand Central Terminal,1225,1,,5,1
+3,5,2745209,New Rochelle - Grand Central Terminal,1233,1,,5,1
+6,5,2744876,Bridgeport - Waterbury,1906,0,,22,1
+6,5,2744877,Bridgeport - Waterbury,1916,0,,22,1
+6,5,2744907,Bridgeport - Waterbury,1934,0,,22,1
+6,5,2744909,Bridgeport - Waterbury,1946,0,,22,1
+6,5,2744913,Bridgeport - Waterbury,1974,0,,22,1
+6,5,2744915,Bridgeport - Waterbury,1986,0,,22,1
+5,5,2744871,South Norwalk - Danbury,1882,0,,21,1
+5,5,2744872,South Norwalk - Danbury,1890,0,,21,1
+5,5,2744895,South Norwalk - Danbury,1810,0,,21,1
+5,5,2744897,South Norwalk - Danbury,1818,0,,21,1
+5,5,2744899,South Norwalk - Danbury,1830,0,,21,1
+5,5,2744902,Stamford - Danbury,1838,0,,21,1
+5,5,2744904,Stamford - Danbury,1844,0,,21,1
+3,5,2744467,Grand Central Terminal - New Haven,1546,0,,16,1
+3,5,2744470,Grand Central Terminal - New Haven,1552,0,,16,1
+3,5,2744669,Grand Central Terminal - New Haven,1556,0,,16,1
+3,5,2744671,Grand Central Terminal - New Haven,1560,0,,16,1
+3,5,2744883,Grand Central Terminal - Old Greenwich,1362,0,,16,1
+3,5,2744945,Grand Central Terminal - Harrison,3364,0,,16,1
+2,5,2744296,Southeast - Wassaic,905,0,,14,1
+2,5,2744298,Southeast - Wassaic,915,0,,14,1
+2,5,2744300,Southeast - Wassaic,923,0,,14,1
+2,5,2744303,Southeast - Wassaic,931,0,,14,1
+2,5,2744305,Southeast - Wassaic,939,0,,14,1
+2,5,2744316,Southeast - Wassaic,975,0,,14,1
+2,5,2744319,Southeast - Wassaic,987,0,,14,1
+2,5,2744321,Southeast - Wassaic,991,0,,14,1
+2,5,2744324,Southeast - Dover Plains,999,0,,14,1
+2,5,2744308,Grand Central Terminal - Wassaic,949,0,,14,1
+2,5,2744314,Grand Central Terminal - Wassaic,967,0,,14,1
+2,5,2744784,Grand Central Terminal - North White Plains,515,0,,14,1
+1,5,2744294,Croton Harmon - Poughkeepsie,899,0,,12,1
+1,5,2744411,Croton Harmon - Poughkeepsie,801,0,,12,1
+6,5,2744908,Waterbury - Bridgeport,1935,1,,11,1
+6,5,2744910,Waterbury - Bridgeport,1951,1,,11,1
+6,5,2744911,Waterbury - Bridgeport,1963,1,,11,1
+6,5,2744914,Waterbury - Bridgeport,1981,1,,11,1
+6,5,2744916,Waterbury - Bridgeport,1991,1,,11,1
+6,5,2744917,Waterbury - Bridgeport,1997,1,,11,1
+5,5,2744866,Danbury - South Norwalk,1863,1,,10,1
+5,5,2744868,Danbury - Stamford,1873,1,,10,1
+5,5,2744870,Danbury - South Norwalk,1881,1,,10,1
+5,5,2744874,Danbury - South Norwalk,1897,1,,10,1
+5,5,2744901,Danbury - Stamford,1837,1,,10,1
+5,5,2744903,Danbury - Stamford,1841,1,,10,1
+5,5,2744906,Danbury - South Norwalk,1851,1,,10,1
+1,5,2744265,Grand Central Terminal - Poughkeepsie,849,0,,12,1
+1,5,2744266,Grand Central Terminal - Beacon,851,0,,12,1
+1,5,2744268,Grand Central Terminal - Poughkeepsie,853,0,,12,1
+1,5,2744269,Grand Central Terminal - Beacon,855,0,,12,1
+1,5,2744271,Grand Central Terminal - Poughkeepsie,857,0,,12,1
+1,5,2744281,Grand Central Terminal - Poughkeepsie,879,0,,12,1
+1,5,2744283,Grand Central Terminal - Poughkeepsie,881,0,,12,1
+1,5,2744284,Grand Central Terminal - Poughkeepsie,883,0,,12,1
+1,5,2744286,Grand Central Terminal - Poughkeepsie,887,0,,12,1
+1,5,2744289,Grand Central Terminal - Poughkeepsie,891,0,,12,1
+1,5,2744293,Grand Central Terminal - Poughkeepsie,895,0,,12,1
+1,5,2744413,Grand Central Terminal - Poughkeepsie,805,0,,12,1
+1,5,2744415,Grand Central Terminal - Poughkeepsie,807,0,,12,1
+1,5,2744416,Grand Central Terminal - Poughkeepsie,809,0,,12,1
+1,5,2744418,Grand Central Terminal - Poughkeepsie,813,0,,12,1
+1,5,2744423,Grand Central Terminal - Poughkeepsie,821,0,,12,1
+1,5,2744425,Grand Central Terminal - Poughkeepsie,829,0,,12,1
+1,5,2744429,Grand Central Terminal - Poughkeepsie,835,0,,12,1
+1,5,2744431,Grand Central Terminal - Poughkeepsie,837,0,,12,1
+1,5,2744434,Grand Central Terminal - Poughkeepsie,843,0,,12,1
+3,5,2744457,New Haven - Grand Central Terminal,1511,1,,5,1
+3,5,2744648,New Haven - Grand Central Terminal,1527,1,,5,1
+3,5,2744649,New Haven - Grand Central Terminal,1529,1,,5,1
+3,5,2744653,New Haven - Grand Central Terminal,1533,1,,5,1
+3,5,2744947,New Haven - Grand Central Terminal,3417,1,,5,1
+3,5,2744937,Harrison - Grand Central Terminal,3319,1,,5,1
+3,5,2744933,New Rochelle - Grand Central Terminal,3237,1,,5,1
+3,5,2745207,New Rochelle - Grand Central Terminal,1229,1,,5,1
+2,5,2744295,Wassaic - Southeast,902,1,,3,1
+2,5,2744297,Wassaic - Grand Central Terminal,910,1,,3,1
+2,5,2744304,Wassaic - Grand Central Terminal,932,1,,3,1
+2,5,2744307,Wassaic - Southeast,944,1,,3,1
+2,5,2744310,Wassaic - Southeast,952,1,,3,1
+2,5,2744313,Wassaic - Southeast,960,1,,3,1
+2,5,2744315,Wassaic - Southeast,968,1,,3,1
+2,5,2744318,Wassaic - Southeast,982,1,,3,1
+2,5,2744320,Wassaic - Southeast,990,1,,3,1
+2,5,2744323,Wassaic - Southeast,998,1,,3,1
+2,5,2744818,North White Plains - Grand Central Terminal,538,1,,3,1
+1,5,2744267,Poughkeepsie - Grand Central Terminal,852,1,,1,1
+1,5,2744270,Poughkeepsie - Grand Central Terminal,856,1,,1,1
+1,5,2744275,Poughkeepsie - Grand Central Terminal,864,1,,1,1
+1,5,2744278,Poughkeepsie - Grand Central Terminal,872,1,,1,1
+1,5,2744280,Poughkeepsie - Grand Central Terminal,878,1,,1,1
+1,5,2744282,Poughkeepsie - Grand Central Terminal,880,1,,1,1
+1,5,2744285,Poughkeepsie - Grand Central Terminal,884,1,,1,1
+1,5,2744287,Poughkeepsie - Grand Central Terminal,888,1,,1,1
+1,5,2744290,Poughkeepsie - Croton Harmon,892,1,,1,1
+1,5,2744292,Poughkeepsie - Croton Harmon,894,1,,1,1
+1,5,2744412,Poughkeepsie - Grand Central Terminal,802,1,,1,1
+1,5,2744414,Poughkeepsie - Grand Central Terminal,806,1,,1,1
+1,5,2744417,Poughkeepsie - Grand Central Terminal,810,1,,1,1
+1,5,2744419,Poughkeepsie - Grand Central Terminal,814,1,,1,1
+1,5,2744420,Poughkeepsie - Grand Central Terminal,816,1,,1,1
+1,5,2744422,Poughkeepsie - Grand Central Terminal,818,1,,1,1
+1,5,2744428,Poughkeepsie - Grand Central Terminal,832,1,,1,1
+1,5,2744432,Poughkeepsie - Grand Central Terminal,838,1,,1,1
+1,5,2744435,Poughkeepsie - Grand Central Terminal,844,1,,1,1
+1,5,2744436,Poughkeepsie - Grand Central Terminal,846,1,,1,1
+1,5,2744438,Poughkeepsie - Grand Central Terminal,848,1,,1,1
+1,5,2744359,Croton Harmon - Grand Central Terminal,736,1,,1,1
+5,5,2744869,Stamford - Danbury,1874,0,,21,1
+5,5,2744865,Grand Central Terminal - Danbury,1860,0,,21,1
+5,5,2744867,Grand Central Terminal - Danbury,1868,0,,21,1
+5,5,2744905,Grand Central Terminal - Danbury,1848,0,,21,1
+3,5,2744666,Grand Central Terminal - Stamford,1370,0,,16,1
+2,5,2744317,Southeast - Wassaic,981,0,,14,1
+2,5,2744311,Grand Central Terminal - Wassaic,953,0,,14,1
+2,5,2744312,Grand Central Terminal - Wassaic,959,0,,14,1
+6,5,2744961,Waterbury - Bridgeport,3923,1,,11,1
+5,5,2744873,Danbury - Stamford,1895,1,,10,1
+5,5,2744896,Danbury - Grand Central Terminal,1811,1,,10,1
+5,5,2744898,Danbury - Grand Central Terminal,1819,1,,10,1
+5,5,2744900,Danbury - Grand Central Terminal,1833,1,,10,1
+1,5,2744274,Grand Central Terminal - Poughkeepsie,861,0,,12,1
+1,5,2744277,Grand Central Terminal - Poughkeepsie,871,0,,12,1
+1,5,2744291,Grand Central Terminal - Poughkeepsie,893,0,,12,1
+1,5,2744421,Grand Central Terminal - Poughkeepsie,817,0,,12,1
+1,5,2744424,Grand Central Terminal - Poughkeepsie,825,0,,12,1
+1,5,2744427,Grand Central Terminal - Poughkeepsie,831,0,,12,1
+1,5,2744437,Grand Central Terminal - Poughkeepsie,847,0,,12,1
+3,5,2744948,Bridgeport - Grand Central Terminal,3427,1,,5,1
+3,5,2744938,Stamford - Grand Central Terminal,3325,1,,5,1
+2,5,2744299,Wassaic - Grand Central Terminal,918,1,,3,1
+2,5,2744301,Wassaic - Grand Central Terminal,924,1,,3,1
+2,5,2744322,Wassaic - Southeast,996,1,,3,1
+1,5,2744273,Poughkeepsie - Grand Central Terminal,860,1,,1,1
+1,5,2744276,Poughkeepsie - Grand Central Terminal,868,1,,1,1
+1,5,2744279,Poughkeepsie - Grand Central Terminal,876,1,,1,1
+1,5,2744288,Poughkeepsie - Grand Central Terminal,890,1,,1,1
+1,5,2744426,Poughkeepsie - Grand Central Terminal,830,1,,1,1
+1,5,2744430,Poughkeepsie - Grand Central Terminal,836,1,,1,1
+1,5,2744433,Poughkeepsie - Grand Central Terminal,842,1,,1,1
+6,5,2744878,Bridgeport - Waterbury,1926,0,,22,0
+6,5,2744912,Waterbury - Bridgeport,1973,1,,11,0
+2,2480,2613758,Grand Central Terminal - North White Plains,351,0,,14,1
+2,2480,2613761,Grand Central Terminal - Crestwood,359,0,,14,1
+2,2480,2613763,Grand Central Terminal - Crestwood,367,0,,14,1
+2,2480,2613765,Grand Central Terminal - Mt Vernon West,379,0,,14,1
+2,2480,2613793,Grand Central Terminal - North White Plains,501,0,,14,1
+2,2480,2613796,Grand Central Terminal - North White Plains,503,0,,14,1
+2,2480,2613798,Grand Central Terminal - North White Plains,505,0,,14,1
+2,2480,2613802,Grand Central Terminal - North White Plains,509,0,,14,1
+2,2480,2613804,Grand Central Terminal - North White Plains,511,0,,14,1
+2,2480,2613808,Grand Central Terminal - North White Plains,513,0,,14,1
+2,2480,2613814,Grand Central Terminal - North White Plains,517,0,,14,1
+2,2480,2613825,Grand Central Terminal - North White Plains,523,0,,14,1
+2,2480,2613827,Grand Central Terminal - North White Plains,525,0,,14,1
+2,2480,2613829,Grand Central Terminal - North White Plains,527,0,,14,1
+2,2480,2613832,Grand Central Terminal - North White Plains,529,0,,14,1
+2,2480,2613835,Grand Central Terminal - North White Plains,531,0,,14,1
+2,2480,2613839,Grand Central Terminal - North White Plains,533,0,,14,1
+2,2480,2613842,Grand Central Terminal - North White Plains,535,0,,14,1
+2,2480,2613844,Grand Central Terminal - North White Plains,537,0,,14,1
+2,2480,2613847,Grand Central Terminal - North White Plains,539,0,,14,1
+2,2480,2613854,Grand Central Terminal - North White Plains,541,0,,14,1
+2,2480,2613856,Grand Central Terminal - North White Plains,543,0,,14,1
+2,2480,2613858,Grand Central Terminal - North White Plains,545,0,,14,1
+2,2480,2613859,Grand Central Terminal - North White Plains,547,0,,14,1
+2,2480,2613861,Grand Central Terminal - North White Plains,549,0,,14,1
+2,2480,2613873,Grand Central Terminal - North White Plains,553,0,,14,1
+2,2480,2613875,Grand Central Terminal - North White Plains,555,0,,14,1
+2,2480,2613877,Grand Central Terminal - North White Plains,557,0,,14,1
+2,2480,2613882,Grand Central Terminal - North White Plains,559,0,,14,1
+2,2480,2613894,Grand Central Terminal - North White Plains,563,0,,14,1
+2,2480,2613899,Grand Central Terminal - North White Plains,567,0,,14,1
+2,2480,2613914,Grand Central Terminal - North White Plains,575,0,,14,1
+2,2480,2613930,Grand Central Terminal - North White Plains,583,0,,14,1
+2,2480,2613934,Grand Central Terminal - North White Plains,587,0,,14,1
+2,2480,2613936,Grand Central Terminal - North White Plains,589,0,,14,1
+2,2480,2613943,Grand Central Terminal - North White Plains,591,0,,14,1
+2,2480,2613944,Grand Central Terminal - North White Plains,593,0,,14,1
+2,2480,2613946,Grand Central Terminal - North White Plains,595,0,,14,1
+2,2480,2613948,Grand Central Terminal - North White Plains,597,0,,14,1
+2,2480,2613950,Grand Central Terminal - North White Plains,599,0,,14,1
+2,2480,2613953,Grand Central Terminal - Southeast,601,0,,14,1
+2,2480,2613955,Grand Central Terminal - Southeast,603,0,,14,1
+2,2480,2613957,Grand Central Terminal - Southeast,605,0,,14,1
+2,2480,2613959,Grand Central Terminal - North White Plains,607,0,,14,1
+2,2480,2613961,Grand Central Terminal - North White Plains,609,0,,14,1
+2,2480,2613963,Grand Central Terminal - Southeast,611,0,,14,1
+2,2480,2613965,Grand Central Terminal - Southeast,613,0,,14,1
+2,2480,2613967,Grand Central Terminal - Southeast,615,0,,14,1
+2,2480,2613971,Grand Central Terminal - Southeast,619,0,,14,1
+2,2480,2613973,Grand Central Terminal - Southeast,623,0,,14,1
+2,2480,2613975,Grand Central Terminal - Southeast,627,0,,14,1
+2,2480,2613979,Grand Central Terminal - Southeast,631,0,,14,1
+2,2480,2613982,Grand Central Terminal - Southeast,635,0,,14,1
+2,2480,2613985,Grand Central Terminal - Southeast,639,0,,14,1
+2,2480,2613988,Grand Central Terminal - Southeast,641,0,,14,1
+2,2480,2613989,Grand Central Terminal - Mount Kisco,643,0,,14,1
+2,2480,2613991,Grand Central Terminal - Southeast,645,0,,14,1
+2,2480,2613994,Grand Central Terminal - Southeast,649,0,,14,1
+2,2480,2613996,Grand Central Terminal - Southeast,651,0,,14,1
+2,2480,2613998,Grand Central Terminal - Southeast,653,0,,14,1
+2,2480,2613999,Grand Central Terminal - Southeast,655,0,,14,1
+2,2480,2614001,Grand Central Terminal - Mount Kisco,657,0,,14,1
+2,2480,2614002,Grand Central Terminal - Brewster,659,0,,14,1
+2,2480,2614006,Grand Central Terminal - Southeast,663,0,,14,1
+2,2480,2614008,Grand Central Terminal - Mount Kisco,665,0,,14,1
+2,2480,2614009,Grand Central Terminal - Brewster,667,0,,14,1
+2,2480,2614011,Grand Central Terminal - Mount Kisco,669,0,,14,1
+2,2480,2614014,Grand Central Terminal - Southeast,671,0,,14,1
+2,2480,2614016,Grand Central Terminal - Southeast,675,0,,14,1
+2,2480,2614018,Grand Central Terminal - Mount Kisco,677,0,,14,1
+2,2480,2614019,Grand Central Terminal - Southeast,679,0,,14,1
+2,2480,2614022,Grand Central Terminal - Southeast,681,0,,14,1
+2,2480,2614025,Grand Central Terminal - Southeast,685,0,,14,1
+2,2480,2614027,Grand Central Terminal - Southeast,687,0,,14,1
+2,2480,2614029,Grand Central Terminal - Southeast,689,0,,14,1
+2,2480,2614032,Grand Central Terminal - Southeast,691,0,,14,1
+2,2480,2614034,Grand Central Terminal - Southeast,693,0,,14,1
+2,2480,2614036,Grand Central Terminal - Southeast,695,0,,14,1
+2,2480,2614039,Grand Central Terminal - Southeast,699,0,,14,1
+1,2480,2613773,Grand Central Terminal - Greystone,457,0,,12,1
+1,2480,2613774,Grand Central Terminal - Greystone,461,0,,12,1
+1,2480,2613775,Grand Central Terminal - Greystone,469,0,,12,1
+1,2480,2613781,Grand Central Terminal - Croton Harmon,483,0,,12,1
+1,2480,2613782,Grand Central Terminal - Croton Harmon,485,0,,12,1
+1,2480,2614041,Grand Central Terminal - Croton Harmon,701,0,,12,1
+1,2480,2614043,Grand Central Terminal - Croton Harmon,703,0,,12,1
+1,2480,2614045,Grand Central Terminal - Croton Harmon,705,0,,12,1
+1,2480,2614047,Grand Central Terminal - Croton Harmon,707,0,,12,1
+1,2480,2614049,Grand Central Terminal - Croton Harmon,709,0,,12,1
+1,2480,2614051,Grand Central Terminal - Croton Harmon,711,0,,12,1
+1,2480,2614053,Grand Central Terminal - Croton Harmon,713,0,,12,1
+1,2480,2614055,Grand Central Terminal - Croton Harmon,715,0,,12,1
+1,2480,2614058,Grand Central Terminal - Croton Harmon,719,0,,12,1
+1,2480,2614061,Grand Central Terminal - Croton Harmon,723,0,,12,1
+1,2480,2614063,Grand Central Terminal - Croton Harmon,727,0,,12,1
+1,2480,2614066,Grand Central Terminal - Croton Harmon,731,0,,12,1
+1,2480,2614068,Grand Central Terminal - Croton Harmon,733,0,,12,1
+1,2480,2614070,Grand Central Terminal - Croton Harmon,735,0,,12,1
+1,2480,2614072,Grand Central Terminal - Croton Harmon,737,0,,12,1
+1,2480,2614074,Grand Central Terminal - Croton Harmon,739,0,,12,1
+1,2480,2614079,Grand Central Terminal - Croton Harmon,745,0,,12,1
+1,2480,2614081,Grand Central Terminal - Croton Harmon,747,0,,12,1
+1,2480,2614083,Grand Central Terminal - Croton Harmon,749,0,,12,1
+1,2480,2614086,Grand Central Terminal - Croton Harmon,753,0,,12,1
+1,2480,2614088,Grand Central Terminal - Croton Harmon,755,0,,12,1
+1,2480,2614089,Grand Central Terminal - Croton Harmon,757,0,,12,1
+1,2480,2614091,Grand Central Terminal - Croton Harmon,759,0,,12,1
+1,2480,2614092,Grand Central Terminal - Croton Harmon,761,0,,12,1
+1,2480,2614094,Grand Central Terminal - Croton Harmon,763,0,,12,1
+1,2480,2614096,Grand Central Terminal - Croton Harmon,767,0,,12,1
+1,2480,2614101,Grand Central Terminal - Croton Harmon,773,0,,12,1
+1,2480,2614103,Grand Central Terminal - Croton Harmon,775,0,,12,1
+1,2480,2614105,Grand Central Terminal - Croton Harmon,777,0,,12,1
+1,2480,2614107,Grand Central Terminal - Croton Harmon,779,0,,12,1
+1,2480,2614108,Grand Central Terminal - Croton Harmon,781,0,,12,1
+1,2480,2614110,Grand Central Terminal - Croton Harmon,783,0,,12,1
+1,2480,2614112,Grand Central Terminal - Croton Harmon,787,0,,12,1
+1,2480,2614114,Grand Central Terminal - Croton Harmon,789,0,,12,1
+1,2480,2614116,Grand Central Terminal - Croton Harmon,791,0,,12,1
+1,2480,2614121,Grand Central Terminal - Croton Harmon,797,0,,12,1
+1,2480,2614122,Grand Central Terminal - Croton Harmon,799,0,,12,1
+2,2480,2613952,Southeast - Grand Central Terminal,600,1,,3,1
+2,2480,2613954,Southeast - Grand Central Terminal,602,1,,3,1
+2,2480,2613956,Southeast - Grand Central Terminal,604,1,,3,1
+2,2480,2613958,Southeast - Grand Central Terminal,606,1,,3,1
+2,2480,2613960,Southeast - Grand Central Terminal,608,1,,3,1
+2,2480,2613962,Southeast - Grand Central Terminal,610,1,,3,1
+2,2480,2613964,Southeast - Grand Central Terminal,612,1,,3,1
+2,2480,2613966,Southeast - Grand Central Terminal,614,1,,3,1
+2,2480,2613968,Southeast - Grand Central Terminal,616,1,,3,1
+2,2480,2613978,Southeast - Grand Central Terminal,630,1,,3,1
+2,2480,2613981,Southeast - Grand Central Terminal,634,1,,3,1
+2,2480,2613984,Southeast - Grand Central Terminal,638,1,,3,1
+2,2480,2613987,Southeast - Grand Central Terminal,640,1,,3,1
+2,2480,2613990,Southeast - Grand Central Terminal,644,1,,3,1
+2,2480,2613993,Southeast - Grand Central Terminal,648,1,,3,1
+2,2480,2613997,Southeast - Grand Central Terminal,652,1,,3,1
+2,2480,2614000,Southeast - Grand Central Terminal,656,1,,3,1
+2,2480,2614004,Southeast - Grand Central Terminal,660,1,,3,1
+2,2480,2614007,Southeast - Grand Central Terminal,664,1,,3,1
+2,2480,2614010,Southeast - Grand Central Terminal,668,1,,3,1
+2,2480,2614017,Southeast - Grand Central Terminal,676,1,,3,1
+2,2480,2614021,Southeast - Grand Central Terminal,680,1,,3,1
+2,2480,2614023,Southeast - Grand Central Terminal,682,1,,3,1
+2,2480,2614026,Southeast - Grand Central Terminal,686,1,,3,1
+2,2480,2614031,Southeast - Grand Central Terminal,690,1,,3,1
+2,2480,2614035,Southeast - Grand Central Terminal,694,1,,3,1
+2,2480,2614037,Southeast - Grand Central Terminal,696,1,,3,1
+2,2480,2614038,Southeast - Grand Central Terminal,698,1,,3,1
+2,2480,2613972,Mount Kisco - Grand Central Terminal,622,1,,3,1
+2,2480,2613976,Mount Kisco - Grand Central Terminal,628,1,,3,1
+2,2480,2613980,Mount Kisco - Grand Central Terminal,632,1,,3,1
+2,2480,2613983,Mount Kisco - Grand Central Terminal,636,1,,3,1
+2,2480,2613992,Mount Kisco - Grand Central Terminal,646,1,,3,1
+2,2480,2613995,Mount Kisco - Grand Central Terminal,650,1,,3,1
+2,2480,2614013,Mount Kisco - Grand Central Terminal,670,1,,3,1
+2,2480,2614024,Mount Kisco - Grand Central Terminal,684,1,,3,1
+2,2480,2614028,Mount Kisco - Grand Central Terminal,688,1,,3,1
+2,2480,2614033,Mount Kisco - Grand Central Terminal,692,1,,3,1
+2,2480,2613748,North White Plains - Grand Central Terminal,300,1,,3,1
+2,2480,2613749,North White Plains - Grand Central Terminal,306,1,,3,1
+2,2480,2613794,North White Plains - Grand Central Terminal,502,1,,3,1
+2,2480,2613797,North White Plains - Grand Central Terminal,504,1,,3,1
+2,2480,2613799,North White Plains - Grand Central Terminal,506,1,,3,1
+2,2480,2613801,North White Plains - Grand Central Terminal,508,1,,3,1
+2,2480,2613803,North White Plains - Grand Central Terminal,510,1,,3,1
+2,2480,2613806,North White Plains - Grand Central Terminal,512,1,,3,1
+2,2480,2613821,North White Plains - Grand Central Terminal,520,1,,3,1
+2,2480,2613841,North White Plains - Grand Central Terminal,534,1,,3,1
+2,2480,2613843,North White Plains - Grand Central Terminal,536,1,,3,1
+2,2480,2613850,North White Plains - Grand Central Terminal,540,1,,3,1
+2,2480,2613855,North White Plains - Grand Central Terminal,542,1,,3,1
+2,2480,2613860,North White Plains - Grand Central Terminal,548,1,,3,1
+2,2480,2613871,North White Plains - Grand Central Terminal,552,1,,3,1
+2,2480,2613874,North White Plains - Grand Central Terminal,554,1,,3,1
+2,2480,2613876,North White Plains - Grand Central Terminal,556,1,,3,1
+2,2480,2613880,North White Plains - Grand Central Terminal,558,1,,3,1
+2,2480,2613886,North White Plains - Grand Central Terminal,560,1,,3,1
+2,2480,2613892,North White Plains - Grand Central Terminal,562,1,,3,1
+2,2480,2613895,North White Plains - Grand Central Terminal,564,1,,3,1
+2,2480,2613898,North White Plains - Grand Central Terminal,566,1,,3,1
+2,2480,2613908,North White Plains - Grand Central Terminal,572,1,,3,1
+2,2480,2613912,North White Plains - Grand Central Terminal,574,1,,3,1
+2,2480,2613919,North White Plains - Grand Central Terminal,578,1,,3,1
+2,2480,2613927,North White Plains - Grand Central Terminal,580,1,,3,1
+2,2480,2613929,North White Plains - Grand Central Terminal,582,1,,3,1
+2,2480,2613931,North White Plains - Grand Central Terminal,584,1,,3,1
+2,2480,2613933,North White Plains - Grand Central Terminal,586,1,,3,1
+2,2480,2613935,North White Plains - Grand Central Terminal,588,1,,3,1
+2,2480,2613938,North White Plains - Grand Central Terminal,590,1,,3,1
+2,2480,2613945,North White Plains - Grand Central Terminal,594,1,,3,1
+2,2480,2613947,North White Plains - Grand Central Terminal,596,1,,3,1
+2,2480,2613949,North White Plains - Grand Central Terminal,598,1,,3,1
+2,2480,2613836,Hartsdale - Grand Central Terminal,532,1,,3,1
+2,2480,2613751,Crestwood - Grand Central Terminal,314,1,,3,1
+2,2480,2613752,Crestwood - Grand Central Terminal,316,1,,3,1
+2,2480,2613755,Crestwood - Grand Central Terminal,334,1,,3,1
+2,2480,2613756,Crestwood - Grand Central Terminal,336,1,,3,1
+2,2480,2613823,Crestwood - Grand Central Terminal,522,1,,3,1
+2,2480,2613753,Mt Vernon West - Grand Central Terminal,324,1,,3,1
+1,2480,2614040,Croton Harmon - Grand Central Terminal,700,1,,1,1
+1,2480,2614042,Croton Harmon - Grand Central Terminal,702,1,,1,1
+1,2480,2614044,Croton Harmon - Grand Central Terminal,704,1,,1,1
+1,2480,2614048,Croton Harmon - Grand Central Terminal,708,1,,1,1
+1,2480,2614050,Croton Harmon - Grand Central Terminal,710,1,,1,1
+1,2480,2614052,Croton Harmon - Grand Central Terminal,712,1,,1,1
+1,2480,2614054,Croton Harmon - Grand Central Terminal,714,1,,1,1
+1,2480,2614060,Croton Harmon - Grand Central Terminal,722,1,,1,1
+1,2480,2614062,Croton Harmon - Grand Central Terminal,724,1,,1,1
+1,2480,2614065,Croton Harmon - Grand Central Terminal,730,1,,1,1
+1,2480,2614067,Croton Harmon - Grand Central Terminal,732,1,,1,1
+1,2480,2614069,Croton Harmon - Grand Central Terminal,734,1,,1,1
+1,2480,2614073,Croton Harmon - Grand Central Terminal,738,1,,1,1
+1,2480,2614075,Croton Harmon - Grand Central Terminal,740,1,,1,1
+1,2480,2614076,Croton Harmon - Grand Central Terminal,742,1,,1,1
+1,2480,2614078,Croton Harmon - Grand Central Terminal,744,1,,1,1
+1,2480,2614080,Croton Harmon - Grand Central Terminal,746,1,,1,1
+1,2480,2614082,Croton Harmon - Grand Central Terminal,748,1,,1,1
+1,2480,2614084,Croton Harmon - Grand Central Terminal,750,1,,1,1
+1,2480,2614087,Croton Harmon - Grand Central Terminal,754,1,,1,1
+1,2480,2614090,Croton Harmon - Grand Central Terminal,758,1,,1,1
+1,2480,2614093,Croton Harmon - Grand Central Terminal,762,1,,1,1
+1,2480,2614095,Croton Harmon - Grand Central Terminal,766,1,,1,1
+1,2480,2614098,Croton Harmon - Grand Central Terminal,770,1,,1,1
+1,2480,2614100,Croton Harmon - Grand Central Terminal,772,1,,1,1
+1,2480,2614102,Croton Harmon - Grand Central Terminal,774,1,,1,1
+1,2480,2614104,Croton Harmon - Grand Central Terminal,776,1,,1,1
+1,2480,2614106,Croton Harmon - Grand Central Terminal,778,1,,1,1
+1,2480,2614109,Croton Harmon - Grand Central Terminal,782,1,,1,1
+1,2480,2614111,Croton Harmon - Grand Central Terminal,784,1,,1,1
+1,2480,2614113,Croton Harmon - Grand Central Terminal,788,1,,1,1
+1,2480,2614115,Croton Harmon - Grand Central Terminal,790,1,,1,1
+1,2480,2614117,Croton Harmon - Grand Central Terminal,792,1,,1,1
+1,2480,2614118,Croton Harmon - Grand Central Terminal,794,1,,1,1
+1,2480,2614120,Croton Harmon - Grand Central Terminal,796,1,,1,1
+1,2480,2614059,Scarborough - Grand Central Terminal,720,1,,1,1
+1,2480,2613770,Tarrytown - Grand Central Terminal,440,1,,1,1
+1,2480,2613772,Tarrytown - Grand Central Terminal,446,1,,1,1
+1,2480,2614057,Tarrytown - Grand Central Terminal,718,1,,1,1
+1,2480,2613766,Greystone - Grand Central Terminal,416,1,,1,1
+1,2480,2613768,Greystone - Grand Central Terminal,430,1,,1,1
+1,2480,2613769,Greystone - Grand Central Terminal,438,1,,1,1
+2,2480,2613760,Grand Central Terminal - Crestwood,357,0,,14,1
+2,2480,2613762,Grand Central Terminal - Crestwood,363,0,,14,1
+2,2480,2613764,Grand Central Terminal - Crestwood,371,0,,14,1
+2,2480,2613818,Grand Central Terminal - North White Plains,519,0,,14,1
+2,2480,2613822,Grand Central Terminal - North White Plains,521,0,,14,1
+2,2480,2613869,Grand Central Terminal - North White Plains,551,0,,14,1
+2,2480,2613890,Grand Central Terminal - North White Plains,561,0,,14,1
+2,2480,2613896,Grand Central Terminal - North White Plains,565,0,,14,1
+2,2480,2613902,Grand Central Terminal - North White Plains,569,0,,14,1
+2,2480,2613911,Grand Central Terminal - North White Plains,573,0,,14,1
+2,2480,2613917,Grand Central Terminal - North White Plains,577,0,,14,1
+2,2480,2613921,Grand Central Terminal - North White Plains,579,0,,14,1
+2,2480,2613928,Grand Central Terminal - North White Plains,581,0,,14,1
+2,2480,2613932,Grand Central Terminal - North White Plains,585,0,,14,1
+2,2480,2613969,Grand Central Terminal - Southeast,617,0,,14,1
+2,2480,2614005,Grand Central Terminal - Southeast,661,0,,14,1
+2,2480,2614015,Grand Central Terminal - Mount Kisco,673,0,,14,1
+1,2480,2614077,Grand Central Terminal - Croton Harmon,743,0,,12,1
+1,2480,2614085,Grand Central Terminal - Croton Harmon,751,0,,12,1
+1,2480,2614097,Grand Central Terminal - Croton Harmon,769,0,,12,1
+1,2480,2614099,Grand Central Terminal - Croton Harmon,771,0,,12,1
+1,2480,2614119,Grand Central Terminal - Croton Harmon,795,0,,12,1
+2,2480,2613974,Southeast - Grand Central Terminal,624,1,,3,1
+2,2480,2613970,Golden's Bridge - Grand Central Terminal,618,1,,3,1
+2,2480,2613788,North White Plains - Grand Central Terminal,500,1,,3,1
+2,2480,2613809,North White Plains - Grand Central Terminal,514,1,,3,1
+2,2480,2613813,North White Plains - Grand Central Terminal,516,1,,3,1
+2,2480,2613831,North White Plains - Grand Central Terminal,528,1,,3,1
+2,2480,2613857,North White Plains - Grand Central Terminal,544,1,,3,1
+2,2480,2613900,North White Plains - Grand Central Terminal,568,1,,3,1
+2,2480,2613915,North White Plains - Grand Central Terminal,576,1,,3,1
+2,2480,2613816,Hartsdale - Grand Central Terminal,518,1,,3,1
+2,2480,2613828,Hartsdale - Grand Central Terminal,526,1,,3,1
+2,2480,2613750,Crestwood - Grand Central Terminal,308,1,,3,1
+2,2480,2613754,Crestwood - Grand Central Terminal,330,1,,3,1
+2,2480,2613757,Crestwood - Grand Central Terminal,338,1,,3,1
+2,2480,2613826,Crestwood - Grand Central Terminal,524,1,,3,1
+1,2480,2614046,Croton Harmon - Grand Central Terminal,706,1,,1,1
+1,2480,2614056,Croton Harmon - Grand Central Terminal,716,1,,1,1
+1,2480,2614064,Ossining - Grand Central Terminal,728,1,,1,1
+1,2480,2613771,Tarrytown - Grand Central Terminal,442,1,,1,1
+1,2480,2613767,Irvington - Grand Central Terminal,426,1,,1,1
+4,2480,2613337,Stamford - New Canaan,1782,0,,19,1
+4,2480,2613338,Stamford - New Canaan,1786,0,,19,1
+4,2480,2613410,Stamford - New Canaan,1734,0,,19,1
+4,2480,2613412,Stamford - New Canaan,1738,0,,19,1
+4,2480,2613426,Stamford - New Canaan,1790,0,,19,1
+4,2480,2613427,Stamford - New Canaan,1794,0,,19,1
+4,2480,2613430,Stamford - New Canaan,1798,0,,19,1
+4,2480,2613554,Stamford - New Canaan,1712,0,,19,1
+4,2480,2613555,Stamford - New Canaan,1716,0,,19,1
+4,2480,2613556,Stamford - New Canaan,1718,0,,19,1
+4,2480,2613558,Stamford - New Canaan,1722,0,,19,1
+4,2480,2613560,Stamford - New Canaan,1726,0,,19,1
+4,2480,2613562,Stamford - New Canaan,1730,0,,19,1
+3,2480,2613345,Grand Central Terminal - Harrison,1244,0,,16,1
+3,2480,2613347,Grand Central Terminal - Harrison,1246,0,,16,1
+3,2480,2613348,Grand Central Terminal - Harrison,1248,0,,16,1
+3,2480,2613349,Grand Central Terminal - Harrison,1254,0,,16,1
+3,2480,2613350,Grand Central Terminal - New Rochelle,1256,0,,16,1
+3,2480,2613351,Grand Central Terminal - Harrison,1260,0,,16,1
+3,2480,2613353,Grand Central Terminal - Harrison,1270,0,,16,1
+3,2480,2613358,Grand Central Terminal - South Norwalk,1442,0,,16,1
+3,2480,2613361,Grand Central Terminal - Bridgeport,1456,0,,16,1
+3,2480,2613362,Grand Central Terminal - South Norwalk,1458,0,,16,1
+3,2480,2613363,Grand Central Terminal - South Norwalk,1464,0,,16,1
+3,2480,2613365,Grand Central Terminal - Bridgeport,1470,0,,16,1
+3,2480,2613368,Grand Central Terminal - NH-State St.,1514,0,,16,1
+3,2480,2613369,Grand Central Terminal - New Haven,1516,0,,16,1
+3,2480,2613370,Grand Central Terminal - NH-State St.,1518,0,,16,1
+3,2480,2613372,Grand Central Terminal - New Haven,1522,0,,16,1
+3,2480,2613373,Grand Central Terminal - New Haven,1526,0,,16,1
+3,2480,2613376,Grand Central Terminal - New Haven,1530,0,,16,1
+3,2480,2613378,Grand Central Terminal - New Haven,1532,0,,16,1
+3,2480,2613380,Grand Central Terminal - New Haven,1534,0,,16,1
+3,2480,2613382,Grand Central Terminal - New Haven,1554,0,,16,1
+3,2480,2613384,Grand Central Terminal - New Haven,1556,0,,16,1
+3,2480,2613386,Grand Central Terminal - New Haven,1560,0,,16,1
+3,2480,2613387,Grand Central Terminal - New Haven,1562,0,,16,1
+3,2480,2613390,Grand Central Terminal - New Haven,1568,0,,16,1
+3,2480,2613392,Grand Central Terminal - New Haven,1570,0,,16,1
+3,2480,2613394,Grand Central Terminal - New Haven,1572,0,,16,1
+3,2480,2613396,Grand Central Terminal - New Haven,1590,0,,16,1
+3,2480,2613398,Grand Central Terminal - New Haven,1594,0,,16,1
+3,2480,2613401,Grand Central Terminal - New Haven,1598,0,,16,1
+3,2480,2613452,Grand Central Terminal - Harrison,1272,0,,16,1
+3,2480,2613454,Grand Central Terminal - Harrison,1278,0,,16,1
+3,2480,2613456,Grand Central Terminal - Stamford,1300,0,,16,1
+3,2480,2613458,Grand Central Terminal - Stamford,1302,0,,16,1
+3,2480,2613460,Grand Central Terminal - Stamford,1304,0,,16,1
+3,2480,2613462,Grand Central Terminal - Stamford,1306,0,,16,1
+3,2480,2613464,Grand Central Terminal - Stamford,1308,0,,16,1
+3,2480,2613466,Grand Central Terminal - Stamford,1326,0,,16,1
+3,2480,2613468,Grand Central Terminal - Stamford,1328,0,,16,1
+3,2480,2613469,Grand Central Terminal - Stamford,1330,0,,16,1
+3,2480,2613471,Grand Central Terminal - Stamford,1332,0,,16,1
+3,2480,2613473,Grand Central Terminal - Stamford,1334,0,,16,1
+3,2480,2613474,Grand Central Terminal - Stamford,1336,0,,16,1
+3,2480,2613475,Grand Central Terminal - Stamford,1338,0,,16,1
+3,2480,2613476,Grand Central Terminal - Stamford,1340,0,,16,1
+3,2480,2613477,Grand Central Terminal - Stamford,1342,0,,16,1
+3,2480,2613482,Grand Central Terminal - Stamford,1368,0,,16,1
+3,2480,2613488,Grand Central Terminal - Stamford,1374,0,,16,1
+3,2480,2613490,Grand Central Terminal - Stamford,1376,0,,16,1
+3,2480,2613491,Grand Central Terminal - Stamford,1378,0,,16,1
+3,2480,2613494,Grand Central Terminal - Stamford,1396,0,,16,1
+3,2480,2613495,Grand Central Terminal - Stamford,1398,0,,16,1
+3,2480,2613497,Grand Central Terminal - Stamford,1404,0,,16,1
+3,2480,2613499,Grand Central Terminal - Stamford,1408,0,,16,1
+3,2480,2613502,Grand Central Terminal - Stamford,1410,0,,16,1
+3,2480,2613503,Grand Central Terminal - Stamford,1412,0,,16,1
+3,2480,2613510,Grand Central Terminal - New Haven,1500,0,,16,1
+3,2480,2613511,Grand Central Terminal - New Haven,1502,0,,16,1
+3,2480,2613513,Grand Central Terminal - NH-State St.,1504,0,,16,1
+3,2480,2613514,Grand Central Terminal - NH-State St.,1506,0,,16,1
+3,2480,2613516,Grand Central Terminal - New Haven,1508,0,,16,1
+3,2480,2613518,Grand Central Terminal - NH-State St.,1510,0,,16,1
+3,2480,2613520,Grand Central Terminal - New Haven,1512,0,,16,1
+3,2480,2613522,Grand Central Terminal - New Haven,1536,0,,16,1
+3,2480,2613524,Grand Central Terminal - New Haven,1538,0,,16,1
+3,2480,2613526,Grand Central Terminal - New Haven,1540,0,,16,1
+3,2480,2613528,Grand Central Terminal - New Haven,1542,0,,16,1
+3,2480,2613529,Grand Central Terminal - New Haven,1544,0,,16,1
+3,2480,2613532,Grand Central Terminal - New Haven,1548,0,,16,1
+3,2480,2613535,Grand Central Terminal - New Haven,1552,0,,16,1
+3,2480,2613536,Grand Central Terminal - New Haven,1574,0,,16,1
+3,2480,2613538,Grand Central Terminal - New Haven,1576,0,,16,1
+3,2480,2613540,Grand Central Terminal - New Haven,1578,0,,16,1
+3,2480,2613542,Grand Central Terminal - New Haven,1580,0,,16,1
+3,2480,2613544,Grand Central Terminal - New Haven,1582,0,,16,1
+3,2480,2613546,Grand Central Terminal - New Haven,1584,0,,16,1
+3,2480,2613547,Grand Central Terminal - New Haven,1586,0,,16,1
+3,2480,2613549,Grand Central Terminal - New Haven,1588,0,,16,1
+3,2480,2613565,Grand Central Terminal - Stamford,1312,0,,16,1
+3,2480,2613567,Grand Central Terminal - Stamford,1314,0,,16,1
+3,2480,2613569,Grand Central Terminal - Stamford,1316,0,,16,1
+3,2480,2613570,Grand Central Terminal - Stamford,1318,0,,16,1
+3,2480,2613572,Grand Central Terminal - Stamford,1320,0,,16,1
+3,2480,2613574,Grand Central Terminal - Stamford,1322,0,,16,1
+3,2480,2613576,Grand Central Terminal - Stamford,1324,0,,16,1
+3,2480,2613580,Grand Central Terminal - Stamford,1352,0,,16,1
+3,2480,2613584,Grand Central Terminal - Stamford,1358,0,,16,1
+3,2480,2613587,Grand Central Terminal - Stamford,1360,0,,16,1
+3,2480,2613589,Grand Central Terminal - Old Greenwich,1362,0,,16,1
+3,2480,2613591,Grand Central Terminal - Harrison,1364,0,,16,1
+3,2480,2613592,Grand Central Terminal - Stamford,1382,0,,16,1
+3,2480,2613594,Grand Central Terminal - Stamford,1384,0,,16,1
+3,2480,2613596,Grand Central Terminal - Stamford,1386,0,,16,1
+3,2480,2613598,Grand Central Terminal - Stamford,1388,0,,16,1
+3,2480,2613600,Grand Central Terminal - Stamford,1390,0,,16,1
+3,2480,2613602,Grand Central Terminal - Stamford,1392,0,,16,1
+3,2480,2613604,Grand Central Terminal - Stamford,1394,0,,16,1
+3,2480,2613759,Grand Central Terminal - New Haven,3538,0,,16,1
+4,2480,2613330,Grand Central Terminal - New Canaan,1770,0,,19,1
+4,2480,2613332,Grand Central Terminal - New Canaan,1774,0,,19,1
+4,2480,2613335,Grand Central Terminal - New Canaan,1778,0,,19,1
+4,2480,2613414,Grand Central Terminal - New Canaan,1740,0,,19,1
+4,2480,2613418,Grand Central Terminal - New Canaan,1750,0,,19,1
+4,2480,2613420,Grand Central Terminal - New Canaan,1752,0,,19,1
+4,2480,2613422,Grand Central Terminal - New Canaan,1758,0,,19,1
+4,2480,2613552,Grand Central Terminal - New Canaan,1710,0,,19,1
+4,2480,2613327,New Canaan - Stamford,1763,1,,8,1
+4,2480,2613328,New Canaan - Stamford,1767,1,,8,1
+4,2480,2613331,New Canaan - Stamford,1771,1,,8,1
+4,2480,2613333,New Canaan - Grand Central Terminal,1775,1,,8,1
+4,2480,2613334,New Canaan - Grand Central Terminal,1777,1,,8,1
+4,2480,2613339,New Canaan - Stamford,1787,1,,8,1
+4,2480,2613411,New Canaan - Grand Central Terminal,1735,1,,8,1
+4,2480,2613415,New Canaan - Grand Central Terminal,1741,1,,8,1
+4,2480,2613416,New Canaan - Stamford,1745,1,,8,1
+4,2480,2613419,New Canaan - Stamford,1751,1,,8,1
+4,2480,2613421,New Canaan - Stamford,1755,1,,8,1
+4,2480,2613423,New Canaan - Stamford,1759,1,,8,1
+4,2480,2613424,New Canaan - Stamford,1789,1,,8,1
+4,2480,2613428,New Canaan - Stamford,1795,1,,8,1
+4,2480,2613429,New Canaan - Stamford,1797,1,,8,1
+4,2480,2613431,New Canaan - Stamford,1799,1,,8,1
+4,2480,2613550,New Canaan - Grand Central Terminal,1707,1,,8,1
+4,2480,2613553,New Canaan - Grand Central Terminal,1711,1,,8,1
+4,2480,2613559,New Canaan - Grand Central Terminal,1723,1,,8,1
+4,2480,2613563,New Canaan - Grand Central Terminal,1731,1,,8,1
+3,2480,2613383,NH-State St. - Grand Central Terminal,1555,1,,5,1
+3,2480,2613395,NH-State St. - Grand Central Terminal,1573,1,,5,1
+3,2480,2613537,NH-State St. - Grand Central Terminal,1575,1,,5,1
+3,2480,2613541,NH-State St. - Grand Central Terminal,1579,1,,5,1
+3,2480,2613543,NH-State St. - Grand Central Terminal,1581,1,,5,1
+3,2480,2613545,NH-State St. - Grand Central Terminal,1583,1,,5,1
+3,2480,2613371,New Haven - Grand Central Terminal,1521,1,,5,1
+3,2480,2613374,New Haven - Grand Central Terminal,1527,1,,5,1
+3,2480,2613375,New Haven - Grand Central Terminal,1529,1,,5,1
+3,2480,2613377,New Haven - Grand Central Terminal,1531,1,,5,1
+3,2480,2613379,New Haven - Grand Central Terminal,1533,1,,5,1
+3,2480,2613381,New Haven - Grand Central Terminal,1535,1,,5,1
+3,2480,2613385,New Haven - Grand Central Terminal,1559,1,,5,1
+3,2480,2613388,New Haven - Grand Central Terminal,1563,1,,5,1
+3,2480,2613389,New Haven - Grand Central Terminal,1567,1,,5,1
+3,2480,2613391,New Haven - Grand Central Terminal,1569,1,,5,1
+3,2480,2613393,New Haven - Grand Central Terminal,1571,1,,5,1
+3,2480,2613397,New Haven - Grand Central Terminal,1591,1,,5,1
+3,2480,2613399,New Haven - Grand Central Terminal,1595,1,,5,1
+3,2480,2613400,New Haven - Grand Central Terminal,1597,1,,5,1
+3,2480,2613402,New Haven - Grand Central Terminal,1599,1,,5,1
+3,2480,2613512,New Haven - Grand Central Terminal,1503,1,,5,1
+3,2480,2613515,New Haven - Grand Central Terminal,1507,1,,5,1
+3,2480,2613517,New Haven - Grand Central Terminal,1509,1,,5,1
+3,2480,2613519,New Haven - Grand Central Terminal,1511,1,,5,1
+3,2480,2613521,New Haven - Grand Central Terminal,1513,1,,5,1
+3,2480,2613523,New Haven - Grand Central Terminal,1537,1,,5,1
+3,2480,2613525,New Haven - Grand Central Terminal,1539,1,,5,1
+3,2480,2613527,New Haven - Grand Central Terminal,1541,1,,5,1
+3,2480,2613530,New Haven - Grand Central Terminal,1545,1,,5,1
+3,2480,2613533,New Haven - Grand Central Terminal,1549,1,,5,1
+3,2480,2613534,New Haven - Grand Central Terminal,1551,1,,5,1
+3,2480,2613539,New Haven - Grand Central Terminal,1577,1,,5,1
+3,2480,2613548,New Haven - Grand Central Terminal,1587,1,,5,1
+3,2480,2613356,Bridgeport - Grand Central Terminal,1439,1,,5,1
+3,2480,2613359,Bridgeport - Grand Central Terminal,1445,1,,5,1
+3,2480,2613360,Bridgeport - Grand Central Terminal,1451,1,,5,1
+3,2480,2613500,Bridgeport - Grand Central Terminal,1409,1,,5,1
+3,2480,2613504,Bridgeport - Grand Central Terminal,1417,1,,5,1
+3,2480,2613506,Bridgeport - Grand Central Terminal,1427,1,,5,1
+3,2480,2613354,Fairfield - Grand Central Terminal,1433,1,,5,1
+3,2480,2613505,Fairfield - Grand Central Terminal,1419,1,,5,1
+3,2480,2613355,South Norwalk - Grand Central Terminal,1437,1,,5,1
+3,2480,2613357,South Norwalk - Grand Central Terminal,1441,1,,5,1
+3,2480,2613507,South Norwalk - Grand Central Terminal,1429,1,,5,1
+3,2480,2613509,South Norwalk - Grand Central Terminal,1497,1,,5,1
+3,2480,2613364,Stamford - Grand Central Terminal,1469,1,,5,1
+3,2480,2613366,Stamford - Grand Central Terminal,1473,1,,5,1
+3,2480,2613367,Stamford - Grand Central Terminal,1477,1,,5,1
+3,2480,2613457,Stamford - Grand Central Terminal,1301,1,,5,1
+3,2480,2613459,Stamford - Grand Central Terminal,1303,1,,5,1
+3,2480,2613461,Stamford - Grand Central Terminal,1305,1,,5,1
+3,2480,2613463,Stamford - Grand Central Terminal,1307,1,,5,1
+3,2480,2613465,Stamford - Grand Central Terminal,1309,1,,5,1
+3,2480,2613470,Stamford - Grand Central Terminal,1331,1,,5,1
+3,2480,2613478,Stamford - Grand Central Terminal,1345,1,,5,1
+3,2480,2613479,Stamford - Grand Central Terminal,1347,1,,5,1
+3,2480,2613480,Stamford - Grand Central Terminal,1365,1,,5,1
+3,2480,2613481,Stamford - Grand Central Terminal,1367,1,,5,1
+3,2480,2613483,Stamford - Grand Central Terminal,1369,1,,5,1
+3,2480,2613486,Stamford - Grand Central Terminal,1371,1,,5,1
+3,2480,2613487,Stamford - Grand Central Terminal,1373,1,,5,1
+3,2480,2613489,Stamford - Grand Central Terminal,1375,1,,5,1
+3,2480,2613492,Stamford - Grand Central Terminal,1379,1,,5,1
+3,2480,2613493,Stamford - Grand Central Terminal,1381,1,,5,1
+3,2480,2613496,Stamford - Grand Central Terminal,1399,1,,5,1
+3,2480,2613498,Stamford - Grand Central Terminal,1407,1,,5,1
+3,2480,2613564,Stamford - Grand Central Terminal,1311,1,,5,1
+3,2480,2613573,Stamford - Grand Central Terminal,1321,1,,5,1
+3,2480,2613578,Stamford - Grand Central Terminal,1349,1,,5,1
+3,2480,2613579,Stamford - Grand Central Terminal,1351,1,,5,1
+3,2480,2613581,Stamford - Grand Central Terminal,1353,1,,5,1
+3,2480,2613582,Stamford - Grand Central Terminal,1355,1,,5,1
+3,2480,2613583,Stamford - Grand Central Terminal,1357,1,,5,1
+3,2480,2613585,Stamford - Grand Central Terminal,1359,1,,5,1
+3,2480,2613588,Stamford - Grand Central Terminal,1361,1,,5,1
+3,2480,2613590,Stamford - Grand Central Terminal,1363,1,,5,1
+3,2480,2613593,Stamford - Grand Central Terminal,1383,1,,5,1
+3,2480,2613595,Stamford - Grand Central Terminal,1385,1,,5,1
+3,2480,2613597,Stamford - Grand Central Terminal,1387,1,,5,1
+3,2480,2613599,Stamford - Grand Central Terminal,1389,1,,5,1
+3,2480,2613601,Stamford - Grand Central Terminal,1391,1,,5,1
+3,2480,2613603,Stamford - Grand Central Terminal,1393,1,,5,1
+3,2480,2613605,Stamford - Grand Central Terminal,1395,1,,5,1
+3,2480,2613568,Old Greenwich - Grand Central Terminal,1315,1,,5,1
+3,2480,2613472,Greenwich - Grand Central Terminal,1333,1,,5,1
+3,2480,2613575,Port Chester - Grand Central Terminal,1323,1,,5,1
+3,2480,2613279,Harrison - Grand Central Terminal,1213,1,,5,1
+3,2480,2613283,Harrison - Grand Central Terminal,1231,1,,5,1
+3,2480,2613341,Harrison - Grand Central Terminal,1235,1,,5,1
+3,2480,2613342,Harrison - Grand Central Terminal,1237,1,,5,1
+3,2480,2613343,Harrison - Grand Central Terminal,1239,1,,5,1
+3,2480,2613344,Harrison - Grand Central Terminal,1241,1,,5,1
+3,2480,2613346,Harrison - Grand Central Terminal,1245,1,,5,1
+3,2480,2613453,Harrison - Grand Central Terminal,1275,1,,5,1
+3,2480,2613455,Harrison - Grand Central Terminal,1279,1,,5,1
+3,2480,2613467,Harrison - Grand Central Terminal,1327,1,,5,1
+3,2480,2613281,New Rochelle - Grand Central Terminal,1225,1,,5,1
+3,2480,2613282,New Rochelle - Grand Central Terminal,1229,1,,5,1
+3,2480,2613340,New Rochelle - Grand Central Terminal,1233,1,,5,1
+6,2480,2613441,Bridgeport - Waterbury,1906,0,,22,1
+6,2480,2613442,Bridgeport - Waterbury,1916,0,,22,1
+6,2480,2613445,Bridgeport - Waterbury,1934,0,,22,1
+6,2480,2613447,Bridgeport - Waterbury,1946,0,,22,1
+6,2480,2613451,Bridgeport - Waterbury,1974,0,,22,1
+5,2480,2613310,South Norwalk - Danbury,1882,0,,21,1
+5,2480,2613311,South Norwalk - Danbury,1890,0,,21,1
+5,2480,2613432,South Norwalk - Danbury,1810,0,,21,1
+5,2480,2613434,South Norwalk - Danbury,1818,0,,21,1
+5,2480,2613436,South Norwalk - Danbury,1830,0,,21,1
+5,2480,2613299,Stamford - Danbury,1838,0,,21,1
+5,2480,2613301,Stamford - Danbury,1844,0,,21,1
+5,2480,2613308,Stamford - Danbury,1874,0,,21,1
+3,2480,2613352,Grand Central Terminal - New Rochelle,1268,0,,16,1
+3,2480,2613485,Grand Central Terminal - Stamford,1370,0,,16,1
+2,2480,2614183,Southeast - Wassaic,905,0,,14,1
+2,2480,2614185,Southeast - Wassaic,915,0,,14,1
+2,2480,2614187,Southeast - Wassaic,923,0,,14,1
+2,2480,2614189,Southeast - Wassaic,931,0,,14,1
+2,2480,2614191,Southeast - Wassaic,939,0,,14,1
+2,2480,2614202,Southeast - Wassaic,975,0,,14,1
+2,2480,2614205,Southeast - Wassaic,987,0,,14,1
+2,2480,2614210,Southeast - Dover Plains,999,0,,14,1
+2,2480,2613812,Grand Central Terminal - North White Plains,515,0,,14,1
+2,2480,2614194,Grand Central Terminal - Wassaic,949,0,,14,1
+2,2480,2614200,Grand Central Terminal - Wassaic,967,0,,14,1
+1,2480,2614123,Croton Harmon - Poughkeepsie,801,0,,12,1
+1,2480,2614181,Croton Harmon - Poughkeepsie,899,0,,12,1
+6,2480,2613284,Waterbury - Bridgeport,1981,1,,11,1
+6,2480,2613286,Waterbury - Bridgeport,1991,1,,11,1
+6,2480,2613287,Waterbury - Bridgeport,1997,1,,11,1
+6,2480,2613446,Waterbury - Bridgeport,1935,1,,11,1
+6,2480,2613448,Waterbury - Bridgeport,1951,1,,11,1
+6,2480,2613449,Waterbury - Bridgeport,1963,1,,11,1
+5,2480,2613298,Danbury - Stamford,1837,1,,10,1
+5,2480,2613300,Danbury - Stamford,1841,1,,10,1
+5,2480,2613303,Danbury - South Norwalk,1851,1,,10,1
+5,2480,2613305,Danbury - South Norwalk,1863,1,,10,1
+5,2480,2613307,Danbury - South Norwalk,1873,1,,10,1
+5,2480,2613309,Danbury - South Norwalk,1881,1,,10,1
+5,2480,2613438,Danbury - Stamford,1895,1,,10,1
+5,2480,2613439,Danbury - South Norwalk,1897,1,,10,1
+1,2480,2614125,Grand Central Terminal - Poughkeepsie,805,0,,12,1
+1,2480,2614127,Grand Central Terminal - Poughkeepsie,807,0,,12,1
+1,2480,2614128,Grand Central Terminal - Poughkeepsie,809,0,,12,1
+1,2480,2614130,Grand Central Terminal - Poughkeepsie,813,0,,12,1
+1,2480,2614133,Grand Central Terminal - Poughkeepsie,817,0,,12,1
+1,2480,2614135,Grand Central Terminal - Poughkeepsie,821,0,,12,1
+1,2480,2614137,Grand Central Terminal - Poughkeepsie,829,0,,12,1
+1,2480,2614140,Grand Central Terminal - Poughkeepsie,831,0,,12,1
+1,2480,2614152,Grand Central Terminal - Poughkeepsie,849,0,,12,1
+1,2480,2614153,Grand Central Terminal - Beacon,851,0,,12,1
+1,2480,2614155,Grand Central Terminal - Poughkeepsie,853,0,,12,1
+1,2480,2614156,Grand Central Terminal - Beacon,855,0,,12,1
+1,2480,2614158,Grand Central Terminal - Poughkeepsie,857,0,,12,1
+1,2480,2614161,Grand Central Terminal - Poughkeepsie,861,0,,12,1
+1,2480,2614164,Grand Central Terminal - Poughkeepsie,871,0,,12,1
+1,2480,2614171,Grand Central Terminal - Poughkeepsie,883,0,,12,1
+1,2480,2614176,Grand Central Terminal - Poughkeepsie,891,0,,12,1
+1,2480,2614178,Grand Central Terminal - Poughkeepsie,893,0,,12,1
+1,2480,2614180,Grand Central Terminal - Poughkeepsie,895,0,,12,1
+3,2480,2613404,New Haven - Stamford,1617,1,,5,1
+3,2480,2613571,Harrison - Grand Central Terminal,1319,1,,5,1
+3,2480,2613280,New Rochelle - Grand Central Terminal,1217,1,,5,1
+2,2480,2614182,Wassaic - Southeast,902,1,,3,1
+2,2480,2614184,Wassaic - Grand Central Terminal,910,1,,3,1
+2,2480,2614190,Wassaic - Grand Central Terminal,932,1,,3,1
+2,2480,2614193,Wassaic - Southeast,944,1,,3,1
+2,2480,2614196,Wassaic - Southeast,952,1,,3,1
+2,2480,2614199,Wassaic - Southeast,960,1,,3,1
+2,2480,2614201,Wassaic - Southeast,968,1,,3,1
+2,2480,2614204,Wassaic - Southeast,982,1,,3,1
+2,2480,2614206,Wassaic - Southeast,990,1,,3,1
+2,2480,2614209,Wassaic - Southeast,998,1,,3,1
+2,2480,2613846,North White Plains - Grand Central Terminal,538,1,,3,1
+1,2480,2614124,Poughkeepsie - Grand Central Terminal,802,1,,1,1
+1,2480,2614126,Poughkeepsie - Grand Central Terminal,806,1,,1,1
+1,2480,2614129,Poughkeepsie - Grand Central Terminal,810,1,,1,1
+1,2480,2614131,Poughkeepsie - Grand Central Terminal,814,1,,1,1
+1,2480,2614132,Poughkeepsie - Grand Central Terminal,816,1,,1,1
+1,2480,2614134,Poughkeepsie - Grand Central Terminal,818,1,,1,1
+1,2480,2614141,Poughkeepsie - Grand Central Terminal,832,1,,1,1
+1,2480,2614145,Poughkeepsie - Grand Central Terminal,838,1,,1,1
+1,2480,2614148,Poughkeepsie - Grand Central Terminal,844,1,,1,1
+1,2480,2614149,Poughkeepsie - Grand Central Terminal,846,1,,1,1
+1,2480,2614151,Poughkeepsie - Grand Central Terminal,848,1,,1,1
+1,2480,2614154,Poughkeepsie - Grand Central Terminal,852,1,,1,1
+1,2480,2614157,Poughkeepsie - Grand Central Terminal,856,1,,1,1
+1,2480,2614160,Poughkeepsie - Grand Central Terminal,860,1,,1,1
+1,2480,2614162,Poughkeepsie - Grand Central Terminal,864,1,,1,1
+1,2480,2614165,Poughkeepsie - Grand Central Terminal,872,1,,1,1
+1,2480,2614166,Poughkeepsie - Grand Central Terminal,876,1,,1,1
+1,2480,2614174,Poughkeepsie - Grand Central Terminal,888,1,,1,1
+1,2480,2614175,Poughkeepsie - Grand Central Terminal,890,1,,1,1
+1,2480,2614179,Poughkeepsie - Croton Harmon,894,1,,1,1
+1,2480,2614071,Croton Harmon - Grand Central Terminal,736,1,,1,1
+6,2480,2613285,Bridgeport - Waterbury,1986,0,,22,1
+5,2480,2613302,Grand Central Terminal - Danbury,1848,0,,21,1
+5,2480,2613304,Grand Central Terminal - Danbury,1860,0,,21,1
+5,2480,2613306,Grand Central Terminal - Danbury,1868,0,,21,1
+3,2480,2613531,Grand Central Terminal - New Haven,1546,0,,16,1
+2,2480,2614203,Southeast - Wassaic,981,0,,14,1
+2,2480,2614207,Southeast - Wassaic,991,0,,14,1
+2,2480,2614197,Grand Central Terminal - Wassaic,953,0,,14,1
+2,2480,2614198,Grand Central Terminal - Wassaic,959,0,,14,1
+6,2480,2613443,Waterbury - Stamford,1923,1,,11,1
+5,2480,2613433,Danbury - Grand Central Terminal,1811,1,,10,1
+5,2480,2613435,Danbury - Grand Central Terminal,1819,1,,10,1
+5,2480,2613437,Danbury - Grand Central Terminal,1833,1,,10,1
+1,2480,2614136,Grand Central Terminal - Poughkeepsie,825,0,,12,1
+1,2480,2614142,Grand Central Terminal - Poughkeepsie,835,0,,12,1
+1,2480,2614144,Grand Central Terminal - Poughkeepsie,837,0,,12,1
+1,2480,2614147,Grand Central Terminal - Poughkeepsie,843,0,,12,1
+1,2480,2614150,Grand Central Terminal - Poughkeepsie,847,0,,12,1
+1,2480,2614168,Grand Central Terminal - Poughkeepsie,879,0,,12,1
+1,2480,2614170,Grand Central Terminal - Poughkeepsie,881,0,,12,1
+1,2480,2614173,Grand Central Terminal - Poughkeepsie,887,0,,12,1
+3,2480,2613577,Stamford - Grand Central Terminal,1325,1,,5,1
+3,2480,2613566,New Rochelle - Grand Central Terminal,1313,1,,5,1
+2,2480,2614186,Wassaic - Grand Central Terminal,918,1,,3,1
+2,2480,2614188,Wassaic - Grand Central Terminal,924,1,,3,1
+2,2480,2614208,Wassaic - Southeast,996,1,,3,1
+1,2480,2614139,Poughkeepsie - Grand Central Terminal,830,1,,1,1
+1,2480,2614143,Poughkeepsie - Grand Central Terminal,836,1,,1,1
+1,2480,2614146,Poughkeepsie - Grand Central Terminal,842,1,,1,1
+1,2480,2614163,Poughkeepsie - Grand Central Terminal,868,1,,1,1
+1,2480,2614167,Poughkeepsie - Grand Central Terminal,878,1,,1,1
+1,2480,2614169,Poughkeepsie - Grand Central Terminal,880,1,,1,1
+1,2480,2614172,Poughkeepsie - Grand Central Terminal,884,1,,1,1
+1,2480,2614177,Poughkeepsie - Croton Harmon,892,1,,1,1
+6,2480,2613444,Bridgeport - Waterbury,1926,0,,22,0
+6,2480,2613450,Waterbury - Bridgeport,1973,1,,11,0
+2,2494,2710989,Grand Central Terminal - North White Plains,9501,0,,14,1
+2,2494,2710991,Grand Central Terminal - North White Plains,9503,0,,14,1
+2,2494,2710994,Grand Central Terminal - North White Plains,9511,0,,14,1
+2,2494,2710996,Grand Central Terminal - North White Plains,9515,0,,14,1
+2,2494,2711000,Grand Central Terminal - North White Plains,9523,0,,14,1
+2,2494,2711002,Grand Central Terminal - North White Plains,9527,0,,14,1
+2,2494,2711004,Grand Central Terminal - North White Plains,9531,0,,14,1
+2,2494,2711006,Grand Central Terminal - North White Plains,9535,0,,14,1
+2,2494,2711008,Grand Central Terminal - North White Plains,9539,0,,14,1
+2,2494,2711010,Grand Central Terminal - North White Plains,9543,0,,14,1
+2,2494,2711012,Grand Central Terminal - North White Plains,9547,0,,14,1
+2,2494,2711014,Grand Central Terminal - North White Plains,9551,0,,14,1
+2,2494,2711016,Grand Central Terminal - North White Plains,9555,0,,14,1
+2,2494,2711018,Grand Central Terminal - North White Plains,9559,0,,14,1
+2,2494,2711020,Grand Central Terminal - North White Plains,9563,0,,14,1
+2,2494,2711022,Grand Central Terminal - North White Plains,9567,0,,14,1
+2,2494,2711026,Grand Central Terminal - North White Plains,9575,0,,14,1
+2,2494,2711028,Grand Central Terminal - Southeast,9601,0,,14,1
+2,2494,2711030,Grand Central Terminal - Southeast,9603,0,,14,1
+2,2494,2711031,Grand Central Terminal - Southeast,9605,0,,14,1
+2,2494,2711033,Grand Central Terminal - Southeast,9607,0,,14,1
+2,2494,2711035,Grand Central Terminal - Southeast,9611,0,,14,1
+2,2494,2711037,Grand Central Terminal - Southeast,9615,0,,14,1
+2,2494,2711039,Grand Central Terminal - Southeast,9619,0,,14,1
+2,2494,2711041,Grand Central Terminal - Southeast,9623,0,,14,1
+2,2494,2711043,Grand Central Terminal - Southeast,9627,0,,14,1
+2,2494,2711045,Grand Central Terminal - Southeast,9631,0,,14,1
+2,2494,2711049,Grand Central Terminal - Southeast,9639,0,,14,1
+2,2494,2711051,Grand Central Terminal - Southeast,9643,0,,14,1
+2,2494,2711053,Grand Central Terminal - Southeast,9647,0,,14,1
+2,2494,2711055,Grand Central Terminal - Southeast,9651,0,,14,1
+2,2494,2711057,Grand Central Terminal - Southeast,9655,0,,14,1
+2,2494,2711059,Grand Central Terminal - Southeast,9659,0,,14,1
+2,2494,2711061,Grand Central Terminal - Southeast,9663,0,,14,1
+2,2494,2711063,Grand Central Terminal - Southeast,9667,0,,14,1
+2,2494,2711064,Grand Central Terminal - Southeast,9669,0,,14,1
+2,2494,2711066,Grand Central Terminal - Southeast,9671,0,,14,1
+2,2494,2711068,Grand Central Terminal - Southeast,9675,0,,14,1
+1,2494,2710840,Grand Central Terminal - Croton Harmon,8701,0,,12,1
+1,2494,2710842,Grand Central Terminal - Croton Harmon,8705,0,,12,1
+1,2494,2710844,Grand Central Terminal - Croton Harmon,8707,0,,12,1
+1,2494,2710845,Grand Central Terminal - Croton Harmon,8709,0,,12,1
+1,2494,2710847,Grand Central Terminal - Croton Harmon,8711,0,,12,1
+1,2494,2710850,Grand Central Terminal - Croton Harmon,8715,0,,12,1
+1,2494,2710854,Grand Central Terminal - Croton Harmon,8719,0,,12,1
+1,2494,2710858,Grand Central Terminal - Croton Harmon,8723,0,,12,1
+1,2494,2710864,Grand Central Terminal - Croton Harmon,8731,0,,12,1
+1,2494,2710866,Grand Central Terminal - Croton Harmon,8735,0,,12,1
+1,2494,2710868,Grand Central Terminal - Croton Harmon,8739,0,,12,1
+1,2494,2710871,Grand Central Terminal - Croton Harmon,8743,0,,12,1
+1,2494,2710872,Grand Central Terminal - Croton Harmon,8745,0,,12,1
+1,2494,2710874,Grand Central Terminal - Croton Harmon,8747,0,,12,1
+1,2494,2710876,Grand Central Terminal - Croton Harmon,8749,0,,12,1
+1,2494,2710878,Grand Central Terminal - Croton Harmon,8751,0,,12,1
+1,2494,2710886,Grand Central Terminal - Croton Harmon,8759,0,,12,1
+1,2494,2710888,Grand Central Terminal - Croton Harmon,8763,0,,12,1
+1,2494,2710890,Grand Central Terminal - Croton Harmon,8767,0,,12,1
+1,2494,2710893,Grand Central Terminal - Croton Harmon,8771,0,,12,1
+1,2494,2710896,Grand Central Terminal - Croton Harmon,8775,0,,12,1
+1,2494,2710897,Grand Central Terminal - Croton Harmon,8779,0,,12,1
+2,2494,2711027,Southeast - Grand Central Terminal,9600,1,,3,1
+2,2494,2711029,Southeast - Grand Central Terminal,9602,1,,3,1
+2,2494,2711032,Southeast - Grand Central Terminal,9606,1,,3,1
+2,2494,2711034,Southeast - Grand Central Terminal,9610,1,,3,1
+2,2494,2711036,Southeast - Grand Central Terminal,9614,1,,3,1
+2,2494,2711038,Southeast - Grand Central Terminal,9618,1,,3,1
+2,2494,2711042,Southeast - Grand Central Terminal,9626,1,,3,1
+2,2494,2711044,Southeast - Grand Central Terminal,9630,1,,3,1
+2,2494,2711046,Southeast - Grand Central Terminal,9634,1,,3,1
+2,2494,2711048,Southeast - Grand Central Terminal,9638,1,,3,1
+2,2494,2711050,Southeast - Grand Central Terminal,9642,1,,3,1
+2,2494,2711052,Southeast - Grand Central Terminal,9646,1,,3,1
+2,2494,2711056,Southeast - Grand Central Terminal,9654,1,,3,1
+2,2494,2711058,Southeast - Grand Central Terminal,9658,1,,3,1
+2,2494,2711060,Southeast - Grand Central Terminal,9662,1,,3,1
+2,2494,2711062,Southeast - Grand Central Terminal,9666,1,,3,1
+2,2494,2711065,Southeast - Grand Central Terminal,9670,1,,3,1
+2,2494,2711067,Southeast - Grand Central Terminal,9674,1,,3,1
+2,2494,2711069,Southeast - Grand Central Terminal,9676,1,,3,1
+2,2494,2710990,North White Plains - Grand Central Terminal,9502,1,,3,1
+2,2494,2710992,North White Plains - Grand Central Terminal,9506,1,,3,1
+2,2494,2710993,North White Plains - Grand Central Terminal,9510,1,,3,1
+2,2494,2710995,North White Plains - Grand Central Terminal,9514,1,,3,1
+2,2494,2710997,North White Plains - Grand Central Terminal,9518,1,,3,1
+2,2494,2710999,North White Plains - Grand Central Terminal,9522,1,,3,1
+2,2494,2711003,North White Plains - Grand Central Terminal,9530,1,,3,1
+2,2494,2711005,North White Plains - Grand Central Terminal,9534,1,,3,1
+2,2494,2711007,North White Plains - Grand Central Terminal,9538,1,,3,1
+2,2494,2711009,North White Plains - Grand Central Terminal,9542,1,,3,1
+2,2494,2711011,North White Plains - Grand Central Terminal,9546,1,,3,1
+2,2494,2711013,North White Plains - Grand Central Terminal,9550,1,,3,1
+2,2494,2711015,North White Plains - Grand Central Terminal,9554,1,,3,1
+2,2494,2711017,North White Plains - Grand Central Terminal,9558,1,,3,1
+2,2494,2711019,North White Plains - Grand Central Terminal,9562,1,,3,1
+2,2494,2711021,North White Plains - Grand Central Terminal,9566,1,,3,1
+2,2494,2711023,North White Plains - Grand Central Terminal,9570,1,,3,1
+2,2494,2711025,North White Plains - Grand Central Terminal,9574,1,,3,1
+1,2494,2710839,Croton Harmon - Grand Central Terminal,8700,1,,1,1
+1,2494,2710841,Croton Harmon - Grand Central Terminal,8702,1,,1,1
+1,2494,2710846,Croton Harmon - Grand Central Terminal,8710,1,,1,1
+1,2494,2710849,Croton Harmon - Grand Central Terminal,8714,1,,1,1
+1,2494,2710853,Croton Harmon - Grand Central Terminal,8718,1,,1,1
+1,2494,2710857,Croton Harmon - Grand Central Terminal,8722,1,,1,1
+1,2494,2710859,Croton Harmon - Grand Central Terminal,8724,1,,1,1
+1,2494,2710860,Croton Harmon - Grand Central Terminal,8726,1,,1,1
+1,2494,2710863,Croton Harmon - Grand Central Terminal,8730,1,,1,1
+1,2494,2710865,Croton Harmon - Grand Central Terminal,8734,1,,1,1
+1,2494,2710867,Croton Harmon - Grand Central Terminal,8738,1,,1,1
+1,2494,2710870,Croton Harmon - Grand Central Terminal,8742,1,,1,1
+1,2494,2710873,Croton Harmon - Grand Central Terminal,8746,1,,1,1
+1,2494,2710877,Croton Harmon - Grand Central Terminal,8750,1,,1,1
+1,2494,2710881,Croton Harmon - Grand Central Terminal,8754,1,,1,1
+1,2494,2710885,Croton Harmon - Grand Central Terminal,8758,1,,1,1
+1,2494,2710887,Croton Harmon - Grand Central Terminal,8762,1,,1,1
+1,2494,2710889,Croton Harmon - Grand Central Terminal,8766,1,,1,1
+1,2494,2710892,Croton Harmon - Grand Central Terminal,8770,1,,1,1
+1,2494,2710894,Croton Harmon - Grand Central Terminal,8772,1,,1,1
+1,2494,2710895,Croton Harmon - Grand Central Terminal,8774,1,,1,1
+2,2494,2710998,Grand Central Terminal - North White Plains,9519,0,,14,1
+2,2494,2711024,Grand Central Terminal - North White Plains,9571,0,,14,1
+2,2494,2711047,Grand Central Terminal - Southeast,9635,0,,14,1
+1,2494,2710861,Grand Central Terminal - Croton Harmon,8727,0,,12,1
+1,2494,2710882,Grand Central Terminal - Croton Harmon,8755,0,,12,1
+2,2494,2711040,Southeast - Grand Central Terminal,9622,1,,3,1
+2,2494,2711054,Southeast - Grand Central Terminal,9650,1,,3,1
+2,2494,2711001,North White Plains - Grand Central Terminal,9526,1,,3,1
+1,2494,2710843,Croton Harmon - Grand Central Terminal,8706,1,,1,1
+1,2494,2710879,Croton Harmon - Grand Central Terminal,8752,1,,1,1
+4,2494,2710778,Stamford - New Canaan,6704,0,,19,1
+4,2494,2710780,Stamford - New Canaan,6706,0,,19,1
+4,2494,2710782,Stamford - New Canaan,6710,0,,19,1
+4,2494,2710784,Stamford - New Canaan,6714,0,,19,1
+4,2494,2710786,Stamford - New Canaan,6718,0,,19,1
+4,2494,2710788,Stamford - New Canaan,6722,0,,19,1
+4,2494,2710790,Stamford - New Canaan,6726,0,,19,1
+4,2494,2710792,Stamford - New Canaan,6730,0,,19,1
+4,2494,2710794,Stamford - New Canaan,6734,0,,19,1
+4,2494,2710796,Stamford - New Canaan,6738,0,,19,1
+4,2494,2710798,Stamford - New Canaan,6742,0,,19,1
+4,2494,2710800,Stamford - New Canaan,6746,0,,19,1
+4,2494,2710802,Stamford - New Canaan,6750,0,,19,1
+4,2494,2710804,Stamford - New Canaan,6754,0,,19,1
+4,2494,2710806,Stamford - New Canaan,6758,0,,19,1
+4,2494,2710808,Stamford - New Canaan,6762,0,,19,1
+4,2494,2710810,Stamford - New Canaan,6766,0,,19,1
+4,2494,2710812,Stamford - New Canaan,6770,0,,19,1
+4,2494,2710814,Stamford - New Canaan,6774,0,,19,1
+3,2494,2710661,Grand Central Terminal - Stamford,6338,0,,16,1
+3,2494,2710663,Grand Central Terminal - Stamford,6342,0,,16,1
+3,2494,2710665,Grand Central Terminal - Stamford,6346,0,,16,1
+3,2494,2710667,Grand Central Terminal - Stamford,6350,0,,16,1
+3,2494,2710716,Grand Central Terminal - Stamford,6354,0,,16,1
+3,2494,2710718,Grand Central Terminal - Stamford,6358,0,,16,1
+3,2494,2710720,Grand Central Terminal - Stamford,6362,0,,16,1
+3,2494,2710722,Grand Central Terminal - Stamford,6366,0,,16,1
+3,2494,2710724,Grand Central Terminal - Stamford,6370,0,,16,1
+3,2494,2710726,Grand Central Terminal - Stamford,6374,0,,16,1
+3,2494,2710731,Grand Central Terminal - New Haven,6504,0,,16,1
+3,2494,2710733,Grand Central Terminal - New Haven,6506,0,,16,1
+3,2494,2710735,Grand Central Terminal - New Haven,6510,0,,16,1
+3,2494,2710737,Grand Central Terminal - New Haven,6514,0,,16,1
+3,2494,2710740,Grand Central Terminal - New Haven,6518,0,,16,1
+3,2494,2710743,Grand Central Terminal - New Haven,6522,0,,16,1
+3,2494,2710746,Grand Central Terminal - New Haven,6526,0,,16,1
+3,2494,2710749,Grand Central Terminal - New Haven,6530,0,,16,1
+3,2494,2710751,Grand Central Terminal - New Haven,6534,0,,16,1
+3,2494,2710753,Grand Central Terminal - New Haven,6538,0,,16,1
+3,2494,2710755,Grand Central Terminal - New Haven,6542,0,,16,1
+3,2494,2710756,Grand Central Terminal - New Haven,6544,0,,16,1
+3,2494,2710758,Grand Central Terminal - New Haven,6546,0,,16,1
+3,2494,2710760,Grand Central Terminal - New Haven,6548,0,,16,1
+3,2494,2710762,Grand Central Terminal - New Haven,6550,0,,16,1
+3,2494,2710763,Grand Central Terminal - New Haven,6552,0,,16,1
+3,2494,2710765,Grand Central Terminal - New Haven,6554,0,,16,1
+3,2494,2710767,Grand Central Terminal - New Haven,6558,0,,16,1
+3,2494,2710769,Grand Central Terminal - New Haven,6562,0,,16,1
+3,2494,2710771,Grand Central Terminal - New Haven,6566,0,,16,1
+3,2494,2710773,Grand Central Terminal - New Haven,6570,0,,16,1
+3,2494,2711090,Grand Central Terminal - Stamford,6300,0,,16,1
+3,2494,2711091,Grand Central Terminal - Stamford,6302,0,,16,1
+3,2494,2711093,Grand Central Terminal - Stamford,6304,0,,16,1
+3,2494,2711095,Grand Central Terminal - Stamford,6306,0,,16,1
+3,2494,2711097,Grand Central Terminal - Stamford,6310,0,,16,1
+3,2494,2711099,Grand Central Terminal - Stamford,6314,0,,16,1
+3,2494,2711123,Grand Central Terminal - Stamford,6330,0,,16,1
+3,2494,2711125,Grand Central Terminal - Stamford,6334,0,,16,1
+3,2494,2711128,Grand Central Terminal - Stamford,6318,0,,16,1
+3,2494,2711130,Grand Central Terminal - Stamford,6322,0,,16,1
+3,2494,2711132,Grand Central Terminal - Stamford,6326,0,,16,1
+4,2494,2710779,New Canaan - Stamford,6705,1,,8,1
+4,2494,2710781,New Canaan - Stamford,6709,1,,8,1
+4,2494,2710783,New Canaan - Stamford,6713,1,,8,1
+4,2494,2710785,New Canaan - Stamford,6717,1,,8,1
+4,2494,2710787,New Canaan - Stamford,6721,1,,8,1
+4,2494,2710789,New Canaan - Stamford,6725,1,,8,1
+4,2494,2710791,New Canaan - Stamford,6729,1,,8,1
+4,2494,2710793,New Canaan - Stamford,6733,1,,8,1
+4,2494,2710795,New Canaan - Stamford,6737,1,,8,1
+4,2494,2710797,New Canaan - Stamford,6741,1,,8,1
+4,2494,2710799,New Canaan - Stamford,6745,1,,8,1
+4,2494,2710801,New Canaan - Stamford,6749,1,,8,1
+4,2494,2710803,New Canaan - Stamford,6753,1,,8,1
+4,2494,2710805,New Canaan - Stamford,6757,1,,8,1
+4,2494,2710807,New Canaan - Stamford,6761,1,,8,1
+4,2494,2710809,New Canaan - Stamford,6765,1,,8,1
+4,2494,2710811,New Canaan - Stamford,6769,1,,8,1
+4,2494,2710813,New Canaan - Stamford,6773,1,,8,1
+3,2494,2710734,New Haven - Grand Central Terminal,6509,1,,5,1
+3,2494,2710736,New Haven - Grand Central Terminal,6513,1,,5,1
+3,2494,2710738,New Haven - Grand Central Terminal,6515,1,,5,1
+3,2494,2710739,New Haven - Grand Central Terminal,6517,1,,5,1
+3,2494,2710741,New Haven - Grand Central Terminal,6519,1,,5,1
+3,2494,2710742,New Haven - Grand Central Terminal,6521,1,,5,1
+3,2494,2710744,New Haven - Grand Central Terminal,6523,1,,5,1
+3,2494,2710745,New Haven - Grand Central Terminal,6525,1,,5,1
+3,2494,2710747,New Haven - Grand Central Terminal,6527,1,,5,1
+3,2494,2710748,New Haven - Grand Central Terminal,6529,1,,5,1
+3,2494,2710750,New Haven - Grand Central Terminal,6533,1,,5,1
+3,2494,2710752,New Haven - Grand Central Terminal,6537,1,,5,1
+3,2494,2710754,New Haven - Grand Central Terminal,6541,1,,5,1
+3,2494,2710757,New Haven - Grand Central Terminal,6545,1,,5,1
+3,2494,2710759,New Haven - Grand Central Terminal,6547,1,,5,1
+3,2494,2710761,New Haven - Grand Central Terminal,6549,1,,5,1
+3,2494,2710764,New Haven - Grand Central Terminal,6553,1,,5,1
+3,2494,2710766,New Haven - Grand Central Terminal,6557,1,,5,1
+3,2494,2710768,New Haven - Grand Central Terminal,6561,1,,5,1
+3,2494,2710770,New Haven - Grand Central Terminal,6565,1,,5,1
+3,2494,2710772,New Haven - Grand Central Terminal,6569,1,,5,1
+3,2494,2710774,New Haven - Grand Central Terminal,6573,1,,5,1
+3,2494,2710662,Stamford - Grand Central Terminal,6341,1,,5,1
+3,2494,2710664,Stamford - Grand Central Terminal,6345,1,,5,1
+3,2494,2710666,Stamford - Grand Central Terminal,6349,1,,5,1
+3,2494,2710688,Stamford - Grand Central Terminal,6201,1,,5,1
+3,2494,2710715,Stamford - Grand Central Terminal,6353,1,,5,1
+3,2494,2710717,Stamford - Grand Central Terminal,6357,1,,5,1
+3,2494,2710719,Stamford - Grand Central Terminal,6361,1,,5,1
+3,2494,2710721,Stamford - Grand Central Terminal,6365,1,,5,1
+3,2494,2710723,Stamford - Grand Central Terminal,6369,1,,5,1
+3,2494,2710725,Stamford - Grand Central Terminal,6373,1,,5,1
+3,2494,2711092,Stamford - Grand Central Terminal,6303,1,,5,1
+3,2494,2711094,Stamford - Grand Central Terminal,6305,1,,5,1
+3,2494,2711096,Stamford - Grand Central Terminal,6309,1,,5,1
+3,2494,2711098,Stamford - Grand Central Terminal,6313,1,,5,1
+3,2494,2711122,Stamford - Grand Central Terminal,6329,1,,5,1
+3,2494,2711124,Stamford - Grand Central Terminal,6333,1,,5,1
+3,2494,2711126,Stamford - Grand Central Terminal,6337,1,,5,1
+3,2494,2711127,Stamford - Grand Central Terminal,6317,1,,5,1
+3,2494,2711129,Stamford - Grand Central Terminal,6321,1,,5,1
+3,2494,2711131,Stamford - Grand Central Terminal,6325,1,,5,1
+6,2494,2710829,Bridgeport - Waterbury,6906,0,,22,1
+6,2494,2710831,Bridgeport - Waterbury,6918,0,,22,1
+6,2494,2710833,Bridgeport - Waterbury,6930,0,,22,1
+6,2494,2710835,Bridgeport - Waterbury,6948,0,,22,1
+6,2494,2710837,Bridgeport - Waterbury,6962,0,,22,1
+5,2494,2710816,South Norwalk - Danbury,6810,0,,21,1
+5,2494,2710818,South Norwalk - Danbury,6822,0,,21,1
+5,2494,2710820,South Norwalk - Danbury,6834,0,,21,1
+5,2494,2710822,South Norwalk - Danbury,6846,0,,21,1
+5,2494,2710825,South Norwalk - Danbury,6862,0,,21,1
+5,2494,2710826,South Norwalk - Danbury,6870,0,,21,1
+3,2494,2710729,Grand Central Terminal - New Haven,6502,0,,16,1
+3,2494,2710775,Grand Central Terminal - New Haven,6574,0,,16,1
+2,2494,2711072,Southeast - Wassaic,9911,0,,14,1
+2,2494,2711074,Southeast - Wassaic,9919,0,,14,1
+2,2494,2711076,Southeast - Wassaic,9927,0,,14,1
+2,2494,2711078,Southeast - Wassaic,9935,0,,14,1
+2,2494,2711083,Southeast - Wassaic,9959,0,,14,1
+2,2494,2711086,Southeast - Wassaic,9967,0,,14,1
+2,2494,2711087,Southeast - Dover Plains,9975,0,,14,1
+2,2494,2711081,Grand Central Terminal - Wassaic,9949,0,,14,1
+1,2494,2710988,Croton Harmon - Poughkeepsie,8879,0,,12,1
+6,2494,2710830,Waterbury - Bridgeport,6913,1,,11,1
+6,2494,2710832,Waterbury - Bridgeport,6923,1,,11,1
+6,2494,2710834,Waterbury - Bridgeport,6937,1,,11,1
+6,2494,2710836,Waterbury - Bridgeport,6949,1,,11,1
+6,2494,2710838,Waterbury - Bridgeport,6965,1,,11,1
+5,2494,2710817,Danbury - South Norwalk,6813,1,,10,1
+5,2494,2710819,Danbury - South Norwalk,6825,1,,10,1
+5,2494,2710821,Danbury - South Norwalk,6837,1,,10,1
+5,2494,2710823,Danbury - South Norwalk,6849,1,,10,1
+5,2494,2710824,Danbury - South Norwalk,6861,1,,10,1
+5,2494,2710827,Danbury - South Norwalk,6873,1,,10,1
+1,2494,2710848,Grand Central Terminal - Croton Harmon,8713,0,,12,1
+1,2494,2710852,Grand Central Terminal - Croton Harmon,8717,0,,12,1
+1,2494,2710869,Grand Central Terminal - Croton Harmon,8741,0,,12,1
+1,2494,2710884,Grand Central Terminal - Croton Harmon,8757,0,,12,1
+1,2494,2710891,Grand Central Terminal - Croton Harmon,8769,0,,12,1
+1,2494,2710905,Grand Central Terminal - Poughkeepsie,8811,0,,12,1
+1,2494,2710907,Grand Central Terminal - Poughkeepsie,8815,0,,12,1
+1,2494,2710909,Grand Central Terminal - Poughkeepsie,8819,0,,12,1
+1,2494,2710912,Grand Central Terminal - Poughkeepsie,8825,0,,12,1
+1,2494,2710914,Grand Central Terminal - Poughkeepsie,8829,0,,12,1
+1,2494,2710918,Grand Central Terminal - Poughkeepsie,8837,0,,12,1
+1,2494,2710921,Grand Central Terminal - Poughkeepsie,8843,0,,12,1
+1,2494,2710924,Grand Central Terminal - Poughkeepsie,8847,0,,12,1
+1,2494,2710926,Grand Central Terminal - Poughkeepsie,8851,0,,12,1
+1,2494,2710978,Grand Central Terminal - Poughkeepsie,8855,0,,12,1
+1,2494,2710983,Grand Central Terminal - Poughkeepsie,8865,0,,12,1
+1,2494,2710985,Grand Central Terminal - Poughkeepsie,8869,0,,12,1
+1,2494,2710987,Grand Central Terminal - Poughkeepsie,8873,0,,12,1
+3,2494,2710730,New Haven - Grand Central Terminal,6503,1,,5,1
+3,2494,2710732,New Haven - Grand Central Terminal,6505,1,,5,1
+2,2494,2711073,Wassaic - Southeast,9918,1,,3,1
+2,2494,2711075,Wassaic - Southeast,9926,1,,3,1
+2,2494,2711077,Wassaic - Southeast,9934,1,,3,1
+2,2494,2711079,Wassaic - Southeast,9942,1,,3,1
+2,2494,2711082,Wassaic - Southeast,9950,1,,3,1
+2,2494,2711085,Wassaic - Southeast,9966,1,,3,1
+2,2494,2711088,Wassaic - Southeast,9976,1,,3,1
+1,2494,2710901,Poughkeepsie - Grand Central Terminal,8804,1,,1,1
+1,2494,2710904,Poughkeepsie - Grand Central Terminal,8808,1,,1,1
+1,2494,2710906,Poughkeepsie - Grand Central Terminal,8812,1,,1,1
+1,2494,2710913,Poughkeepsie - Grand Central Terminal,8828,1,,1,1
+1,2494,2710915,Poughkeepsie - Grand Central Terminal,8832,1,,1,1
+1,2494,2710917,Poughkeepsie - Grand Central Terminal,8836,1,,1,1
+1,2494,2710920,Poughkeepsie - Grand Central Terminal,8840,1,,1,1
+1,2494,2710922,Poughkeepsie - Grand Central Terminal,8844,1,,1,1
+1,2494,2710923,Poughkeepsie - Grand Central Terminal,8846,1,,1,1
+1,2494,2710927,Poughkeepsie - Grand Central Terminal,8852,1,,1,1
+1,2494,2710980,Poughkeepsie - Grand Central Terminal,8860,1,,1,1
+1,2494,2710982,Poughkeepsie - Grand Central Terminal,8864,1,,1,1
+1,2494,2710984,Poughkeepsie - Grand Central Terminal,8868,1,,1,1
+1,2494,2710986,Poughkeepsie - Croton Harmon,8872,1,,1,1
+1,2494,2710851,Croton Harmon - Grand Central Terminal,8716,1,,1,1
+1,2494,2710855,Croton Harmon - Grand Central Terminal,8720,1,,1,1
+1,2494,2710862,Croton Harmon - Grand Central Terminal,8728,1,,1,1
+1,2494,2710875,Croton Harmon - Grand Central Terminal,8748,1,,1,1
+1,2494,2710883,Croton Harmon - Grand Central Terminal,8756,1,,1,1
+3,2494,2710728,Grand Central Terminal - New Haven,6500,0,,16,1
+2,2494,2711080,Southeast - Wassaic,9943,0,,14,1
+1,2494,2710899,Croton Harmon - Poughkeepsie,8801,0,,12,1
+1,2494,2710902,Croton Harmon - Poughkeepsie,8805,0,,12,1
+1,2494,2710856,Grand Central Terminal - Croton Harmon,8721,0,,12,1
+1,2494,2710880,Grand Central Terminal - Croton Harmon,8753,0,,12,1
+1,2494,2710903,Grand Central Terminal - Poughkeepsie,8807,0,,12,1
+1,2494,2710916,Grand Central Terminal - Poughkeepsie,8833,0,,12,1
+1,2494,2710919,Grand Central Terminal - Poughkeepsie,8839,0,,12,1
+1,2494,2710981,Grand Central Terminal - Poughkeepsie,8861,0,,12,1
+2,2494,2711071,Wassaic - Southeast,9910,1,,3,1
+2,2494,2711084,Wassaic - Grand Central Terminal,9960,1,,3,1
+1,2494,2710900,Poughkeepsie - Grand Central Terminal,8802,1,,1,1
+1,2494,2710908,Poughkeepsie - Grand Central Terminal,8816,1,,1,1
+1,2494,2710910,Poughkeepsie - Grand Central Terminal,8820,1,,1,1
+1,2494,2710911,Poughkeepsie - Grand Central Terminal,8824,1,,1,1
+1,2494,2710925,Poughkeepsie - Grand Central Terminal,8848,1,,1,1
+1,2494,2710979,Poughkeepsie - Grand Central Terminal,8856,1,,1,1
+2,2495,2711649,Grand Central Terminal - North White Plains,9501,0,,14,1
+2,2495,2711651,Grand Central Terminal - North White Plains,9503,0,,14,1
+2,2495,2711655,Grand Central Terminal - North White Plains,9509,0,,14,1
+2,2495,2711657,Grand Central Terminal - North White Plains,9511,0,,14,1
+2,2495,2711659,Grand Central Terminal - North White Plains,9513,0,,14,1
+2,2495,2711661,Grand Central Terminal - North White Plains,9515,0,,14,1
+2,2495,2711663,Grand Central Terminal - North White Plains,9517,0,,14,1
+2,2495,2711665,Grand Central Terminal - North White Plains,9519,0,,14,1
+2,2495,2711667,Grand Central Terminal - North White Plains,9521,0,,14,1
+2,2495,2711669,Grand Central Terminal - North White Plains,9523,0,,14,1
+2,2495,2711671,Grand Central Terminal - North White Plains,9525,0,,14,1
+2,2495,2711673,Grand Central Terminal - North White Plains,9527,0,,14,1
+2,2495,2711675,Grand Central Terminal - North White Plains,9529,0,,14,1
+2,2495,2711677,Grand Central Terminal - North White Plains,9531,0,,14,1
+2,2495,2711679,Grand Central Terminal - North White Plains,9533,0,,14,1
+2,2495,2711681,Grand Central Terminal - North White Plains,9535,0,,14,1
+2,2495,2711683,Grand Central Terminal - North White Plains,9537,0,,14,1
+2,2495,2711685,Grand Central Terminal - North White Plains,9539,0,,14,1
+2,2495,2711687,Grand Central Terminal - North White Plains,9541,0,,14,1
+2,2495,2711689,Grand Central Terminal - North White Plains,9543,0,,14,1
+2,2495,2711691,Grand Central Terminal - North White Plains,9545,0,,14,1
+2,2495,2711693,Grand Central Terminal - North White Plains,9547,0,,14,1
+2,2495,2711695,Grand Central Terminal - North White Plains,9549,0,,14,1
+2,2495,2711697,Grand Central Terminal - North White Plains,9551,0,,14,1
+2,2495,2711699,Grand Central Terminal - North White Plains,9553,0,,14,1
+2,2495,2711701,Grand Central Terminal - North White Plains,9555,0,,14,1
+2,2495,2711702,Grand Central Terminal - North White Plains,9557,0,,14,1
+2,2495,2711704,Grand Central Terminal - North White Plains,9559,0,,14,1
+2,2495,2711706,Grand Central Terminal - North White Plains,9563,0,,14,1
+2,2495,2711708,Grand Central Terminal - North White Plains,9567,0,,14,1
+2,2495,2711710,Grand Central Terminal - North White Plains,9571,0,,14,1
+2,2495,2711711,Grand Central Terminal - North White Plains,9573,0,,14,1
+2,2495,2711713,Grand Central Terminal - North White Plains,9575,0,,14,1
+2,2495,2711715,Grand Central Terminal - Southeast,9601,0,,14,1
+2,2495,2711717,Grand Central Terminal - Southeast,9603,0,,14,1
+2,2495,2711718,Grand Central Terminal - Southeast,9605,0,,14,1
+2,2495,2711720,Grand Central Terminal - Southeast,9607,0,,14,1
+2,2495,2711722,Grand Central Terminal - Southeast,9611,0,,14,1
+2,2495,2711724,Grand Central Terminal - Southeast,9615,0,,14,1
+2,2495,2711726,Grand Central Terminal - Southeast,9619,0,,14,1
+2,2495,2711729,Grand Central Terminal - Southeast,9623,0,,14,1
+2,2495,2711732,Grand Central Terminal - Southeast,9627,0,,14,1
+2,2495,2711735,Grand Central Terminal - Southeast,9631,0,,14,1
+2,2495,2711737,Grand Central Terminal - Southeast,9635,0,,14,1
+2,2495,2711739,Grand Central Terminal - Southeast,9639,0,,14,1
+2,2495,2711741,Grand Central Terminal - Southeast,9643,0,,14,1
+2,2495,2711742,Grand Central Terminal - Southeast,9645,0,,14,1
+2,2495,2711744,Grand Central Terminal - Southeast,9647,0,,14,1
+2,2495,2711746,Grand Central Terminal - Southeast,9651,0,,14,1
+2,2495,2711747,Grand Central Terminal - Southeast,9653,0,,14,1
+2,2495,2711749,Grand Central Terminal - Southeast,9655,0,,14,1
+2,2495,2711750,Grand Central Terminal - Southeast,9657,0,,14,1
+2,2495,2711752,Grand Central Terminal - Southeast,9659,0,,14,1
+2,2495,2711754,Grand Central Terminal - Southeast,9663,0,,14,1
+2,2495,2711756,Grand Central Terminal - Southeast,9667,0,,14,1
+2,2495,2711757,Grand Central Terminal - Southeast,9669,0,,14,1
+2,2495,2711759,Grand Central Terminal - Southeast,9671,0,,14,1
+2,2495,2711761,Grand Central Terminal - Southeast,9675,0,,14,1
+1,2495,2711267,Grand Central Terminal - Croton Harmon,8727,0,,12,1
+1,2495,2711270,Grand Central Terminal - Croton Harmon,8731,0,,12,1
+1,2495,2711289,Grand Central Terminal - Croton Harmon,8755,0,,12,1
+1,2495,2711340,Grand Central Terminal - Croton Harmon,8719,0,,12,1
+1,2495,2711342,Grand Central Terminal - Croton Harmon,8721,0,,12,1
+1,2495,2711344,Grand Central Terminal - Croton Harmon,8723,0,,12,1
+1,2495,2711345,Grand Central Terminal - Croton Harmon,8759,0,,12,1
+1,2495,2711347,Grand Central Terminal - Croton Harmon,8763,0,,12,1
+1,2495,2711349,Grand Central Terminal - Croton Harmon,8767,0,,12,1
+1,2495,2711352,Grand Central Terminal - Croton Harmon,8771,0,,12,1
+1,2495,2711421,Grand Central Terminal - Croton Harmon,8701,0,,12,1
+1,2495,2711423,Grand Central Terminal - Croton Harmon,8705,0,,12,1
+1,2495,2711428,Grand Central Terminal - Croton Harmon,8711,0,,12,1
+1,2495,2711429,Grand Central Terminal - Croton Harmon,8713,0,,12,1
+1,2495,2711431,Grand Central Terminal - Croton Harmon,8715,0,,12,1
+1,2495,2711433,Grand Central Terminal - Croton Harmon,8735,0,,12,1
+1,2495,2711435,Grand Central Terminal - Croton Harmon,8739,0,,12,1
+1,2495,2711438,Grand Central Terminal - Croton Harmon,8743,0,,12,1
+1,2495,2711441,Grand Central Terminal - Croton Harmon,8747,0,,12,1
+1,2495,2711443,Grand Central Terminal - Croton Harmon,8749,0,,12,1
+1,2495,2711445,Grand Central Terminal - Croton Harmon,8751,0,,12,1
+1,2495,2711603,Grand Central Terminal - Croton Harmon,8775,0,,12,1
+1,2495,2711604,Grand Central Terminal - Croton Harmon,8779,0,,12,1
+1,2495,2711425,Grand Central Terminal - Croton Harmon,8707,0,,12,1
+1,2495,2711426,Grand Central Terminal - Croton Harmon,8709,0,,12,1
+2,2495,2711714,Southeast - Grand Central Terminal,9600,1,,3,1
+2,2495,2711716,Southeast - Grand Central Terminal,9602,1,,3,1
+2,2495,2711719,Southeast - Grand Central Terminal,9606,1,,3,1
+2,2495,2711721,Southeast - Grand Central Terminal,9610,1,,3,1
+2,2495,2711723,Southeast - Grand Central Terminal,9614,1,,3,1
+2,2495,2711725,Southeast - Grand Central Terminal,9618,1,,3,1
+2,2495,2711727,Southeast - Grand Central Terminal,9620,1,,3,1
+2,2495,2711728,Southeast - Grand Central Terminal,9622,1,,3,1
+2,2495,2711730,Southeast - Grand Central Terminal,9624,1,,3,1
+2,2495,2711731,Southeast - Grand Central Terminal,9626,1,,3,1
+2,2495,2711733,Southeast - Grand Central Terminal,9628,1,,3,1
+2,2495,2711734,Southeast - Grand Central Terminal,9630,1,,3,1
+2,2495,2711736,Southeast - Grand Central Terminal,9634,1,,3,1
+2,2495,2711738,Southeast - Grand Central Terminal,9638,1,,3,1
+2,2495,2711740,Southeast - Grand Central Terminal,9642,1,,3,1
+2,2495,2711743,Southeast - Grand Central Terminal,9646,1,,3,1
+2,2495,2711745,Southeast - Grand Central Terminal,9650,1,,3,1
+2,2495,2711748,Southeast - Grand Central Terminal,9654,1,,3,1
+2,2495,2711751,Southeast - Grand Central Terminal,9658,1,,3,1
+2,2495,2711753,Southeast - Grand Central Terminal,9662,1,,3,1
+2,2495,2711755,Southeast - Grand Central Terminal,9666,1,,3,1
+2,2495,2711758,Southeast - Grand Central Terminal,9670,1,,3,1
+2,2495,2711760,Southeast - Grand Central Terminal,9674,1,,3,1
+2,2495,2711762,Southeast - Grand Central Terminal,9676,1,,3,1
+2,2495,2711648,North White Plains - Grand Central Terminal,9500,1,,3,1
+2,2495,2711650,North White Plains - Grand Central Terminal,9502,1,,3,1
+2,2495,2711652,North White Plains - Grand Central Terminal,9504,1,,3,1
+2,2495,2711653,North White Plains - Grand Central Terminal,9506,1,,3,1
+2,2495,2711654,North White Plains - Grand Central Terminal,9508,1,,3,1
+2,2495,2711656,North White Plains - Grand Central Terminal,9510,1,,3,1
+2,2495,2711658,North White Plains - Grand Central Terminal,9512,1,,3,1
+2,2495,2711660,North White Plains - Grand Central Terminal,9514,1,,3,1
+2,2495,2711662,North White Plains - Grand Central Terminal,9516,1,,3,1
+2,2495,2711664,North White Plains - Grand Central Terminal,9518,1,,3,1
+2,2495,2711666,North White Plains - Grand Central Terminal,9520,1,,3,1
+2,2495,2711668,North White Plains - Grand Central Terminal,9522,1,,3,1
+2,2495,2711670,North White Plains - Grand Central Terminal,9524,1,,3,1
+2,2495,2711672,North White Plains - Grand Central Terminal,9526,1,,3,1
+2,2495,2711674,North White Plains - Grand Central Terminal,9528,1,,3,1
+2,2495,2711676,North White Plains - Grand Central Terminal,9530,1,,3,1
+2,2495,2711678,North White Plains - Grand Central Terminal,9532,1,,3,1
+2,2495,2711680,North White Plains - Grand Central Terminal,9534,1,,3,1
+2,2495,2711682,North White Plains - Grand Central Terminal,9536,1,,3,1
+2,2495,2711684,North White Plains - Grand Central Terminal,9538,1,,3,1
+2,2495,2711686,North White Plains - Grand Central Terminal,9540,1,,3,1
+2,2495,2711688,North White Plains - Grand Central Terminal,9542,1,,3,1
+2,2495,2711690,North White Plains - Grand Central Terminal,9544,1,,3,1
+2,2495,2711692,North White Plains - Grand Central Terminal,9546,1,,3,1
+2,2495,2711694,North White Plains - Grand Central Terminal,9548,1,,3,1
+2,2495,2711696,North White Plains - Grand Central Terminal,9550,1,,3,1
+2,2495,2711698,North White Plains - Grand Central Terminal,9552,1,,3,1
+2,2495,2711700,North White Plains - Grand Central Terminal,9554,1,,3,1
+2,2495,2711703,North White Plains - Grand Central Terminal,9558,1,,3,1
+2,2495,2711705,North White Plains - Grand Central Terminal,9562,1,,3,1
+2,2495,2711707,North White Plains - Grand Central Terminal,9566,1,,3,1
+2,2495,2711709,North White Plains - Grand Central Terminal,9570,1,,3,1
+2,2495,2711712,North White Plains - Grand Central Terminal,9574,1,,3,1
+1,2495,2711265,Croton Harmon - Grand Central Terminal,8724,1,,1,1
+1,2495,2711266,Croton Harmon - Grand Central Terminal,8726,1,,1,1
+1,2495,2711269,Croton Harmon - Grand Central Terminal,8730,1,,1,1
+1,2495,2711271,Croton Harmon - Grand Central Terminal,8734,1,,1,1
+1,2495,2711288,Croton Harmon - Grand Central Terminal,8754,1,,1,1
+1,2495,2711292,Croton Harmon - Grand Central Terminal,8758,1,,1,1
+1,2495,2711320,Croton Harmon - Grand Central Terminal,8718,1,,1,1
+1,2495,2711341,Croton Harmon - Grand Central Terminal,8720,1,,1,1
+1,2495,2711343,Croton Harmon - Grand Central Terminal,8722,1,,1,1
+1,2495,2711346,Croton Harmon - Grand Central Terminal,8762,1,,1,1
+1,2495,2711348,Croton Harmon - Grand Central Terminal,8766,1,,1,1
+1,2495,2711351,Croton Harmon - Grand Central Terminal,8770,1,,1,1
+1,2495,2711420,Croton Harmon - Grand Central Terminal,8700,1,,1,1
+1,2495,2711422,Croton Harmon - Grand Central Terminal,8702,1,,1,1
+1,2495,2711430,Croton Harmon - Grand Central Terminal,8714,1,,1,1
+1,2495,2711432,Croton Harmon - Grand Central Terminal,8716,1,,1,1
+1,2495,2711434,Croton Harmon - Grand Central Terminal,8738,1,,1,1
+1,2495,2711437,Croton Harmon - Grand Central Terminal,8742,1,,1,1
+1,2495,2711440,Croton Harmon - Grand Central Terminal,8746,1,,1,1
+1,2495,2711444,Croton Harmon - Grand Central Terminal,8750,1,,1,1
+1,2495,2711446,Croton Harmon - Grand Central Terminal,8752,1,,1,1
+1,2495,2711601,Croton Harmon - Grand Central Terminal,8772,1,,1,1
+1,2495,2711602,Croton Harmon - Grand Central Terminal,8774,1,,1,1
+1,2495,2711424,Croton Harmon - Grand Central Terminal,8706,1,,1,1
+1,2495,2711427,Croton Harmon - Grand Central Terminal,8710,1,,1,1
+4,2495,2711391,Stamford - New Canaan,6710,0,,19,1
+4,2495,2711393,Stamford - New Canaan,6714,0,,19,1
+4,2495,2711395,Stamford - New Canaan,6718,0,,19,1
+4,2495,2711397,Stamford - New Canaan,6722,0,,19,1
+4,2495,2711399,Stamford - New Canaan,6726,0,,19,1
+4,2495,2711401,Stamford - New Canaan,6730,0,,19,1
+4,2495,2711403,Stamford - New Canaan,6734,0,,19,1
+4,2495,2711405,Stamford - New Canaan,6766,0,,19,1
+4,2495,2711407,Stamford - New Canaan,6770,0,,19,1
+4,2495,2711409,Stamford - New Canaan,6774,0,,19,1
+4,2495,2711527,Stamford - New Canaan,6704,0,,19,1
+4,2495,2711529,Stamford - New Canaan,6706,0,,19,1
+4,2495,2711531,Stamford - New Canaan,6738,0,,19,1
+4,2495,2711533,Stamford - New Canaan,6742,0,,19,1
+4,2495,2711535,Stamford - New Canaan,6746,0,,19,1
+4,2495,2711537,Stamford - New Canaan,6750,0,,19,1
+4,2495,2711539,Stamford - New Canaan,6754,0,,19,1
+4,2495,2711541,Stamford - New Canaan,6758,0,,19,1
+4,2495,2711543,Stamford - New Canaan,6762,0,,19,1
+3,2495,2711366,Grand Central Terminal - New Haven,6504,0,,16,1
+3,2495,2711368,Grand Central Terminal - New Haven,6506,0,,16,1
+3,2495,2711370,Grand Central Terminal - New Haven,6510,0,,16,1
+3,2495,2711373,Grand Central Terminal - New Haven,6514,0,,16,1
+3,2495,2711376,Grand Central Terminal - New Haven,6518,0,,16,1
+3,2495,2711377,Grand Central Terminal - New Haven,6542,0,,16,1
+3,2495,2711378,Grand Central Terminal - New Haven,6544,0,,16,1
+3,2495,2711380,Grand Central Terminal - New Haven,6546,0,,16,1
+3,2495,2711382,Grand Central Terminal - New Haven,6548,0,,16,1
+3,2495,2711384,Grand Central Terminal - New Haven,6550,0,,16,1
+3,2495,2711385,Grand Central Terminal - New Haven,6552,0,,16,1
+3,2495,2711387,Grand Central Terminal - New Haven,6554,0,,16,1
+3,2495,2711388,Grand Central Terminal - New Haven,6556,0,,16,1
+3,2495,2711390,Grand Central Terminal - New Haven,6558,0,,16,1
+3,2495,2711463,Grand Central Terminal - Stamford,6300,0,,16,1
+3,2495,2711464,Grand Central Terminal - Stamford,6302,0,,16,1
+3,2495,2711466,Grand Central Terminal - Stamford,6304,0,,16,1
+3,2495,2711468,Grand Central Terminal - Stamford,6306,0,,16,1
+3,2495,2711470,Grand Central Terminal - Stamford,6308,0,,16,1
+3,2495,2711472,Grand Central Terminal - Stamford,6310,0,,16,1
+3,2495,2711474,Grand Central Terminal - Stamford,6312,0,,16,1
+3,2495,2711476,Grand Central Terminal - Stamford,6328,0,,16,1
+3,2495,2711478,Grand Central Terminal - Stamford,6330,0,,16,1
+3,2495,2711480,Grand Central Terminal - Stamford,6332,0,,16,1
+3,2495,2711482,Grand Central Terminal - Stamford,6334,0,,16,1
+3,2495,2711484,Grand Central Terminal - Stamford,6336,0,,16,1
+3,2495,2711486,Grand Central Terminal - Stamford,6338,0,,16,1
+3,2495,2711488,Grand Central Terminal - Stamford,6340,0,,16,1
+3,2495,2711490,Grand Central Terminal - Stamford,6356,0,,16,1
+3,2495,2711492,Grand Central Terminal - Stamford,6358,0,,16,1
+3,2495,2711494,Grand Central Terminal - Stamford,6362,0,,16,1
+3,2495,2711496,Grand Central Terminal - Stamford,6366,0,,16,1
+3,2495,2711498,Grand Central Terminal - Stamford,6370,0,,16,1
+3,2495,2711499,Grand Central Terminal - Stamford,6372,0,,16,1
+3,2495,2711501,Grand Central Terminal - Stamford,6374,0,,16,1
+3,2495,2711505,Grand Central Terminal - New Haven,6522,0,,16,1
+3,2495,2711508,Grand Central Terminal - New Haven,6526,0,,16,1
+3,2495,2711511,Grand Central Terminal - New Haven,6530,0,,16,1
+3,2495,2711513,Grand Central Terminal - New Haven,6534,0,,16,1
+3,2495,2711515,Grand Central Terminal - New Haven,6538,0,,16,1
+3,2495,2711518,Grand Central Terminal - New Haven,6562,0,,16,1
+3,2495,2711520,Grand Central Terminal - New Haven,6566,0,,16,1
+3,2495,2711522,Grand Central Terminal - New Haven,6570,0,,16,1
+3,2495,2711574,Grand Central Terminal - Stamford,6314,0,,16,1
+3,2495,2711576,Grand Central Terminal - Stamford,6316,0,,16,1
+3,2495,2711578,Grand Central Terminal - Stamford,6318,0,,16,1
+3,2495,2711580,Grand Central Terminal - Stamford,6320,0,,16,1
+3,2495,2711582,Grand Central Terminal - Stamford,6322,0,,16,1
+3,2495,2711584,Grand Central Terminal - Stamford,6324,0,,16,1
+3,2495,2711586,Grand Central Terminal - Stamford,6326,0,,16,1
+3,2495,2711588,Grand Central Terminal - Stamford,6342,0,,16,1
+3,2495,2711590,Grand Central Terminal - Stamford,6344,0,,16,1
+3,2495,2711592,Grand Central Terminal - Stamford,6346,0,,16,1
+3,2495,2711594,Grand Central Terminal - Stamford,6348,0,,16,1
+3,2495,2711596,Grand Central Terminal - Stamford,6350,0,,16,1
+3,2495,2711598,Grand Central Terminal - Stamford,6352,0,,16,1
+3,2495,2711600,Grand Central Terminal - Stamford,6354,0,,16,1
+4,2495,2711392,New Canaan - Stamford,6713,1,,8,1
+4,2495,2711394,New Canaan - Stamford,6717,1,,8,1
+4,2495,2711396,New Canaan - Stamford,6721,1,,8,1
+4,2495,2711398,New Canaan - Stamford,6725,1,,8,1
+4,2495,2711400,New Canaan - Stamford,6729,1,,8,1
+4,2495,2711402,New Canaan - Stamford,6733,1,,8,1
+4,2495,2711404,New Canaan - Stamford,6737,1,,8,1
+4,2495,2711406,New Canaan - Stamford,6769,1,,8,1
+4,2495,2711408,New Canaan - Stamford,6773,1,,8,1
+4,2495,2711528,New Canaan - Stamford,6705,1,,8,1
+4,2495,2711530,New Canaan - Stamford,6709,1,,8,1
+4,2495,2711532,New Canaan - Stamford,6741,1,,8,1
+4,2495,2711534,New Canaan - Stamford,6745,1,,8,1
+4,2495,2711536,New Canaan - Stamford,6749,1,,8,1
+4,2495,2711538,New Canaan - Stamford,6753,1,,8,1
+4,2495,2711540,New Canaan - Stamford,6757,1,,8,1
+4,2495,2711542,New Canaan - Stamford,6761,1,,8,1
+4,2495,2711544,New Canaan - Stamford,6765,1,,8,1
+3,2495,2711369,New Haven - Grand Central Terminal,6509,1,,5,1
+3,2495,2711371,New Haven - Grand Central Terminal,6511,1,,5,1
+3,2495,2711372,New Haven - Grand Central Terminal,6513,1,,5,1
+3,2495,2711374,New Haven - Grand Central Terminal,6515,1,,5,1
+3,2495,2711375,New Haven - Grand Central Terminal,6517,1,,5,1
+3,2495,2711379,New Haven - Grand Central Terminal,6545,1,,5,1
+3,2495,2711381,New Haven - Grand Central Terminal,6547,1,,5,1
+3,2495,2711383,New Haven - Grand Central Terminal,6549,1,,5,1
+3,2495,2711386,New Haven - Grand Central Terminal,6553,1,,5,1
+3,2495,2711389,New Haven - Grand Central Terminal,6557,1,,5,1
+3,2495,2711503,New Haven - Grand Central Terminal,6519,1,,5,1
+3,2495,2711504,New Haven - Grand Central Terminal,6521,1,,5,1
+3,2495,2711506,New Haven - Grand Central Terminal,6523,1,,5,1
+3,2495,2711507,New Haven - Grand Central Terminal,6525,1,,5,1
+3,2495,2711509,New Haven - Grand Central Terminal,6527,1,,5,1
+3,2495,2711510,New Haven - Grand Central Terminal,6529,1,,5,1
+3,2495,2711512,New Haven - Grand Central Terminal,6533,1,,5,1
+3,2495,2711514,New Haven - Grand Central Terminal,6537,1,,5,1
+3,2495,2711516,New Haven - Grand Central Terminal,6541,1,,5,1
+3,2495,2711517,New Haven - Grand Central Terminal,6561,1,,5,1
+3,2495,2711519,New Haven - Grand Central Terminal,6565,1,,5,1
+3,2495,2711521,New Haven - Grand Central Terminal,6569,1,,5,1
+3,2495,2711523,New Haven - Grand Central Terminal,6573,1,,5,1
+3,2495,2711461,Stamford - Grand Central Terminal,6203,1,,5,1
+3,2495,2711465,Stamford - Grand Central Terminal,6303,1,,5,1
+3,2495,2711467,Stamford - Grand Central Terminal,6305,1,,5,1
+3,2495,2711469,Stamford - Grand Central Terminal,6307,1,,5,1
+3,2495,2711471,Stamford - Grand Central Terminal,6309,1,,5,1
+3,2495,2711473,Stamford - Grand Central Terminal,6311,1,,5,1
+3,2495,2711475,Stamford - Grand Central Terminal,6327,1,,5,1
+3,2495,2711477,Stamford - Grand Central Terminal,6329,1,,5,1
+3,2495,2711479,Stamford - Grand Central Terminal,6331,1,,5,1
+3,2495,2711481,Stamford - Grand Central Terminal,6333,1,,5,1
+3,2495,2711483,Stamford - Grand Central Terminal,6335,1,,5,1
+3,2495,2711485,Stamford - Grand Central Terminal,6337,1,,5,1
+3,2495,2711487,Stamford - Grand Central Terminal,6339,1,,5,1
+3,2495,2711489,Stamford - Grand Central Terminal,6355,1,,5,1
+3,2495,2711491,Stamford - Grand Central Terminal,6357,1,,5,1
+3,2495,2711493,Stamford - Grand Central Terminal,6361,1,,5,1
+3,2495,2711495,Stamford - Grand Central Terminal,6365,1,,5,1
+3,2495,2711497,Stamford - Grand Central Terminal,6369,1,,5,1
+3,2495,2711500,Stamford - Grand Central Terminal,6373,1,,5,1
+3,2495,2711572,Stamford - Grand Central Terminal,6201,1,,5,1
+3,2495,2711573,Stamford - Grand Central Terminal,6313,1,,5,1
+3,2495,2711575,Stamford - Grand Central Terminal,6315,1,,5,1
+3,2495,2711577,Stamford - Grand Central Terminal,6317,1,,5,1
+3,2495,2711579,Stamford - Grand Central Terminal,6319,1,,5,1
+3,2495,2711581,Stamford - Grand Central Terminal,6321,1,,5,1
+3,2495,2711583,Stamford - Grand Central Terminal,6323,1,,5,1
+3,2495,2711585,Stamford - Grand Central Terminal,6325,1,,5,1
+3,2495,2711587,Stamford - Grand Central Terminal,6341,1,,5,1
+3,2495,2711589,Stamford - Grand Central Terminal,6343,1,,5,1
+3,2495,2711591,Stamford - Grand Central Terminal,6345,1,,5,1
+3,2495,2711593,Stamford - Grand Central Terminal,6347,1,,5,1
+3,2495,2711595,Stamford - Grand Central Terminal,6349,1,,5,1
+3,2495,2711597,Stamford - Grand Central Terminal,6351,1,,5,1
+3,2495,2711599,Stamford - Grand Central Terminal,6353,1,,5,1
+6,2495,2711549,Bridgeport - Waterbury,6906,0,,22,1
+6,2495,2711551,Bridgeport - Waterbury,6918,0,,22,1
+6,2495,2711553,Bridgeport - Waterbury,6930,0,,22,1
+6,2495,2711555,Bridgeport - Waterbury,6948,0,,22,1
+6,2495,2711557,Bridgeport - Waterbury,6962,0,,22,1
+5,2495,2711411,South Norwalk - Danbury,6810,0,,21,1
+5,2495,2711413,South Norwalk - Danbury,6822,0,,21,1
+5,2495,2711415,South Norwalk - Danbury,6834,0,,21,1
+5,2495,2711417,South Norwalk - Danbury,6846,0,,21,1
+5,2495,2711546,South Norwalk - Danbury,6862,0,,21,1
+3,2495,2711363,Grand Central Terminal - New Haven,6500,0,,16,1
+3,2495,2711364,Grand Central Terminal - New Haven,6502,0,,16,1
+3,2495,2711524,Grand Central Terminal - New Haven,6574,0,,16,1
+2,2495,2711765,Southeast - Wassaic,9911,0,,14,1
+2,2495,2711767,Southeast - Wassaic,9919,0,,14,1
+2,2495,2711769,Southeast - Wassaic,9927,0,,14,1
+2,2495,2711771,Southeast - Wassaic,9935,0,,14,1
+2,2495,2711773,Southeast - Wassaic,9943,0,,14,1
+2,2495,2711779,Southeast - Wassaic,9967,0,,14,1
+2,2495,2711780,Southeast - Dover Plains,9975,0,,14,1
+1,2495,2711606,Croton Harmon - Poughkeepsie,8801,0,,12,1
+1,2495,2711609,Croton Harmon - Poughkeepsie,8805,0,,12,1
+1,2495,2711647,Croton Harmon - Poughkeepsie,8879,0,,12,1
+6,2495,2711550,Waterbury - Bridgeport,6913,1,,11,1
+6,2495,2711552,Waterbury - Bridgeport,6923,1,,11,1
+6,2495,2711554,Waterbury - Bridgeport,6937,1,,11,1
+6,2495,2711556,Waterbury - Bridgeport,6949,1,,11,1
+6,2495,2711558,Waterbury - Bridgeport,6965,1,,11,1
+5,2495,2711412,Danbury - South Norwalk,6813,1,,10,1
+5,2495,2711414,Danbury - South Norwalk,6825,1,,10,1
+5,2495,2711416,Danbury - South Norwalk,6837,1,,10,1
+5,2495,2711418,Danbury - South Norwalk,6849,1,,10,1
+5,2495,2711545,Danbury - South Norwalk,6861,1,,10,1
+5,2495,2711547,Danbury - South Norwalk,6873,1,,10,1
+1,2495,2711287,Grand Central Terminal - Croton Harmon,8753,0,,12,1
+1,2495,2711319,Grand Central Terminal - Croton Harmon,8717,0,,12,1
+1,2495,2711350,Grand Central Terminal - Croton Harmon,8769,0,,12,1
+1,2495,2711439,Grand Central Terminal - Croton Harmon,8745,0,,12,1
+1,2495,2711610,Grand Central Terminal - Poughkeepsie,8807,0,,12,1
+1,2495,2711612,Grand Central Terminal - Poughkeepsie,8811,0,,12,1
+1,2495,2711614,Grand Central Terminal - Poughkeepsie,8815,0,,12,1
+1,2495,2711623,Grand Central Terminal - Poughkeepsie,8829,0,,12,1
+1,2495,2711625,Grand Central Terminal - Poughkeepsie,8833,0,,12,1
+1,2495,2711632,Grand Central Terminal - Poughkeepsie,8847,0,,12,1
+1,2495,2711634,Grand Central Terminal - Poughkeepsie,8849,0,,12,1
+1,2495,2711635,Grand Central Terminal - Poughkeepsie,8851,0,,12,1
+1,2495,2711637,Grand Central Terminal - Poughkeepsie,8855,0,,12,1
+1,2495,2711640,Grand Central Terminal - Poughkeepsie,8861,0,,12,1
+1,2495,2711646,Grand Central Terminal - Poughkeepsie,8873,0,,12,1
+3,2495,2711367,New Haven - Grand Central Terminal,6505,1,,5,1
+2,2495,2711768,Wassaic - Southeast,9926,1,,3,1
+2,2495,2711770,Wassaic - Southeast,9934,1,,3,1
+2,2495,2711772,Wassaic - Southeast,9942,1,,3,1
+2,2495,2711775,Wassaic - Southeast,9950,1,,3,1
+2,2495,2711776,Wassaic - Southeast,9958,1,,3,1
+1,2495,2711607,Poughkeepsie - Grand Central Terminal,8802,1,,1,1
+1,2495,2711608,Poughkeepsie - Grand Central Terminal,8804,1,,1,1
+1,2495,2711611,Poughkeepsie - Grand Central Terminal,8808,1,,1,1
+1,2495,2711613,Poughkeepsie - Grand Central Terminal,8812,1,,1,1
+1,2495,2711615,Poughkeepsie - Grand Central Terminal,8816,1,,1,1
+1,2495,2711616,Poughkeepsie - Grand Central Terminal,8818,1,,1,1
+1,2495,2711619,Poughkeepsie - Grand Central Terminal,8822,1,,1,1
+1,2495,2711622,Poughkeepsie - Grand Central Terminal,8828,1,,1,1
+1,2495,2711624,Poughkeepsie - Grand Central Terminal,8832,1,,1,1
+1,2495,2711631,Poughkeepsie - Grand Central Terminal,8844,1,,1,1
+1,2495,2711633,Poughkeepsie - Grand Central Terminal,8848,1,,1,1
+1,2495,2711639,Poughkeepsie - Grand Central Terminal,8860,1,,1,1
+1,2495,2711641,Poughkeepsie - Grand Central Terminal,8864,1,,1,1
+1,2495,2711643,Poughkeepsie - Grand Central Terminal,8868,1,,1,1
+1,2495,2711645,Poughkeepsie - Croton Harmon,8872,1,,1,1
+1,2495,2711442,Croton Harmon - Grand Central Terminal,8748,1,,1,1
+2,2495,2711777,Southeast - Wassaic,9959,0,,14,1
+2,2495,2711774,Grand Central Terminal - Wassaic,9949,0,,14,1
+1,2495,2711291,Grand Central Terminal - Croton Harmon,8757,0,,12,1
+1,2495,2711436,Grand Central Terminal - Croton Harmon,8741,0,,12,1
+1,2495,2711617,Grand Central Terminal - Poughkeepsie,8819,0,,12,1
+1,2495,2711621,Grand Central Terminal - Poughkeepsie,8825,0,,12,1
+1,2495,2711627,Grand Central Terminal - Poughkeepsie,8837,0,,12,1
+1,2495,2711628,Grand Central Terminal - Poughkeepsie,8839,0,,12,1
+1,2495,2711630,Grand Central Terminal - Poughkeepsie,8843,0,,12,1
+1,2495,2711642,Grand Central Terminal - Poughkeepsie,8865,0,,12,1
+1,2495,2711644,Grand Central Terminal - Poughkeepsie,8869,0,,12,1
+3,2495,2711365,New Haven - Grand Central Terminal,6503,1,,5,1
+2,2495,2711764,Wassaic - Southeast,9910,1,,3,1
+2,2495,2711766,Wassaic - Grand Central Terminal,9916,1,,3,1
+2,2495,2711778,Wassaic - Southeast,9966,1,,3,1
+2,2495,2711781,Wassaic - Southeast,9976,1,,3,1
+1,2495,2711618,Poughkeepsie - Grand Central Terminal,8820,1,,1,1
+1,2495,2711620,Poughkeepsie - Grand Central Terminal,8824,1,,1,1
+1,2495,2711626,Poughkeepsie - Grand Central Terminal,8836,1,,1,1
+1,2495,2711629,Poughkeepsie - Grand Central Terminal,8840,1,,1,1
+1,2495,2711636,Poughkeepsie - Grand Central Terminal,8852,1,,1,1
+1,2495,2711638,Poughkeepsie - Grand Central Terminal,8856,1,,1,1
+1,2495,2711268,Croton Harmon - Grand Central Terminal,8728,1,,1,1
+1,2495,2711290,Croton Harmon - Grand Central Terminal,8756,1,,1,1
