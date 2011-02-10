@@ -260,5 +260,17 @@
 				<admobPublisherId>a14d0aa74941c38</admobPublisherId>
 			</properties>
 		</profile>
+		<profile>
+			<id>septa</id>
+			<properties>
+				<artifactId>septa</artifactId>
+				<url>http://wmwm.us/septa</url>
+				<name>SEPTA</name>
+				<resourceOverlayDirectory>../providers/septa/res</resourceOverlayDirectory>
+				<gtfsFile>../providers/septa/rail_data</gtfsFile>				
+				<packageName>com.septa.rail</packageName>
+				<admobPublisherId>a14d0aa74941c38</admobPublisherId>
+			</properties>
+		</profile>
 	</profiles>
 </project>
