@@ -1,0 +1,26 @@
+route_id, route_short_name, route_long_name, route_desc, agency_id, route_type, route_color, route_text_color, route_url
+AIR, Airport Line, Airport Line Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+AIR>, Airport Line, Airport Line Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+CHE, Chestnut Hill East Line, Chestnut Hill East In, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+CHW, Chestnut Hill West Line, Chestnut Hill West In, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+DOY, Lansdale/Doylestown Line, Lans / Doyles Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+ELW, Media/Elwyn Line, Elwyn inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+FOX, Fox Chase Line, Fox Chase Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+NOR, Manayunk/Norristown Line, Norristown Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+PAO, Paoli/Thorndale Line, Paoli / Thorndale Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WIL, Wilmington/Newark Line, Wilmington / Newark Out, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WTR, West Trenton Line, West Trenton Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+ELW>, Media/Elwyn Line, Media / Elwyn Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+DOY>, Lansdale/Doylestown Line, Lansdale / Doylestown Out, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+PAO>, Paoli/Thorndale Line, Paoli / Thorndale Out, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+NOR>, Manayunk/Norristown Line, Norristown Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+CYN, Cynwyd Line, Cynwyd, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+CHE>, Chestnut Hill East Line, Chestnut Hill East Out, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+TRE, Trenton Line, Trenton Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+FOX>, Fox Chase Line, Fox Chase Outbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+CHW>, Chestnut Hill West Line, Chestnut Hill West Out, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+TRE>, Trenton Line, Trenton Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WAR, Warminster Line, Warminster Line Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WAR>, Warminster Line, Warminster Line, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WIL>, Wilmington/Newark Line, Wilmington / Newark In, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
+WTR>, West Trenton Line, West Trenton Inbound, , SEPTA, 2, 44697D, FFFFFF, http://www.septa.org/schedules/rail/index.html
