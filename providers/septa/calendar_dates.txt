@@ -1,3 +1,0 @@
-service_id, date, exception_type
-S1,20101125,2
-S3,20101125,1
