@@ -17,13 +17,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -487,7 +488,7 @@ public class DatabaseCreater {
 		}
 		String[] creates = new String[] {
 				"create table if not exists trips(id varchar(50), route_id int, service_id varchar(100), headsign varchar(255), direction int, block_id varchar(255))",
-				"create table if not exists stops(id varchar(50), name varchar(255), desc varchar(255), lat real, lon real, zone_id)",
+				"create table if not exists stops(id varchar(50), name varchar(255), desc varchar(255), lat real, lon real, zone_id varchar(50), alternate_id varchar(50))",
 				"create table if not exists stop_times(trip_id varchar(50), arrival varchar(10), departure varchar(10), stop_id varchar(100), sequence int, pickup_type int, drop_off_type int)",
 				"create table if not exists routes(id int, agency_id varchar(100), short_name varchar(255), long_name varchar(255), route_type int, timezone varchar(100))",
 				"create table if not exists calendar(service_id varchar(100), monday int, tuesday int, wednesday int, thursday int, friday int, saturday int, sunday int, start varchar(10), end varchar(10))",
@@ -496,6 +497,8 @@ public class DatabaseCreater {
 				"create table if not exists agency(id varchar(100), name varchar(255), url varchar(255), timezone varchar(100))",
 				"CREATE TABLE if not exists android_metadata (locale TEXT DEFAULT 'en_US')",
 				"create table if not exists schedule(departure_id int, arrival_id int, depart varchar(10), arrive varchar(10), trip_id varchar(20))",
+				"create table if not exists stop_to_route(stop_id int, route_id int)",
+				"create table if not exists route_transfer(from_route_id int, to_route_id, walking_seconds_needed int, invisible_transfer int)",
 				"INSERT INTO android_metadata VALUES ('en_US')",
 				"create index service_index on trips(service_id)",
 				"create index schedule_index on schedule(departure_id,arrival_id)",
@@ -562,6 +565,8 @@ public class DatabaseCreater {
 
 		});
 
+		final Map<Integer,Set<Integer>> stopIdToTripIds = new HashMap<Integer,Set<Integer>>();
+		
 		loadPartitioned(manager, "stop_times", new ContentValuesProvider() {
 
 			@Override
@@ -573,15 +578,22 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim()));
+					int tripId = stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim()); 
+					o.add(tripId);
 					try {
 						o.add(nextLine[headerToPos.get("arrival_time")].trim());
 						o.add(nextLine[headerToPos.get("departure_time")].trim());
 					} catch (Exception e) {
 						throw new RuntimeException(e);
 					}
-
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("stop_id")].trim()));
+					int stopId =stringIdToIntegerId(nextLine[headerToPos.get("stop_id")].trim());
+					Set<Integer> trips = stopIdToTripIds.get(stopId);
+					if(trips==null) {
+						trips = new HashSet<Integer>();
+						stopIdToTripIds.put(stopId,trips);
+					}
+					trips.add(tripId);
+					o.add(stopId);
 					o.add(nextLine[headerToPos.get("stop_sequence")].trim());
 					if(headerToPos.get("pickup_type")!=null) {
 						o.add(nextLine[headerToPos.get("pickup_type")].trim());						
@@ -606,6 +618,8 @@ public class DatabaseCreater {
 
 		});
 
+		final Map<Integer,Integer> tripIdToRouteId = new HashMap<Integer,Integer>();
+		
 		loadPartitioned(manager, "trips", new ContentValuesProvider() {
 
 			@Override
@@ -617,9 +631,12 @@ public class DatabaseCreater {
 				while ((nextLine = reader.readNext()) != null) {
 					// trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type
 					List<Object> o = new ArrayList<Object>();
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("route_id")].trim()));
+					int routeId = stringIdToIntegerId(nextLine[headerToPos.get("route_id")].trim());
+					o.add(routeId);
 					o.add(stringIdToIntegerId(nextLine[headerToPos.get("service_id")].trim()));
-					o.add(stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim()));
+					int tripId = stringIdToIntegerId(nextLine[headerToPos.get("trip_id")].trim());
+					tripIdToRouteId.put(tripId, routeId);
+					o.add(tripId);
 					String headsign = nextLine[headerToPos.get("trip_headsign")].trim(); 
 					o.add(headsign);
 					if(headerToPos.get("direction_id")==null) {
@@ -796,6 +813,23 @@ public class DatabaseCreater {
 					}else {
 						stopName = getAlternate(stopName);
 					}
+					String alternateName = null;
+					if(stopId==38174) {
+						alternateName = "TS";
+					} else
+					if(stopId==38187) {
+						alternateName = "SE";
+					} else
+					if(stopId==105) {
+						alternateName = "NY";
+					} else
+					if(stopId==107) {
+						alternateName = "NP";
+					} else
+					if(stopId==148) {
+						alternateName = "TR";
+					}
+					
 					o.add(stopName);
 					//int tripId = stopIdToTrips.get(stopId);
 					o.add(null);
@@ -806,6 +840,7 @@ public class DatabaseCreater {
 					}else {
 						o.add(nextLine[headerToPos.get("zone_id")].trim());
 					}
+					o.add(alternateName);
 					values.add(o);
 				}
 				return values;
@@ -814,7 +849,7 @@ public class DatabaseCreater {
 			@Override
 			public String getInsertString() {
 				// stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id
-				return "insert into stops (id,name,desc,lat,lon,zone_id) values (?,?,?,?,?,?)";
+				return "insert into stops (id,name,desc,lat,lon,zone_id,alternate_id) values (?,?,?,?,?,?,?)";
 			}
 
 		});
@@ -838,6 +873,7 @@ public class DatabaseCreater {
 				"SEACAUCUS LOWER LEVEL");
 		alternates.put("FRANK R LAUTENBERG SECAUCUS UPPER LEVEL",
 				"SEACAUCUS UPPER LEVEL");
+		alternates.put("BLOOMFIELD AVENUE", "BLOOMFIELD");
 
 	}
 
