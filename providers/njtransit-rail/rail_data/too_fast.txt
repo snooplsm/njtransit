@@ -1,0 +1,21 @@
+
+Too Fast messages are printed when the interpolated speeds exceed
+the following:
+     Trains/Subway - 41 mph
+     Express Buses - 41 mph
+     Ferries       - 15 mph
+     All others    - 30 mph
+
+Route ID, Stop Group, TimePoints (sequence), time, distance, speed
+ 885500: L   HBLR-I-W-4     3-  6   hrs=0.0500 mi= 3.106 mph=62.1
+ 885513: L   HBLR-O-W-4    13- 16   hrs=0.0667 mi= 3.106 mph=46.6
+ 955250: L   HBLR-O-W-4    11- 13   hrs=0.0667 mi= 3.107 mph=46.6
+ 955270: L   HBLR-O-X-4    11- 13   hrs=0.0667 mi= 3.107 mph=46.6
+ 931186: L    NLR-O-S-2     1-  3   hrs=0.0167 mi= 0.534 mph=32.0
+ 931189: L    NLR-O-U-2     1-  3   hrs=0.0167 mi= 0.534 mph=32.0
+ 931191: L    NLR-O-W-1     1-  3   hrs=0.0167 mi= 0.534 mph=32.0
+ 931192: L    NLR-O-W-2     1-  3   hrs=0.0167 mi= 0.534 mph=32.0
+ 931193: L    NLR-O-W-3     1-  3   hrs=0.0167 mi= 0.534 mph=32.0
+ 885471: L   RVLN-I-W-3     1-  4   hrs=0.1500 mi= 5.980 mph=39.9
+ 885482: L   RVLN-O-W-2     5-  7   hrs=0.1000 mi= 4.375 mph=43.7
+ 885483: L   RVLN-O-W-3     4-  7   hrs=0.1000 mi= 4.083 mph=40.8
