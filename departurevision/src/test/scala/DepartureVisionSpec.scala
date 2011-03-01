@@ -4,7 +4,7 @@ import org.specs._
 
 object DepartureVisionSpec extends Specification {
   "DepartureVision" should {
-    "scape data for valid id" in {
+    "scrape data for valid id" in {
       val departures = DepartureVision.departures("NY") { d =>
        d.foreach(println)
        d
