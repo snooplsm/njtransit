@@ -1,10 +1,10 @@
 import sbt._
 
-class Project(info: ProjectInfo) extends DefaultProject(info)
-{
-  lazy val hi = task { println("Hello World"); None }
-
-  val dispatch_vers = "0.8.0.Beta3-SNAPSHOT"
-	
-  lazy val dispatch_http = "net.databinder" %% "dispatch-http" % dispatch_vers
+class Project(info: ProjectInfo) extends DefaultProject(info) {
+  lazy val specs = specsDependency % "test"
+  def specsDependency =
+    if (buildScalaVersion startsWith "2.7.")
+      "org.scala-tools.testing" % "specs" % "1.6.2.2"
+    else
+      "org.scala-tools.testing" % "specs_2.8.0" % "1.6.5"
 }
