@@ -10,3 +10,10 @@ scheduler/.project
 mp-maven-plugin/target
 maven-android-plugin/target
 schedule-maker-maven-plugin/target
+
+departurevision/project/boot
+departurevision/project/build/target
+departurevision/src_managed
+departurevision/project/plugins/project/build.properties
+departurevision/target
+departurevision/lib_managed
