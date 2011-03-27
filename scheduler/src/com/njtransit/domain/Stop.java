@@ -5,16 +5,29 @@ import java.util.Calendar;
 
 public class Stop {
 	
+	public void setBlockId(String blockId) {
+		this.blockId = blockId;
+	}
+
 	private int tripId;
+	
+	private String blockId;
 	
 	private Calendar depart,arrive;
 
-	public Stop(int tripId, Calendar depart, Calendar arrive) {
+	public Stop(int tripId, Calendar depart, Calendar arrive, String blockId) {
 		this.tripId = tripId;
 		this.depart = depart;
 		this.arrive =arrive;
+		this.blockId = blockId;
 	}
 	
+	
+	public String getBlockId() {
+		return blockId;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

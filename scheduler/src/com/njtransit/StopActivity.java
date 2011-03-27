@@ -1,5 +1,19 @@
 package com.njtransit;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,16 +26,18 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.SimpleAdListener;
+import com.google.gson.Gson;
+import com.njtransit.rail.R;
+import com.njtransit.departurevision.DepartureVision;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
+import com.njtransit.domain.TrainStatus;
 import com.njtransit.model.StopsQueryResult;
-import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
-
-import java.util.*;
 
 public class StopActivity extends SchedulerActivity {
 
@@ -45,6 +61,8 @@ public class StopActivity extends SchedulerActivity {
 	private int refreshCount = 0;
 
 	private List<Stop> stops = new ArrayList<Stop>();
+
+	private DepartureVision departureVision;
 
 	public static final String DEPARTURE_ID = "departure-id";
 	public static final String ARRIVAL_ID = "arrival-id";
@@ -110,29 +128,43 @@ public class StopActivity extends SchedulerActivity {
 			departure = depart;
 			useMockData = false;
 		} else {
-			departure = new Station(148, "Trenton Transit Center", 72.5, 72.5);
+			departure = new Station(148, "Trenton Transit Center", 72.5, 72.5,
+					"TR");
 			useMockData = true;
 			getSchedulerContext().setDepartureStation(departure);
 		}
 		if (arrive != null) {
 			arrival = arrive;
 		} else {
-			arrival = new Station(105, "New York Penn Station", 72.5, 72.5);
+			arrival = new Station(105, "New York Penn Station", 72.5, 72.5,
+					"NY");
 			getSchedulerContext().setArrivalStation(arrival);
 		}
 		if (useMockData) {
 			populateStationsHeader(departure, arrival);
-			// stations.setText(renderTitle(departure,arrival));
 		}
 		new AsyncTask<Void, Void, StopResult>() {
 
 			@Override
 			protected StopResult doInBackground(Void... params) {
+
+				Map<Integer, Set<Integer>> data = getSchedulerContext()
+						.getAdapter().getRoutesStationIsOn(departure, arrival);
+				Set<Integer> routes = new HashSet<Integer>();
+				for (Set<Integer> mRoutes : data.values()) {
+					routes.addAll(mRoutes);
+				}
+				Set<Integer> routeIdToStopIds = getSchedulerContext()
+						.getAdapter().getStopsOnEachRoute(routes);
 				try {
-					Root.saveLastArrivalStation(StopActivity.this, getSchedulerContext().getDepartureStation().getId());
-					Root.saveLastDepartureStation(StopActivity.this, getSchedulerContext().getArrivalStation().getId());
+					Root
+							.saveLastArrivalStation(StopActivity.this,
+									getSchedulerContext().getDepartureStation()
+											.getId());
+					Root.saveLastDepartureStation(StopActivity.this,
+							getSchedulerContext().getArrivalStation().getId());
 				} finally {
-					
+
 				}
 				final StopsQueryResult sqr;
 				if (getSchedulerContext().getDepartureDate() != null) {
@@ -180,7 +212,8 @@ public class StopActivity extends SchedulerActivity {
 									.getArrive().get(Calendar.DAY_OF_YEAR)) {
 								newArrive.add(Calendar.DAY_OF_YEAR, 1);
 							}
-                            Stop stop2 = new Stop(stop.getTripId(),newDepart,newArrive);
+							Stop stop2 = new Stop(stop.getTripId(), newDepart,
+									newArrive,stop.getBlockId());
 							stops.add(stop2);
 						}
 					}
@@ -219,7 +252,7 @@ public class StopActivity extends SchedulerActivity {
 
 							if (diff > -5400001) {
 								Stop newStop = new Stop(stop.getTripId(),
-										newDepart, newArrive);
+										newDepart, newArrive,stop.getBlockId());
 								if (diff > 0 && diff < closestDiff) {
 									closest = newStop;
 									closestDiff = diff;
@@ -251,7 +284,7 @@ public class StopActivity extends SchedulerActivity {
 									newArrive.add(Calendar.DAY_OF_YEAR, 1);
 								}
 								Stop newStop = new Stop(stop.getTripId(),
-										newDepart, newArrive);
+										newDepart, newArrive,stop.getBlockId());
 								Long diff = newDepart.getTimeInMillis()
 										- relativeTime.getTimeInMillis();
 								if (diff > 0 && diff < closestDiff) {
@@ -314,6 +347,55 @@ public class StopActivity extends SchedulerActivity {
 					c.clear(Calendar.MILLISECOND);
 					c.clear(Calendar.SECOND);
 					c.set(Calendar.MINUTE, c.get(Calendar.MINUTE) + 1);
+					if (result.getStopQueryResult().getDepart()
+							.getAlternateId() != null) {
+						departureVision = new DepartureVision();
+						final String alternateId = result.getStopQueryResult()
+								.getDepart().getAlternateId();
+						new Thread() {
+							@Override
+							public void run() {
+								try {
+									Gson gson = new Gson();
+									InputStream in = departureVision
+											.departures(alternateId);
+									TrainStatus trainStatus = null;
+									StringBuilder b = new StringBuilder();
+									while (true) {
+										int k = in.read();
+										if (k == -1) {
+											continue;
+										}
+										char c = (char) k;
+										if (c == '\n') {
+											TrainStatus status = gson.fromJson(
+													b.toString(),
+													TrainStatus.class);
+											if (status.getTrack() != null
+													&& status.getTrack()
+															.toLowerCase()
+															.equals("track")) {
+												status.setTrack(null);
+											}
+											if (status.getStatus() != null
+													&& status.getStatus()
+															.trim().length() == 0) {
+												status.setStatus(null);
+											}
+											onTrainStatus(status);
+											b.setLength(0);
+											System.out.println(status);
+										} else {
+											b.append(c);
+										}
+									}
+									
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						}.start();
+					}
 					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(),
 							60000);
 					new Thread() {
@@ -365,6 +447,22 @@ public class StopActivity extends SchedulerActivity {
 		}.execute();
 	}
 
+	private void onTrainStatus(TrainStatus status) {
+		StopAdapter adapter = (StopAdapter)this.stopTimes.getAdapter();
+		try {			
+			for(int i = 0; i < adapter.getCount(); i++) {
+				Stop stop = adapter.getItem(i);
+				if(status.getTrain()!=null && stop.getBlockId()!=null) {
+					if(stop.getBlockId().equals(status.getTrain())) {
+						System.out.println("yeah");
+					}
+				}
+			}
+		} catch (Exception e) {
+			
+		}
+	}
+	
 	private TimerTask newUpdaterThread() {
 		updaterThread = new TimerTask() {
 

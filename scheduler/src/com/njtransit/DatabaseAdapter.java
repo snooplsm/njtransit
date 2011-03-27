@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.TreeSet;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -105,7 +107,7 @@ public class DatabaseAdapter {
 		ArrayList<Station> stations = null;
 		try {
 			db.beginTransaction();
-			String sql = "select id, name, lat, lon, zone_id from stops where name like ?";
+			String sql = "select id, name, lat, lon, zone_id, alternate_id from stops where name like ?";
 			cursor = db.rawQuery(sql, new String[] { "%" + name + "%" });
 			int count = cursor.getCount();
 			stations = new ArrayList<Station>(count);
@@ -113,7 +115,8 @@ public class DatabaseAdapter {
 			while (count > 0) {
 				count--;
 				stations.add(new Station(cursor.getInt(0), cursor.getString(1),
-						cursor.getDouble(2), cursor.getDouble(3)));
+						cursor.getDouble(2), cursor.getDouble(3), cursor.getString(4)));
+				
 				cursor.moveToNext();
 			}
 			cursor.close();
@@ -161,7 +164,7 @@ public class DatabaseAdapter {
 	public ArrayList<Station> getStations() {
 		Long start = System.currentTimeMillis();
 		Cursor cursor = db.rawQuery(
-				"select id,name,lat,lon from stops order by name", null);
+				"select id,name,lat,lon,alternate_id from stops order by name", null);
 		ArrayList<Station> stations = new ArrayList<Station>(cursor.getCount());
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToNext();
@@ -170,8 +173,8 @@ public class DatabaseAdapter {
 			// String descName = cursor.getString(2);
 			float lat = cursor.getFloat(2);
 			float lng = cursor.getFloat(3);
-			Station s = new Station(id, name, (double) lat, (double) lng);
-			// s.setDescriptiveName(descName);
+			String alternateId = cursor.getString(4);
+			Station s = new Station(id, name, (double) lat, (double) lng, alternateId);
 			stations.add(s);
 		}
 		cursor.close();
@@ -265,11 +268,97 @@ public class DatabaseAdapter {
 		return Long.MAX_VALUE;
 	}
 
+    public Set<Integer> getStopsOnEachRoute(Collection<Integer> routeIds) {
+        if(routeIds==null || routeIds.size()==0) {
+            return null;
+        }
+        Set<Integer> stops = new HashSet<Integer>();
+        Set<Integer> lastStops = new HashSet<Integer>();
+        boolean first = true;
+        for(Integer routeId : routeIds) {
+            String query = "select st.stop_id from stop_times st where st.trip_id in (select id from trips where route_id=%s) group by stop_id";
+            query = String.format(query, routeId);
+            Cursor cursor = db.rawQuery(query, null);
+            for(int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                int stopId = cursor.getInt(0);
+                if(first) {
+                    stops.add(stopId);
+                } else {
+                    lastStops.add(stopId);
+                }
+            }
+            cursor.close();
+            if(first) {
+                first = false;
+            } else {
+                Set<Integer> intersection = new TreeSet<Integer>(stops);
+                intersection.retainAll(lastStops);
+                stops.clear();
+                stops.addAll(intersection);
+            }
+
+        }
+        return stops;
+    }
+
+    public Map<Integer, Set<Integer>> getRoutesStationIsOn(Station...stations) {
+        if (stations==null || stations.length==0) {
+            return Collections.emptyMap();
+        }
+        String query = "select route_id,id from trips where id in (select trip_id from stop_times where ";
+        String stationIds = "(";
+        for(int i = 0; i < stations.length; i++) {
+            query+=" stop_id = ";
+            query+=stations[i].getId();
+            stationIds+=stations[i].getId();
+            if(i+1<stations.length) {
+                query+=" or ";
+                stationIds+=',';
+            }
+        }
+        stationIds+=")";
+        query+=") ";
+        Cursor cursor = db.rawQuery(query,null);
+        Map<Integer,Integer> tripIdToRouteId = new HashMap<Integer,Integer>();
+        for(int i =0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            int routeId = cursor.getInt(0);
+            int tripId = cursor.getInt(1);
+            tripIdToRouteId.put(tripId,routeId);
+        }
+        cursor.close();
+        String tripIds = "(";
+        for(Iterator<Integer> i = tripIdToRouteId.keySet().iterator();i.hasNext();) {
+            tripIds+=i.next();
+            if(i.hasNext()) {
+                tripIds+=",";
+            }
+        }
+        tripIds+=")";
+        String stopIdQuery = "select stop_id,trip_id from stop_times where trip_id in %s and stop_id in %s";
+        stopIdQuery = String.format(stopIdQuery,tripIds,stationIds);
+        Map<Integer, Set<Integer>> stationsToRouteIds = new HashMap<Integer,Set<Integer>>();
+        cursor = db.rawQuery(stopIdQuery,null);
+        for(int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            int stopId = cursor.getInt(0);
+            Set<Integer> routeIds = stationsToRouteIds.get(stopId);
+            if(routeIds==null) {
+                routeIds = new HashSet<Integer>();
+                stationsToRouteIds.put(stopId,routeIds);
+            }
+            int tripId = cursor.getInt(1);
+            routeIds.add(tripIdToRouteId.get(tripId));
+        }
+        return stationsToRouteIds;
+    }
+
 	public StopsQueryResult getStopTimesAlternate(Station depart,
 			Station arrive, boolean useMockData, Calendar... departDate) {
 		long before = System.currentTimeMillis();
 		if (useMockData) {
-			Map<Integer, IService> tripToService = new HashMap<Integer, IService>();
+			Trips tripToService = new Trips();
 			tripToService.put(both.getId(), both);
 			Long end = System.currentTimeMillis();
 			List<Stop> stops = new ArrayList<Stop>();
@@ -283,7 +372,7 @@ public class DatabaseAdapter {
 			Calendar later = Calendar.getInstance();
 			later.setTimeInMillis(now.getTimeInMillis());
 			later.add(Calendar.HOUR, 1);
-			Stop st = new Stop(1, now, later);
+			Stop st = new Stop(1, now, later,null);
 			// stops.add(st);
 			StopsQueryResult sqr = new StopsQueryResult(depart, arrive, before,
 					end, tripToService, stops);
@@ -398,7 +487,7 @@ public class DatabaseAdapter {
 				}
 				String _d = YDTF.format(dc.getTime());
 				String _a = YDTF.format(ac.getTime());
-				Stop stop = new Stop(c.getInt(2), dc, ac);
+				Stop stop = new Stop(c.getInt(2), dc, ac,null);
 				tripIds.add(stop.getTripId());
 				times.add(stop);
 			}
@@ -537,13 +626,13 @@ public class DatabaseAdapter {
 					int tripId = c.getInt(0);
 					tripIds.add(tripId);
 
-					Stop stop = new Stop(tripId, dc, ac);
+					Stop stop = new Stop(tripId, dc, ac,null);
 					stops.add(stop);
 					c.moveToNext();
 				}
 				c.close();
 				db.execSQL("drop table " + tableName);
-				HashMap<Integer, IService> trips = getTrips(services, tripIds);
+				Trips trips = getTrips(services, tripIds);
 				sqr = new StopsQueryResult(depart, arrive, queryStart,
 						queryEnd, trips, stops);
 			}
@@ -598,7 +687,7 @@ public class DatabaseAdapter {
 		return trips;
 	}
 
-	public HashMap<Integer, IService> getTrips(Map<Integer, IService> services,
+	public Trips getTrips(Map<Integer, IService> services,
 			Collection<Integer> tripIds) {
 		long before = System.currentTimeMillis();
 		StringBuilder b = new StringBuilder("(");
@@ -611,12 +700,13 @@ public class DatabaseAdapter {
 		b.append(")");
 
 		Cursor cursor = db.rawQuery(String.format(
-				"select t.id, t.service_id from trips t where t.id in %s", b
+				"select t.id, t.service_id, t.block_id from trips t where t.id in %s", b
 						.toString()), null);
 		cursor.moveToFirst();
-		HashMap<Integer, IService> tripToService = new HashMap<Integer, IService>();
+		Trips tripToService = new Trips();
 		for (int i = 0; i < cursor.getCount(); i++) {
 			tripToService.put(cursor.getInt(0), services.get(cursor.getInt(1)));
+			tripToService.add(cursor.getInt(0), cursor.getString(2));
 			cursor.moveToNext();
 		}
 		cursor.close();

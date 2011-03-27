@@ -1,12 +1,13 @@
 package com.njtransit.model;
 
-import com.njtransit.domain.IService;
-import com.njtransit.domain.Station;
-import com.njtransit.domain.Stop;
-
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+
+import com.njtransit.Trips;
+import com.njtransit.domain.IService;
+import com.njtransit.domain.Station;
+import com.njtransit.domain.Stop;
 
 public class StopsQueryResult {
 
@@ -14,7 +15,7 @@ public class StopsQueryResult {
 
     private Long queryStart, queryEnd;
 
-    private Map<Integer, IService> tripToService;
+    private Trips tripToService;
 
     private Station transferStation;
 
@@ -22,18 +23,21 @@ public class StopsQueryResult {
 
     private Calendar departureDate;
 
-    public StopsQueryResult(Calendar departureDate, Station depart, Station arrive, Long queryStart, Long queryEnd, Map<Integer, IService> tripToService, List<Stop> stops) {
+    public StopsQueryResult(Calendar departureDate, Station depart, Station arrive, Long queryStart, Long queryEnd, Trips trips, List<Stop> stops) {
         this.depart = depart;
         this.arrive = arrive;
         this.queryEnd = queryEnd;
         this.queryStart = queryStart;
-        this.tripToService = tripToService;
+        this.tripToService = trips;
         this.departureDate = departureDate;
         this.stops = stops;
+        for(Stop s : stops) {
+        	s.setBlockId(trips.block(s.getTripId()));
+        }
     }
 
-    public StopsQueryResult(Station depart, Station arrive, Long queryStart, Long queryEnd, Map<Integer, IService> tripToService, List<Stop> stops) {
-        this(null, depart, arrive, queryStart, queryEnd, tripToService, stops);
+    public StopsQueryResult(Station depart, Station arrive, Long queryStart, Long queryEnd, Trips trips, List<Stop> stops) {
+        this(null, depart, arrive, queryStart, queryEnd, trips, stops);
     }
 
     public Calendar getDepartureDate() {

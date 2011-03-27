@@ -6,17 +6,20 @@ public class Station {
 	
 	private String name;
 	
+	private String alternateId;
+	
 	private String descriptiveName;
 	
 	private Double latitude;
 	
 	private Double longitude;
 
-	public Station(Integer id, String name, Double latitude, Double longitude) {
+	public Station(Integer id, String name, Double latitude, Double longitude, String alternateId) {
 		this.id = id;
 		setName(name);
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.alternateId = alternateId;
 	}
 	
 	public String getDescriptiveName() {
@@ -109,4 +112,13 @@ public class Station {
 			return false;
 		return true;
 	}
+
+	public String getAlternateId() {
+		return alternateId;
+	}
+
+	public void setAlternateId(String alternateId) {
+		this.alternateId = alternateId;
+	}
+	
 }
