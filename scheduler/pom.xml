@@ -35,6 +35,11 @@
 			<scope>provided</scope> </dependency>
 		-->
 		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
 			<groupId>com.admob</groupId>
 			<artifactId>sdk-android</artifactId>
 			<version>1.0</version>
@@ -150,7 +155,6 @@
 					<workDir>${project.build.directory}/workDir</workDir>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -170,7 +174,7 @@
 						<platform>${android.platform}</platform>
 					</sdk>
 					<androidManifestFile>${androidManifestTarget}</androidManifestFile>
-					<resourceOverlayDirectories>						
+					<resourceOverlayDirectories>
 						<param>${resourceOverlayDirectory}</param>
 					</resourceOverlayDirectories>
 					<emulator>
@@ -219,7 +223,7 @@
 				<url>http://wmwm.us/njtransit</url>
 				<name>NJTransit Rail</name>
 				<resourceOverlayDirectory>../providers/njtransit-rail/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>				
+				<gtfsFile>../providers/njtransit-rail/rail_data</gtfsFile>
 				<packageName>com.njtransit.rail</packageName>
 				<admobPublisherId>a14cbf2b9d15c90</admobPublisherId>
 			</properties>
@@ -231,7 +235,7 @@
 				<url>http://wmwm.us/metro-north</url>
 				<name>Metro North</name>
 				<resourceOverlayDirectory>../providers/metro-north/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>				
+				<gtfsFile>../providers/metro-north/rail_data</gtfsFile>
 				<packageName>com.metro.north</packageName>
 				<admobPublisherId>a14d03b1f22ac94</admobPublisherId>
 			</properties>
@@ -243,7 +247,7 @@
 				<url>http://wmwm.us/lirr</url>
 				<name>LIRR</name>
 				<resourceOverlayDirectory>../providers/lirr/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/lirr/rail_data</gtfsFile>				
+				<gtfsFile>../providers/lirr/rail_data</gtfsFile>
 				<packageName>com.lirr</packageName>
 				<admobPublisherId>a14d07cbc165069</admobPublisherId>
 			</properties>
@@ -255,7 +259,7 @@
 				<url>http://wmwm.us/bart</url>
 				<name>BART</name>
 				<resourceOverlayDirectory>../providers/bart/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/bart/rail_data</gtfsFile>				
+				<gtfsFile>../providers/bart/rail_data</gtfsFile>
 				<packageName>com.bart</packageName>
 				<admobPublisherId>a14d0aa74941c38</admobPublisherId>
 			</properties>
@@ -267,7 +271,7 @@
 				<url>http://wmwm.us/septa</url>
 				<name>SEPTA</name>
 				<resourceOverlayDirectory>../providers/septa/res</resourceOverlayDirectory>
-				<gtfsFile>../providers/septa/rail_data</gtfsFile>				
+				<gtfsFile>../providers/septa/rail_data</gtfsFile>
 				<packageName>com.septa.rail</packageName>
 				<admobPublisherId>a14d0aa74941c38</admobPublisherId>
 			</properties>
