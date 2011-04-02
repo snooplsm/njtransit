@@ -46,9 +46,9 @@
 			<version>1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sqlite</groupId>
+			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>056</version>
+			<version>3.7.2</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -79,5 +79,16 @@
 				</excludes>
 			</resource>
 		</resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
 	</build>
 </project>
