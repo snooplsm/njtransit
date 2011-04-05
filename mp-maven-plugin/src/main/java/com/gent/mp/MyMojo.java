@@ -31,8 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -48,8 +46,6 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -65,14 +61,6 @@ public class MyMojo extends AbstractMojo {
 			"yyyy-MM-dd");
 	private static DateFormat VERSION_CODE_FORMAT = new SimpleDateFormat(
 			"yyyyMMddHH");
-
-	/**
-	 * Location of the file.
-	 * 
-	 * @parameter
-	 * @required
-	 */
-	private File androidManifestTarget;
 
 	/**
 	 * Location of the file.

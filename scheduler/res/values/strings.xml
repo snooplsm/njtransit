@@ -18,4 +18,5 @@
   <string name="second_short">s</string>
   <string name="google_ua">UA-3270316-10</string>
   <string name="search_hint">New York Penn Station</string>
+  <string name="departurevision">true</string>
 </resources>
