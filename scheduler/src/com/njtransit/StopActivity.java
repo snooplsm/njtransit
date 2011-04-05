@@ -18,6 +18,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,13 +32,13 @@ import android.widget.TextView;
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.SimpleAdListener;
 import com.google.gson.Gson;
-import com.njtransit.rail.R;
 import com.njtransit.departurevision.DepartureVision;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.domain.TrainStatus;
 import com.njtransit.model.StopsQueryResult;
+import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
 
 public class StopActivity extends SchedulerActivity {
@@ -66,6 +68,31 @@ public class StopActivity extends SchedulerActivity {
 
 	public static final String DEPARTURE_ID = "departure-id";
 	public static final String ARRIVAL_ID = "arrival-id";
+	
+	private Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch(msg.what) {
+			case MINUTES_AWAY:
+				for (Map.Entry<TextView, Integer> e : minutesAway
+						.entrySet()) {
+					e.getKey().setVisibility(
+							e.getValue() == null ? View.GONE
+									: View.VISIBLE);
+					if (e.getValue() != null) {
+						e.getKey().setText(
+								String.format("departs in %s minutes",
+										e.getValue()));
+					}
+				}
+				stopTimes.invalidateViews();
+				stopTimes.invalidate();
+				break;
+			}
+		}
+		
+	};
 
 	private Map<TextView, Integer> minutesAway = new HashMap<TextView, Integer>();
 
@@ -496,29 +523,16 @@ public class StopActivity extends SchedulerActivity {
 				}
 				trackEvent("stops", "refresh", new Date().toString(),
 						++refreshCount);
-				StopActivity.this.runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						for (Map.Entry<TextView, Integer> e : minutesAway
-								.entrySet()) {
-							e.getKey().setVisibility(
-									e.getValue() == null ? View.GONE
-											: View.VISIBLE);
-							if (e.getValue() != null) {
-								e.getKey().setText(
-										String.format("departs in %s minutes",
-												e.getValue()));
-							}
-						}
-						stopTimes.invalidate();
-					}
-				});
+				Message m = Message.obtain();
+				m.what = MINUTES_AWAY;
+				mHandler.sendMessage(m);
 			}
 		};
 		return updaterThread;
 	}
 
+	private static final int MINUTES_AWAY = 1;
+	
 	protected void onPause() {
 		super.onPause();
 		if (stopTimes != null) {
