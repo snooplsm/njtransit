@@ -1,4 +1,0 @@
-#Source Dependencies
-#Mon Feb 14 21:16:59 EST 2011
-src/main/scala/Departure.scala=src/main/scala/DepartureVision.scala
-src/main/scala/DepartureVision.scala=

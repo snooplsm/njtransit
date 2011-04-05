@@ -1,4 +1,0 @@
-#External Dependencies
-#Mon Feb 14 21:16:59 EST 2011
-/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar=src/main/scala/Departure.scala\:src/main/scala/DepartureVision.scala
-/Users/rgravener/workspace/scheduler/departurevision/project/boot/scala-2.7.7/lib/scala-library.jar=src/main/scala/Departure.scala\:src/main/scala/DepartureVision.scala
