@@ -6,11 +6,13 @@ import java.util.Calendar;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.njtransit.domain.Stop;
+import com.njtransit.domain.TrainStatus;
 import com.njtransit.rail.R;
 import com.njtransit.utils.TimeUtil;
 
@@ -19,7 +21,8 @@ public class StopTimeRow extends LinearLayout {
 	private TextView time;
 	private TextView duration;
 	private TextView away;
-
+	private TextView timeDescriptor;
+	
 	private int lastAway = Integer.MAX_VALUE;
 
 	private Stop stop;
@@ -33,6 +36,7 @@ public class StopTimeRow extends LinearLayout {
 		time = (TextView) findViewById(R.id.time);
 		duration = (TextView) findViewById(R.id.duration);
 		away = (TextView) findViewById(R.id.away);
+		timeDescriptor = (TextView)findViewById(R.id.time_descriptor);
 	}
 
 	public StopTimeRow setStop(Stop stop) {
@@ -69,6 +73,15 @@ public class StopTimeRow extends LinearLayout {
 	public void setAway(String away) {
 		this.away.setText(away);
 	}
+	
+	public void setTrainStatus(TrainStatus status) {
+		if(status.getTrack()!=null) {
+			timeDescriptor.setVisibility(View.VISIBLE);
+			timeDescriptor.setText(status.getTrack());
+		} else {
+			timeDescriptor.setVisibility(View.GONE);
+		}
+	}
 
 	private static final String DURATION_ONLY = "%s mins";
 
@@ -100,5 +113,9 @@ public class StopTimeRow extends LinearLayout {
 		String depart = f.format(departing.getTime());
 		String arrive = f.format(arriving.getTime());
 		return String.format("%s - %s    %s", depart, arrive,stop.getTripId()).toLowerCase();
+	}
+
+	public Stop getStop() {
+		return stop;
 	}
 }

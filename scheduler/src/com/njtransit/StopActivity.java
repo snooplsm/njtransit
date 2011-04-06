@@ -73,6 +73,7 @@ public class StopActivity extends SchedulerActivity {
 
 		@Override
 		public void handleMessage(Message msg) {
+			StopAdapter adapter = (StopAdapter)stopTimes.getAdapter();
 			switch(msg.what) {
 			case MINUTES_AWAY:
 				for (Map.Entry<TextView, Integer> e : minutesAway
@@ -85,10 +86,30 @@ public class StopActivity extends SchedulerActivity {
 								String.format("departs in %s minutes",
 										e.getValue()));
 					}
-				}
+				}				
+				adapter.notifyDataSetChanged();
 				stopTimes.invalidateViews();
 				stopTimes.invalidate();
 				break;
+			case TRAIN_STATUS:				
+				Stop stop = adapter.getItem(msg.arg1);
+				TrainStatus status = (TrainStatus)msg.obj;
+				for(int i = 0; i < stopTimes.getChildCount(); i++) {
+					LinearLayout row = (LinearLayout)stopTimes.getChildAt(i);
+					Stop stopB = (Stop)stopTimes.getItemAtPosition(row.getId());
+					if(stop.equals(stopB)) {
+						adapter.getStatuses().put(stop, status);
+						TextView descriptor = (TextView)row.findViewById(R.id.time_descriptor);
+						if(status.getTrack()!=null) {
+							descriptor.setVisibility(View.VISIBLE);
+							descriptor.setText(status.getTrack());
+						}
+						break;
+					}
+				}
+				adapter.notifyDataSetChanged();
+				stopTimes.invalidateViews();
+				stopTimes.invalidate();				
 			}
 		}
 		
@@ -374,55 +395,6 @@ public class StopActivity extends SchedulerActivity {
 					c.clear(Calendar.MILLISECOND);
 					c.clear(Calendar.SECOND);
 					c.set(Calendar.MINUTE, c.get(Calendar.MINUTE) + 1);
-					if (result.getStopQueryResult().getDepart()
-							.getAlternateId() != null) {
-						departureVision = new DepartureVision();
-						final String alternateId = result.getStopQueryResult()
-								.getDepart().getAlternateId();
-						new Thread() {
-							@Override
-							public void run() {
-								try {
-									Gson gson = new Gson();
-									InputStream in = departureVision
-											.departures(alternateId);
-									TrainStatus trainStatus = null;
-									StringBuilder b = new StringBuilder();
-									while (true) {
-										int k = in.read();
-										if (k == -1) {
-											continue;
-										}
-										char c = (char) k;
-										if (c == '\n') {
-											TrainStatus status = gson.fromJson(
-													b.toString(),
-													TrainStatus.class);
-											if (status.getTrack() != null
-													&& status.getTrack()
-															.toLowerCase()
-															.equals("track")) {
-												status.setTrack(null);
-											}
-											if (status.getStatus() != null
-													&& status.getStatus()
-															.trim().length() == 0) {
-												status.setStatus(null);
-											}
-											onTrainStatus(status);
-											b.setLength(0);
-											System.out.println(status);
-										} else {
-											b.append(c);
-										}
-									}
-									
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						}.start();
-					}
 					timer.scheduleAtFixedRate(newUpdaterThread(), c.getTime(),
 							60000);
 					new Thread() {
@@ -469,6 +441,53 @@ public class StopActivity extends SchedulerActivity {
 						+ departure.getName() + " to " + arrival.getName()
 						+ " in "
 						+ result.getStopQueryResult().getQueryDuration(), 0);
+				if (result.getStopQueryResult().getDepart()
+						.getAlternateId() != null) {
+					departureVision = new DepartureVision();
+					final String alternateId = result.getStopQueryResult()
+							.getDepart().getAlternateId();
+					new Thread() {
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(500);
+								Gson gson = new Gson();
+								InputStream in = departureVision
+										.departures(alternateId);
+								TrainStatus trainStatus = null;
+								StringBuilder b = new StringBuilder();
+								while (true) {
+									int k = in.read();
+									if (k == -1) {
+										continue;
+									}
+									char c = (char) k;
+									if (c == '\n') {
+										TrainStatus status = gson.fromJson(
+												b.toString(),
+												TrainStatus.class);
+										if (status.getTrack() != null) {													
+											status.setTrack(status.getTrack().replace("Track", ""));
+										}
+										if (status.getStatus() != null
+												&& status.getStatus()
+														.trim().length() == 0) {
+											status.setStatus(null);
+										}
+										onTrainStatus(status);
+										b.setLength(0);
+										System.out.println(status);
+									} else {
+										b.append(c);
+									}
+								}
+								
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					}.start();
+				}
 			}
 
 		}.execute();
@@ -481,7 +500,11 @@ public class StopActivity extends SchedulerActivity {
 				Stop stop = adapter.getItem(i);
 				if(status.getTrain()!=null && stop.getBlockId()!=null) {
 					if(stop.getBlockId().equals(status.getTrain())) {
-						System.out.println("yeah");
+						Message m = Message.obtain();
+						m.arg1 = i;
+						m.what = TRAIN_STATUS;
+						m.obj = status;
+						mHandler.sendMessage(m);
 					}
 				}
 			}
@@ -489,6 +512,8 @@ public class StopActivity extends SchedulerActivity {
 			
 		}
 	}
+	
+	private static final int TRAIN_STATUS=2;
 	
 	private TimerTask newUpdaterThread() {
 		updaterThread = new TimerTask() {

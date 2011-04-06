@@ -3,6 +3,7 @@ package com.njtransit.ui.adapter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Stop;
+import com.njtransit.domain.TrainStatus;
 import com.njtransit.rail.R;
 
 public class StopAdapter extends ArrayAdapter<Stop> {
@@ -24,6 +26,9 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 	
 	private Map<Integer,IService> services;
+	
+	private Map<Stop, TrainStatus> statuses = new HashMap<Stop,TrainStatus>();
+	
 	private Calendar departDate;
 	private Calendar today;
 	
@@ -82,6 +87,15 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 				minutesAway.setVisibility(View.GONE);
 			}
 		}
+		TrainStatus status = statuses.get(stop);
+		if(status!=null) {
+			if(status.getTrack()!=null) {
+				timeDesc.setVisibility(View.VISIBLE);
+				timeDesc.setText(status.getTrack());
+			} else {
+				//timeDesc.setVisibility(View.GONE);
+			}
+		}
 		return str;
 	}
 
@@ -117,6 +131,10 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		String arrive = f.format(stop.getArrive().getTime());
 		return String.format("%s - %s", depart, arrive)
 				.toLowerCase();
+	}
+
+	public Map<Stop, TrainStatus> getStatuses() {
+		return statuses;
 	}
 
 }
