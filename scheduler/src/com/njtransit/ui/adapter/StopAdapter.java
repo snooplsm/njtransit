@@ -68,32 +68,65 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		int todayDayDay = today.get(Calendar.DAY_OF_YEAR);
 		int todayDayYear = today.get(Calendar.YEAR);
 		
+		TrainStatus status = statuses.get(stop);
+		
+		boolean hasTrackOrStatus = false;
+		if(status!=null) {
+			String txt = status.getStatus() ==null ? "" : status.getStatus();
+			if(status.getTrack()!=null && status.getTrack().trim().length()>0) {				
+				txt.trim();
+				txt+=" on track";
+				txt+=" ";
+				txt+=(status.getTrack().trim());
+			}
+			if(txt.length()!=0) {
+				hasTrackOrStatus=true;
+				timeDesc.setVisibility(View.VISIBLE);
+				timeDesc.setText(txt);
+			}			
+		}
+	
 		if(scheduleDepartDay!=todayDayDay || scheduleDepartYear!=todayDayYear) {
-			timeDesc.setText(dateFormat.format(depart.getTime()));
+			if(!hasTrackOrStatus) {
+				timeDesc.setText(dateFormat.format(depart.getTime()));
+			}
 			timeDesc.setVisibility(View.VISIBLE);
 			minutesAway.setVisibility(View.GONE);
 		} else {
 			if(departYear==nextDayYear && departDay == nextDayDay) {
-				timeDesc.setText("next day");
-				timeDesc.setVisibility(View.VISIBLE);
+				if(!hasTrackOrStatus) {
+					timeDesc.setText("next day");				
+					timeDesc.setVisibility(View.VISIBLE);
+				}
 				minutesAway.setVisibility(View.GONE);
 			} else {
 				timeDesc.setVisibility(View.GONE);
 			}
+			
 			if(awayTimeInMinutes>=0 && (awayTimeInMinutes<=100 || ((hourOfDay<4 || hourOfDay>18) && awayTimeInMinutes<=200))) {
 				minutesAway.setVisibility(View.VISIBLE);
 				minutesAway.setText(String.format("departs in %s minutes",awayTimeInMinutes));
 			} else {
+				if(awayTimeInMinutes<-2) {
+					if(status!=null && status.getStatus()!=null) {
+						if(status.getStatus().toLowerCase().contains("DELAYED")) {
+							try {
+								String[] d = status.getStatus().split(" ");
+								int mins = Integer.parseInt(d[1]);
+								if(-mins<awayTimeInMinutes) {
+									timeDesc.setVisibility(View.VISIBLE);
+								} else {
+									timeDesc.setVisibility(View.GONE);
+								}
+							} catch (Exception e) {
+								timeDesc.setVisibility(View.GONE);
+							}
+						} else {
+							timeDesc.setVisibility(View.GONE);
+						}
+					}
+				}
 				minutesAway.setVisibility(View.GONE);
-			}
-		}
-		TrainStatus status = statuses.get(stop);
-		if(status!=null) {
-			if(status.getTrack()!=null) {
-				timeDesc.setVisibility(View.VISIBLE);
-				timeDesc.setText(status.getTrack());
-			} else {
-				//timeDesc.setVisibility(View.GONE);
 			}
 		}
 		return str;

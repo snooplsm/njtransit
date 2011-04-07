@@ -1,6 +1,6 @@
 package com.njtransit;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -15,7 +15,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,8 +33,8 @@ import android.widget.TextView;
 
 import com.admob.android.ads.AdView;
 import com.admob.android.ads.SimpleAdListener;
-import com.google.gson.Gson;
 import com.njtransit.departurevision.DepartureVision;
+import com.njtransit.departurevision.DepartureVision.TrainStatusListener;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
@@ -41,7 +43,7 @@ import com.njtransit.model.StopsQueryResult;
 import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
 
-public class StopActivity extends SchedulerActivity {
+public class StopActivity extends SchedulerActivity implements TrainStatusListener {
 
 	private StopListView stopTimes;
 
@@ -99,17 +101,12 @@ public class StopActivity extends SchedulerActivity {
 					Stop stopB = (Stop)stopTimes.getItemAtPosition(row.getId());
 					if(stop.equals(stopB)) {
 						adapter.getStatuses().put(stop, status);
-						TextView descriptor = (TextView)row.findViewById(R.id.time_descriptor);
-						if(status.getTrack()!=null) {
-							descriptor.setVisibility(View.VISIBLE);
-							descriptor.setText(status.getTrack());
-						}
+						adapter.notifyDataSetChanged();
+						stopTimes.invalidateViews();
+						stopTimes.invalidate();
 						break;
 					}
-				}
-				adapter.notifyDataSetChanged();
-				stopTimes.invalidateViews();
-				stopTimes.invalidate();				
+				}								
 			}
 		}
 		
@@ -119,9 +116,12 @@ public class StopActivity extends SchedulerActivity {
 
 	private AdView ad;
 
+	private ConnectivityManager mConnectivity;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mConnectivity = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.stop_list_home);
 
@@ -450,39 +450,9 @@ public class StopActivity extends SchedulerActivity {
 						@Override
 						public void run() {
 							try {
-								Thread.sleep(500);
-								Gson gson = new Gson();
-								InputStream in = departureVision
-										.departures(alternateId);
-								TrainStatus trainStatus = null;
-								StringBuilder b = new StringBuilder();
-								while (true) {
-									int k = in.read();
-									if (k == -1) {
-										continue;
-									}
-									char c = (char) k;
-									if (c == '\n') {
-										TrainStatus status = gson.fromJson(
-												b.toString(),
-												TrainStatus.class);
-										if (status.getTrack() != null) {													
-											status.setTrack(status.getTrack().replace("Track", ""));
-										}
-										if (status.getStatus() != null
-												&& status.getStatus()
-														.trim().length() == 0) {
-											status.setStatus(null);
-										}
-										onTrainStatus(status);
-										b.setLength(0);
-										System.out.println(status);
-									} else {
-										b.append(c);
-									}
-								}
-								
-							} catch (Exception e) {
+								departureVision.addListener(StopActivity.this);
+								departureVision.startDepartures(alternateId);
+							} catch (IOException e) {
 								e.printStackTrace();
 							}
 						}
@@ -493,7 +463,7 @@ public class StopActivity extends SchedulerActivity {
 		}.execute();
 	}
 
-	private void onTrainStatus(TrainStatus status) {
+	public void onTrainStatus(TrainStatus status) {
 		StopAdapter adapter = (StopAdapter)this.stopTimes.getAdapter();
 		try {			
 			for(int i = 0; i < adapter.getCount(); i++) {
