@@ -85,7 +85,6 @@ public class StopActivity extends SchedulerActivity {
 		
 		layout.addView(ad);
 		AdRequest req = new AdRequest();
-		req.setTesting(true);
 		ad.loadAd(req);
 		if (savedInstanceState == null) {
 			findAndShowStops(departure, arrival);
