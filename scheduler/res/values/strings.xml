@@ -14,8 +14,9 @@
   <string name="reverse">Reverse</string>
   <string name="date_pick">Calendar</string>
   <string name="abc">ABC</string>
-    <string name="favorites">Favorites</string>
+  <string name="favorites">Favorites</string>
   <string name="second_short">s</string>
   <string name="google_ua">UA-3270316-10</string>
   <string name="search_hint">New York Penn Station</string>
+  <string name="admob_pub_id">a14cbf2b9d15c90</string>
 </resources>

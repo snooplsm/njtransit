@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="2010121822"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2010121822"
           android:versionName="2010-12-18" package="com.njtransit.rail">
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
-    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name_full"
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8"/>
+    <application android:icon="@drawable/icon" android:label="@string/app_name_full"
                  android:name="com.njtransit.SchedulerApplication" android:theme="@style/OrangeTheme">
 
         <activity android:configChanges="orientation" android:label="@string/app_name_full"
@@ -32,23 +32,9 @@
         <!--<activity android:name="Prefs" android:screenOrientation="portrait"/>-->
         <!--<service android:name=".service.UpdaterService"/>-->
 
-
-        <meta-data android:name="ADMOB_PUBLISHER_ID" android:value="a14cbf2b9d15c90"/>
-        <meta-data android:name="ADMOB_ALLOW_LOCATION_FOR_ADS" android:value="true"/>
-
-        <activity android:configChanges="orientation|keyboard|keyboardHidden"
-                  android:name="com.admob.android.ads.AdMobActivity"
-                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
-        <receiver android:exported="true" android:name="com.admob.android.ads.analytics.InstallReceiver">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER"/>
-            </intent-filter>
-        </receiver>
-
+        <activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation"/>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </manifest>

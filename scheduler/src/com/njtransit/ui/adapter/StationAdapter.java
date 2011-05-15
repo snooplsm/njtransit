@@ -49,14 +49,7 @@ public class StationAdapter extends ArrayAdapter<Station> implements
 			}
 			TextView distance = (TextView) v
 					.findViewById(R.id.station_distance);
-			if (distance != null && app.getLastKnownLocation() != null) {
-				distance.setText(Locations
-						.relativeDistanceFrom(app.getLastKnownLocation(),
-								app.getPreferences().getUnits()).to(s)
-						.inWords());
-			} else {
-				distance.setVisibility(View.GONE);
-			}
+			distance.setVisibility(View.GONE);
 		}
 		return v;
 	}

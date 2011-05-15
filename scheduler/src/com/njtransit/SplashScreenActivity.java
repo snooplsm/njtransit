@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.admob.android.ads.AdManager;
 import com.njtransit.DatabaseAdapter.InstallDatabaseMeter;
 import com.njtransit.rail.R;
 
@@ -112,9 +111,6 @@ public class SplashScreenActivity extends SchedulerActivity {
 				if (cal.getTimeInMillis() > Root
 						.getScheduleEndDate(getApplicationContext())) {
 				}
-				AdManager.setAllowUseOfLocation(true);
-				AdManager.setTestDevices(new String[] { "0A3A55190402402C", "07D7FFDFF82F367E269FC1D8421167FB", 
-				AdManager.TEST_EMULATOR });
 				Intent intent = new Intent(SplashScreenActivity.this,
 						MainActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

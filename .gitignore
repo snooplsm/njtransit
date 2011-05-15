@@ -7,6 +7,7 @@ scheduler/gen/com/njtransit/R.java
 scheduler/target
 scheduler/.classpath
 scheduler/.project
+scheduler/assets/database
 mp-maven-plugin/target
 maven-android-plugin/target
 schedule-maker-maven-plugin/target

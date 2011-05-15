@@ -14,10 +14,8 @@ import com.njtransit.utils.Distance;
 import java.util.*;
 
 /** Shared state management */
-public class SchedulerApplication extends Application implements
-		LocationListener {
+public class SchedulerApplication extends Application {
 
-	private Location lastKnownLocation;
 	private Station arrivalStation, departureStation;
 	private Calendar departureDate;
 	private int stationOrderType = 1;
@@ -56,9 +54,7 @@ public class SchedulerApplication extends Application implements
 	 * @param max
 	 * @return Key-Value collection of station to relative metered distances
 	 */
-	public Map<Station, Double> findClosestStations(Location location, int max) {
-		if (location == null)
-			location = lastKnownLocation;
+	public Map<Station, Double> findClosestStations(Location location, int max) {		
 		if (location == null || stations == null || stations.isEmpty())
 			return new HashMap<Station, Double>(2) {
 				private static final long serialVersionUID = 1L;
@@ -111,14 +107,6 @@ public class SchedulerApplication extends Application implements
 		return deviceInformation;
 	}
 
-	public Location getLastKnownLocation() {
-		return lastKnownLocation;
-	}
-
-	public LocationManager getLocations() {
-		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	}
-
 	public Preferences getPreferences() {
 		if (preferences == null) {
 			preferences = new Preferences();
@@ -151,45 +139,7 @@ public class SchedulerApplication extends Application implements
 	public void onCreate() {
 		super.onCreate();
 
-		deviceInformation = DeviceInformation.getDeviceInformation(this);                    		
-
-		setLastKnownLocation(getLocations().getLastKnownLocation(
-				LOCATION_PROVIDER));
-		if (getLastKnownLocation() == null) {
-			getLocations().requestLocationUpdates(LOCATION_PROVIDER, 3600000,
-					0, this);
-            new Thread() {
-
-                public void run() {
-                    try {
-                        Thread.sleep(20000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    getLocations().removeUpdates(SchedulerApplication.this);
-                }
-
-            }.start();
-		}
-	}
-
-	@Override
-	public void onLocationChanged(Location l) {
-		setLastKnownLocation(l);
-		// getTabHost().setCurrentTab(getTabHost().getCurrentTab());
-		getLocations().removeUpdates(this);
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
+		deviceInformation = DeviceInformation.getDeviceInformation(this);                    				
 	}
 
 	public void reverseTrip() {
@@ -212,10 +162,6 @@ public class SchedulerApplication extends Application implements
 
 	public void setDepartureStation(Station departureStation) {
 		this.departureStation = departureStation;
-	}
-
-	public void setLastKnownLocation(Location lastKnownLocation) {
-		this.lastKnownLocation = lastKnownLocation;
 	}
 
 	public void setPreferences(Preferences preferences) {

@@ -1,27 +1,40 @@
 package com.njtransit;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.admob.android.ads.AdView;
-import com.admob.android.ads.SimpleAdListener;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.njtransit.domain.IService;
 import com.njtransit.domain.Station;
 import com.njtransit.domain.Stop;
 import com.njtransit.model.StopsQueryResult;
 import com.njtransit.rail.R;
 import com.njtransit.ui.adapter.StopAdapter;
-
-import java.util.*;
 
 public class StopActivity extends SchedulerActivity {
 
@@ -66,24 +79,16 @@ public class StopActivity extends SchedulerActivity {
 		stopTimes = (StopListView) findViewById(R.id.list);
 		errors = (TextView) findViewById(R.id.errors);
 
-		ad = (AdView) findViewById(R.id.ad);
+		LinearLayout layout = (LinearLayout)findViewById(R.id.ad);
+		ad = new AdView(this, AdSize.BANNER,
+				getString(R.string.admob_pub_id));
+		
+		layout.addView(ad);
+		AdRequest req = new AdRequest();
+		req.setTesting(true);
+		ad.loadAd(req);
 		if (savedInstanceState == null) {
 			findAndShowStops(departure, arrival);
-			ad.setAdListener(new SimpleAdListener() {
-
-				@Override
-				public void onReceiveAd(AdView arg0) {
-					super.onReceiveAd(arg0);
-					ad.setVisibility(View.VISIBLE);
-				}
-
-				@Override
-				public void onFailedToReceiveAd(AdView arg0) {
-					// TODO Auto-generated method stub
-					super.onFailedToReceiveAd(arg0);
-				}
-
-			});
 		}
 	}
 
@@ -129,10 +134,14 @@ public class StopActivity extends SchedulerActivity {
 			@Override
 			protected StopResult doInBackground(Void... params) {
 				try {
-					Root.saveLastArrivalStation(StopActivity.this, getSchedulerContext().getDepartureStation().getId());
-					Root.saveLastDepartureStation(StopActivity.this, getSchedulerContext().getArrivalStation().getId());
+					Root
+							.saveLastArrivalStation(StopActivity.this,
+									getSchedulerContext().getDepartureStation()
+											.getId());
+					Root.saveLastDepartureStation(StopActivity.this,
+							getSchedulerContext().getArrivalStation().getId());
 				} finally {
-					
+
 				}
 				final StopsQueryResult sqr;
 				if (getSchedulerContext().getDepartureDate() != null) {
@@ -180,7 +189,8 @@ public class StopActivity extends SchedulerActivity {
 									.getArrive().get(Calendar.DAY_OF_YEAR)) {
 								newArrive.add(Calendar.DAY_OF_YEAR, 1);
 							}
-                            Stop stop2 = new Stop(stop.getTripId(),newDepart,newArrive);
+							Stop stop2 = new Stop(stop.getTripId(), newDepart,
+									newArrive);
 							stops.add(stop2);
 						}
 					}
